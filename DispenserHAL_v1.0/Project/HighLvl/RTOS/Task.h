@@ -8,17 +8,17 @@
 
 namespace RTOS
 {
-    static void Run(void * pvParameters);
+static void Run(void * pvParameters);
     
     
     class Task
     {
     public:
-        Task( int priority )
+        Task( char * name, int stack_size, int priority)
         {
             portBASE_TYPE rc = pdFALSE; 
             rc = xTaskCreate(static_cast<TaskFunction_t>(RTOS::Run), "TASK_NAME",
-                             configMINIMAL_STACK_SIZE * 2, this, (portBASE_TYPE) priority ,
+                             stack_size, this, (portBASE_TYPE) priority ,
                              &TaskHandler );
             if (rc != pdTRUE){
                 while(1);
@@ -28,22 +28,18 @@ namespace RTOS
         void startTask();
         void suspendTask();
         void Run();
-        virtual void Execute() = 0;
-        
     private:
         xTaskHandle TaskHandler;
-        
-        
-        void (*tskHandler)(void *pvParameters);
+        virtual void Execute() = 0;
     };
     
     
     
-    
-    static void Run(void * pvParameters)
-    {
-        static_cast<Task*>(pvParameters) -> Run();
-    } 
+static void Run(void * pvParameters)
+{
+    static_cast<Task*>(pvParameters) -> Run();
+}     
+
 }
 
 #endif

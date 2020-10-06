@@ -16,9 +16,7 @@ public:
     }
     ~Kernel() {}
     void init();
-    
-    
-    void debugTaskRun();
+
 private:
     Kernel(){}
     static Kernel * instance;
