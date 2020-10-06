@@ -3,7 +3,7 @@
 
 #include "RTOS/Task.h"
 
-class DisplayTask
+class DisplayTask: public RTOS::Task
 {
 public:
     DisplayTask(char * name, int stack_size, int priority)
