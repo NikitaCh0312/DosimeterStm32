@@ -1092,6 +1092,12 @@
         <name>Components</name>
         <group>
             <name>Buttons</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Buttons\Buttons.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Buttons\Buttons.h</name>
+            </file>
         </group>
         <group>
             <name>Ethernet</name>
