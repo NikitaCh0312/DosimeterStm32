@@ -1300,6 +1300,12 @@
                 <name>$PROJ_DIR$\..\HighLvl\Tasks\ButtonsTask.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\HighLvl\Tasks\DebugTask.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Tasks\DebugTask.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\HighLvl\Tasks\DisplayTask.cpp</name>
             </file>
             <file>

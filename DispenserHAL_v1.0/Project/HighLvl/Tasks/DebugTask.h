@@ -1,12 +1,12 @@
-#ifndef RFID_TASK_H_
-#define RFID_TASK_H_
+#ifndef DEBUG_TASK_H_
+#define DEBUG_TASK_H_
 
 #include "RTOS/Task.h"
 
-class RfidTask: public RTOS::Task
+class DebugTask: public RTOS::Task
 {
 public:
-    RfidTask(char * name, int stack_size, int priority)
+    DebugTask(char * name, int stack_size, int priority)
         :RTOS::Task(name, stack_size, priority)
     {
         

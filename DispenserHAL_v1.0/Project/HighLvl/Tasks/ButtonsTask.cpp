@@ -4,6 +4,6 @@ void ButtonsTask::Execute()
 {
     while(1)
     {
-        
+
     }
 }

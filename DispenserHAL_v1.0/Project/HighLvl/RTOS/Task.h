@@ -17,13 +17,12 @@ static void Run(void * pvParameters);
         Task( char * name, int stack_size, int priority)
         {
             portBASE_TYPE rc = pdFALSE; 
-            rc = xTaskCreate(static_cast<TaskFunction_t>(RTOS::Run), "TASK_NAME",
+            rc = xTaskCreate(static_cast<TaskFunction_t>(RTOS::Run), name,
                              stack_size, this, (portBASE_TYPE) priority ,
                              &TaskHandler );
             if (rc != pdTRUE){
                 while(1);
             }
-            vTaskSuspend( TaskHandler );
         }
         void startTask();
         void suspendTask();
