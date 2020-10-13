@@ -3,5 +3,8 @@
     <project>
         <path>$WS_DIR$\Project.ewp</path>
     </project>
+    <project>
+        <path>$WS_DIR$\..\RTOS_Library\RTOS_Library.ewp</path>
+    </project>
     <batchBuild />
 </workspace>
