@@ -1327,12 +1327,6 @@
                 <name>$PROJ_DIR$\..\HighLvl\modules\Configuration.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\Kernel.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\Kernel.h</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Logger.cpp</name>
             </file>
             <file>

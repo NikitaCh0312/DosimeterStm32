@@ -9,8 +9,6 @@
 
 #include "BoardInit.h"
 
-#include "modules/Kernel.h"
-
 #include "RTOS/Thread.h"
 
 #include "rtos_lib.h"
@@ -57,6 +55,5 @@ void startup()
     pfn_idle_hook = &iddle_hook;
     pfn_stack_over_flow_hook = &stack_overflow_hook;
     
-    Kernel::get_instance()->init();
     RTOS::Thread::start_scheduler();
 }
