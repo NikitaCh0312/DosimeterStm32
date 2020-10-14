@@ -5,6 +5,7 @@
 #include "Tasks/EthernetTask.h"
 #include "Tasks/RFIDTask.h"
 #include "Tasks/MainLogicTask.h"
+#include "Tasks/DebugTask.h"
 
 #include "BoardInit.h"
 
@@ -19,6 +20,7 @@ DisplayTask * displayTask = new DisplayTask((char*)"DisplayTask", configMINIMAL_
 EthernetTask * ethernetTask = new EthernetTask((char*)"EthernetTask", configMINIMAL_STACK_SIZE * 2, 1);
 MainLogicTask * mainLogicTask = new MainLogicTask((char*)"MainLogicTask", configMINIMAL_STACK_SIZE * 2, 1);
 RfidTask * rfidTask = new RfidTask((char*)"RfidTask", configMINIMAL_STACK_SIZE * 2, 1);
+DebugTask * debugTask = new DebugTask((char*)"DebugTask", configMINIMAL_STACK_SIZE * 2, 1);
 
 
 uint32_t global_timer = 0;
@@ -44,13 +46,10 @@ void stack_over_flow_hook(void * tsk_handle, char * tsk_name)
 }
 
 
-//#include "LCD/LCD_Init.h"
-//#include "LCD/LCD.h"
 void startup()
 {
     //low level initialization
     boardInit();
-    //LCD_Init();
 
 
     pfn_tick_hook_function = &tick_hook;
