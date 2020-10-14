@@ -194,3 +194,8 @@ void set_symbols(uint8_t * symbols, uint32_t quantity)
         send_byte ( symbols[i], 1 );
     }
 }
+
+void clear_display()
+{
+    send_byte(0x01, 0);
+}

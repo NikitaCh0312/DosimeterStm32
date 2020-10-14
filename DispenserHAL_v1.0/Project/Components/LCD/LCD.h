@@ -29,4 +29,5 @@ void set_text_eng(char * str);
 
 void set_symbols(uint8_t * symbols, uint32_t quantity);
 
+void clear_display();
 #endif

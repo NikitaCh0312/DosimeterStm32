@@ -1098,6 +1098,78 @@
         </group>
         <group>
             <name>Ethernet</name>
+            <group>
+                <name>Ethernet</name>
+                <group>
+                    <name>w5500</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Ethernet\W5500\w5500.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Ethernet\W5500\w5500.h</name>
+                    </file>
+                </group>
+                <file>
+                    <name>$PROJ_DIR$\..\Components\Ethernet\Ethernet\socket.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Components\Ethernet\Ethernet\socket.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Components\Ethernet\Ethernet\wizchip_conf.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\Components\Ethernet\Ethernet\wizchip_conf.h</name>
+                </file>
+            </group>
+            <group>
+                <name>Internet</name>
+                <group>
+                    <name>DHCP</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\DHCP\dhcp.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\DHCP\dhcp.h</name>
+                    </file>
+                </group>
+                <group>
+                    <name>DNS</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\DNS\dns.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\DNS\dns.h</name>
+                    </file>
+                </group>
+                <group>
+                    <name>HttpServer</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpUtil.c</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpUtil.h</name>
+                    </file>
+                </group>
+            </group>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Ethernet\EthernetInit.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Ethernet\EthernetInit.h</name>
+            </file>
         </group>
         <group>
             <name>Flash</name>
@@ -1253,6 +1325,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Configuration.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\Kernel.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\Kernel.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Logger.cpp</name>
