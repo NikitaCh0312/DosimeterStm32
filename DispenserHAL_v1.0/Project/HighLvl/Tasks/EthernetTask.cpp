@@ -4,6 +4,7 @@
 #include "Ethernet/Internet/HttpServer/HttpServer.h"
 #include "Ethernet/HtmlPage.h"
 #include "string.h"
+#include "stdio.h"
 
 #define SOCKET_NUMBER   3
 #define TCP_PORT        667
@@ -11,6 +12,7 @@
 
 uint8_t receivedBuffer[1000];
 uint32_t RxMessageSizeBytes = 0;
+char response[500] = {'\0'};
 
 void EthernetTask::Execute()
 {
@@ -42,14 +44,13 @@ void EthernetTask::Execute()
             parse_http_request(&request, receivedBuffer);
             if (request.METHOD == METHOD_GET)
             {
-                char response[500] = {'\0'};
-                strcat(response, RES_HTMLHEAD_OK);
-                strcat(response, HttpResponsePage);
-                send(SOCKET_NUMBER, (uint8_t*)HttpResponsePage, strlen(HttpResponsePage));
+                createHtmlResponse(response);
+                send(SOCKET_NUMBER, (uint8_t*)response, strlen(response));
             }
             else
                 send(SOCKET_NUMBER, (uint8_t*)ERROR_REQUEST_PAGE, strlen(ERROR_REQUEST_PAGE));
             
+            response[0] = '\0';
             //обнуляем принятый буфер
             for (uint32_t i = 0; i < sizeof(receivedBuffer); i++)
                 receivedBuffer[i] = '\0';

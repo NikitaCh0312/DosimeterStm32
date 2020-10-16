@@ -3,7 +3,6 @@
 
 
 
-extern const char * HttpResponsePage;
-
+void createHtmlResponse(char * res_buffer);
 
 #endif
