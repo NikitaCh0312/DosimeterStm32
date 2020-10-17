@@ -1148,13 +1148,13 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpParser.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpServer.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpUtil.c</name>
@@ -1169,6 +1169,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Components\Ethernet\EthernetInit.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Ethernet\HtmlPage.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Ethernet\HtmlPage.h</name>
             </file>
         </group>
         <group>

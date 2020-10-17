@@ -1,15 +1,16 @@
 #include "EthernetTask.h"
 #include "Ethernet/Ethernet/socket.h"
-
+#include "Ethernet/Internet/HttpServer/HttpParser.h"
+#include "Ethernet/Internet/HttpServer/HttpServer.h"
+#include "Ethernet/HtmlPage.h"
 #include "string.h"
+#include "stdio.h"
 
 #define SOCKET_NUMBER   3
 #define TCP_PORT        667
 
 
-uint8_t receivedBuffer[100];
-uint8_t testDisplayBuffer[100];
-uint32_t RxMessageSizeBytes = 0;
+
 
 void EthernetTask::Execute()
 {
@@ -36,21 +37,26 @@ void EthernetTask::Execute()
         else if (socketStatus == SOCK_ESTABLISHED)
         {
             //читаем сообщения(блокирующая поток фукнция)
-            recv(SOCKET_NUMBER, receivedBuffer, 100);
-            //определяем кол-во принятых байт
-            uint32_t rxMsgSze = strlen((char*)receivedBuffer);
-            if (rxMsgSze < 100)
+            recv(SOCKET_NUMBER, receivedBuffer, 1000);
+            static st_http_request request;
+            parse_http_request(&request, receivedBuffer);
+            if (request.METHOD == METHOD_GET)
             {
-                RxMessageSizeBytes = rxMsgSze;
-                for (int i = 0; i < rxMsgSze; i++)
-                    testDisplayBuffer[i] = receivedBuffer[i];
+                createHtmlResponse(response);
+                send(SOCKET_NUMBER, (uint8_t*)response, strlen(response));
             }
-                
+            else
+                send(SOCKET_NUMBER, (uint8_t*)ERROR_REQUEST_PAGE, strlen(ERROR_REQUEST_PAGE));
             
+            response[0] = '\0';
             //обнуляем принятый буфер
             for (uint32_t i = 0; i < sizeof(receivedBuffer); i++)
                 receivedBuffer[i] = '\0';
             
+        }
+        else if (socketStatus == SOCK_CLOSE_WAIT)
+        {
+            disconnect(SOCKET_NUMBER);
         }
         //клиент отключился
         else if (socketStatus == SOCK_CLOSED)
