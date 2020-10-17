@@ -7,7 +7,7 @@
 #include "Tasks/MainLogicTask.h"
 #include "Tasks/DebugTask.h"
 
-#include "BoardInit.h"
+#include "ComponentsInit.h"
 
 #include "RTOS/Thread.h"
 

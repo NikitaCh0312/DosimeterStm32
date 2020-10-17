@@ -1211,10 +1211,10 @@
             <name>Valve</name>
         </group>
         <file>
-            <name>$PROJ_DIR$\..\Components\BoardInit.c</name>
+            <name>$PROJ_DIR$\..\Components\ComponentsInit.c</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\..\Components\BoardInit.h</name>
+            <name>$PROJ_DIR$\..\Components\ComponentsInit.h</name>
         </file>
     </group>
     <group>
