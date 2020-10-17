@@ -10,9 +10,7 @@
 #define TCP_PORT        667
 
 
-uint8_t receivedBuffer[1000];
-uint32_t RxMessageSizeBytes = 0;
-char response[500] = {'\0'};
+
 
 void EthernetTask::Execute()
 {
