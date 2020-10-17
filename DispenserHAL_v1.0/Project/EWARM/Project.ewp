@@ -1154,13 +1154,13 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpParser.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpServer.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpUtil.c</name>
@@ -1421,6 +1421,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\Tasks\RFIDTask.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Tasks\TasksTypes.h</name>
             </file>
         </group>
     </group>
