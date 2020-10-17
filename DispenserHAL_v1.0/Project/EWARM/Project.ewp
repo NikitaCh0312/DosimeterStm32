@@ -1185,6 +1185,18 @@
         </group>
         <group>
             <name>Flash</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Flash\W25Q256.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Flash\W25Q256.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Flash\W25Q256_Init.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Flash\W25Q256_Init.h</name>
+            </file>
         </group>
         <group>
             <name>LCD</name>
