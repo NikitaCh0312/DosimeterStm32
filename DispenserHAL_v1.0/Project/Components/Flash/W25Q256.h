@@ -9,6 +9,8 @@
 
 typedef struct 
 {
+    void (*transmit)(uint8_t * buffer, uint32_t buffer_size);
+    void (*receive)(uint8_t * buffer, uint32_t buffer_size);
     uint8_t (*transmitReceiveByteSpi)(uint8_t * byte);
     void (*setCsPin)(uint32_t state);
     void (*setWpPin)(uint32_t state);
