@@ -18,4 +18,14 @@ typedef struct
 extern xQueueHandle ButtonsQueue;
 
 
+typedef enum
+{
+    NEW_CARD_DETECTED_EVENT,
+}RFID_EVENT_TYPE_t;
+typedef struct
+{
+    RFID_EVENT_TYPE_t event;
+    uint32_t card_id;    
+}RfigCardEvent_t;
+extern xQueueHandle RfidQueue;
 #endif
