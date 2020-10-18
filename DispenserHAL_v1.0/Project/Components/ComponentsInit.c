@@ -2,7 +2,7 @@
 #include "LCD/LCD.h"
 
 #include "Ethernet/EthernetInit.h"
-
+#include "Flash/W25Q256_Init.h"
 
 void boardInit()
 {
@@ -11,4 +11,7 @@ void boardInit()
     
     //ethernet intialization
     EthernetInit();
+    
+    //memory initialization
+    w25q256Init();
 }
