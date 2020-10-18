@@ -1,58 +1,28 @@
 #ifndef W25QXX_H_
 #define W25QXX_H_
 
+/*
+*used library
+*https://github.com/nimaltd/w25qxx/blob/master/w25qxx.c
+*/
 #include "stdint.h"
 
 typedef struct 
 {
-    void (*writeBytesSpi)(uint8_t * wbytes, uint32_t bytes_quantity);
-    void (*readBytesSpi)(uint8_t * rbytes, uint32_t bytes_quantity);
+    uint8_t (*transmitReceiveByteSpi)(uint8_t * byte);
     void (*setCsPin)(uint32_t state);
     void (*setWpPin)(uint32_t state);
     void (*setHoldPin)(uint32_t state);
     void (*setResetPin)(uint32_t state);
+    void (*delay)(uint32_t msec);
 }W25QXX_Driver_t;
 
-typedef enum
-{
-	W25Q10 = 1,
-	W25Q20,
-	W25Q40,
-	W25Q80,
-	W25Q16,
-	W25Q32,
-	W25Q64,
-	W25Q128,
-	W25Q256,
-	W25Q512,
-}W25QXX_ID_t;
-
-typedef struct
-{
-	W25QXX_ID_t	ID;
-	uint8_t			UniqID[8];
-
-	uint16_t PageSize;
-	uint32_t PageCount;
-	uint32_t SectorSize;
-	uint32_t SectorCount;
-	uint32_t BlockSize;
-	uint32_t BlockCount;
-
-	uint32_t CapacityInKiloByte;
-
-	uint16_t StatusRegister1;
-	uint16_t StatusRegister2;
-	uint16_t StatusRegister3;
-	
-	uint8_t	Lock;
-	
-}w25qxx_t;
 
 
-int W25qxx_Init(void);
 
-void W25qxx_EraseChip(void);
+int W25qxx_Init(W25QXX_Driver_t * drv);
+
+void W25qxx_EraseChip();
 void W25qxx_EraseSector(uint32_t SectorAddr);
 void W25qxx_EraseBlock(uint32_t BlockAddr);
 
