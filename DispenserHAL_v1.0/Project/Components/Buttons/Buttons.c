@@ -68,3 +68,7 @@ void scanButtonsState(BUTTONS_STATE_t *pButtons)
     
 }
 
+uint32_t getSysTime_ms(void)
+{
+    return HAL_GetTick();
+}
