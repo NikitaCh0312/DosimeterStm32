@@ -72,3 +72,8 @@ uint32_t getSysTime_ms(void)
 {
     return HAL_GetTick();
 }
+
+uint8_t getButtonsCnt(void)
+{
+    return BUTTONS_CNT;
+}
