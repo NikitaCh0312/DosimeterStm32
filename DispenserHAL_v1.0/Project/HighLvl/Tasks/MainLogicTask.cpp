@@ -12,5 +12,10 @@ void MainLogicTask::Execute()
             int a = 10;
             a++;
         }
+        else if (queue.event == BUTTON_SHORT_PRESSED_EVENT)
+        {
+            int a = 10;
+            a++;
+        }
     }
 }

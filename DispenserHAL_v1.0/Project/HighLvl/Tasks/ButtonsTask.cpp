@@ -25,7 +25,7 @@ void ButtonsTask::Execute()
     {
        scanButtonsState(Buttons);
        
-        for (uint8_t _j = 0; BUTTONS_CNT; _j++)  
+        for (uint8_t _j = 0; _j < BUTTONS_CNT; _j++)  
         {
             if (Buttons[_j] == PRESSED) 
             {
