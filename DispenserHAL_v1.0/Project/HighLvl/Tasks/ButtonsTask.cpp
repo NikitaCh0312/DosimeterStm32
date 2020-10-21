@@ -61,6 +61,7 @@ void ButtonsTask::Execute()
                 ButtonPARAM[_j].flagWasLongPressed = 0;
             }
         }
-       
+        //delay 10msec
+        RTOS::Thread::delay_thread(10);
     }
 }
