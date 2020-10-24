@@ -47,7 +47,8 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-
+extern void RfidIrqHandler_0();
+extern void RfidIrqHandler_1();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -237,7 +238,8 @@ void DMA1_Stream5_IRQHandler(void)
 void EXTI9_5_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI9_5_IRQn 0 */
-
+  RfidIrqHandler_0();
+  RfidIrqHandler_1();
   /* USER CODE END EXTI9_5_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);

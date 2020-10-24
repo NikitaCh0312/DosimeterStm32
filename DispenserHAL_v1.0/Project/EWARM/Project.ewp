@@ -1206,6 +1206,12 @@
         </group>
         <group>
             <name>RFID</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RFID\RFID.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RFID\RFID.h</name>
+            </file>
         </group>
         <group>
             <name>Valve</name>
