@@ -1214,7 +1214,22 @@
             </file>
         </group>
         <group>
+            <name>Sensors</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Sensors\Sensors.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Sensors\Sensors.h</name>
+            </file>
+        </group>
+        <group>
             <name>Valve</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Valve\Valve.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Valve\Valve.h</name>
+            </file>
         </group>
         <file>
             <name>$PROJ_DIR$\..\Components\ComponentsInit.c</name>
