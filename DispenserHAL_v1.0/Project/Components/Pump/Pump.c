@@ -38,7 +38,7 @@ void initPump(A4988Driver_t * drv, A4988Conf_t conf)
         drv->setMs2Pin(1);
         drv->setMs3Pin(1);
     }
-    drv->setEnablePin(0);
+    drv->setEnablePin(1);
 }
 
 
@@ -52,6 +52,7 @@ void startPump(uint32_t speed,
                PUMP_DIRECTION_t dir,
                A4988Driver_t * drv)
 {
+    drv->setEnablePin(0);
     if (dir == CLOCKWISE_PUMP_DIRECTION)
         drv->setDirPin(1);
     else
@@ -67,4 +68,5 @@ void startPump(uint32_t speed,
 void stopPump(A4988Driver_t * drv)
 {
     drv->setPwmFrequencyHz(0);
+    drv->setEnablePin(1);
 }

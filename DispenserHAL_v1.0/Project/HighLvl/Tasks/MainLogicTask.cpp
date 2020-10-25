@@ -1,33 +1,45 @@
 #include "MainLogicTask.h"
 #include "Tasks/TasksTypes.h"
+#include "Pump/Pump.h"
+
+
+extern A4988Driver_t pumpDriver;
+
 
 void MainLogicTask::Execute()
 {
+    DisplayCardEvent_t displayEvent;
     while(1)
     {
+        if (RfidQueue == NULL || ButtonsQueue == NULL || DisplayQueue == NULL)
+            continue;
         //buttons handler
-        BUTTONS_QUEUE_t queue;
-        RTOS::QueueStatic::queue_receive(ButtonsQueue, &queue, 0);
-        if (queue.event == BUTTON_LONG_PRESSED_EVENT)
+        BUTTONS_QUEUE_t buttonsEvent;
+        RTOS::QueueStatic::queue_receive(ButtonsQueue, &buttonsEvent, 0);
+        if (buttonsEvent.event == BUTTON_LONG_PRESSED_EVENT)
         {
-            int a = 10;
-            a++;
+
         }
-        else if (queue.event == BUTTON_SHORT_PRESSED_EVENT)
+        else if (buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
         {
-            int a = 10;
-            a++;
+            if (buttonsEvent.id == BUT_ENTER)
+                startPump(500, CLOCKWISE_PUMP_DIRECTION, &pumpDriver);
+            else if (buttonsEvent.id == BUT_CANCEL)
+                stopPump(&pumpDriver);
         }
         
         //rfid handler
-        RfigCardEvent_t event = 
+        RfigCardEvent_t rfidEvent = 
         {
             .event = NONE_RFID_EVENT,
         };
-        RTOS::QueueStatic::queue_receive(RfidQueue, &event, 0);
-        if (event.event == NEW_CARD_DETECTED_EVENT)
+        
+        RTOS::QueueStatic::queue_receive(RfidQueue, &rfidEvent, 0);
+        if (rfidEvent.event == NEW_CARD_DETECTED_EVENT)
         {
-            
+            displayEvent.event = NEW_RFID_CARD_DISPLAY_EVENT;
+            displayEvent.rfidCard = rfidEvent.rfidCard;
+            RTOS::QueueStatic::queue_send(DisplayQueue, &displayEvent);
         }
     }
 }

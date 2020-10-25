@@ -5,7 +5,9 @@
 #include "RTOS/RTOSManager.h"
 #include "RFID/RFID.h"
 
-
+/*
+*BUTTONS TASK QUEUE
+*/
 typedef enum
 {
     BUTTON_SHORT_PRESSED_EVENT,
@@ -28,7 +30,9 @@ typedef struct
 
 extern xQueueHandle ButtonsQueue;
 
-
+/*
+*RFID TASK QUEUE
+*/
 typedef enum
 {
     NONE_RFID_EVENT,
@@ -42,4 +46,23 @@ typedef struct
 }RfigCardEvent_t;
 
 extern xQueueHandle RfidQueue;
+
+
+
+/*
+*DISPLAY TASK QUEUE
+*/
+typedef enum
+{
+    NONE_DISPLAY_EVENT,
+    NEW_RFID_CARD_DISPLAY_EVENT,
+}DISPLAY_TASK_EVENT_t;
+typedef struct
+{
+    DISPLAY_TASK_EVENT_t event;
+    RfidInfo_t rfidCard;    
+}DisplayCardEvent_t;
+
+extern xQueueHandle DisplayQueue;
+
 #endif
