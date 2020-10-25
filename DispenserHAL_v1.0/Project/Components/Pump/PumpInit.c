@@ -65,7 +65,10 @@ static void setEnablePin(uint32_t state)
         HAL_GPIO_WritePin(STEPPER_SW_ENABLE_GPIO_Port, STEPPER_SW_ENABLE_Pin,
                           GPIO_PIN_RESET);
 }
-
+static void delay_msec(uint32_t msec)
+{
+    HAL_Delay(msec);
+}
 
 void initPumpDriver()
 {
@@ -74,6 +77,7 @@ void initPumpDriver()
     pumpDriver.setMs1Pin = &setMs1Pin;
     pumpDriver.setMs2Pin = &setMs2Pin;
     pumpDriver.setMs3Pin = &setMs3Pin;
+    pumpDriver.delay_msec = &delay_msec;
     pumpDriver.setPwmFrequencyHz = &setPwmFrequencyHz;
     
     A4988Conf_t A4988Conf;

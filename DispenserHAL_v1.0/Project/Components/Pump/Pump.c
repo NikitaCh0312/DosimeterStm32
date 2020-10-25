@@ -53,11 +53,12 @@ void startPump(uint32_t speed,
                A4988Driver_t * drv)
 {
     drv->setEnablePin(0);
+    drv->delay_msec(2);
     if (dir == CLOCKWISE_PUMP_DIRECTION)
         drv->setDirPin(1);
     else
         drv->setDirPin(0);
-    
+    drv->delay_msec(2);
     drv->setPwmFrequencyHz(1000);
 }
 

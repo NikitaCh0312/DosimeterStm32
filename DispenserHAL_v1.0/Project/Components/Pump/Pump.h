@@ -18,6 +18,7 @@ typedef struct
     void (*setMs2Pin)(uint32_t state);
     void (*setMs3Pin)(uint32_t state);
     void (*setEnablePin)(uint32_t state);
+    void (*delay_msec)(uint32_t msec);
 }A4988Driver_t;
 
 
