@@ -3,9 +3,8 @@
 
 #include "Buttons/Buttons.h"
 #include "RTOS/RTOSManager.h"
+#include "RFID/RFID.h"
 
-#define LONG_PRESSED_TIME_MS            2500
-#define TRASH_TIME_MS                   50
 
 typedef enum
 {
@@ -32,13 +31,14 @@ extern xQueueHandle ButtonsQueue;
 
 typedef enum
 {
+    NONE_RFID_EVENT,
     NEW_CARD_DETECTED_EVENT,
 }RFID_EVENT_TYPE_t;
 
 typedef struct
 {
     RFID_EVENT_TYPE_t event;
-    uint32_t card_id;    
+    RfidInfo_t rfidCard;    
 }RfigCardEvent_t;
 
 extern xQueueHandle RfidQueue;

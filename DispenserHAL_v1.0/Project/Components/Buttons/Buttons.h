@@ -5,6 +5,8 @@
 
 #define       BUTTONS_CNT     4
 
+#define LONG_PRESSED_TIME_MS            2500
+#define TRASH_TIME_MS                   50
 typedef enum { 
     BUT_UP = 0,
     BUT_DOWN,
