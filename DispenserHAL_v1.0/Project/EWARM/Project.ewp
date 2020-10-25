@@ -1154,7 +1154,7 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpParser.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
@@ -1203,6 +1203,18 @@
         </group>
         <group>
             <name>Pump</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Pump\Pump.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Pump\Pump.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Pump\PumpInit.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\Pump\PumpInit.h</name>
+            </file>
         </group>
         <group>
             <name>RFID</name>

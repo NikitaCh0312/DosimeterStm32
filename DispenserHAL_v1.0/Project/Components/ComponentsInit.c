@@ -3,6 +3,7 @@
 
 #include "Ethernet/EthernetInit.h"
 
+#include "Pump/PumpInit.h"
 
 void boardInit()
 {
@@ -11,4 +12,7 @@ void boardInit()
     
     //ethernet intialization
     EthernetInit();
+    
+    //pump init
+    initPumpDriver();
 }
