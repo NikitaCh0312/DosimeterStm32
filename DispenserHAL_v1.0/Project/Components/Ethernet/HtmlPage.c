@@ -19,6 +19,13 @@ const char * HttpResponseHtmlPage =
     <li>PUT  - тоже какая-то команда</li>\r\n\
     <li>HEAD - еще какая-то команда</li>\r\n\
     </ol>\r\n\
+    <form method=\"POST\">\r\n\
+    <button type=\"submit\" value=\"ON\"> <font color=\"blue\">On Pump</font></button>\r\n\
+    </form>\r\n\
+    <form method=\"POST\">\r\n\
+    <p><input type=\"text\" name=\"Pump_state\" size='4' value='33'></p>\r\n\
+    <p><input type=\"submit\" value=\"OK\"></p>\r\n\
+    </form>\r\n\
   </body>\r\n\
 </html>\r\n\
 \0";

@@ -45,6 +45,10 @@ void EthernetTask::Execute()
                 createHtmlResponse(response);
                 send(SOCKET_NUMBER, (uint8_t*)response, strlen(response));
             }
+            else if (request.METHOD == METHOD_POST)
+            {
+                //123
+            }
             else
                 send(SOCKET_NUMBER, (uint8_t*)ERROR_REQUEST_PAGE, strlen(ERROR_REQUEST_PAGE));
             
