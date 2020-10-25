@@ -164,6 +164,12 @@ void parse_http_request(
     return;
   }
   strcpy((char *)request->URI, nexttok);
+  
+  nexttok = strtok(NULL, ":");
+  nexttok = strtok(NULL, "\r");
+  if (nexttok[0] == ' ')
+      nexttok++;
+  strcpy((char*)request->URL, nexttok);
 }
 
 #ifdef _OLD_
