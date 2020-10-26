@@ -17,9 +17,7 @@ void ButtonsTask::Execute()
     
     BUTTONS_QUEUE_t queue;
     
-    ButtonsInit(Buttons);
     RTOS::QueueStatic::create_queue(&ButtonsQueue, 10, sizeof(BUTTONS_QUEUE_t));
-
     
     while(1)
     {

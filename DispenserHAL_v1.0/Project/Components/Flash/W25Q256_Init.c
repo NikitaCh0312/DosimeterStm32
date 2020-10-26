@@ -75,5 +75,5 @@ void w25q256Init()
     drv.setWpPin = &setWpPin;
     W25qxx_Init(&drv);
     
-    TestMemory();
+    //TestMemory();
 }

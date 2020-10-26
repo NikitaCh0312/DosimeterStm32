@@ -1154,7 +1154,7 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpParser.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
@@ -1235,6 +1235,15 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Components\RFID\RFID.h</name>
+            </file>
+        </group>
+        <group>
+            <name>RTC</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\RTC_drv.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\RTC_drv.h</name>
             </file>
         </group>
         <group>
