@@ -2,8 +2,8 @@
 #include "LCD/LCD.h"
 
 #include "Ethernet/EthernetInit.h"
-
 #include "Pump/PumpInit.h"
+#include "Flash/W25Q256_Init.h"
 
 void boardInit()
 {
@@ -15,4 +15,8 @@ void boardInit()
     
     //pump init
     initPumpDriver();
+
+    //memory initialization
+    w25q256Init();
+
 }
