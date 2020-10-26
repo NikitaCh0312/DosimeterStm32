@@ -51,7 +51,16 @@ static void delay(uint32_t msec)
     HAL_Delay(msec);
 }
 
-
+uint8_t rxMemoryBuffer[10];
+static void TestMemory()
+{
+    W25qxx_EraseSector(0);
+    W25qxx_WriteByte(0x01, 0x00);
+    W25qxx_WriteByte(0x02, 0x01);
+    W25qxx_WriteByte(0x03, 0x02);
+    
+    W25qxx_ReadBytes(rxMemoryBuffer, 0x00, 3);
+}
 
 void w25q256Init()
 {
@@ -65,4 +74,6 @@ void w25q256Init()
     drv.setResetPin = &setResetPin;
     drv.setWpPin = &setWpPin;
     W25qxx_Init(&drv);
+    
+    TestMemory();
 }
