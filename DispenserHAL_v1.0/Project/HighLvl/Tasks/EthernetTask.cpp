@@ -42,8 +42,21 @@ void EthernetTask::Execute()
             parse_http_request(&request, receivedBuffer);
             if (request.METHOD == METHOD_GET)
             {
-                createHtmlResponse(response);
-                send(SOCKET_NUMBER, (uint8_t*)response, strlen(response));
+                const char * resp;
+                if (!strcmp((char*)request.URI, "/about"))
+                {
+                    resp = getAboutHtmlResponse();
+                }
+                else if (!strcmp((char*)request.URI, "/contacts"))
+                {
+                    resp = getContactsHtmlResponse();
+                }
+                else
+                {
+                    resp = getMainHtmlResponse();
+                }
+                //createHtmlResponse(response);
+                send(SOCKET_NUMBER, (uint8_t*)resp, strlen(resp));
             }
             else if (request.METHOD == METHOD_POST)
             {
