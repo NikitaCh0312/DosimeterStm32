@@ -4,5 +4,5 @@
 
 void RtcInit()
 {
-    
+    MX_RTC_Init();
 }
