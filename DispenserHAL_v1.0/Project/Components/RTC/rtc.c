@@ -39,15 +39,64 @@ void MX_RTC_Init(void)
   hrtc.Init.OutPut = RTC_OUTPUT_DISABLE;
   hrtc.Init.OutPutPolarity = RTC_OUTPUT_POLARITY_HIGH;
   hrtc.Init.OutPutType = RTC_OUTPUT_TYPE_OPENDRAIN;
-  if (HAL_RTC_Init(&hrtc) != HAL_OK)
+  
+  if((RCC->BDCR & RCC_BDCR_RTCEN) == 0 ) 
   {
-    Error_Handler();
+    if (HAL_RTC_Init(&hrtc) != HAL_OK)
+    {
+          Error_Handler();
+    }
+    
+    if (HAL_RTCEx_SetCalibrationOutPut(&hrtc) != HAL_OK)
+    {
+          Error_Handler();
+    }
   }
-  /** Enable Calibrartion
-  */
-  if (HAL_RTCEx_SetCalibrationOutPut(&hrtc) != HAL_OK)
+  else
   {
-    Error_Handler();
+    HAL_PWR_EnableBkUpAccess();
+    __HAL_RCC_BKPSRAM_CLK_ENABLE();
+    __HAL_RCC_RTC_ENABLE();
+  }
+
+/*##-2- Check if Data stored in BackUp register1: No Need to reconfigure RTC#*/
+  /* Read the Back Up Register 1 Data */
+  if (HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR1) != 0x32F2) 
+  {
+            /* Configure RTC Calendar */
+            RTC_DateTypeDef sdatestructure;
+            RTC_TimeTypeDef stimestructure;
+
+            /*##-1- Configure the Date #################################################*/
+            /* Set Date: WEDNESDAY NOVEMBER 04th 2020 */
+            sdatestructure.Year = 0x20;
+            sdatestructure.Month = RTC_MONTH_NOVEMBER;
+            sdatestructure.Date = 0x04;
+            sdatestructure.WeekDay = RTC_WEEKDAY_WEDNESDAY;
+
+            if(HAL_RTC_SetDate(&hrtc,&sdatestructure,RTC_FORMAT_BCD) != HAL_OK)
+            {
+                  /* Initialization Error */
+                  Error_Handler();
+            }
+
+            /*##-2- Configure the Time #################################################*/
+            /* Set Time: 12:00:00 */
+            stimestructure.Hours = 0x12;
+            stimestructure.Minutes = 0x00;
+            stimestructure.Seconds = 0x00;
+            stimestructure.TimeFormat = RTC_HOURFORMAT12_AM;
+            stimestructure.DayLightSaving = RTC_DAYLIGHTSAVING_NONE ;
+            stimestructure.StoreOperation = RTC_STOREOPERATION_RESET;
+
+            if (HAL_RTC_SetTime(&hrtc, &stimestructure, RTC_FORMAT_BCD) != HAL_OK)
+            {
+                  /* Initialization Error */
+                  Error_Handler();
+            }
+
+            /*##-3- Writes a data in a RTC Backup data Register1 #######################*/
+            HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32F2); 
   }
 
 }
