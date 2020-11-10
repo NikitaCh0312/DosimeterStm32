@@ -7,6 +7,9 @@
 #include "Tasks/MainLogicTask.h"
 #include "Tasks/DebugTask.h"
 
+#include "Menu/MenuFactory.h"
+
+
 #include "ComponentsInit.h"
 
 #include "RTOS/Thread.h"
@@ -20,6 +23,8 @@ MainLogicTask * mainLogicTask = new MainLogicTask((char*)"MainLogicTask", config
 RfidTask * rfidTask = new RfidTask((char*)"RfidTask", configMINIMAL_STACK_SIZE * 2, 1);
 DebugTask * debugTask = new DebugTask((char*)"DebugTask", configMINIMAL_STACK_SIZE * 2, 1);
 
+
+Menu * menu = MenuFactory::CreateMenu();
 
 uint32_t global_timer = 0;
 static void tick_hook(void)
