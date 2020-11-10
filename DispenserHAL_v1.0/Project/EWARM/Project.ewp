@@ -1343,6 +1343,27 @@
     <group>
         <name>HighLvl</name>
         <group>
+            <name>DeviceStates</name>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\MenuState.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\MenuState.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\TaskExecutionState.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\TaskExecutionState.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\WaitingUserActionState.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\WaitingUserActionState.h</name>
+            </file>
+        </group>
+        <group>
             <name>mocks</name>
         </group>
         <group>
