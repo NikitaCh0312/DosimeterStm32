@@ -1345,6 +1345,15 @@
         <group>
             <name>DeviceStates</name>
             <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\Dosimeter.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\Dosimeter.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\IDeviceState.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\HighLvl\DeviceStates\MenuState.cpp</name>
             </file>
             <file>
