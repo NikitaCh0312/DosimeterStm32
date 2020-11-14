@@ -4,6 +4,14 @@
 
 xQueueHandle ButtonsQueue;
 
+
+typedef struct
+{
+    uint32_t    startTime;
+    uint8_t     flagOldState;
+    uint8_t     flagWasLongPressed;
+}BUTTON_PARAMETERS_t;
+
 void ButtonsTask::Execute()
 {
     BUTTON_PARAMETERS_t ButtonPARAM[BUTTONS_CNT];
@@ -15,9 +23,9 @@ void ButtonsTask::Execute()
         ButtonPARAM[i].flagWasLongPressed       = 0;
     }
     
-    BUTTONS_QUEUE_t queue;
+    ButtonsEvent_t queue;
     
-    RTOS::QueueStatic::create_queue(&ButtonsQueue, 10, sizeof(BUTTONS_QUEUE_t));
+    RTOS::QueueStatic::create_queue(&ButtonsQueue, 10, sizeof(ButtonsEvent_t));
     
     while(1)
     {

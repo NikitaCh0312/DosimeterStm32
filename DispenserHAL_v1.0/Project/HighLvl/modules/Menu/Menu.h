@@ -5,36 +5,49 @@
 
 typedef enum
 {
+    MENU_OK_RESULT,
+    MENU_EXIT_RESULT,
+    
+}MENU_RESULT_t;
+
+
+typedef enum
+{
     MENU_NONE_ACTION,
     MENU_ENTER_ACTION,
     MENU_BACK_ACTION,
     MENU_NEXT_ACTION,
     MENU_PREV_ACTION,
-}MenuAction_t;
+}MENU_ACTION_t;
 
 class Menu
 {
 public:
-    Menu(IViewMenuNode * rootNode)
+    Menu()
     {
-        _currentMenuNode = rootNode;
+
     }
     virtual ~Menu()
     {
         
     }
-    
+    void SetRootNode(IViewMenuNode * rootNode)
+    {
+        _currentMenuNode = rootNode;
+        _rootNode = rootNode;
+    }
     void InitMenu()
     {
-        
+        _currentMenuNode = _rootNode;
     }
     
     void SetCurrentNode (IViewMenuNode * node)
     {
         _currentMenuNode = node;
     }
-    void Handle(MenuAction_t action)
+    MENU_RESULT_t Handle(MENU_ACTION_t action)
     {
+        MENU_RESULT_t res = MENU_OK_RESULT;
         switch(action)
         {
             case MENU_ENTER_ACTION:
@@ -55,7 +68,8 @@ public:
 
         if (_currentMenuNode == NULL)
         //выход из меню
-            ;
+            res = MENU_EXIT_RESULT;
+        return res;
     }
     
     void Draw()
@@ -66,6 +80,8 @@ public:
     
 private:
     IViewMenuNode * _currentMenuNode;
+    
+    IViewMenuNode * _rootNode;
 };
 
 #endif

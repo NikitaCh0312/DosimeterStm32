@@ -13,7 +13,7 @@ public:
             _instance = new TaskExecutionState();
         return _instance;
     }
-    void Handle()
+    void Handle(UserAction_t action)
     {
         
     }

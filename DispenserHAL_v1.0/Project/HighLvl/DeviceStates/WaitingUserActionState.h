@@ -4,6 +4,15 @@
 #include "IDeviceState.h"
 
 
+extern uint32_t global_timer;
+
+typedef enum
+{
+    WAITING_STAGE,
+    CARD_NOT_REGISTERED_STAGE,
+}WAITING_STATE_STAGE_t;
+
+
 class WaitingUserActionState: public IDeviceState
 {
 public:
@@ -13,13 +22,17 @@ public:
             _instance = new WaitingUserActionState();
         return _instance;
     }
-    void Handle()
-    {
-        
-    }
+    void Handle(UserAction_t action);
+    
 private:
     static WaitingUserActionState * _instance;
-    WaitingUserActionState(){}
+    WaitingUserActionState()
+    {
+        _stage = WAITING_STAGE;
+    }
+    
+    
+    WAITING_STATE_STAGE_t _stage;
 };
 
 

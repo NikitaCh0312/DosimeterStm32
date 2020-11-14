@@ -12,6 +12,7 @@
 #include "DeviceStates/WaitingUserActionState.h"
 #include "DeviceStates/TaskExecutionState.h"
 #include "DeviceStates/MenuState.h"
+#include "DeviceStates/StartupState.h"
 
 #include "ComponentsInit.h"
 
@@ -46,7 +47,7 @@ void stack_over_flow_hook(void * tsk_handle, char * tsk_name)
 
 
 ButtonsTask * buttonsTask = new ButtonsTask((char*)"ButtonsTask", configMINIMAL_STACK_SIZE * 2, 1);
-DisplayTask * displayTask = new DisplayTask((char*)"DisplayTask", configMINIMAL_STACK_SIZE * 2, 1);
+//DisplayTask * displayTask = new DisplayTask((char*)"DisplayTask", configMINIMAL_STACK_SIZE * 2, 1);
 EthernetTask * ethernetTask = new EthernetTask((char*)"EthernetTask", configMINIMAL_STACK_SIZE * 2, 1);
 MainLogicTask * mainLogicTask = new MainLogicTask((char*)"MainLogicTask", configMINIMAL_STACK_SIZE * 2, 1);
 RfidTask * rfidTask = new RfidTask((char*)"RfidTask", configMINIMAL_STACK_SIZE * 2, 1);
@@ -58,6 +59,7 @@ Dosimeter * Dosimeter::_instance = new Dosimeter();
 WaitingUserActionState * WaitingUserActionState::_instance = new WaitingUserActionState();
 TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
+StartupState * StartupState::_instance = new StartupState();
 
 
 void startup()
@@ -71,14 +73,23 @@ void startup()
     pfn_idle_hook = &iddle_hook;
     pfn_stack_over_flow_hook = &stack_overflow_hook;
     
+    
     //initializing dosimeter states
     Dosimeter * dosimeter = Dosimeter::GetInstance();
+    
     WaitingUserActionState * waitingUserActionState = WaitingUserActionState::GetInstance();
     TaskExecutionState * taskExecutionState = TaskExecutionState::GetInstance();
     MenuState * menuState = MenuState::GetInstance();
+    StartupState * startupState = StartupState::GetInstance();
+    
     waitingUserActionState->SetContext(dosimeter);
     taskExecutionState->SetContext(dosimeter);
     menuState->SetContext(dosimeter);
+    startupState->SetContext(dosimeter);
+    
+    //set first state
+    dosimeter->SetState((IDeviceState*)startupState);
+    
     
     //start RTOS
     RTOS::Thread::start_scheduler();

@@ -2,7 +2,7 @@
 #define MENU_STATE_H_
 
 #include "IDeviceState.h"
-
+#include "modules/Menu/Menu.h"
 
 class MenuState: public IDeviceState
 {
@@ -13,10 +13,10 @@ public:
             _instance = new MenuState();
         return _instance;
     }
-    void Handle()
-    {
-        
-    }
+    
+    void InitMenuState();
+    void Handle(UserAction_t action);
+    
 private:
     static MenuState * _instance;
     MenuState(){}

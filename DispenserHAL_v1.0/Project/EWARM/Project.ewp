@@ -1360,6 +1360,12 @@
                 <name>$PROJ_DIR$\..\HighLvl\DeviceStates\MenuState.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\StartupState.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\StartupState.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\HighLvl\DeviceStates\TaskExecutionState.cpp</name>
             </file>
             <file>
@@ -1457,6 +1463,15 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Startup.h</name>
+            </file>
+        </group>
+        <group>
+            <name>Resources</name>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Resources\StringResources.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Resources\StringResources.h</name>
             </file>
         </group>
         <group>

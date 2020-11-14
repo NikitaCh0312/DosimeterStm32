@@ -2,6 +2,13 @@
 #define IDEVICE_STATE_H_
 
 #include "stddef.h"
+#include "Tasks/TasksTypes.h"
+
+typedef struct
+{
+    ButtonsEvent_t buttonsEvent;
+    RfigCardEvent_t rfidEvent;
+}UserAction_t;
 
 class Dosimeter;
 
@@ -16,9 +23,11 @@ public:
     {
         _context = ctx;
     }
-    virtual void Handle() = 0;
-private:
+    virtual void Handle(UserAction_t action) = 0;
+    
     Dosimeter * _context;
+protected:
+    
 };
 
 
