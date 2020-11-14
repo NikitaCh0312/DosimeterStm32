@@ -14,23 +14,35 @@
 class TimeDateViewMenuNode: public IViewMenuNode
 {
 public:
-    TimeDateViewMenuNode(IViewMenuNode * next,
-                 IViewMenuNode * prev,
-                 IViewMenuNode * parent,
-                 IViewMenuNode * child,
-                 char * name)
+    TimeDateViewMenuNode(Menu * menuCtx,
+                         IViewMenuNode * next,
+                         IViewMenuNode * prev,
+                         IViewMenuNode * parent,
+                         IViewMenuNode * child,
+                         char * name)
     {
         if (strlen(name) > 20)
             while(1);
         strcpy(menuNodeName, name);
+        _next = next;
+        _prev = prev;
+        _parent = parent;
+        _child = child;
+        _context = menuCtx;
     }
     virtual ~TimeDateViewMenuNode(){}
     
     //отрисовать меню
     void Draw()
     {
+        set_cursor_position(0, 0);
+        set_text_eng((char*)"                    ");
+        set_cursor_position(1, 0);
+        set_text_eng((char*)"                    ");
         set_cursor_position(2, 3);
         set_text_eng((char*)menuNodeName);
+        set_cursor_position(3, 0);
+        set_text_eng((char*)"                    ");
     }
     
     void Cancel()

@@ -10,6 +10,7 @@
 */
 typedef enum
 {
+    NONE_BUTTON_EVENT,
     BUTTON_SHORT_PRESSED_EVENT,
     BUTTON_LONG_PRESSED_EVENT,
     BUTTON_DOUBLE_PRESSED_EVENT,
@@ -19,14 +20,7 @@ typedef struct
 {
     BUTTON_EVENT_t event;
     BUTTONS_LIST_t id;
-}BUTTONS_QUEUE_t;
-
-typedef struct
-{
-    uint32_t    startTime;
-    uint8_t     flagOldState;
-    uint8_t     flagWasLongPressed;
-}BUTTON_PARAMETERS_t;
+}ButtonsEvent_t;
 
 extern xQueueHandle ButtonsQueue;
 

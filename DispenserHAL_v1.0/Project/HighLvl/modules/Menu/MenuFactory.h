@@ -6,6 +6,7 @@
 #include "NetworkViewMenuNode.h"
 #include "TimeDateViewMenuNode.h"
 
+
 class MenuFactory
 {
 public:
@@ -18,6 +19,7 @@ public:
         
     }
     
+#warning ERROR MENU INITIALIZATION!!!
     static Menu * CreateMenu()
     {
         ViewMenuNode * dateTimeNode;
@@ -27,16 +29,18 @@ public:
         ViewMenuNode * Setting1Node;
         ViewMenuNode * Setting2Node;
         
-        dateTimeNode = new ViewMenuNode(NetworkNode, NULL, NULL, dateTimeParamsNode, "DateTime");
-        dateTimeParamsNode = new TimeDateViewMenuNode(NULL, NULL, dateTimeNode, NULL, "DateTimeParams");
+        Menu * menu = new Menu();
         
-        NetworkNode = new ViewMenuNode(Setting1Node, dateTimeNode, NULL, NetworkParamsNode, "Network");
-        NetworkParamsNode = new NetworkViewMenuNode(NULL, NULL, NetworkNode, NULL, "Setting1");
+        dateTimeNode = new ViewMenuNode(menu, NetworkNode, NULL, NULL, dateTimeParamsNode, "DateTime");
+        dateTimeParamsNode = new TimeDateViewMenuNode(menu, NULL, NULL, dateTimeNode, NULL, "DateTimeParams");
         
-        Setting1Node = new ViewMenuNode(Setting2Node, NetworkNode, NULL, NULL, "Setting1");
-        Setting2Node = new ViewMenuNode(dateTimeNode, Setting1Node, NULL, NULL, "Setting2");
+        NetworkNode = new ViewMenuNode(menu, Setting1Node, dateTimeNode, NULL, NetworkParamsNode, "Network");
+        NetworkParamsNode = new NetworkViewMenuNode(menu, NULL, NULL, NetworkNode, NULL, "Setting1");
         
-        Menu *  menu = new Menu((IViewMenuNode*)dateTimeNode);
+        Setting1Node = new ViewMenuNode(menu, Setting2Node, NetworkNode, NULL, NULL, "Setting1");
+        Setting2Node = new ViewMenuNode(menu, dateTimeNode, Setting1Node, NULL, NULL, "Setting2");
+        
+        menu->SetRootNode((IViewMenuNode*)dateTimeNode);
         
         return menu;
     }
