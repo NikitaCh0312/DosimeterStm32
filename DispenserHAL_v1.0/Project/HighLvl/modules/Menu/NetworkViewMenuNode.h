@@ -6,29 +6,18 @@
 
 #include "LCD/LCD.h"
 
-#include "IViewMenuNode.h"
+#include "ViewMenuNode.h"
 #include "Menu.h"
 
 
 
-class NetworkViewMenuNode: public IViewMenuNode
+class NetworkViewMenuNode: public ViewMenuNode
 {
 public:
     NetworkViewMenuNode(Menu * menuCtx,
-                        IViewMenuNode * next,
-                        IViewMenuNode * prev,
-                        IViewMenuNode * parent,
-                        IViewMenuNode * child,
-                        char * name)
+                        char * name): ViewMenuNode(menuCtx, name)
     {
-        if (strlen(name) > 20)
-            while(1);
-        strcpy(menuNodeName, name);
-        _next = next;
-        _prev = prev;
-        _parent = parent;
-        _child = child;
-        _context = menuCtx;
+
     }
     virtual ~NetworkViewMenuNode(){}
     
@@ -62,13 +51,8 @@ public:
          _context->SetCurrentNode(_prev);
     }
 private:
-    IViewMenuNode * _next;
-    IViewMenuNode * _prev;
-    IViewMenuNode * _parent;
-    IViewMenuNode * _child;
-    char menuNodeName[20];
-    Menu * _context;
+
 };
 
 
-#endif#ifndef
+#endif

@@ -6,29 +6,18 @@
 
 #include "LCD/LCD.h"
 
-#include "IViewMenuNode.h"
+#include "ViewMenuNode.h"
 #include "Menu.h"
 
 
 
-class TimeDateViewMenuNode: public IViewMenuNode
+class TimeDateViewMenuNode: public ViewMenuNode
 {
 public:
     TimeDateViewMenuNode(Menu * menuCtx,
-                         IViewMenuNode * next,
-                         IViewMenuNode * prev,
-                         IViewMenuNode * parent,
-                         IViewMenuNode * child,
-                         char * name)
+                         char * name) : ViewMenuNode(menuCtx, name)
     {
-        if (strlen(name) > 20)
-            while(1);
-        strcpy(menuNodeName, name);
-        _next = next;
-        _prev = prev;
-        _parent = parent;
-        _child = child;
-        _context = menuCtx;
+
     }
     virtual ~TimeDateViewMenuNode(){}
     
@@ -44,7 +33,7 @@ public:
         set_cursor_position(3, 0);
         set_text_eng((char*)"                    ");
     }
-    
+        
     void Cancel()
     {
         _context->SetCurrentNode(_parent);
@@ -62,13 +51,8 @@ public:
          _context->SetCurrentNode(_prev);
     }
 private:
-    IViewMenuNode * _next;
-    IViewMenuNode * _prev;
-    IViewMenuNode * _parent;
-    IViewMenuNode * _child;
-    char menuNodeName[20];
-    Menu * _context;
+
 };
 
 
-#endif#ifndef
+#endif

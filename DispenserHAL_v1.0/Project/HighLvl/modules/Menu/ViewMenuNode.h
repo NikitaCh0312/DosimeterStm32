@@ -14,25 +14,28 @@ class ViewMenuNode: public IViewMenuNode
 {
 public:
     ViewMenuNode(Menu * menuCtx,
-                 IViewMenuNode * next,
-                 IViewMenuNode * prev,
-                 IViewMenuNode * parent,
-                 IViewMenuNode * child,
                  char * name)
     {
         if (strlen(name) > 20)
             while(1);
         strcpy(menuNodeName, name);
-        _next = next;
-        _prev = prev;
-        _parent = parent;
-        _child = child;
         _context = menuCtx;
     }
     virtual ~ViewMenuNode(){}
     
+    void ConfigNode(IViewMenuNode * next,
+                    IViewMenuNode * prev,
+                    IViewMenuNode * parent,
+                    IViewMenuNode * child)
+    {
+        _next = next;
+        _prev = prev;
+        _parent = parent;
+        _child = child;
+    }
+    
     //отрисовать меню
-    void Draw()
+    virtual void Draw()
     {
         set_cursor_position(0, 0);
         set_text_eng((char*)"                    ");
@@ -44,23 +47,23 @@ public:
         set_text_eng((char*)"                    ");
     }
     
-    void Cancel()
+    virtual void Cancel()
     {
         _context->SetCurrentNode(_parent);
     }
-    void Enter()
+    virtual void Enter()
     {
          _context->SetCurrentNode(_child);
     }
-    void Up()
+    virtual void Up()
     {
          _context->SetCurrentNode(_next);
     }
-    void Down()
+    virtual void Down()
     {
          _context->SetCurrentNode(_prev);
     }
-private:
+protected:
     IViewMenuNode * _next;
     IViewMenuNode * _prev;
     IViewMenuNode * _parent;

@@ -19,7 +19,6 @@ public:
         
     }
     
-#warning ERROR MENU INITIALIZATION!!!
     static Menu * CreateMenu()
     {
         ViewMenuNode * dateTimeNode;
@@ -31,14 +30,24 @@ public:
         
         Menu * menu = new Menu();
         
-        dateTimeNode = new ViewMenuNode(menu, NetworkNode, NULL, NULL, dateTimeParamsNode, "DateTime");
-        dateTimeParamsNode = new TimeDateViewMenuNode(menu, NULL, NULL, dateTimeNode, NULL, "DateTimeParams");
+        dateTimeNode = new ViewMenuNode(menu, "DateTime");
+        dateTimeParamsNode = new TimeDateViewMenuNode(menu, "DateTimeParams");
         
-        NetworkNode = new ViewMenuNode(menu, Setting1Node, dateTimeNode, NULL, NetworkParamsNode, "Network");
-        NetworkParamsNode = new NetworkViewMenuNode(menu, NULL, NULL, NetworkNode, NULL, "Setting1");
+        NetworkNode = new ViewMenuNode(menu, "Network");
+        NetworkParamsNode = new NetworkViewMenuNode(menu, "Setting1");
         
-        Setting1Node = new ViewMenuNode(menu, Setting2Node, NetworkNode, NULL, NULL, "Setting1");
-        Setting2Node = new ViewMenuNode(menu, dateTimeNode, Setting1Node, NULL, NULL, "Setting2");
+        Setting1Node = new ViewMenuNode(menu, "Setting1");
+        Setting2Node = new ViewMenuNode(menu, "Setting2");
+        
+        
+        dateTimeNode->ConfigNode(NetworkNode, NULL, NULL, dateTimeParamsNode);
+        dateTimeParamsNode->ConfigNode(NULL, NULL, dateTimeNode, NULL);
+        
+        NetworkNode->ConfigNode(Setting1Node, dateTimeNode, NULL, NetworkParamsNode);
+        NetworkParamsNode->ConfigNode(NULL, NULL, NetworkNode, NULL);
+        
+        Setting1Node->ConfigNode(Setting2Node, NetworkNode, NULL, NULL);
+        Setting2Node->ConfigNode(dateTimeNode, Setting1Node, NULL, NULL);
         
         menu->SetRootNode((IViewMenuNode*)dateTimeNode);
         
