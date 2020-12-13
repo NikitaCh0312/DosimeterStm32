@@ -10,6 +10,7 @@
 #include "modules/Menu/MenuFactory.h"
 #include "DeviceStates/Dosimeter.h"
 #include "DeviceStates/WaitingUserActionState.h"
+#include "DeviceStates/TaskSelectionState.h"
 #include "DeviceStates/TaskExecutionState.h"
 #include "DeviceStates/MenuState.h"
 #include "DeviceStates/StartupState.h"
@@ -57,6 +58,7 @@ Menu * menu = MenuFactory::CreateMenu();
 
 Dosimeter * Dosimeter::_instance = new Dosimeter();
 WaitingUserActionState * WaitingUserActionState::_instance = new WaitingUserActionState();
+TaskSelectionState * TaskSelectionState::_instance = new TaskSelectionState();
 TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
 StartupState * StartupState::_instance = new StartupState();
@@ -78,11 +80,13 @@ void startup()
     Dosimeter * dosimeter = Dosimeter::GetInstance();
     
     WaitingUserActionState * waitingUserActionState = WaitingUserActionState::GetInstance();
+    TaskSelectionState * taskSelectionState = TaskSelectionState::GetInstance();
     TaskExecutionState * taskExecutionState = TaskExecutionState::GetInstance();
     MenuState * menuState = MenuState::GetInstance();
     StartupState * startupState = StartupState::GetInstance();
     
     waitingUserActionState->SetContext(dosimeter);
+    taskSelectionState->SetContext(dosimeter);
     taskExecutionState->SetContext(dosimeter);
     menuState->SetContext(dosimeter);
     startupState->SetContext(dosimeter);

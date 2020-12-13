@@ -1372,6 +1372,12 @@
                 <name>$PROJ_DIR$\..\HighLvl\DeviceStates\TaskExecutionState.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\TaskSelectionState.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\DeviceStates\TaskSelectionState.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\HighLvl\DeviceStates\WaitingUserActionState.cpp</name>
             </file>
             <file>

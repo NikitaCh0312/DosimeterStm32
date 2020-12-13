@@ -2,15 +2,11 @@
 #define WAITING_USER_ACTION_STATE_H_
 
 #include "IDeviceState.h"
-
+#include "Dosimeter.h"
 
 extern uint32_t global_timer;
 
-typedef enum
-{
-    WAITING_STAGE,
-    CARD_NOT_REGISTERED_STAGE,
-}WAITING_STATE_STAGE_t;
+
 
 
 class WaitingUserActionState: public IDeviceState
@@ -25,6 +21,21 @@ public:
     void Handle(UserAction_t action);
     
 private:
+    typedef enum
+    {
+        WAITING_STAGE,
+        CARD_NOT_BINDED_STAGE,
+        CARD_IS_INACTIVE_STAGE,
+    }STAGE_t;
+    
+    typedef enum
+    {
+        CARD_IS_NOT_BINDED_RES,
+        CARD_IS_INACTIVE_RES,
+        CARD_IS_ACTIVE_RES,
+        CARD_EXT_ACCESS_RES,
+    }CARD_VERIFICATION_RES_t;
+    
     static WaitingUserActionState * _instance;
     WaitingUserActionState()
     {
@@ -32,7 +43,7 @@ private:
     }
     
     
-    WAITING_STATE_STAGE_t _stage;
+    STAGE_t _stage;
 };
 
 
