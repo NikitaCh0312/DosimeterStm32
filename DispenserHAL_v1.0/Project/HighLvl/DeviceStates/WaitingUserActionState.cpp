@@ -16,9 +16,9 @@ void WaitingUserActionState::Handle(UserAction_t action)
     if (_stage == WAITING_STAGE)
     {
         set_cursor_position(0, 0);
-        set_symbols(StringResources::Attach_RFID_Card_1str, 20);
+        set_symbols(StringResources::Attach_RFID_Card_1str, strlen((char*)StringResources::Attach_RFID_Card_1str));
         set_cursor_position(1, 0);
-        set_symbols(StringResources::Attach_RFID_Card_2str, 20);
+        set_symbols(StringResources::Attach_RFID_Card_2str, strlen((char*)StringResources::Attach_RFID_Card_2str));
         
         //ожидание карты пользователя
         if (action.rfidEvent.event != NEW_CARD_DETECTED_EVENT)
@@ -39,6 +39,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 MenuState * menuState = MenuState::GetInstance();
                 menuState->InitMenuState();
                 _context->SetState((IDeviceState*)menuState);
+                clear_display();
                 break;
             }
             case CARD_IS_INACTIVE_RES:
@@ -46,6 +47,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 //карта неактивна(не закреплено ни одного задания)
                 stageTimer = global_timer;
                 _stage = CARD_IS_INACTIVE_STAGE;
+                clear_display();
                 break;
             }
             case CARD_IS_NOT_BINDED_RES:
@@ -53,6 +55,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 //карта не привязана к устройству
                 stageTimer = global_timer;
                 _stage = CARD_NOT_BINDED_STAGE;
+                clear_display();
                 break;
             }
             case CARD_IS_ACTIVE_RES:
@@ -62,6 +65,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 TaskSelectionState * taskSelectionState = TaskSelectionState::GetInstance();
                 taskSelectionState->SetCardId(cardId);
                 _context->SetState((IDeviceState*)taskSelectionState);
+                clear_display();
                 break;
             }
             default:
@@ -82,8 +86,10 @@ void WaitingUserActionState::Handle(UserAction_t action)
         set_symbols(StringResources::ToThisDevice, strlen((char*)StringResources::ToThisDevice)); 
         
         if (global_timer - stageTimer > 5000)
+        {
             _stage = WAITING_STAGE;
-        
+            clear_display();
+        }
         return;
     }
     
@@ -98,8 +104,10 @@ void WaitingUserActionState::Handle(UserAction_t action)
         set_symbols(StringResources::ToThisDevice, strlen((char*)StringResources::ToThisDevice)); 
         
         if (global_timer - stageTimer > 5000)
+        {
             _stage = WAITING_STAGE;
-        
+            clear_display();
+        }
         return;
     }
 }
