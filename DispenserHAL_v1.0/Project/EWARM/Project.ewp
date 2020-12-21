@@ -1071,9 +1071,6 @@
                     <name>$PROJ_DIR$\..\Core\Src\main.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\Core\Src\rtc.c</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\Core\Src\spi.c</name>
                 </file>
                 <file>
@@ -1240,10 +1237,28 @@
         <group>
             <name>RTC</name>
             <file>
+                <name>$PROJ_DIR$\..\Components\RTC\rtc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\rtc.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Components\RTC\RTC_drv.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Components\RTC\RTC_drv.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\stm32f2xx_hal_rtc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\stm32f2xx_hal_rtc.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\stm32f2xx_hal_rtc_ex.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\RTC\stm32f2xx_hal_rtc_ex.h</name>
             </file>
         </group>
         <group>
@@ -1322,12 +1337,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F2xx_HAL_Driver\Src\stm32f2xx_hal_rcc_ex.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Drivers\STM32F2xx_HAL_Driver\Src\stm32f2xx_hal_rtc.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Drivers\STM32F2xx_HAL_Driver\Src\stm32f2xx_hal_rtc_ex.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Drivers\STM32F2xx_HAL_Driver\Src\stm32f2xx_hal_spi.c</name>

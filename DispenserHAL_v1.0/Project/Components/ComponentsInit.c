@@ -24,5 +24,5 @@ void boardInit()
     ButtonsInit(Buttons);
 
     //rtc initialization
-    RtcInit();
+    RTC_Init();
 }
