@@ -1,6 +1,7 @@
 #include "MenuState.h"
 #include "WaitingUserActionState.h"
 #include "Dosimeter.h"
+#include "LCD/LCD.h"
 
 extern Menu * menu;
 void MenuState::InitMenuState()
@@ -28,6 +29,9 @@ void MenuState::Handle(UserAction_t action)
     
     MENU_RESULT_t res = menu->Handle(menuAction);
     if (res == MENU_EXIT_RESULT)
+    {
+        clear_display();
         _context->SetState( (IDeviceState*)WaitingUserActionState::GetInstance());
+    }
     menu->Draw();
 }

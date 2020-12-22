@@ -30,17 +30,17 @@ public:
         
         Menu * menu = new Menu();
         
-        dateTimeNode = new ViewMenuNode(menu, "DateTime");
+        dateTimeNode = new ViewMenuNode(menu, "DATE TIME           ");
         dateTimeParamsNode = new TimeDateViewMenuNode(menu, "DateTimeParams");
         
-        NetworkNode = new ViewMenuNode(menu, "Network");
-        NetworkParamsNode = new NetworkViewMenuNode(menu, "Setting1");
+        NetworkNode = new ViewMenuNode(menu,  "NETWORK             ");
+        NetworkParamsNode = new NetworkViewMenuNode(menu, "NetworkParams");
         
-        Setting1Node = new ViewMenuNode(menu, "Setting1");
-        Setting2Node = new ViewMenuNode(menu, "Setting2");
+        Setting1Node = new ViewMenuNode(menu, "SETTINGS1           ");
+        Setting2Node = new ViewMenuNode(menu, "SETTINGS2           ");
         
         
-        dateTimeNode->ConfigNode(NetworkNode, NULL, NULL, dateTimeParamsNode);
+        dateTimeNode->ConfigNode(NetworkNode, Setting2Node, NULL, dateTimeParamsNode);
         dateTimeParamsNode->ConfigNode(NULL, NULL, dateTimeNode, NULL);
         
         NetworkNode->ConfigNode(Setting1Node, dateTimeNode, NULL, NetworkParamsNode);

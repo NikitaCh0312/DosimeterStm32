@@ -54,13 +54,13 @@ public:
                 _currentMenuNode->Enter();
                 break;
             case MENU_BACK_ACTION:
-                _currentMenuNode->Down();
+                _currentMenuNode->Cancel();
                 break;
             case MENU_NEXT_ACTION:
                 _currentMenuNode->Up();
                 break;
             case MENU_PREV_ACTION:
-                _currentMenuNode->Cancel();
+                _currentMenuNode->Down();
                 break;
             default:
                 break;

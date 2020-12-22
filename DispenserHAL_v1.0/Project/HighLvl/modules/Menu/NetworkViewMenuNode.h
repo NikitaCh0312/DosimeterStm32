@@ -25,13 +25,13 @@ public:
     void Draw()
     {
         set_cursor_position(0, 0);
-        set_text_eng((char*)"                    ");
+        set_text_eng((char*)"NETWORK SETTINGS    ");
         set_cursor_position(1, 0);
-        set_text_eng((char*)"                    ");
-        set_cursor_position(2, 3);
-        set_text_eng((char*)menuNodeName);
+        set_text_eng((char*)"====================");
+        set_cursor_position(2, 0);
+        set_text_eng((char*)"IP: 192.168.0.10    ");
         set_cursor_position(3, 0);
-        set_text_eng((char*)"                    ");
+        set_text_eng((char*)"MASK: 255.255.255.0 ");
     }
     
     void Cancel()
@@ -40,15 +40,15 @@ public:
     }
     void Enter()
     {
-         _context->SetCurrentNode(_child);
+         
     }
     void Up()
     {
-         _context->SetCurrentNode(_next);
+         
     }
     void Down()
     {
-         _context->SetCurrentNode(_prev);
+         
     }
 private:
 

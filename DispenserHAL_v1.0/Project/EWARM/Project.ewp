@@ -1151,13 +1151,13 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpParser.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpServer.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpUtil.c</name>
@@ -1172,12 +1172,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Components\Ethernet\EthernetInit.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Components\Ethernet\HtmlPage.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Components\Ethernet\HtmlPage.h</name>
             </file>
         </group>
         <group>
@@ -1399,6 +1393,27 @@
         <group>
             <name>modules</name>
             <group>
+                <name>[Interfaces]</name>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\[Interfaces]\ICardsManager.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\[Interfaces]\IConfuguration.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\[Interfaces]\IEventJournal.h</name>
+                </file>
+            </group>
+            <group>
+                <name>api</name>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.h</name>
+                </file>
+            </group>
+            <group>
                 <name>Json</name>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Json\JsonObject.cpp</name>
@@ -1450,6 +1465,18 @@
                 </file>
             </group>
             <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\Card.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\Card.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\CardsManager.cpp</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\CardsManager.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Configuration.cpp</name>
             </file>
             <file>
@@ -1466,12 +1493,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\MemoryCardMap.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\RFIDCard.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\RFIDCard.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Startup.cpp</name>

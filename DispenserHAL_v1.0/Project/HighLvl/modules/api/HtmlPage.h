@@ -1,5 +1,5 @@
-#ifndef ETHERNET_INIT_H_
-#define ETHERNET_INIT_H_
+#ifndef HTML_PAGE_H_
+#define HTML_PAGE_H_
 
 
 const char * getMainHtmlResponse();

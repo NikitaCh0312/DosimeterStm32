@@ -28,14 +28,7 @@ private:
         CARD_IS_INACTIVE_STAGE,
     }STAGE_t;
     
-    typedef enum
-    {
-        CARD_IS_NOT_BINDED_RES,
-        CARD_IS_INACTIVE_RES,
-        CARD_IS_ACTIVE_RES,
-        CARD_EXT_ACCESS_RES,
-    }CARD_VERIFICATION_RES_t;
-    
+   
     static WaitingUserActionState * _instance;
     WaitingUserActionState()
     {

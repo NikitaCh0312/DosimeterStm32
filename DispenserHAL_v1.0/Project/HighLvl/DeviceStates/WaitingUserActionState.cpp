@@ -3,7 +3,8 @@
 #include "DeviceStates/TaskSelectionState.h"
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
-
+#include "modules/CardsManager.h"
+#include "modules/[Interfaces]/ICardsManager.h"
 #include "string.h"
 
 
@@ -27,12 +28,12 @@ void WaitingUserActionState::Handle(UserAction_t action)
         //вытянуть из памяти карту по ее ID
         //проверка карты
         
-        CARD_VERIFICATION_RES_t res = CARD_IS_NOT_BINDED_RES;
+        CARD_STATUS_t status = CARD_IS_NOT_BINDED_STATUS;
         if (cardId == 908904)
-            res = CARD_EXT_ACCESS_RES;
-        switch (res)
+            status = CARD_EXT_ACCESS_STATUS;
+        switch (status)
         {
-            case CARD_EXT_ACCESS_RES:
+            case CARD_EXT_ACCESS_STATUS:
             {
                 //если карта КРД, то переключение состояния в меню
                 _stage = WAITING_STAGE;
@@ -42,7 +43,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 clear_display();
                 break;
             }
-            case CARD_IS_INACTIVE_RES:
+            case CARD_IS_INACTIVE_STATUS:
             {
                 //карта неактивна(не закреплено ни одного задания)
                 stageTimer = global_timer;
@@ -50,7 +51,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 clear_display();
                 break;
             }
-            case CARD_IS_NOT_BINDED_RES:
+            case CARD_IS_NOT_BINDED_STATUS:
             {
                 //карта не привязана к устройству
                 stageTimer = global_timer;
@@ -58,7 +59,7 @@ void WaitingUserActionState::Handle(UserAction_t action)
                 clear_display();
                 break;
             }
-            case CARD_IS_ACTIVE_RES:
+            case CARD_IS_ACTIVE_STATUS:
             {
                 //карта активна
                 _stage = WAITING_STAGE;

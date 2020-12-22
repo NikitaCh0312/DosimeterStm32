@@ -38,10 +38,10 @@ public:
     virtual void Draw()
     {
         set_cursor_position(0, 0);
-        set_text_eng((char*)"                    ");
+        set_text_eng((char*)"MENU                ");
         set_cursor_position(1, 0);
-        set_text_eng((char*)"                    ");
-        set_cursor_position(2, 3);
+        set_text_eng((char*)"--------------------");
+        set_cursor_position(2, 0);
         set_text_eng((char*)menuNodeName);
         set_cursor_position(3, 0);
         set_text_eng((char*)"                    ");
@@ -53,15 +53,18 @@ public:
     }
     virtual void Enter()
     {
-         _context->SetCurrentNode(_child);
+        if (_child != NULL)
+            _context->SetCurrentNode(_child);
     }
     virtual void Up()
     {
-         _context->SetCurrentNode(_next);
+        if (_next != NULL)
+            _context->SetCurrentNode(_next);
     }
     virtual void Down()
     {
-         _context->SetCurrentNode(_prev);
+        if (_prev != NULL)
+            _context->SetCurrentNode(_prev);
     }
 protected:
     IViewMenuNode * _next;
