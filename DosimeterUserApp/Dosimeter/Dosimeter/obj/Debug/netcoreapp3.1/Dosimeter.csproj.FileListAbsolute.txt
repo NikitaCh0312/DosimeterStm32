@@ -27,3 +27,12 @@ F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\De
 F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\Dosimeter.genruntimeconfig.cache
 F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\Dosimeter_MarkupCompile.lref
 F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\App.baml
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\MainTab.g.cs
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\MainTab.baml
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\DosingTab.g.cs
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\EventsJournalTab.g.cs
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\InputOutputTab.g.cs
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\DosingTab.baml
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\EventsJournalTab.baml
+F:\work_projects\Freelance\Dosimeter\DosimeterUserApp\Dosimeter\Dosimeter\obj\Debug\netcoreapp3.1\UserInteraction\Views\InputOutputTab.baml

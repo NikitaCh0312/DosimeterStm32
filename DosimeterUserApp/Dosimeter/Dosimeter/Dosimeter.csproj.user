@@ -7,6 +7,32 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UserInteraction\Views\DosingTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserInteraction\Views\EventsJournalTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserInteraction\Views\InputOutputTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserInteraction\Views\MainTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="UserInteraction\Views\DosingTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserInteraction\Views\EventsJournalTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserInteraction\Views\InputOutputTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserInteraction\Views\MainTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserInteraction\Views\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
