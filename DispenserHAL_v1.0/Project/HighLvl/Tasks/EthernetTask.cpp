@@ -7,7 +7,7 @@
 #include "stdio.h"
 
 #define SOCKET_NUMBER   3
-#define TCP_PORT        667
+#define TCP_PORT        666
 
 
 

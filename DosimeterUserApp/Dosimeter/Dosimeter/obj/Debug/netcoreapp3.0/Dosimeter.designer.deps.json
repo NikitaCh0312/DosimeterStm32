@@ -1,0 +1,81 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "MaterialDesignThemes/3.2.0": {},
+      "Newtonsoft.Json/12.0.3": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
+          }
+        }
+      },
+      "Prism.Core/8.0.0.1909": {
+        "runtime": {
+          "lib/netstandard2.0/Prism.dll": {
+            "assemblyVersion": "8.0.0.1909",
+            "fileVersion": "8.0.0.1909"
+          }
+        }
+      },
+      "Prism.DryIoc/8.0.0.1909": {
+        "runtime": {
+          "lib/net461/Prism.DryIoc.Wpf.dll": {
+            "assemblyVersion": "8.0.0.1909",
+            "fileVersion": "8.0.0.1909"
+          }
+        }
+      },
+      "Prism.Wpf/8.0.0.1909": {
+        "runtime": {
+          "lib/net461/Prism.Wpf.dll": {
+            "assemblyVersion": "8.0.0.1909",
+            "fileVersion": "8.0.0.1909"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MaterialDesignThemes/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aOZQShQuV7sCWOwO98dYz1S4stmIWDBH+Q6KoR3wDiDyuG7twoGnBDzQBhrxuS16I3GQiG5nfvUjEJFVc/zdKg==",
+      "path": "materialdesignthemes/3.2.0",
+      "hashPath": "materialdesignthemes.3.2.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
+    },
+    "Prism.Core/8.0.0.1909": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ri+iSFvJiSKYdui7qtxi3uH9NImSZ8Jl/nOosxScSJseFwAc8Lz63JLXoqSAQglcX13DzZcAMzpKNuA9rCFiJg==",
+      "path": "prism.core/8.0.0.1909",
+      "hashPath": "prism.core.8.0.0.1909.nupkg.sha512"
+    },
+    "Prism.DryIoc/8.0.0.1909": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6o6saaXGSEso4xl2F2x5joOOzkSy01osdR9pPoTeXNQTRKIl+tso/4afxQ2ftH75oqfdZGTzjuS5kLgmBKl8ng==",
+      "path": "prism.dryioc/8.0.0.1909",
+      "hashPath": "prism.dryioc.8.0.0.1909.nupkg.sha512"
+    },
+    "Prism.Wpf/8.0.0.1909": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RAIMvKo/CMcyHqFKXuHk4sU3HpdZgzf3xh885VJQ3HzgY5g4NtRdZalvQr87tmJ8ptMY/e5PSZhiJ9RTcuXPpQ==",
+      "path": "prism.wpf/8.0.0.1909",
+      "hashPath": "prism.wpf.8.0.0.1909.nupkg.sha512"
+    }
+  }
+}

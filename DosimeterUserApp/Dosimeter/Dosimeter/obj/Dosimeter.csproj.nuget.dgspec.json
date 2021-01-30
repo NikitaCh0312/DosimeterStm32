@@ -1,0 +1,90 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\work_projects\\Freelance\\Dosimeter\\DosimeterUserApp\\Dosimeter\\Dosimeter\\Dosimeter.csproj": {}
+  },
+  "projects": {
+    "F:\\work_projects\\Freelance\\Dosimeter\\DosimeterUserApp\\Dosimeter\\Dosimeter\\Dosimeter.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\work_projects\\Freelance\\Dosimeter\\DosimeterUserApp\\Dosimeter\\Dosimeter\\Dosimeter.csproj",
+        "projectName": "Dosimeter",
+        "projectPath": "F:\\work_projects\\Freelance\\Dosimeter\\DosimeterUserApp\\Dosimeter\\Dosimeter\\Dosimeter.csproj",
+        "packagesPath": "C:\\Users\\Lenova\\.nuget\\packages\\",
+        "outputPath": "F:\\work_projects\\Freelance\\Dosimeter\\DosimeterUserApp\\Dosimeter\\Dosimeter\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Lenova\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "Prism.Core": {
+              "target": "Package",
+              "version": "[8.0.0.1909, )"
+            },
+            "Prism.DryIoc": {
+              "target": "Package",
+              "version": "[8.0.0.1909, )"
+            },
+            "Prism.Wpf": {
+              "target": "Package",
+              "version": "[8.0.0.1909, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
