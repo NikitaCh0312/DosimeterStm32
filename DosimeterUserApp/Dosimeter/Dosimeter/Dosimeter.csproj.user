@@ -10,6 +10,15 @@
     <Compile Update="UserInteraction\Views\DosingTab.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserInteraction\Views\DosingTabs\CalibrationTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserInteraction\Views\DosingTabs\ModesConfigurationTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserInteraction\Views\DosingTabs\ParametersTab.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserInteraction\Views\EventsJournalTab.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -22,6 +31,15 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="UserInteraction\Views\DosingTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserInteraction\Views\DosingTabs\CalibrationTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserInteraction\Views\DosingTabs\ModesConfigurationTab.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserInteraction\Views\DosingTabs\ParametersTab.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserInteraction\Views\EventsJournalTab.xaml">
