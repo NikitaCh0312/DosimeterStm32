@@ -8,12 +8,17 @@
 #include "Tasks/DebugTask.h"
 
 #include "modules/Menu/MenuFactory.h"
+#include "modules/Json/JsonSerializer.h"
+
 #include "DeviceStates/Dosimeter.h"
 #include "DeviceStates/WaitingUserActionState.h"
 #include "DeviceStates/TaskSelectionState.h"
 #include "DeviceStates/TaskExecutionState.h"
 #include "DeviceStates/MenuState.h"
 #include "DeviceStates/StartupState.h"
+
+
+
 
 #include "ComponentsInit.h"
 
@@ -63,6 +68,8 @@ TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
 StartupState * StartupState::_instance = new StartupState();
 
+
+JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
 
 void startup()
 {

@@ -1,10 +1,11 @@
 #include "EthernetTask.h"
 #include "Ethernet/Ethernet/socket.h"
 #include "Ethernet/Internet/HttpServer/HttpParser.h"
-#include "Ethernet/Internet/HttpServer/HttpServer.h"
 #include "modules/api/HtmlPage.h"
 #include "string.h"
 #include "stdio.h"
+
+#include "modules/api/apiObjects/DescriptionApi.h"
 
 #define SOCKET_NUMBER   3
 #define TCP_PORT        666
@@ -54,6 +55,9 @@ void EthernetTask::Execute()
                 else
                 {
                     resp = getMainHtmlResponse();
+                    DescriptionApi description(JsonSerializer::GetInstance(), "13245", "1", "0.1");
+                    char desc[100];
+                    description.Serialize(desc);
                 }
                 //createHtmlResponse(response);
                 send(SOCKET_NUMBER, (uint8_t*)resp, strlen(resp));
