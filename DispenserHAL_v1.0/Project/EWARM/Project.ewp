@@ -1406,6 +1406,27 @@
             </group>
             <group>
                 <name>api</name>
+                <group>
+                    <name>apiObjects</name>
+                    <group>
+                        <name>[Interfaces]</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\[Interfaces]\IApiObject.h</name>
+                        </file>
+                    </group>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\DescriptionApi.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\DescriptionApi.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\NetworkSettingsApi.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\NetworkSettingsApi.h</name>
+                    </file>
+                </group>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.c</name>
                 </file>
