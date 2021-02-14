@@ -16,6 +16,7 @@
 #include "DeviceStates/TaskExecutionState.h"
 #include "DeviceStates/MenuState.h"
 #include "DeviceStates/StartupState.h"
+#include "modules/Configuration.h"
 
 
 
@@ -67,7 +68,7 @@ TaskSelectionState * TaskSelectionState::_instance = new TaskSelectionState();
 TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
 StartupState * StartupState::_instance = new StartupState();
-
+Configuration * Configuration::_instance = new Configuration();
 
 JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
 
