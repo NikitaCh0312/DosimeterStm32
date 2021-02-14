@@ -1157,7 +1157,7 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpServer.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpUtil.c</name>
@@ -1419,6 +1419,12 @@
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\DescriptionApi.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\EventLogApi.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\EventLogApi.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\NetworkSettingsApi.cpp</name>

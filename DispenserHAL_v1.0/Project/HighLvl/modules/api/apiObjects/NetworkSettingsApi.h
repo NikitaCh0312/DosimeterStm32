@@ -16,13 +16,14 @@ public:
                      uint32_t port)
   {
       _ip = ip;
-      
+      _port = port;
   }
   
   void Serialize( char * outString )
   {
-
+      
   }
+  
 private:
   
   JsonSerializer * _serializer;
