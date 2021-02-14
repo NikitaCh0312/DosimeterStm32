@@ -66,7 +66,7 @@ void EthernetInit()
     net_info.ip[0] = 192;
     net_info.ip[1] = 168;
     net_info.ip[2] = 0;
-    net_info.ip[3] = 9;
+    net_info.ip[3] = 10;
     //net_info.dhcp = NETINFO_DHCP;
     net_info.dhcp = NETINFO_STATIC;
 
