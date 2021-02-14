@@ -3,6 +3,7 @@
 
 #include "stddef.h"
 #include "string.h"
+#include "stdio.h"
 
 class JsonSerializer
 {
@@ -38,18 +39,28 @@ public:
     
     void WriteProperty(char * outString, char * propertyName, int propertyValue)
     {
-        
+        strcpy(outString, "\"");
+        strcpy(outString, propertyName);
+        strcpy(outString, "\"");
+        strcpy(outString, ":");
+        strcpy(outString, "\"");
+        sprintf(outString, "%d", propertyValue);
+        strcpy(outString, "\"");
+        strcpy(outString, ",");
     }
     
     void WriteProperty(char * outString, char * propertyName, char * propertyValue)
     {
-        
+        strcpy(outString, "\"");
+        strcpy(outString, propertyName);
+        strcpy(outString, "\"");
+        strcpy(outString, ":");
+        strcpy(outString, "\"");
+        strcpy(outString, propertyValue);
+        strcpy(outString, "\"");
+        strcpy(outString, ",");
     }
     
-    void WriteProperty(char * outString, char * propertyName, int propertyValue[])
-    {
-        
-    }
 private:
     static JsonSerializer * _instance;
     JsonSerializer(){}

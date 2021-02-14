@@ -56,7 +56,7 @@ void EthernetTask::Execute()
                 {
                     resp = getMainHtmlResponse();
                     DescriptionApi description(JsonSerializer::GetInstance(), "13245", "1", "0.1");
-                    char desc[100];
+                    static char desc[100];
                     description.Serialize(desc);
                 }
                 //createHtmlResponse(response);
