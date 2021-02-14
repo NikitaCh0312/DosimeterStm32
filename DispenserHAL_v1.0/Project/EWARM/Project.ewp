@@ -1457,6 +1457,24 @@
             </group>
             <group>
                 <name>Menu</name>
+                <group>
+                    <name>ElementViews</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\IElementView.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\NumberElementView.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\NumberElementView.h</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\TextElementView.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\TextElementView.h</name>
+                    </file>
+                </group>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\IViewMenuNode.h</name>
                 </file>
