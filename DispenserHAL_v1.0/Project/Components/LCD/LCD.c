@@ -174,7 +174,7 @@ void set_cursor_position(uint8_t row, uint8_t col)
        return;
    uint8_t lineOffsets[4] = { 0x00, 0x40, 0x14, 0x54 };
    uint8_t address;
-   address = lineOffsets[row] | col;
+   address = lineOffsets[row] + col;
    send_byte(0x80 | address, 0);
 }
 
