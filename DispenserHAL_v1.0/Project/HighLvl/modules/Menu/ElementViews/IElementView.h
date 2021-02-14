@@ -18,6 +18,7 @@ public:
     virtual ~IElementView(){}
     
     virtual void Draw() = 0;
+    virtual void Hide() = 0;
     
 protected:
     IElementView * next;
