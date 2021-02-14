@@ -19,46 +19,46 @@ public:
     
     void WriteStartObject(char * outString)
     {
-        strcpy(outString, START_OBJECT);
+        strcat(outString, START_OBJECT);
     }
     
     void WriteEndObject(char * outString)
     {
-        strcpy(outString, END_OBJECT);
+        strcat(outString, END_OBJECT);
     }
     
     void WriteStartArray(char * outString)
     {
-        strcpy(outString, START_ARRAY);
+        strcat(outString, START_ARRAY);
     }
     
     void WriteEndArray(char * outString)
     {
-        strcpy(outString, END_ARRAY);
+        strcat(outString, END_ARRAY);
     }
     
     void WriteProperty(char * outString, char * propertyName, int propertyValue)
     {
-        strcpy(outString, "\"");
-        strcpy(outString, propertyName);
-        strcpy(outString, "\"");
-        strcpy(outString, ":");
-        strcpy(outString, "\"");
+        strcat(outString, "\"");
+        strcat(outString, propertyName);
+        strcat(outString, "\"");
+        strcat(outString, ":");
+        strcat(outString, "\"");
         sprintf(outString, "%d", propertyValue);
-        strcpy(outString, "\"");
-        strcpy(outString, ",");
+        strcat(outString, "\"");
+        strcat(outString, ",");
     }
     
     void WriteProperty(char * outString, char * propertyName, char * propertyValue)
     {
-        strcpy(outString, "\"");
-        strcpy(outString, propertyName);
-        strcpy(outString, "\"");
-        strcpy(outString, ":");
-        strcpy(outString, "\"");
-        strcpy(outString, propertyValue);
-        strcpy(outString, "\"");
-        strcpy(outString, ",");
+        strcat(outString, "\"");
+        strcat(outString, propertyName);
+        strcat(outString, "\"");
+        strcat(outString, ":");
+        strcat(outString, "\"");
+        strcat(outString, propertyValue);
+        strcat(outString, "\"");
+        strcat(outString, ",");
     }
     
 private:

@@ -16,6 +16,7 @@ public:
                  char * model,
                  char * firmwareVersion)
   {
+      _serializer = serializer;
       strcpy(_serialNumber, serialNumber);
       strcpy(_model, model);
       strcpy(_firmwareVersion, firmwareVersion);      
