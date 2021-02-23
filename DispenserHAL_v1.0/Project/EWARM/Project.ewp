@@ -1460,6 +1460,12 @@
                 <group>
                     <name>ElementViews</name>
                     <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\ElementSelector.cpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\ElementSelector.h</name>
+                    </file>
+                    <file>
                         <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ElementViews\IElementView.h</name>
                     </file>
                     <file>

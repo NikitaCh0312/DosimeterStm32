@@ -11,20 +11,45 @@ typedef struct
 class IElementView
 {
 public:
+    IElementView()
+    {
+        
+    }
     IElementView(LcdPosition_t position)
     {
-
+        _position = position;
     }
     virtual ~IElementView(){}
     
     virtual void Draw() = 0;
+    
     virtual void Hide() = 0;
     
-protected:
-    IElementView * next;
-    IElementView * prev;
+    IElementView * GetNext()
+    {
+        return _next;
+    }
     
-    LcdPosition_t position;
+    IElementView * GetPrevious()
+    {
+        return _prev;
+    }
+    
+    void SetNext(IElementView * next)
+    {
+        _next = next;
+    }
+    
+    void SetPrevious(IElementView * prev)
+    {
+        _prev = prev;
+    }
+    
+protected:
+    IElementView * _next;
+    IElementView * _prev;
+    
+    LcdPosition_t _position;
 };
 
 

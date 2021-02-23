@@ -72,6 +72,8 @@ Configuration * Configuration::_instance = new Configuration();
 
 JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
 
+ElementSelector * ElementSelector::_instance = new ElementSelector();
+
 void startup()
 {
     //low level initialization

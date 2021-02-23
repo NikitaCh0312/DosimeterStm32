@@ -11,15 +11,15 @@ typedef struct
     uint8_t addr_2;
     uint8_t addr_3;
     uint8_t addr_4;   
-}IP_ADDR_t;
+}IpAddr_t;
 
 typedef struct
 {
-    uint8_t msk_1;
-    uint8_t msk_2;
-    uint8_t msk_3;
-    uint8_t msk_4;   
-}IP_MASK_t;
+    uint8_t mask_1;
+    uint8_t mask_2;
+    uint8_t mask_3;
+    uint8_t mask_4;   
+}IpMask_t;
 
 
 class Configuration
@@ -33,11 +33,11 @@ public:
     }
     virtual ~Configuration(){}
     
-    void        SetIpAddr(IP_ADDR_t addr);
-    void        SetIpMask(IP_MASK_t mask);
+    void        SetIpAddr(IpAddr_t addr);
+    void        SetIpMask(IpMask_t mask);
     
-    IP_ADDR_t   GetIpAddr();
-    IP_MASK_t   GetIpMask();
+    IpAddr_t   GetIpAddr();
+    IpMask_t   GetIpMask();
     
     
 private:
@@ -50,17 +50,17 @@ private:
         _ip_addr.addr_4 = 10;
         
         //defult IP MASK
-        _ip_mask.msk_1 = 255;
-        _ip_mask.msk_2 = 255;
-        _ip_mask.msk_3 = 255;
-        _ip_mask.msk_4 = 0;
+        _ip_mask.mask_1 = 255;
+        _ip_mask.mask_2 = 255;
+        _ip_mask.mask_3 = 255;
+        _ip_mask.mask_4 = 0;
                
     }
     
     static Configuration * _instance;
         
-    IP_ADDR_t   _ip_addr;
-    IP_MASK_t   _ip_mask;
+    IpAddr_t   _ip_addr;
+    IpMask_t   _ip_mask;
     
 };
 #endif

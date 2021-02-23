@@ -10,6 +10,10 @@
 #include "ViewMenuNode.h"
 #include "Menu.h"
 #include "modules/Configuration.h"
+#include "modules/Menu/ElementViews/ElementSelector.h"
+#include "modules/Menu/ElementViews/IElementView.h"
+#include "modules/Menu/ElementViews/NumberElementView.h"
+#include "modules/Menu/ElementViews/TextElementView.h"
 
 extern uint32_t global_timer;
 
@@ -19,56 +23,45 @@ typedef enum
     EDIT_ELEMENT_STATE,
 }ELEMENT_VIEW_STATE_t;
 
-struct ElementView_t
-{
-    struct ElementView_t * next;
-    struct ElementView_t * prev;
-    uint8_t x;
-    uint8_t y;
-    uint8_t value;
-    ELEMENT_VIEW_STATE_t state;
-};
-
-
 class NetworkViewMenuNode: public ViewMenuNode
 {
 public:
     NetworkViewMenuNode(Menu * menuCtx,
                         char * name): ViewMenuNode(menuCtx, name)
     {
-        IP_Addr = Configuration::GetInstance()->GetIpAddr();
-        IP_Mask = Configuration::GetInstance()->GetIpMask();
-        
         _isInited = 0;
-        _needUpdatePrevious = 0;
-        blinkingTimer = 0;
-        configureViewElements(IP_Addr, IP_Mask);
+        _elementSelector = ElementSelector::GetInstance();
+        _elementSelector->SetBlinkPeriod(VIEW_BLINK_TIME);
+        _selectedElement = NULL;
     }
+    
     virtual ~NetworkViewMenuNode(){}
     
     void Draw()
     {
         if (_isInited == 0)
         {
-            configureViewElements(IP_Addr, IP_Mask);
-            
-            static char debugAddt[40];
-            sprintf(debugAddt, "IP:  %03d.%03d.%03d.%03d", IP_Addr.addr_1,IP_Addr.addr_2,IP_Addr.addr_3,IP_Addr.addr_4); 
-            sprintf(_ip_mask_str, "MASK:%03d.%03d.%03d.%03d", IP_Mask.msk_1,IP_Mask.msk_2,IP_Mask.msk_3,IP_Mask.msk_4);
+            configureViewElements(Configuration::GetInstance()->GetIpAddr(),
+                                  Configuration::GetInstance()->GetIpMask());
             
             set_cursor_position(0, 0);
             set_text_eng((char*)"NETWORK SETTINGS    ");
-            set_cursor_position(1, 0);
-            set_text_eng(debugAddt);
-            set_cursor_position(2, 0);
-            set_text_eng(_ip_mask_str);
-            _prevSelectedElementView = NULL;
-            _selectedElementView = &_addr1;
+            set_text_eng((char*)"IP:  000.000.000.000");
+            set_text_eng((char*)"MASK:000.000.000.000");
+            _addr1.Draw();
+            _addr2.Draw();
+            _addr3.Draw();
+            _addr4.Draw();
+            _mask1.Draw();
+            _mask2.Draw();
+            _mask3.Draw();
+            _mask4.Draw();
+            _ok.Draw();
+            _selectedElement = &_addr1;
             _isInited = 1;
         }
         
-        DrawSelectedElement();
-        DrawPreviousSelectedElement();
+        _elementSelector->DrawSelectedElement();
     }
     
     void Cancel()
@@ -77,189 +70,120 @@ public:
         _context->SetCurrentNode(_parent);
 
     }
+    
     void Enter()
     {
-        if (_selectedElementView == &_ok)
+        if (isOkElement())
         {
-            //...
             Cancel();
             return;
         }
         
-         if (_selectedElementView->state == VIEW_ELEMENT_STATE) _selectedElementView->state = EDIT_ELEMENT_STATE;
-         else if (_selectedElementView->state == EDIT_ELEMENT_STATE) _selectedElementView->state = VIEW_ELEMENT_STATE;
-
+         if (_viewState == VIEW_ELEMENT_STATE)
+         {
+             _viewState = EDIT_ELEMENT_STATE;
+             _elementSelector->SetBlinkPeriod(EDIT_BLINK_TIME);
+         }
+         else if (_viewState == EDIT_ELEMENT_STATE)
+         {
+             _viewState = VIEW_ELEMENT_STATE;
+             _elementSelector->SetBlinkPeriod(VIEW_BLINK_TIME);
+         }
     }
+    
     void Up()
     {
-        if (_selectedElementView->state == VIEW_ELEMENT_STATE)
-        {
-            _prevSelectedElementView = _selectedElementView;
-            _selectedElementView = _selectedElementView->next;
-            _needUpdatePrevious = 1;
-        }
-        if (_selectedElementView->state == EDIT_ELEMENT_STATE)
-            _selectedElementView->value++;
+         if (_viewState == VIEW_ELEMENT_STATE)
+         {
+            _selectedElement = _selectedElement->GetNext();
+            _elementSelector->SetSelectedElement(_selectedElement);
+         }
          
+         if (isOkElement())
+             return;
+         
+         if (_viewState == EDIT_ELEMENT_STATE)
+            ((NumberElementView*)_selectedElement)->IncreaseValue();
     }
+    
     void Down()
     {
-         if (_selectedElementView->state == VIEW_ELEMENT_STATE)
+         if (_viewState == VIEW_ELEMENT_STATE)
          {
-             _prevSelectedElementView = _selectedElementView;
-            _selectedElementView = _selectedElementView->prev;
-            _needUpdatePrevious = 1;
+            _selectedElement = _selectedElement->GetPrevious();
+            _elementSelector->SetSelectedElement(_selectedElement);
          }
-         if (_selectedElementView->state == EDIT_ELEMENT_STATE)
-            _selectedElementView->value--;         
+         
+         if (isOkElement())
+             return;
+         
+         if (_viewState == EDIT_ELEMENT_STATE)
+            ((NumberElementView*)_selectedElement)->DecreaseValue();         
     }
-private:
-    char _ip_addr_str[20];
-    char _ip_mask_str[20];
     
-    IP_ADDR_t IP_Addr;
-    IP_MASK_t IP_Mask;
+private:
+    ElementSelector * _elementSelector;
     
     const uint32_t VIEW_BLINK_TIME = 500;
     const uint32_t EDIT_BLINK_TIME = 200;
     
     int _isInited;
-    int _needUpdatePrevious;
-    int _blinkFlag;
-    uint32_t blinkingTimer;
+    ELEMENT_VIEW_STATE_t _viewState;
     
-    struct ElementView_t _addr1;
-    struct ElementView_t _addr2;
-    struct ElementView_t _addr3;
-    struct ElementView_t _addr4;
+    NumberElementView _addr1 = NumberElementView(5, 1, 0, 3);
+    NumberElementView _addr2 = NumberElementView(9, 1, 0, 3);
+    NumberElementView _addr3 = NumberElementView(13, 1, 0, 3);
+    NumberElementView _addr4 = NumberElementView(17, 1, 0, 3);
     
-    struct ElementView_t _mask1;
-    struct ElementView_t _mask2;
-    struct ElementView_t _mask3;
-    struct ElementView_t _mask4;
+    NumberElementView _mask1 = NumberElementView(5, 2, 0, 3);
+    NumberElementView _mask2 = NumberElementView(9, 2, 0, 3);
+    NumberElementView _mask3 = NumberElementView(13, 2, 0, 3);
+    NumberElementView _mask4 = NumberElementView(17, 2, 0, 3);
     
-    struct ElementView_t _ok;
+    TextElementView _ok = TextElementView(17, 2, "OK");
     
-    ElementView_t * _selectedElementView;
-    ElementView_t * _prevSelectedElementView;
+    IElementView * _selectedElement;
     
-    void configureViewElements(IP_ADDR_t ip_addr, IP_MASK_t ip_mask)
+    void configureViewElements(IpAddr_t ip_addr, IpMask_t ip_mask)
     {
-        _addr1.prev = &_ok;
-        _addr1.next = &_addr2;
-        _addr1.x = 5;
-        _addr1.y = 1;
-        _addr1.value = ip_addr.addr_1;
-        _addr1.state = VIEW_ELEMENT_STATE;
-        
-        _addr2.prev = &_addr1;
-        _addr2.next = &_addr3;
-        _addr2.x = 9;
-        _addr2.y = 1;
-        _addr2.value = ip_addr.addr_2;
-        _addr2.state = VIEW_ELEMENT_STATE;
-        
-        _addr3.prev = &_addr2;
-        _addr3.next = &_addr4;
-        _addr3.x = 13;
-        _addr3.y = 1;
-        _addr3.value = ip_addr.addr_3;
-        _addr3.state = VIEW_ELEMENT_STATE;
-        
-        _addr4.prev = &_addr3;
-        _addr4.next = &_mask1;
-        _addr4.x = 17;
-        _addr4.y = 1;
-        _addr4.value = ip_addr.addr_4;
-        _addr4.state = VIEW_ELEMENT_STATE;
-        
-        
-        _mask1.prev = &_addr4;
-        _mask1.next = &_mask2;
-        _mask1.x = 5;
-        _mask1.y = 2;
-        _mask1.value = ip_mask.msk_1;
-        _mask1.state = VIEW_ELEMENT_STATE;
-        
-        _mask2.prev = &_mask1;
-        _mask2.next = &_mask3;
-        _mask2.x = 9;
-        _mask2.y = 2;
-        _mask2.value = ip_mask.msk_2;
-        _mask2.state = VIEW_ELEMENT_STATE;
-        
-        _mask3.prev = &_mask2;
-        _mask3.next = &_mask4;
-        _mask3.x = 13;
-        _mask3.y = 2;
-        _mask3.value = ip_mask.msk_3;
-        _mask3.state = VIEW_ELEMENT_STATE;
-        
-        _mask4.prev = &_mask3;
-        _mask4.next = &_ok;
-        _mask4.x = 17;
-        _mask4.y = 2;
-        _mask4.value = ip_mask.msk_4;
-        _mask4.state = VIEW_ELEMENT_STATE;
-        
-        _ok.prev = &_mask4;
-        _ok.next = &_addr1;
-        _ok.x = 15;
-        _ok.y = 3;
-        _ok.value = ip_mask.msk_4;
-        _ok.state = VIEW_ELEMENT_STATE;
-    }
-    
-    void DrawSelectedElement()
-    {
-        uint32_t blinkTime = VIEW_BLINK_TIME;
-        if (_selectedElementView->state == EDIT_ELEMENT_STATE)
-            blinkTime = EDIT_BLINK_TIME;
-        if (global_timer - blinkingTimer > blinkTime)
-        {
-            blinkingTimer = global_timer;            
-            if (_blinkFlag)
-            {
-                _blinkFlag = 0;
-                DrawElementView(_selectedElementView);
-            }
-            else
-            {
-                _blinkFlag = 1;
-                set_cursor_position(_selectedElementView->y, _selectedElementView->x);
-                set_text_eng((char*)"   ");
-            }
-        }
-    }
-    
-    void DrawPreviousSelectedElement()
-    {
-        if (_needUpdatePrevious)
-        {
-            if (!isOkElement(_prevSelectedElementView))
-                DrawElementView(_prevSelectedElementView);
-            _needUpdatePrevious = 0;
-        }
-    }
+        _addr1.SetPrevious(&_ok);
+        _addr1.SetNext(&_addr2);
+        _addr2.SetPrevious(&_addr1);
+        _addr2.SetNext(&_addr3);
+        _addr3.SetPrevious(&_addr2);
+        _addr3.SetNext(&_addr4);
+        _addr4.SetPrevious(&_addr3);
+        _addr4.SetNext(&_mask1);
 
-    void DrawElementView(ElementView_t * element)
-    {
-        set_cursor_position(element->y, element->x);
-        char value[5];
-        if (isOkElement(element))
-            strcpy(value, "OK");
-         else
-            sprintf(value, "%03d", element->value);
-        set_text_eng((char*)value);
+        _mask1.SetPrevious(&_addr4);
+        _mask1.SetNext(&_mask2);
+        _mask2.SetPrevious(&_mask1);
+        _mask2.SetNext(&_mask3);
+        _mask3.SetPrevious(&_mask2);
+        _mask3.SetNext(&_mask4);
+        _mask4.SetPrevious(&_mask3);
+        _mask4.SetNext(&_ok);
+        
+        _ok.SetPrevious(&_mask4);
+        _ok.SetNext(&_addr1);
+        
+        _addr1.SetValue(ip_addr.addr_1);
+        _addr2.SetValue(ip_addr.addr_2);
+        _addr3.SetValue(ip_addr.addr_3);
+        _addr4.SetValue(ip_addr.addr_4);
+        
+        _mask1.SetValue(ip_mask.mask_1);
+        _mask2.SetValue(ip_mask.mask_2);
+        _mask3.SetValue(ip_mask.mask_3);
+        _mask4.SetValue(ip_mask.mask_4);
     }
     
-    int isOkElement(ElementView_t * element)
+    bool isOkElement()
     {
-        if (_selectedElementView == &_ok)
-            return 1;
-        return 0;
+        if (_selectedElement == &_ok)
+            return true;
+        return false;
     }
-    
 };
 
 

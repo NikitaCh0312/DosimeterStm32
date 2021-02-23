@@ -10,13 +10,16 @@
 #define NUMBER_ELEMENT_MAX_VALUE_LENGTH 10
 #define NUMBER_ELEMENT_DEFAULT_VALUE_LENGTH 3
 
-class NumberElementView:IElementView
+class NumberElementView: public IElementView
 {
 public:
-    NumberElementView(LcdPosition_t position,
+    NumberElementView(uint32_t row,
+                      uint32_t column,
                       uint32_t value,
-                      uint32_t viewLength):IElementView(position)
+                      uint32_t viewLength)
     {
+        _position.row = row;
+        _position.column = column;
         _value = value;
         if (viewLength > NUMBER_ELEMENT_MAX_VALUE_LENGTH)
             _viewLength = NUMBER_ELEMENT_DEFAULT_VALUE_LENGTH;
@@ -24,20 +27,53 @@ public:
             _viewLength = viewLength;
         CreateFormatter();
     }
+    
+//    NumberElementView(LcdPosition_t position,
+//                      uint32_t value,
+//                      uint32_t viewLength):IElementView(position)
+//    {
+//        _value = value;
+//        if (viewLength > NUMBER_ELEMENT_MAX_VALUE_LENGTH)
+//            _viewLength = NUMBER_ELEMENT_DEFAULT_VALUE_LENGTH;
+//        else
+//            _viewLength = viewLength;
+//        CreateFormatter();
+//    }
     virtual ~NumberElementView(){}
     
     void Draw()
     {
-        set_cursor_position(position.row, position.column);
-        char value[_viewLength + 1];
+        set_cursor_position(_position.row, _position.column);
+        char value[NUMBER_ELEMENT_MAX_VALUE_LENGTH];
         sprintf(value, formatter, _value);
         set_text_eng((char*)value);
     }
     
     void Hide()
     {
-        set_cursor_position(position.row, position.column);
-        set_symbols(_viewLength, ' ');
+        set_cursor_position(_position.row, _position.column);
+        set_symbols((uint8_t*)" ", _viewLength);
+    }
+    
+    
+    void IncreaseValue()
+    {
+        _value++;
+    }
+    
+    void DecreaseValue()
+    {
+        _value--;
+    }
+    
+    uint32_t GetValue()
+    {
+        return _value;
+    }
+    
+    void SetValue(uint32_t val)
+    {
+        _value = val;
     }
     
 private:
