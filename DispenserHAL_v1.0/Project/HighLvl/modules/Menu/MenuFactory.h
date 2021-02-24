@@ -36,8 +36,8 @@ public:
         NetworkNode = new ViewMenuNode(menu,  "NETWORK             ");
         NetworkParamsNode = new NetworkViewMenuNode(menu, "NetworkParams");
         
-        Setting1Node = new ViewMenuNode(menu, "SETTINGS1           ");
-        Setting2Node = new ViewMenuNode(menu, "SETTINGS2           ");
+        Setting1Node = new ViewMenuNode(menu, "FORCED DISPENCING   ");
+        Setting2Node = new ViewMenuNode(menu, "MAINTENANCE OF DS&DS");
         
         
         dateTimeNode->ConfigNode(NetworkNode, Setting2Node, NULL, dateTimeParamsNode);
