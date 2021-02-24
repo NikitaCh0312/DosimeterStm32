@@ -52,7 +52,8 @@ public:
     void Hide()
     {
         set_cursor_position(_position.row, _position.column);
-        set_symbols((uint8_t*)" ", _viewLength);
+        for (int i = 0; i < _viewLength; i++)
+          set_symbols((uint8_t*)" ", 1);
     }
     
     
@@ -86,7 +87,7 @@ private:
     
     void CreateFormatter()
     {
-        strcpy(formatter, "\"%0");
+        strcpy(formatter, "%0");
         char length[5];
         sprintf(length, "%d", _viewLength);
         strcat(formatter, length);

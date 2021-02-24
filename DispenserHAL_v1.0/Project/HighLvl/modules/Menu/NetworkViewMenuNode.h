@@ -29,24 +29,27 @@ public:
     NetworkViewMenuNode(Menu * menuCtx,
                         char * name): ViewMenuNode(menuCtx, name)
     {
-        _isInited = 0;
         _elementSelector = ElementSelector::GetInstance();
         _elementSelector->SetBlinkPeriod(VIEW_BLINK_TIME);
         _selectedElement = NULL;
+        _viewState = VIEW_ELEMENT_STATE;
     }
     
     virtual ~NetworkViewMenuNode(){}
     
     void Draw()
     {
-        if (_isInited == 0)
+        if (!_isInited)
         {
             configureViewElements(Configuration::GetInstance()->GetIpAddr(),
                                   Configuration::GetInstance()->GetIpMask());
             
+            clear_display();
             set_cursor_position(0, 0);
             set_text_eng((char*)"NETWORK SETTINGS    ");
+            set_cursor_position(1, 0);
             set_text_eng((char*)"IP:  000.000.000.000");
+            set_cursor_position(2, 0);
             set_text_eng((char*)"MASK:000.000.000.000");
             _addr1.Draw();
             _addr2.Draw();
@@ -58,7 +61,9 @@ public:
             _mask4.Draw();
             _ok.Draw();
             _selectedElement = &_addr1;
-            _isInited = 1;
+            _elementSelector->SetSelectedElement(_selectedElement);
+            _elementSelector->SetBlinkPeriod(VIEW_BLINK_TIME);
+            _isInited = true;
         }
         
         _elementSelector->DrawSelectedElement();
@@ -66,15 +71,19 @@ public:
     
     void Cancel()
     {
-        _isInited = 0;
         _context->SetCurrentNode(_parent);
-
+        _isInited = false;
+        _elementSelector->SetBlinkPeriod(VIEW_BLINK_TIME);
+        _selectedElement = NULL;
+        _viewState = VIEW_ELEMENT_STATE;
+        _elementSelector->Clean();
     }
     
     void Enter()
     {
         if (isOkElement())
         {
+            //...
             Cancel();
             return;
         }
@@ -127,20 +136,19 @@ private:
     const uint32_t VIEW_BLINK_TIME = 500;
     const uint32_t EDIT_BLINK_TIME = 200;
     
-    int _isInited;
     ELEMENT_VIEW_STATE_t _viewState;
     
-    NumberElementView _addr1 = NumberElementView(5, 1, 0, 3);
-    NumberElementView _addr2 = NumberElementView(9, 1, 0, 3);
-    NumberElementView _addr3 = NumberElementView(13, 1, 0, 3);
-    NumberElementView _addr4 = NumberElementView(17, 1, 0, 3);
+    NumberElementView _addr1 = NumberElementView(1, 5, 0, 3);
+    NumberElementView _addr2 = NumberElementView(1, 9, 0, 3);
+    NumberElementView _addr3 = NumberElementView(1, 13, 0, 3);
+    NumberElementView _addr4 = NumberElementView(1, 17, 0, 3);
     
-    NumberElementView _mask1 = NumberElementView(5, 2, 0, 3);
-    NumberElementView _mask2 = NumberElementView(9, 2, 0, 3);
-    NumberElementView _mask3 = NumberElementView(13, 2, 0, 3);
-    NumberElementView _mask4 = NumberElementView(17, 2, 0, 3);
+    NumberElementView _mask1 = NumberElementView(2, 5, 0, 3);
+    NumberElementView _mask2 = NumberElementView(2, 9, 0, 3);
+    NumberElementView _mask3 = NumberElementView(2, 13, 0, 3);
+    NumberElementView _mask4 = NumberElementView(2, 17, 0, 3);
     
-    TextElementView _ok = TextElementView(17, 2, "OK");
+    TextElementView _ok = TextElementView(3, 9, "OK");
     
     IElementView * _selectedElement;
     

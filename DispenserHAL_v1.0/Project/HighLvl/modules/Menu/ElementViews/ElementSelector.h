@@ -56,6 +56,13 @@ public:
         _blinkPeriod = period;
     }
     
+    void Clean()
+    {
+        _previousSelectedElement = NULL;
+        _selectedElement = NULL;
+        _needUpdatePrevious = false;
+    }
+    
 private:
     static ElementSelector * _instance;
     ElementSelector()
@@ -63,6 +70,7 @@ private:
         _selectedElement = NULL;
         _previousSelectedElement = NULL;
         _needUpdatePrevious = false;
+        _blinkingTimer = 0;
     }
     
     IElementView * _selectedElement;
