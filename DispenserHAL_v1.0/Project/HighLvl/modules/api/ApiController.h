@@ -1,7 +1,8 @@
 #ifndef API_CONTORLLER_H_
 #define API_CONTORLLER_H_
 
-
+#include "modules/api/WebResponse.h"
+#include "modules/api/ApiHandler.h"
 
 class ApiController
 {
@@ -13,7 +14,7 @@ public:
   
     virtual ~ApiController(){} 
   
-    void RegisterHandler()
+    void RegisterHandler(char * resourceName, ApiHandler * handler)
     {
       
     }
