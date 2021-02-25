@@ -26,6 +26,7 @@ public:
       
       _serializer->WriteStartObject(outString);
       _serializer->WriteProperty(outString, EVENT_CODE_PROPERTY_NAME, _date);
+      _serializer->WriteEndProperty(outString);
       _serializer->WriteProperty(outString, DATE_PROPERTY_NAME, code);
       _serializer->WriteEndObject(outString);
   }

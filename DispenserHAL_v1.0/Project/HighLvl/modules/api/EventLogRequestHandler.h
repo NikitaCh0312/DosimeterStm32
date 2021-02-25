@@ -2,15 +2,17 @@
 #defien EVENT_LOG_API_HANDLER_H_
 
 #include "modules/api/WebResponse.h"
+#include "modules/api/RequestHandler.h"
 
-class EventLogApiHandler: public ApiHandler
+class EventLogRequestHandler: public RequestHandler
 {
 public:
-    EventLogApiHandler()
+    EventLogRequestHandler()
     {
       
     }
-    virtual ~EventLogApiHandler(){}
+    
+    virtual ~EventLogRequestHandler(){}
   
     WebResponse Handle(char * uri)
     {
