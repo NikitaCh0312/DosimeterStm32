@@ -13,7 +13,7 @@ public:
   }
   virtual ~ApiHandler(){}
   
-  virtual WebResponse Handle() = 0;
+  virtual WebResponse Handle(char * uri) = 0;
   
 private:
   
