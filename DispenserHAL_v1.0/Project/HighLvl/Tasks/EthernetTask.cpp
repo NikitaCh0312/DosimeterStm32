@@ -5,7 +5,7 @@
 #include "string.h"
 #include "stdio.h"
 
-#include "modules/api/apiObjects/DescriptionApi.h"
+#include "modules/api/DtoObjects/DescriptionDto.h"
 #include "modules/api/ApiController.h"
 #include "modules/api/DescriptionRequestHandler.h"
 

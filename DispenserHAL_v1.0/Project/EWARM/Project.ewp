@@ -1407,30 +1407,21 @@
             <group>
                 <name>api</name>
                 <group>
-                    <name>apiObjects</name>
+                    <name>DtoObjects</name>
                     <group>
                         <name>[Interfaces]</name>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\[Interfaces]\IApiObject.h</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\[Interfaces]\DtoObject.h</name>
                         </file>
                     </group>
                     <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\DescriptionApi.cpp</name>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\DescriptionDto.h</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\DescriptionApi.h</name>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\EventLogDto.h</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\EventLogApi.cpp</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\EventLogApi.h</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\NetworkSettingsApi.cpp</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\apiObjects\NetworkSettingsApi.h</name>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\NetworkSettingsDto.h</name>
                     </file>
                 </group>
                 <file>

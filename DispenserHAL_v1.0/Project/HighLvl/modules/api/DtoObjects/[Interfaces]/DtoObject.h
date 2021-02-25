@@ -1,16 +1,16 @@
-#ifndef IAPI_OBJECT_H_
-#define IAPI_OBJECT_H_
+#ifndef DTO_OBJECT_H_
+#define DTO_OBJECT_H_
 
 #include "stddef.h"
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-class IApiObject
+class DtoObject
 {
 public:
-  IApiObject() {  }
+  DtoObject() {  }
   
-  virtual ~IApiObject() {  }
+  virtual ~DtoObject() {  }
   
   virtual void Serialize( char * outString ) = 0;
 };
