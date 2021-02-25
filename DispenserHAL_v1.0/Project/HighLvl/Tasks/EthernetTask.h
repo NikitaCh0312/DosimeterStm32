@@ -13,14 +13,12 @@ public:
     }
     
 private:
-    void Execute();
-    
     //принятый буффер
     uint8_t receivedBuffer[1000];
-    //кол-во принятых сообщений
-    uint32_t RxMessageSizeBytes = 0;
-    //буфер для ответа
-    char response[1000] = {'\0'};
+    
+    void Execute();
+    
+    void Flush();
 };
 
 

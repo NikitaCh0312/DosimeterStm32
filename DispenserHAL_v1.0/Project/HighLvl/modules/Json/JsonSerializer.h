@@ -37,6 +37,11 @@ public:
         strcat(outString, END_ARRAY);
     }
     
+    void WriteEndProperty(char * outString)
+    {
+        strcat(outString, END_PROPERTY);
+    }
+    
     void WriteProperty(char * outString, char * propertyName, int propertyValue)
     {
         strcat(outString, "\"");
@@ -46,7 +51,6 @@ public:
         strcat(outString, "\"");
         sprintf(outString, "%d", propertyValue);
         strcat(outString, "\"");
-        strcat(outString, ",");
     }
     
     void WriteProperty(char * outString, char * propertyName, char * propertyValue)
@@ -58,7 +62,6 @@ public:
         strcat(outString, "\"");
         strcat(outString, propertyValue);
         strcat(outString, "\"");
-        strcat(outString, ",");
     }
     
 private:
@@ -69,6 +72,7 @@ private:
     const char * END_OBJECT = "}";
     const char * START_ARRAY = "[";
     const char * END_ARRAY = "]";
+    const char * END_PROPERTY = ",";
 };
 
 #endif

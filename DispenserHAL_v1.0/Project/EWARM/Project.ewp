@@ -1434,10 +1434,25 @@
                     </file>
                 </group>
                 <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\ApiController.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\DescriptionRequestHandler.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\EventLogRequestHandler.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandler.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\WebResponse.h</name>
                 </file>
             </group>
             <group>

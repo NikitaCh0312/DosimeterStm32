@@ -1,6 +1,7 @@
 #ifndef ETHERNET_INIT_H_
 #define ETHERNET_INIT_H_
 
+#include "stdint.h"
 
 typedef struct
 {

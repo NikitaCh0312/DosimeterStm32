@@ -26,7 +26,9 @@ public:
   {
       _serializer->WriteStartObject(outString);
       _serializer->WriteProperty(outString, SERIAL_NUMBER_PROPERTY_NAME, _serialNumber);
+      _serializer->WriteEndProperty(outString);
       _serializer->WriteProperty(outString, MODEL_PROPERTY_NAME, _model);
+      _serializer->WriteEndProperty(outString);
       _serializer->WriteProperty(outString, FIRMWARE_PROPERTY_NAME, _firmwareVersion);
       _serializer->WriteEndObject(outString);
   }
