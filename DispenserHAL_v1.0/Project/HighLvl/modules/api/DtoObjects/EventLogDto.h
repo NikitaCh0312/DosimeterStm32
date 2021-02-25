@@ -5,13 +5,13 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/apiObjects/[Interfaces]/IApiObject.h"
+#include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
 #include "modules/Configuration.h"
 
-class EventLogApi: public IApiObject
+class EventLogDto: public DtoObject
 {
 public:
-  EventLogApi(JsonSerializer * serializer,
+  EventLogDto(JsonSerializer * serializer,
               char * date,
               int code)
   {

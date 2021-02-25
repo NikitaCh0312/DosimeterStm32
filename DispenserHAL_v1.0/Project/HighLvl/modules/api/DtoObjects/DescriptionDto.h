@@ -5,13 +5,13 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/apiObjects/[Interfaces]/IApiObject.h"
+#include "modules/api/DtoObjects/[Interfaces]/DtoObject.h"
 #include "modules/Configuration.h"
 
-class DescriptionApi: public IApiObject
+class DescriptionDto: public DtoObject
 {
 public:
-  DescriptionApi(JsonSerializer * serializer,
+  DescriptionDto(JsonSerializer * serializer,
                  char * serialNumber,
                  char * model,
                  char * firmwareVersion)

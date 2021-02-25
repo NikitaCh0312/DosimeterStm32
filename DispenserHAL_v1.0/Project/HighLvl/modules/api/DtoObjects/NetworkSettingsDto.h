@@ -5,13 +5,13 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/apiObjects/[Interfaces]/IApiObject.h"
+#include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
 #include "modules/Configuration.h"
 
-class NetworkSettingsApi: public IApiObject
+class NetworkSettingsDto: public DtoObject
 {
 public:
-  NetworkSettingsApi(JsonSerializer * serializer,
+  NetworkSettingsDto(JsonSerializer * serializer,
                      IP_ADDR ip,
                      uint32_t port)
   {
