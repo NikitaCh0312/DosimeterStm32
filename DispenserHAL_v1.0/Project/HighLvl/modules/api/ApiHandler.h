@@ -2,6 +2,7 @@
 #define API_HANDLER_H_
 
 
+#include "modules/api/WebResponse.h"
 
 class ApiHandler
 {
@@ -12,7 +13,7 @@ public:
   }
   virtual ~ApiHandler(){}
   
-  virtual void Handle() = 0;
+  virtual WebResponse Handle() = 0;
   
 private:
   
