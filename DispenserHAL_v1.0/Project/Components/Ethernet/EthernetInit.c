@@ -38,7 +38,7 @@ void W5500_WriteByte(uint8_t byte)
 }
 
 
-void EthernetInit()
+void EthernetInit(IPV4_t ip_addr, MASK_t mask)
 {
     // Init W5500
     // Registering W5500 callbacks
