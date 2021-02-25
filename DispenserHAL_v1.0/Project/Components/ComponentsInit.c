@@ -12,7 +12,17 @@ void boardInit()
     LCD_Init();
     
     //ethernet intialization
-    EthernetInit();
+    IPV4_t ipv4;
+    ipv4.ipv4_1 = 192;
+    ipv4.ipv4_2 = 168;
+    ipv4.ipv4_3 = 0;
+    ipv4.ipv4_4 = 10;
+    MASK_t mask;
+    mask.mask1 = 255;
+    mask.mask2 = 255;
+    mask.mask3 = 255;
+    mask.mask4 = 0;
+    EthernetInit(ipv4, mask);
     
     //pump init
     initPumpDriver();
