@@ -1,8 +1,9 @@
 #ifndef EVENT_LOG_API_HANDLER_H_
-#defien EVENT_LOG_API_HANDLER_H_
+#define EVENT_LOG_API_HANDLER_H_
 
 #include "modules/api/WebResponse.h"
 #include "modules/api/RequestHandler.h"
+#include "modules/api/HttpRequest.h"
 
 class EventLogRequestHandler: public RequestHandler
 {
@@ -14,7 +15,7 @@ public:
     
     virtual ~EventLogRequestHandler(){}
   
-    WebResponse Handle(char * uri)
+    WebResponse Handle(HttpRequest * request)
     {
       
     }

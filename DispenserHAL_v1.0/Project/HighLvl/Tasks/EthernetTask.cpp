@@ -5,19 +5,11 @@
 #include "string.h"
 #include "stdio.h"
 
-#include "modules/api/DtoObjects/DescriptionDto.h"
 #include "modules/api/ApiController.h"
-#include "modules/api/DescriptionRequestHandler.h"
 
 
 #define SOCKET_NUMBER   3
 #define TCP_PORT        666
-
-
-DescriptionRequestHandler descriptionHandler1 = DescriptionRequestHandler();
-DescriptionRequestHandler descriptionHandler2 = DescriptionRequestHandler();
-DescriptionRequestHandler descriptionHandler3 = DescriptionRequestHandler();
-ApiController apiController = ApiController();
 
 
 void EthernetTask::Execute()
@@ -31,6 +23,8 @@ void EthernetTask::Execute()
     int socketStatus = getSn_SR(SOCKET_NUMBER);
     while ( socketStatus != SOCK_INIT )
         socketStatus = getSn_SR(SOCKET_NUMBER);
+    
+    ApiController * apiController = ApiController::GetInstance();
     
     while(1)
     {
@@ -47,7 +41,7 @@ void EthernetTask::Execute()
             //читаем сообщени€(блокирующа€ поток фукнци€)
             recv(SOCKET_NUMBER, receivedBuffer, 1000);
             
-            uint8_t * response = apiController.GetResponse(receivedBuffer);
+            uint8_t * response = apiController->GetResponse(receivedBuffer);
             
             send(SOCKET_NUMBER, (uint8_t*)response, strlen((char*)response));
 

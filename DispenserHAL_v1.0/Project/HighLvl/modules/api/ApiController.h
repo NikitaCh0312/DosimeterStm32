@@ -5,23 +5,25 @@
 #include "Ethernet/Internet/HttpServer/HttpParser.h"
 #include "modules/api/WebResponse.h"
 #include "modules/api/RequestHandler.h"
+#include "modules/api/HtmlPage.h"
 
 #define MAX_WEB_RESOURCES 20
 
 typedef struct
 {
-    char ResourceName[10];
+    char ResourceName[20];
     RequestHandler * handler;
 }ResourceValue_t;
 
 class ApiController
 {
 public:
-    ApiController()
+    static ApiController * GetInstance()
     {
-        _resourcesQuantity = 0;
+        if (_instance == NULL)
+            _instance = new ApiController();
+        return _instance;
     }
-  
     virtual ~ApiController(){} 
   
     void RegisterHandler(char * resourceName, RequestHandler * handler)
@@ -51,6 +53,11 @@ public:
     }
     
 private:
+    ApiController()
+    {
+        _resourcesQuantity = 0;
+    }
+    static ApiController * _instance;
     
     ResourceValue_t _resources[MAX_WEB_RESOURCES];
     uint32_t _resourcesQuantity;
@@ -89,7 +96,7 @@ private:
                 _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
                 return;
             }
-            requestHandler->Handle(query);
+            //requestHandler->Handle(query);
         }
         
         if (!strcmp(uri, "about"))

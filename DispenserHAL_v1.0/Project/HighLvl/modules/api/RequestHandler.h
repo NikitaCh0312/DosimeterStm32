@@ -3,6 +3,7 @@
 
 
 #include "modules/api/WebResponse.h"
+#include "modules/api/HttpRequest.h"
 
 class RequestHandler
 {
@@ -13,7 +14,7 @@ public:
     }
     virtual ~RequestHandler(){}
     
-    virtual WebResponse Handle(char * uri) = 0;
+    virtual WebResponse Handle(HttpRequest * request) = 0;
   
 private:
   

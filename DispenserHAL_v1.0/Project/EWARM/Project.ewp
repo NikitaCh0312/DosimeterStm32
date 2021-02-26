@@ -1440,6 +1440,9 @@
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.h</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\HttpRequest.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandler.h</name>
                 </file>
                 <file>

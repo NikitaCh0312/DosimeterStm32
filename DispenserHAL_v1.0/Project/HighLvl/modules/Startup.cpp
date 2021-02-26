@@ -18,7 +18,10 @@
 #include "DeviceStates/StartupState.h"
 #include "modules/Configuration.h"
 
-
+#include "modules/api/DtoObjects/DescriptionDto.h"
+#include "modules/api/ApiController.h"
+#include "modules/api/DescriptionRequestHandler.h"
+#include "modules/api/EventLogRequestHandler.h"
 
 
 #include "ComponentsInit.h"
@@ -74,6 +77,21 @@ JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
 
 ElementSelector * ElementSelector::_instance = new ElementSelector();
 
+
+ApiController * ApiController::_instance = new ApiController();
+DescriptionRequestHandler descriptionRequestHandler = DescriptionRequestHandler();
+EventLogRequestHandler eventLogRequestHandler = EventLogRequestHandler();
+    
+
+static void ConfigureApi()
+{
+    ApiController * apiController = ApiController::GetInstance();
+    apiController->RegisterHandler("description", (RequestHandler*)&descriptionRequestHandler);
+    apiController->RegisterHandler("event_log", (RequestHandler*)&eventLogRequestHandler);
+    
+}
+
+
 void startup()
 {
     //low level initialization
@@ -104,7 +122,9 @@ void startup()
     //set first state
     dosimeter->SetState((IDeviceState*)startupState);
     
+    ConfigureApi();
     
     //start RTOS
     RTOS::Thread::start_scheduler();
 }
+

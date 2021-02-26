@@ -3,6 +3,8 @@
 
 
 #include "modules/api/WebResponse.h"
+#include "modules/api/RequestHandler.h"
+#include "modules/api/HttpRequest.h"
 
 class DescriptionRequestHandler: public RequestHandler
 {
@@ -15,7 +17,7 @@ public:
     
     virtual ~DescriptionRequestHandler(){}
     
-    WebResponse Handle(char * query)
+    WebResponse Handle(HttpRequest * request)
     {
       
     }
