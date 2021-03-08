@@ -1388,6 +1388,12 @@
             </file>
         </group>
         <group>
+            <name>Extensions</name>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Extensions\StringDictionary.h</name>
+            </file>
+        </group>
+        <group>
             <name>mocks</name>
         </group>
         <group>
