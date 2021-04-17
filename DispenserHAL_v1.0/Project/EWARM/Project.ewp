@@ -1388,6 +1388,15 @@
             </file>
         </group>
         <group>
+            <name>Extensions</name>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Extensions\Dictionary.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\Extensions\StringDictionary.h</name>
+            </file>
+        </group>
+        <group>
             <name>mocks</name>
         </group>
         <group>
@@ -1407,31 +1416,52 @@
             <group>
                 <name>api</name>
                 <group>
-                    <name>DtoObjects</name>
+                    <name>RequestHandlers</name>
                     <group>
                         <name>[Interfaces]</name>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\[Interfaces]\DtoObject.h</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\[Interfaces]\IDtoObject.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\[Interfaces]\IRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\[Interfaces]\IRequestHandlerFactory.hpp</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>DescriptionRequestHandler</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\DescriptionRequestHandler\DescriptionDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\DescriptionRequestHandler\DescriptionRequestHandler.hpp</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>EventLogRequestHandler</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandler\EventLogDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandler\EventLogRequestHandler.hpp</name>
+                        </file>
+                    </group>
+                    <group>
+                        <name>NetworkRequestHandler</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\NetworkRequestHandler\NetworkRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\NetworkRequestHandler\NetworkSettingsDto.hpp</name>
                         </file>
                     </group>
                     <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\DescriptionDto.h</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\EventLogDto.h</name>
-                    </file>
-                    <file>
-                        <name>$PROJ_DIR$\..\HighLvl\modules\api\DtoObjects\NetworkSettingsDto.h</name>
+                        <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\RequestHandlerFactory.hpp</name>
                     </file>
                 </group>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\ApiController.h</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\api\DescriptionRequestHandler.h</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\api\EventLogRequestHandler.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.c</name>
@@ -1440,7 +1470,7 @@
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\HtmlPage.h</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandler.h</name>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\api\HttpRequest.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\api\WebResponse.h</name>

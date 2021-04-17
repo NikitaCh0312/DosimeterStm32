@@ -4,6 +4,7 @@
 extern const char * MainPageHtml;
 extern const char * AboutPageHtml;
 extern const char * ContactsPageHtml;
+extern const char * MainPageResponseHtml;
 
 const char * getMainHtmlResponse();
 const char * getAboutHtmlResponse();

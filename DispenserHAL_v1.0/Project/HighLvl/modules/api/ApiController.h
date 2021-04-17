@@ -4,33 +4,33 @@
 #include "stdio.h"
 #include "Ethernet/Internet/HttpServer/HttpParser.h"
 #include "modules/api/WebResponse.h"
-#include "modules/api/RequestHandler.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
+#include "modules/api/HtmlPage.h"
+#include "Extensions/StringDictionary.h"
 
 #define MAX_WEB_RESOURCES 20
 
 typedef struct
 {
-    char ResourceName[10];
-    RequestHandler * handler;
+    char ResourceName[20];
+    IRequestHandler * handler;
 }ResourceValue_t;
 
 class ApiController
 {
 public:
-    ApiController()
+    static ApiController * GetInstance()
     {
-        _resourcesQuantity = 0;
+        if (_instance == NULL)
+            _instance = new ApiController();
+        return _instance;
     }
-  
     virtual ~ApiController(){} 
   
-    void RegisterHandler(char * resourceName, RequestHandler * handler)
+    bool RegisterHandler(char * resourceName, IRequestHandler * handler)
     {
-        if (_resourcesQuantity >= MAX_WEB_RESOURCES)
-            return;
-        strcpy(_resources[_resourcesQuantity].ResourceName, resourceName);
-        _resources[_resourcesQuantity].handler = handler;
-        _resourcesQuantity++;
+        handler->SetWebResponse(&_webResponse);
+        return _resourceHandlers->TryAddValue(resourceName, handler);
     }
     
     uint8_t * GetResponse(uint8_t * receivedBuffer)
@@ -49,47 +49,35 @@ public:
             HandleErrorRequest();
         return (uint8_t*)_webResponse.ToString();
     }
-    
+
 private:
-    
-    ResourceValue_t _resources[MAX_WEB_RESOURCES];
-    uint32_t _resourcesQuantity;
+    ApiController()
+    {
+        _resourceHandlers = new StringDictionary<IRequestHandler*>();
+    }
+    static ApiController * _instance;
     
     WebResponse _webResponse;
-    
-    char * GetResourceName()
-    {
-      
-    }
-    
-    RequestHandler * FindRequestHandler(char * resource)
-    {
-        return NULL;
-    }
-    
-    void GetHttpMethodType()
-    {
-      
-    }
-    
-   
+
+#warning REALIZE AND TEST REQUIRED
     void HandleGetMethod(st_http_request * request)
     {
         char * uri = strtok((char*)request->URI, "/");
         if (!strcmp(uri, "api"))
         {
-            char debugBuffer[100];
             char * resourceName = strtok(strtok(NULL, "/"), "?");
-            strcpy(debugBuffer, resourceName);
             char * query = strtok(NULL, "?");
-            strcpy(debugBuffer, query);
-            RequestHandler * requestHandler = FindRequestHandler(resourceName);
+            #warning REALIZE AND TEST REQUIRED
+            char * body = "body";
+            
+            IRequestHandler * requestHandler = FindRequestHandler(resourceName);
             if (requestHandler == NULL)
             {
                 _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
                 return;
             }
-            requestHandler->Handle(query);
+            HttpRequest httpRequest = HttpRequest( (HTTP_METHOD_t)request->METHOD, uri, query, body);
+            requestHandler->Handle(&httpRequest);
         }
         
         if (!strcmp(uri, "about"))
@@ -112,6 +100,14 @@ private:
         }
     }
     
+    IRequestHandler * FindRequestHandler(char * resource)
+    {
+        IRequestHandler * handler = NULL;
+        _resourceHandlers->TryGetValue(resource, &handler);
+        return handler;
+    }
+    
+#warning REALIZE AND TEST REQUIRED
     void HandlePostMethod(st_http_request * request)
     {
         _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
@@ -121,6 +117,9 @@ private:
     {
         _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
     }
+    
+    
+    StringDictionary<IRequestHandler*> * _resourceHandlers;
 };
 
 

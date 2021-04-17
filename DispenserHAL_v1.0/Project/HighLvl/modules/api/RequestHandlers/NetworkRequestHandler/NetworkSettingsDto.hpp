@@ -8,7 +8,7 @@
 #include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
 #include "modules/Configuration.h"
 
-class NetworkSettingsDto: public DtoObject
+class NetworkSettingsDto: public IDtoObject
 {
 public:
   NetworkSettingsDto(JsonSerializer * serializer,

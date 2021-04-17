@@ -32,11 +32,11 @@
                 </option>
                 <option>
                     <name>Input description</name>
-                    <state>Full formatting.</state>
+                    <state>Full formatting, without multibyte support.</state>
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state>Full formatting.</state>
+                    <state>Full formatting, without multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -112,7 +112,7 @@
                 </option>
                 <option>
                     <name>RTConfigPath2</name>
-                    <state>$TOOLKIT_DIR$\INC\c\DLib_Config_Normal.h</state>
+                    <state>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</state>
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
@@ -1030,7 +1030,7 @@
                 </option>
                 <option>
                     <name>IarchiveOutput</name>
-                    <state>F:\work_projects\DI_Group\UNID_Maker\UNID_Maker\RTOS\Debug\Exe\RTOS_Library.a</state>
+                    <state>F:\work_projects\Freelance\Dosimeter\DispenserHAL_v1.0\Project\RTOS_Library\Debug\Exe\RTOS_Library.a</state>
                 </option>
             </data>
         </settings>

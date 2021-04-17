@@ -18,8 +18,9 @@
 #include "DeviceStates/StartupState.h"
 #include "modules/Configuration.h"
 
-
-
+#include "modules/api/ApiController.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IRequestHandlerFactory.hpp"
+#include "modules/api/RequestHandlers//RequestHandlerFactory.hpp"
 
 #include "ComponentsInit.h"
 
@@ -74,6 +75,19 @@ JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
 
 ElementSelector * ElementSelector::_instance = new ElementSelector();
 
+
+ApiController * ApiController::_instance = new ApiController();
+IRequestHandlerFactory * requestHandlerFactory = new RequestHandlerFactory();
+
+static void ConfigureApi()
+{
+    ApiController * apiController = ApiController::GetInstance();
+    apiController->RegisterHandler("description", requestHandlerFactory->CreateDescriptionRequestHandler());
+    apiController->RegisterHandler("event_log", requestHandlerFactory->CreateEventLogRequestHandler());
+    apiController->RegisterHandler("network", requestHandlerFactory->CreateNetworkRequestHandler());
+}
+
+
 void startup()
 {
     //low level initialization
@@ -104,7 +118,9 @@ void startup()
     //set first state
     dosimeter->SetState((IDeviceState*)startupState);
     
+    ConfigureApi();
     
     //start RTOS
     RTOS::Thread::start_scheduler();
 }
+

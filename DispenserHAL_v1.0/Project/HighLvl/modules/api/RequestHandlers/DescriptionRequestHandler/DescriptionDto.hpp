@@ -8,7 +8,7 @@
 #include "modules/api/DtoObjects/[Interfaces]/DtoObject.h"
 #include "modules/Configuration.h"
 
-class DescriptionDto: public DtoObject
+class DescriptionDto: public IDtoObject
 {
 public:
   DescriptionDto(JsonSerializer * serializer,
