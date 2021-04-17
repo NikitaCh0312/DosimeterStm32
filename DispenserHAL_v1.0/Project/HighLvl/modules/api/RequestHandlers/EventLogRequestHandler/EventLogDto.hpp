@@ -8,7 +8,7 @@
 #include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
 #include "modules/Configuration.h"
 
-class EventLogDto: public DtoObject
+class EventLogDto: public IDtoObject
 {
 public:
   EventLogDto(JsonSerializer * serializer,

@@ -2,10 +2,10 @@
 #define EVENT_LOG_API_HANDLER_H_
 
 #include "modules/api/WebResponse.h"
-#include "modules/api/RequestHandler.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 #include "modules/api/HttpRequest.h"
 
-class EventLogRequestHandler: public RequestHandler
+class EventLogRequestHandler: public IRequestHandler
 {
 public:
     EventLogRequestHandler()
@@ -15,7 +15,8 @@ public:
     
     virtual ~EventLogRequestHandler(){}
   
-    WebResponse Handle(HttpRequest * request)
+#warning TO REALIZE
+    WebResponse * Handle(HttpRequest * request)
     {
       
     }

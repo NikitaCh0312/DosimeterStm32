@@ -5,12 +5,12 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-class DtoObject
+class IDtoObject
 {
 public:
-  DtoObject() {  }
+  IDtoObject() {  }
   
-  virtual ~DtoObject() {  }
+  virtual ~IDtoObject() {  }
   
   virtual void Serialize( char * outString ) = 0;
 };

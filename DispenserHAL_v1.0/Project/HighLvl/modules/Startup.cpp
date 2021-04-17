@@ -18,11 +18,9 @@
 #include "DeviceStates/StartupState.h"
 #include "modules/Configuration.h"
 
-#include "modules/api/DtoObjects/DescriptionDto.h"
 #include "modules/api/ApiController.h"
-#include "modules/api/DescriptionRequestHandler.h"
-#include "modules/api/EventLogRequestHandler.h"
-
+#include "modules/api/RequestHandlers/[Interfaces]/IRequestHandlerFactory.hpp"
+#include "modules/api/RequestHandlers//RequestHandlerFactory.hpp"
 
 #include "ComponentsInit.h"
 
@@ -79,16 +77,14 @@ ElementSelector * ElementSelector::_instance = new ElementSelector();
 
 
 ApiController * ApiController::_instance = new ApiController();
-DescriptionRequestHandler descriptionRequestHandler = DescriptionRequestHandler();
-EventLogRequestHandler eventLogRequestHandler = EventLogRequestHandler();
-    
+IRequestHandlerFactory * requestHandlerFactory = new RequestHandlerFactory();
 
 static void ConfigureApi()
 {
     ApiController * apiController = ApiController::GetInstance();
-    apiController->RegisterHandler("description", (RequestHandler*)&descriptionRequestHandler);
-    apiController->RegisterHandler("event_log", (RequestHandler*)&eventLogRequestHandler);
-    
+    apiController->RegisterHandler("description", requestHandlerFactory->CreateDescriptionRequestHandler());
+    apiController->RegisterHandler("event_log", requestHandlerFactory->CreateEventLogRequestHandler());
+    apiController->RegisterHandler("network", requestHandlerFactory->CreateNetworkRequestHandler());
 }
 
 
