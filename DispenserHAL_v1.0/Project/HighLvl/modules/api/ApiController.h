@@ -8,14 +8,6 @@
 #include "modules/api/HtmlPage.h"
 #include "Extensions/StringDictionary.h"
 
-#define MAX_WEB_RESOURCES 20
-
-typedef struct
-{
-    char ResourceName[20];
-    IRequestHandler * handler;
-}ResourceValue_t;
-
 class ApiController
 {
 public:
