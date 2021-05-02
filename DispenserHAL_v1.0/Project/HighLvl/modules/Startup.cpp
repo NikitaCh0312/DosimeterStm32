@@ -10,12 +10,14 @@
 #include "modules/Menu/MenuFactory.h"
 #include "modules/Json/JsonSerializer.h"
 
-#include "DeviceStates/Dosimeter.h"
-#include "DeviceStates/WaitingUserActionState.h"
-#include "DeviceStates/TaskSelectionState.h"
-#include "DeviceStates/TaskExecutionState.h"
-#include "DeviceStates/MenuState.h"
-#include "DeviceStates/StartupState.h"
+#include "DeviceStates/Dosimeter.hpp"
+#include "DeviceStates/States/WaitingUserActionState.hpp"
+#include "DeviceStates/States/TaskSelectionState.hpp"
+#include "DeviceStates/States/TaskExecutionState.hpp"
+#include "DeviceStates/States/MenuState.hpp"
+#include "DeviceStates/States/StartupState.hpp"
+#include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
+#include "DeviceStates/DeviceStatesFactory.hpp"
 #include "modules/Configuration.h"
 
 #include "modules/api/ApiController.h"
@@ -69,6 +71,7 @@ TaskSelectionState * TaskSelectionState::_instance = new TaskSelectionState();
 TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
 StartupState * StartupState::_instance = new StartupState();
+DeviceStatesFactory * DeviceStatesFactory::_instance = new DeviceStatesFactory();
 Configuration * Configuration::_instance = new Configuration();
 
 JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
@@ -114,6 +117,13 @@ void startup()
     taskExecutionState->SetContext(dosimeter);
     menuState->SetContext(dosimeter);
     startupState->SetContext(dosimeter);
+    
+    IDeviceStatesFactory * factory = DeviceStatesFactory::GetInstance();
+    waitingUserActionState->SetDeviceStatesFactory(factory);
+    taskSelectionState->SetDeviceStatesFactory(factory);
+    taskExecutionState->SetDeviceStatesFactory(factory);
+    menuState->SetDeviceStatesFactory(factory);
+    startupState->SetDeviceStatesFactory(factory);
     
     //set first state
     dosimeter->SetState((IDeviceState*)startupState);

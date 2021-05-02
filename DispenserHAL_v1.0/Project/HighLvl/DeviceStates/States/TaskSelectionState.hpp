@@ -1,10 +1,7 @@
 #ifndef TASK_SELECTION_STATE_H_
 #define TASK_SELECTION_STATE_H_
 
-#include "IDeviceState.h"
-#include "Dosimeter.h"
-
-#include "DeviceStates/TaskExecutionState.h"
+#include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
@@ -70,8 +67,7 @@ public:
                 }
                 else if (action.buttonsEvent.id == BUT_ENTER)
                 {
-                    TaskExecutionState * taskExecutionState = TaskExecutionState::GetInstance();
-                    _context->SetState((IDeviceState*)taskExecutionState);
+                    _context->SetState(this->_statesFactory->GetState(TASK_EXECUTION_STATE));
                 }
                 else if (action.buttonsEvent.id == BUT_CANCEL)
                 {

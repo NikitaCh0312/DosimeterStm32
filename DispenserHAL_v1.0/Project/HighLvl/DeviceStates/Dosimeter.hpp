@@ -2,16 +2,7 @@
 #define DOSIMETER_H_
 
 #include "stddef.h"
-#include "IDeviceState.h"
-
-
-
-typedef enum
-{
-    STARTUP_STATE,
-    WAITING_USER_ACTION_STATE,
-    MENU_STATE,
-}DOSIMETER_STATE_t;
+#include "[Interfaces]/IDeviceState.hpp"
 
 class Dosimeter
 {
@@ -27,12 +18,7 @@ public:
     {
         _state = state;
     }
-    
-#warning UNUSED
-    DOSIMETER_STATE_t GetState()
-    {
-        return _dosimeterState;
-    }
+
     void handle(UserAction_t action)
     {
         if (_state != NULL)
@@ -45,8 +31,6 @@ private:
     
     
     IDeviceState * _state;
-    
-    DOSIMETER_STATE_t _dosimeterState;
 };
 
 
