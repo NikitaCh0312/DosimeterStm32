@@ -1521,31 +1521,16 @@
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\IViewMenuNode.h</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Menu\Menu.cpp</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\Menu.h</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Menu\MenuFactory.cpp</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\MenuFactory.h</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Menu\NetworkViewMenuNode.cpp</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\NetworkViewMenuNode.h</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Menu\TimeDateViewMenuNode.cpp</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\TimeDateViewMenuNode.h</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ViewMenuNode.cpp</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ViewMenuNode.h</name>
