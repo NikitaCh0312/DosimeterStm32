@@ -59,7 +59,7 @@ void startPump(uint32_t speed,
     else
         drv->setDirPin(0);
     drv->delay_msec(2);
-    drv->setPwmFrequencyHz(1000);
+    drv->setPwmFrequencyHz(speed);
 }
 
 /*

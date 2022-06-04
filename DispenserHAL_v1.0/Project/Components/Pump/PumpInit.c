@@ -13,7 +13,7 @@ static void setPwmFrequencyHz(uint32_t frequency)
     {
         TIM_OC_InitTypeDef sConfigOC = {0};
         sConfigOC.OCMode = TIM_OCMODE_PWM1;
-        sConfigOC.Pulse = 500;
+        sConfigOC.Pulse = frequency;
         sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
         sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
         HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1);
