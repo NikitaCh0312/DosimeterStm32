@@ -1205,6 +1205,15 @@
             </file>
         </group>
         <group>
+            <name>VoltageMonitor</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\VoltageMonitor\VoltageMonitor.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\VoltageMonitor\VoltageMonitor.h</name>
+            </file>
+        </group>
+        <group>
             <name>Pump</name>
             <file>
                 <name>$PROJ_DIR$\..\Components\Pump\Pump.c</name>
