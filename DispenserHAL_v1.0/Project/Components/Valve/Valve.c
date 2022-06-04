@@ -6,7 +6,7 @@ void valveOn(int power)
 {
     TIM_OC_InitTypeDef sConfigOC = {0};
     sConfigOC.OCMode = TIM_OCMODE_PWM1;
-    sConfigOC.Pulse = power;
+    sConfigOC.Pulse = 1000;
     sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
     sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
     HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_3);

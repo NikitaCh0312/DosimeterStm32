@@ -13,7 +13,7 @@ static void setPwmFrequencyHz(uint32_t frequency)
     {
         TIM_OC_InitTypeDef sConfigOC = {0};
         sConfigOC.OCMode = TIM_OCMODE_PWM1;
-        sConfigOC.Pulse = frequency;
+        sConfigOC.Pulse = 250;
         sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
         sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
         HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1);
@@ -81,7 +81,7 @@ void initPumpDriver()
     pumpDriver.setPwmFrequencyHz = &setPwmFrequencyHz;
     
     A4988Conf_t A4988Conf;
-    A4988Conf.resolution = QUARTER_STEP_RESOLUTION_TYPE;
+    A4988Conf.resolution = FULL_STEP_RESOLUTION_TYPE;
     initPump(&pumpDriver, A4988Conf);
     HAL_Delay(100);
 }
