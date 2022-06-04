@@ -1,10 +1,8 @@
 #ifndef TASK_EXECUTION_STATE_H_
 #define TASK_EXECUTION_STATE_H_
 
-#include "IDeviceState.h"
-#include "Dosimeter.h"
-
-#include "DeviceStates/WaitingUserActionState.h"
+#include "DeviceStates/[Interfaces]/IDeviceState.hpp"
+#include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
 
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
@@ -24,8 +22,7 @@ public:
    
     void Handle(UserAction_t action)
     {
-        WaitingUserActionState * waitingState = WaitingUserActionState::GetInstance();
-        _context->SetState((IDeviceState*)waitingState);
+        _context->SetState((IDeviceState*)factory->GetState(WAITING_USER_ACTION_STATE));
     }
 private:
     typedef enum
@@ -34,6 +31,7 @@ private:
         SELECTING_TASK_STAGE,
     }STAGE_t;
     
+    IDeviceStatesFactory * factory;
     
     static TaskExecutionState * _instance;
     TaskExecutionState()

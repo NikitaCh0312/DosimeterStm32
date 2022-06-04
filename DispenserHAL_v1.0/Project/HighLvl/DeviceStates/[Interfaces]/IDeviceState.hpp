@@ -4,6 +4,7 @@
 #include "stddef.h"
 #include "Tasks/TasksTypes.h"
 
+
 typedef struct
 {
     ButtonsEvent_t buttonsEvent;
@@ -11,6 +12,7 @@ typedef struct
 }UserAction_t;
 
 class Dosimeter;
+class IDeviceStatesFactory;
 
 class IDeviceState
 {
@@ -23,10 +25,19 @@ public:
     {
         _context = ctx;
     }
+    
+    void SetDeviceStatesFactory(IDeviceStatesFactory * statesFactory)
+    {
+        _statesFactory = statesFactory;
+    }
+    
     virtual void Handle(UserAction_t action) = 0;
     
+protected:    
+  
     Dosimeter * _context;
-protected:
+    IDeviceStatesFactory * _statesFactory;
+
     
 };
 

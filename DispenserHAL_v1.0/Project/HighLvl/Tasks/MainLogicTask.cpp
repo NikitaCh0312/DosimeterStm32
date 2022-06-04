@@ -1,7 +1,7 @@
 #include "MainLogicTask.h"
 #include "Tasks/TasksTypes.h"
 #include "Pump/Pump.h"
-#include "DeviceStates/Dosimeter.h"
+#include "DeviceStates/Dosimeter.hpp"
 
 extern A4988Driver_t pumpDriver;
 
