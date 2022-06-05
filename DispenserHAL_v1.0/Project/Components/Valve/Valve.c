@@ -2,7 +2,7 @@
 #include "main.h"
 #include "tim.h"
 
-void valveOn(int power)
+void valveOn()
 {
     TIM_OC_InitTypeDef sConfigOC = {0};
     sConfigOC.OCMode = TIM_OCMODE_PWM1;

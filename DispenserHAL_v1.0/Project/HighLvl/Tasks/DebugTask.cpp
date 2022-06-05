@@ -22,7 +22,7 @@ void DebugTask::Execute()
       RTOS::Thread::delay_thread(1000);
 */
       sens_state = getSensorState(sens_type);
-      valveOn(10);
+      valveOn();
       RTOS::Thread::delay_thread(500);
       valveOff();
       RTOS::Thread::delay_thread(500);
