@@ -27,6 +27,8 @@ void set_cursor_position(uint8_t row, uint8_t col);
 
 void set_text_eng(char * str);
 
+void set_text_rus(char * str);
+
 void set_symbols(uint8_t * symbols, uint32_t quantity);
 
 void clear_display();

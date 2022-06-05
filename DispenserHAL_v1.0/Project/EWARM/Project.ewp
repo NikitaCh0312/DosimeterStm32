@@ -1192,6 +1192,12 @@
         <group>
             <name>LCD</name>
             <file>
+                <name>$PROJ_DIR$\..\Components\LCD\FontRusConverter.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\LCD\FontRusConverter.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\Components\LCD\LCD.c</name>
             </file>
             <file>
@@ -1202,15 +1208,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Components\LCD\LCD_Init.h</name>
-            </file>
-        </group>
-        <group>
-            <name>VoltageMonitor</name>
-            <file>
-                <name>$PROJ_DIR$\..\Components\VoltageMonitor\VoltageMonitor.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\Components\VoltageMonitor\VoltageMonitor.h</name>
             </file>
         </group>
         <group>
@@ -1280,6 +1277,15 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\Components\Valve\Valve.h</name>
+            </file>
+        </group>
+        <group>
+            <name>VoltageMonitor</name>
+            <file>
+                <name>$PROJ_DIR$\..\Components\VoltageMonitor\VoltageMonitor.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\Components\VoltageMonitor\VoltageMonitor.h</name>
             </file>
         </group>
         <file>

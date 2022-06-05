@@ -15,24 +15,30 @@ public:
         return _instance;
     }
     
-    //поднесите к считывателю 
+    //Device preparing
+    static uint8_t DevicePreparing[20];
+    static uint8_t PleaseWait[20];
+    static uint8_t Error[20];
+    static uint8_t VoltageError[20];
+    
+    //attach to reader
     static uint8_t Attach_RFID_Card_1str[20];
-    //идентификационную карту
+    //identification card
     static uint8_t Attach_RFID_Card_2str[20];
     
     
-    //Внимание! карта не закреплена за данным устройством
+    //Attention! Card is not binded to this device
     static uint8_t Attention[20];
     static uint8_t CardIsNotBinded[20];
     static uint8_t ToThisDevice[20];
     
-    //Всего заданий
+    //All tasks quantty
     static uint8_t TasksQuantity[20];
-    //Текущее задание
+    //Current task
     static uint8_t CurrentTask[20];
-    //Объем раствора
+    //Solution volume
     static uint8_t SolutionVolume[20];
-    //Концентрация раствора
+    //Solution Concentration
     static uint8_t SolutionConcentration[20];
     
 private:
