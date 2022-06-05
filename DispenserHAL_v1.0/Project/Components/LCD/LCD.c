@@ -1,7 +1,7 @@
 #include "LCD.h"
 
 #include "string.h"
-
+#include "FontRusConverter.h"
 
 #define USE_4_BIT_MODE
 static LCD1604Drv_t driver;
@@ -184,6 +184,20 @@ void set_text_eng(char * str)
     for ( uint32_t i = 0; i < bytes; i++ )
     {
         send_byte ( str[i], 1 );
+    }
+}
+
+void set_text_rus(char * str)
+{
+    uint8_t rusSymbol;
+    uint32_t bytes = strlen(str);
+    for ( uint32_t i = 0; i < bytes; i++ )
+    {
+        bool result = TryGetLcdSymbol(str[i], &rusSymbol);
+        if (result)
+          send_byte ( rusSymbol, 1 );
+        else
+          send_byte ( str[i], 1 );
     }
 }
 
