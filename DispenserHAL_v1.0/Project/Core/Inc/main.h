@@ -102,8 +102,8 @@ void Error_Handler(void);
 #define RFID_DATA1_Pin GPIO_PIN_7
 #define RFID_DATA1_GPIO_Port GPIOC
 #define RFID_DATA1_EXTI_IRQn EXTI9_5_IRQn
-#define VALVE_PWM_Pin GPIO_PIN_8
-#define VALVE_PWM_GPIO_Port GPIOC
+#define VALVE_Pin GPIO_PIN_8
+#define VALVE_GPIO_Port GPIOC
 #define SENSOR_DMRV_Pin GPIO_PIN_9
 #define SENSOR_DMRV_GPIO_Port GPIOC
 #define SENSOR_DMRV_EXTI_IRQn EXTI9_5_IRQn
