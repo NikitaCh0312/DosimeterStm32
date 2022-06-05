@@ -62,6 +62,7 @@ extern DMA_HandleTypeDef hdma_spi1_rx;
 extern DMA_HandleTypeDef hdma_spi1_tx;
 extern DMA_HandleTypeDef hdma_spi3_rx;
 extern DMA_HandleTypeDef hdma_spi3_tx;
+extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim6;
 
 /* USER CODE BEGIN EV */
@@ -144,17 +145,17 @@ void UsageFault_Handler(void)
   }
 }
 
-///**
-//  * @brief This function handles System service call via SWI instruction.
-//  */
+/**
+  * @brief This function handles System service call via SWI instruction.
+  */
 //void SVC_Handler(void)
 //{
-//  /* USER CODE BEGIN SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 0 */
 
-//  /* USER CODE END SVCall_IRQn 0 */
-//  /* USER CODE BEGIN SVCall_IRQn 1 */
+  /* USER CODE END SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 1 */
 
-//  /* USER CODE END SVCall_IRQn 1 */
+  /* USER CODE END SVCall_IRQn 1 */
 //}
 
 /**
@@ -170,31 +171,31 @@ void DebugMon_Handler(void)
   /* USER CODE END DebugMonitor_IRQn 1 */
 }
 
-///**
-//  * @brief This function handles Pendable request for system service.
-//  */
+/**
+  * @brief This function handles Pendable request for system service.
+  */
 //void PendSV_Handler(void)
 //{
-//  /* USER CODE BEGIN PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 0 */
 
-//  /* USER CODE END PendSV_IRQn 0 */
-//  /* USER CODE BEGIN PendSV_IRQn 1 */
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
 
-//  /* USER CODE END PendSV_IRQn 1 */
+  /* USER CODE END PendSV_IRQn 1 */
 //}
-//
-///**
-//  * @brief This function handles System tick timer.
-//  */
+
+/**
+  * @brief This function handles System tick timer.
+  */
 //void SysTick_Handler(void)
 //{
-//  /* USER CODE BEGIN SysTick_IRQn 0 */
+  /* USER CODE BEGIN SysTick_IRQn 0 */
 
-//  /* USER CODE END SysTick_IRQn 0 */
-//
-//  /* USER CODE BEGIN SysTick_IRQn 1 */
+  /* USER CODE END SysTick_IRQn 0 */
 
-//  /* USER CODE END SysTick_IRQn 1 */
+  /* USER CODE BEGIN SysTick_IRQn 1 */
+
+  /* USER CODE END SysTick_IRQn 1 */
 //}
 
 /******************************************************************************/
@@ -241,11 +242,27 @@ void EXTI9_5_IRQHandler(void)
   RfidIrqHandler_0();
   RfidIrqHandler_1();
   /* USER CODE END EXTI9_5_IRQn 0 */
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
-  HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_7);
+  HAL_GPIO_EXTI_IRQHandler(RFID_DATA0_Pin);
+  HAL_GPIO_EXTI_IRQHandler(RFID_DATA1_Pin);
+  HAL_GPIO_EXTI_IRQHandler(SENSOR_DMRK_Pin);
+  HAL_GPIO_EXTI_IRQHandler(SENSOR_DMRV_Pin);
   /* USER CODE BEGIN EXTI9_5_IRQn 1 */
 
   /* USER CODE END EXTI9_5_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
 }
 
 /**
@@ -307,4 +324,3 @@ void DMA2_Stream4_IRQHandler(void)
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
