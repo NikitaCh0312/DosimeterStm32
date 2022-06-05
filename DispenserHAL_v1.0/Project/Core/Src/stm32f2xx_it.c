@@ -23,6 +23,7 @@
 #include "stm32f2xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "Sensors/Sensors.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -241,6 +242,15 @@ void EXTI9_5_IRQHandler(void)
   /* USER CODE BEGIN EXTI9_5_IRQn 0 */
   RfidIrqHandler_0();
   RfidIrqHandler_1();
+  
+   if(__HAL_GPIO_EXTI_GET_IT(SENSOR_DMRK_Pin) != 0x00u)
+   {
+      flow_sensor_increment_cnt_FROM_ISR(DMRK_SENSOR_TYPE);
+   }
+   if(__HAL_GPIO_EXTI_GET_IT(SENSOR_DMRV_Pin) != 0x00u)
+   {
+      flow_sensor_increment_cnt_FROM_ISR(DMRV_SENSOR_TYPE);
+   }
   /* USER CODE END EXTI9_5_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(RFID_DATA0_Pin);
   HAL_GPIO_EXTI_IRQHandler(RFID_DATA1_Pin);
