@@ -59,6 +59,7 @@ void SysTick_Handler(void);
 void DMA1_Stream0_IRQHandler(void);
 void DMA1_Stream5_IRQHandler(void);
 void EXTI9_5_IRQHandler(void);
+void TIM2_IRQHandler(void);
 void TIM6_DAC_IRQHandler(void);
 void DMA2_Stream0_IRQHandler(void);
 void DMA2_Stream3_IRQHandler(void);
@@ -72,5 +73,3 @@ void DMA2_Stream4_IRQHandler(void);
 #endif
 
 #endif /* __STM32F2xx_IT_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
