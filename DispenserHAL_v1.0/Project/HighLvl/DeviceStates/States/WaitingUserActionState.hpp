@@ -3,11 +3,12 @@
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
+#include "DeviceStates/States/TaskSelectionState.hpp"
 
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
-#include "modules/CardsManager.h"
 #include "modules/[Interfaces]/ICardsManager.h"
+#include "modules/ModulesLocator.h"
 #include "string.h"
 
 extern uint32_t global_timer;
@@ -31,36 +32,28 @@ public:
         
         if (_stage == WAITING_STAGE)
         {
-            set_cursor_position(0, 0);
-            set_symbols(StringResources::Attach_RFID_Card_1str, strlen((char*)StringResources::Attach_RFID_Card_1str));
-            set_cursor_position(1, 0);
-            set_symbols(StringResources::Attach_RFID_Card_2str, strlen((char*)StringResources::Attach_RFID_Card_2str));
+            set_cursor_position(0, 5);
+            set_text_rus((char*)StringResources::Attach_RFID_Card_1str);
+            set_cursor_position(1, 7);
+            set_text_rus((char*)StringResources::Attach_RFID_Card_2str);
             
-            //ожидание карты пользовател€
+
             if (action.rfidEvent.event != NEW_CARD_DETECTED_EVENT)
                 return;
             uint32_t cardId = action.rfidEvent.rfidCard.CardId;
-            //выт€нуть из пам€ти карту по ее ID
-            //проверка карты
-            
-            CARD_STATUS_t status = CARD_IS_NOT_BINDED_STATUS;
-            if (cardId == 908904)
-                status = CARD_EXT_ACCESS_STATUS;
+
+            CARD_STATUS_t status = _cardsManager->GetCardStatus(cardId);
             switch (status)
             {
                 case CARD_EXT_ACCESS_STATUS:
                 {
-                    //если карта  –ƒ, то переключение состо€ни€ в меню
                     _stage = WAITING_STAGE;
-                    //MenuState * menuState = MenuState::GetInstance();
-                    //menuState->InitMenuState();
                     _context->SetState(this->_statesFactory->GetState(MENU_STATE));
                     clear_display();
                     break;
                 }
                 case CARD_IS_INACTIVE_STATUS:
                 {
-                    //карта неактивна(не закреплено ни одного задани€)
                     stageTimer = global_timer;
                     _stage = CARD_IS_INACTIVE_STAGE;
                     clear_display();
@@ -68,7 +61,6 @@ public:
                 }
                 case CARD_IS_NOT_BINDED_STATUS:
                 {
-                    //карта не прив€зана к устройству
                     stageTimer = global_timer;
                     _stage = CARD_NOT_BINDED_STAGE;
                     clear_display();
@@ -76,11 +68,10 @@ public:
                 }
                 case CARD_IS_ACTIVE_STATUS:
                 {
-                    //карта активна
                     _stage = WAITING_STAGE;
-                    //TaskSelectionState * taskSelectionState = TaskSelectionState::GetInstance();
-                    //taskSelectionState->SetCardId(cardId);
-                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    TaskSelectionState * taskSelectionState = (TaskSelectionState*)this->_statesFactory->GetState(TASK_SELECTION_STATE);
+                    taskSelectionState->SetCardId(cardId);
+                    _context->SetState(taskSelectionState);
                     clear_display();
                     break;
                 }
@@ -141,10 +132,13 @@ private:
     WaitingUserActionState()
     {
         _stage = WAITING_STAGE;
+        _cardsManager = ModulesLocator::GetInstance()->cardsManager;
     }
     
     
     STAGE_t _stage;
+
+    ICardsManager * _cardsManager;
 };
 
 

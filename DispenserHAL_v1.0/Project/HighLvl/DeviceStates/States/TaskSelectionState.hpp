@@ -3,6 +3,9 @@
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 
+#include "modules/[Interfaces]/ICardsManager.h"
+#include "modules/ModulesLocator.h"
+
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
 #include "string.h"
@@ -28,17 +31,19 @@ public:
         if (_stage == INITIALIZATION_STAGE)
         {
             set_cursor_position(0, 0);
-            set_symbols(StringResources::TasksQuantity, strlen((char*)StringResources::TasksQuantity));
+            set_text_rus((char*)StringResources::TasksQuantity);
             set_cursor_position(1, 0);
-            set_symbols(StringResources::CurrentTask, strlen((char*)StringResources::CurrentTask));
+            set_text_rus((char*)StringResources::CurrentTask);
             set_cursor_position(2, 0);
-            set_symbols(StringResources::SolutionVolume, strlen((char*)StringResources::SolutionVolume));
+            set_text_rus((char*)StringResources::SolutionVolume);
             set_cursor_position(3, 0);
-            set_symbols(StringResources::SolutionConcentration, strlen((char*)StringResources::SolutionConcentration));
+            set_text_rus((char*)StringResources::SolutionConcentration);
             
             _selectedTask = 0;
-#warning TODO read from flash tasks quantity
-            _tasksQuantity = 11;
+            
+            _selectedCard = _cardsManager->GetCard(_cardId);
+            
+            _stage = SELECTING_TASK_STAGE;
         }
         
         if (_stage == SELECTING_TASK_STAGE)
@@ -46,19 +51,27 @@ public:
             char viewValue[4];
             
             set_cursor_position(0, 16);
-            sprintf(viewValue , "%d", _tasksQuantity);
+            sprintf(viewValue , "%d", _selectedCard.TasksQuantity);
             set_text_eng(viewValue);
             
             set_cursor_position(1, 16);
-            sprintf(viewValue , "%d", _selectedTask);
+            sprintf(viewValue , "%d", (_selectedTask + 1));
+            set_text_eng(viewValue);
+            
+            set_cursor_position(2, 16);
+            sprintf(viewValue , "%d", _selectedCard.tasks[_selectedTask].Volume);
+            set_text_eng(viewValue);
+            
+            set_cursor_position(3, 16);
+            sprintf(viewValue , "%d", _selectedCard.tasks[_selectedTask].Concentration);
             set_text_eng(viewValue);
             
             if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
             {
                 if (action.buttonsEvent.id == BUT_UP)
                 {
-                    if ( ++_selectedTask >= _tasksQuantity )
-                        _selectedTask = _tasksQuantity - 1;
+                    if ( ++_selectedTask >= _selectedCard.TasksQuantity )
+                        _selectedTask = _selectedCard.TasksQuantity - 1;
                 }
                 else if (action.buttonsEvent.id == BUT_DOWN)
                 {
@@ -71,7 +84,7 @@ public:
                 }
                 else if (action.buttonsEvent.id == BUT_CANCEL)
                 {
-                    
+                    _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
                 }
             }
         }
@@ -88,13 +101,17 @@ private:
     TaskSelectionState()
     {
         _stage = INITIALIZATION_STAGE;
+        _cardsManager = ModulesLocator::GetInstance()->cardsManager;
+        
     }
     STAGE_t _stage;
     
     
     uint32_t _cardId;
+    Card _selectedCard;
     uint32_t _selectedTask;
-    uint32_t _tasksQuantity;
+
+    ICardsManager * _cardsManager;
 };
 
 

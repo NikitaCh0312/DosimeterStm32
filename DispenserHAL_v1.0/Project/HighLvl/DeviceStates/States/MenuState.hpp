@@ -15,6 +15,11 @@ public:
         return _instance;
     }
     
+    void SetMenu(Menu * menu)
+    {
+      _menu = menu;
+    }
+    
     void InitMenuState()
     {
         _menu->InitMenu();
@@ -49,7 +54,10 @@ public:
     
 private:
     static MenuState * _instance;
-    MenuState(){}
+    MenuState()
+    {
+      _menu = NULL;
+    }
     
     Menu * _menu;
 };
