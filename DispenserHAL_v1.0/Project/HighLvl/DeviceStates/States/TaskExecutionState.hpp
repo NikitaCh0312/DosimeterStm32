@@ -4,10 +4,13 @@
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
 
+#include "modules/Card.h"
+
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
 #include "string.h"
 #include "stdio.h"
+
 
 class TaskExecutionState: public IDeviceState
 {
@@ -18,7 +21,11 @@ public:
             _instance = new TaskExecutionState();
         return _instance;
     }
-    
+   
+    void InitExecutionState(Task task)
+    {
+        _task = task;
+    }
    
     void Handle(UserAction_t action)
     {
@@ -56,6 +63,8 @@ private:
         _stage = INITIALIZATION_STAGE;
     }
     STAGE_t _stage;
+    
+    Task _task;
 
 };
 
