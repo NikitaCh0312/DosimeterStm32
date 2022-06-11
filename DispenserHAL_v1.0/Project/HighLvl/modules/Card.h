@@ -9,7 +9,7 @@
 typedef struct
 {
     uint16_t Volume;
-    uint8_t Concentration;    
+    uint8_t Concentration;
 }Task;
 
 typedef struct
