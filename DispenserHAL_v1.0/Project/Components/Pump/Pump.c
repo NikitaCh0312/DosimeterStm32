@@ -1,12 +1,23 @@
 #include "Pump.h"
 
+/* example
 
+    initPumpDriver();
+    enablePump(getPumpDriver(), getA4988Conf());
+    startPump(getPumpDriver(), 1000, 200);
+  
+    while((*getPumpDriver()).getStatus() == PROGRESS_WORK) {};
+      
+    disablePump(getPumpDriver());
+
+*/ 
 
 /*
-*init pump
+*set step resolution pump
 *@param drv - driver
+*       conf - stepRes
 */
-void initPump(A4988Driver_t * drv, A4988Conf_t conf)
+void setStepResol(A4988Driver_t * drv, A4988Conf_t conf)
 {
     if (conf.resolution == FULL_STEP_RESOLUTION_TYPE)
     {
@@ -38,28 +49,52 @@ void initPump(A4988Driver_t * drv, A4988Conf_t conf)
         drv->setMs2Pin(1);
         drv->setMs3Pin(1);
     }
-    drv->setEnablePin(1);
 }
 
+/*
+*enable pump
+*@param drv - driver
+*       conf - stepRes
+*/
+void enablePump(A4988Driver_t * drv, A4988Conf_t conf)
+{
+  setStepResol(drv, conf);
+  drv->setDirPin(1);
+  drv->setEnablePin(0);
+  drv->delay_msec(2);   //timing for set
+  
+  drv->setStatus(READY_WORK);
+}
+
+/*
+*disable pump
+*@param drv - driver
+*       conf - stepRes
+*/
+void disablePump(A4988Driver_t * drv)
+{
+  stopPump(drv);
+  
+  drv->setEnablePin(1);
+  drv->delay_msec(2);   //timing for set
+  drv->setStatus(READY_WORK);
+}
 
 /*
 *starts pump
 *@param speed - from 0 to 100 
-*       dir - direction
+*       perStepsUs - step period in microseconds
+*       steps - number of steps
 *       drv - driver
 */
-void startPump(uint32_t speed,
-               PUMP_DIRECTION_t dir,
-               A4988Driver_t * drv)
+void startPump(A4988Driver_t * drv, uint32_t perStepUs, uint32_t steps)
 {
-    drv->setEnablePin(0);
-    drv->delay_msec(2);
-    if (dir == CLOCKWISE_PUMP_DIRECTION)
-        drv->setDirPin(1);
-    else
-        drv->setDirPin(0);
-    drv->delay_msec(2);
-    drv->setPwmFrequencyHz(speed);
+  //uint32_t newStepPer = perStepUs / 2;
+  
+    drv->setStepCnt(steps);
+    drv->setStepPeroid(perStepUs);
+    drv->setStatus(PROGRESS_WORK);
+    drv->startTimPWM();
 }
 
 /*
@@ -68,6 +103,15 @@ void startPump(uint32_t speed,
 */
 void stopPump(A4988Driver_t * drv)
 {
-    drv->setPwmFrequencyHz(0);
-    drv->setEnablePin(1);
+  drv->stopTimPWM();
+  drv->setStatus(READY_WORK);
+}
+
+/*
+*number of steps left
+*@param drv - driver
+*/
+uint32_t getStepLeft(A4988Driver_t * drv)
+{
+  return drv->getStepCnt();
 }

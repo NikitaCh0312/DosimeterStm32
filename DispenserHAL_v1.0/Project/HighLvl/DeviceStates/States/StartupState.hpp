@@ -67,7 +67,7 @@ private:
         //check voltage
         uint32_t sum = 0;
         for (int i = 0; i < 4000; i++)
-            sum += getSupplyVoltage();
+            sum += getSupplyVoltage_mV();
         uint32_t res = sum / 4000;
         if (res == 0)    
             return VOLTAGE_ERROR_TYPE_t;

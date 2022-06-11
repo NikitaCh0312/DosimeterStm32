@@ -3,6 +3,6 @@
 
 #include "stdint.h"
 
-uint32_t getSupplyVoltage();
+uint32_t getSupplyVoltage_mV();
 
 #endif

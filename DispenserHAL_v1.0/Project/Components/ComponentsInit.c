@@ -25,7 +25,7 @@ void boardInit()
     EthernetInit(ipv4, mask);
     
     //pump init
-    initPumpDriver();
+    //initPumpDriver();
 
     //memory initialization
     w25q256Init();
