@@ -67,6 +67,14 @@ private:
     STAGE_t _stage;
     
     Task _task;
+    
+    uint32_t getSetsPumpCnt();
+    uint32_t getSetsFlowSensorCnt();
+    
+    void calculateSets(Task tmp_task);
+    uint16_t    getSetsPumpFreq();
+    float       getSetsFlowSensorVolume();
+    float       getSetsPumpVolume();
 
 };
 
