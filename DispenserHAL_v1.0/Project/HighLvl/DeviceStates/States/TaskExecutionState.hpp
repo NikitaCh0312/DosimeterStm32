@@ -22,13 +22,30 @@ public:
    
     void Handle(UserAction_t action)
     {
-        _context->SetState((IDeviceState*)factory->GetState(WAITING_USER_ACTION_STATE));
+        if (_stage == INITIALIZATION_STAGE)
+        {
+            clear_display();
+            set_cursor_position(0, 5);
+            set_text_rus((char*)StringResources::TaskExecution_1str);
+            set_cursor_position(1, 6);
+            set_text_rus((char*)StringResources::TaskExecution_2str);
+            set_cursor_position(2, 9);
+            set_text_eng("...");
+            _stage = EXEUTING_TASK_STAGE;
+        }
+        else if (_stage == INITIALIZATION_STAGE)
+        {
+          
+        }
+
+
+        //_context->SetState((IDeviceState*)factory->GetState(WAITING_USER_ACTION_STATE));
     }
 private:
     typedef enum
     {
         INITIALIZATION_STAGE,
-        SELECTING_TASK_STAGE,
+        EXEUTING_TASK_STAGE
     }STAGE_t;
     
     IDeviceStatesFactory * factory;

@@ -26,6 +26,8 @@ public:
     //identification card
     static uint8_t Attach_RFID_Card_2str[20];
     
+    static uint8_t TaskExecution_1str[20];
+    static uint8_t TaskExecution_2str[20];
     
     //Attention! Card is not binded to this device
     static uint8_t Attention[20];

@@ -10,6 +10,9 @@ uint8_t StringResources::VoltageError[20] = {'Н','А','П', 'Р', 'Я', 'Ж', '
 uint8_t StringResources::Attach_RFID_Card_1str[20] = {'П', 'Р', 'И', 'Л', 'О', 'Ж', 'И', 'Т', 'Е', '\0'};
 uint8_t StringResources::Attach_RFID_Card_2str[20] = {'К', 'А', 'Р', 'Т', 'У', '\0'};
 
+uint8_t StringResources::TaskExecution_1str[20] = {'В', 'Ы', 'П', 'О', 'Л', 'Н', 'Е', 'Н', 'И', 'Е', '\0'};
+uint8_t StringResources::TaskExecution_2str[20] = {'З', 'А', 'Д', 'А', 'Н', 'И', 'Я', '\0'};
+
 
 uint8_t StringResources::Attention[20] = {'В', 'Н', 'И', 'М', 'А', 'Н', 'И', 'Е', '!', '\0'};
 uint8_t StringResources::CardIsNotBinded[20] = {'C', 'A', 'R', 'D', ' ', 'I', 'S', ' ', 'N', 'O', 'T', '\0'};
