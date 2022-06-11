@@ -46,6 +46,7 @@ typedef enum
 typedef struct
 {
     RESOLUTION_TYPE_t resolution;
+    PUMP_DIRECTION_t direction;
 }A4988Conf_t;
 
 void setStepResol(A4988Driver_t * drv, A4988Conf_t conf);

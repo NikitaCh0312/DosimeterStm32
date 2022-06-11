@@ -101,6 +101,9 @@ static uint32_t getStepCnt()
 static void setStepPeroid(uint32_t stepsUs)
 {
 
+  if(stepsUs < 2000) 
+    stepsUs = 2000;
+  
   stepsUs/=2;
   
   TIM_MasterConfigTypeDef sMasterConfig = {0};
@@ -118,7 +121,7 @@ static void setStepPeroid(uint32_t stepsUs)
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
   
-  sConfigOC.OCMode = TIM_OCMODE_PWM2;
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
   sConfigOC.Pulse = stepsUs/2;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
@@ -147,9 +150,8 @@ void initPumpDriver()
     pumpDriver.setStatus = &setStatus;
     
     A4988Conf.resolution = FULL_STEP_RESOLUTION_TYPE;
+    A4988Conf.direction = CLOCKWISE_PUMP_DIRECTION;
     
-    //enablePump(&pumpDriver, A4988Conf); // todo
-    //HAL_Delay(100);
-    
-    //startTimPWM();
+    if(pumpDriver.setEnablePin)
+      pumpDriver.setEnablePin(1);
 }

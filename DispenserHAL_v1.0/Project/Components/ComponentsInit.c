@@ -8,7 +8,10 @@
 
 void boardInit()
 {
-    //display initialization
+    //pump init
+   initPumpDriver();
+
+   //display initialization
     LCD_Init();
     
     //ethernet intialization
@@ -24,8 +27,6 @@ void boardInit()
     mask.mask4 = 0;
     EthernetInit(ipv4, mask);
     
-    //pump init
-    //initPumpDriver();
 
     //memory initialization
     w25q256Init();
