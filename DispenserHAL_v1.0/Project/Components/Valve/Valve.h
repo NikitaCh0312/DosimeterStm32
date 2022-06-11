@@ -4,7 +4,7 @@
 /*
 *@param - power from 0 to 1000
 */
-void valveOn(int power);
+void valveOn();
 
 void valveOff();
 
