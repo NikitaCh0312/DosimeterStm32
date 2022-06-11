@@ -1,6 +1,6 @@
 #include "RTC_drv.h"
 #include "main.h"
-#include "rtc.h"
+
 
 RTC_DateTypeDef sDate;
 RTC_TimeTypeDef sTime;
@@ -26,10 +26,10 @@ void RTC_SetTime(struct tm *time)
 {
 
     /* Configure the Date */
-    sDate.Year = time->tm_year - 100;
-    sDate.Month = time->tm_mon + 1;
-    sDate.Date = time->tm_mday;
-    
+    sDate.Year          = time->tm_year - 100;
+    sDate.Month         = time->tm_mon + 1;
+    sDate.Date          = time->tm_mday;
+    //sDate.WeekDay       = time->tm_wday + 1;
     if(time->tm_wday == 0) sDate.WeekDay = 7;
     else sDate.WeekDay = time->tm_wday;
 
@@ -39,10 +39,10 @@ void RTC_SetTime(struct tm *time)
     }
 
     /* Configure the Time */
-    sTime.Hours = time->tm_hour;
-    sTime.Minutes = time->tm_min;
-    sTime.Seconds = time->tm_sec;
-    sTime.TimeFormat = RTC_HOURFORMAT12_AM;
+    sTime.Hours         = time->tm_hour;
+    sTime.Minutes       = time->tm_min;
+    sTime.Seconds       = time->tm_sec;
+    sTime.TimeFormat    = RTC_HOURFORMAT12_AM;
     sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE ;
     sTime.StoreOperation = RTC_STOREOPERATION_RESET;
 
@@ -75,6 +75,7 @@ void RTC_GetTime(struct tm *time)
     time->tm_mon        = sDate.Month - 1;
     time->tm_mday       = sDate.Date;
     time->tm_isdst      = 0;
+    //time->tm_wday       = sDate.WeekDay - 1;
     if(sDate.WeekDay == 7) time->tm_wday = 0;
     else time->tm_wday = sDate.WeekDay;
     
@@ -86,4 +87,27 @@ void RTC_GetTimeUnix(time_t *time)
     
     RTC_GetTime(&timeinfo);
     *time = mktime(&timeinfo);
+}
+
+void RTC_GetTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
+{   
+    HAL_RTC_GetTime(&hrtc, Time, RTC_FORMAT_BIN);
+    HAL_RTC_GetDate(&hrtc, Date, RTC_FORMAT_BIN);         
+}
+
+void RTC_SetTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
+{
+
+    if(HAL_RTC_SetDate(&hrtc,Date,RTC_FORMAT_BIN) != HAL_OK)
+    {
+          Error_Handler();
+    }
+
+    if (HAL_RTC_SetTime(&hrtc, Time, RTC_FORMAT_BIN) != HAL_OK)
+    {
+          Error_Handler();
+    }
+
+    /* Writes a data in a RTC Backup data Register1*/
+    HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32F2);  
 }

@@ -69,9 +69,9 @@ void MX_RTC_Init(void)
 
             /*##-1- Configure the Date #################################################*/
             /* Set Date: WEDNESDAY NOVEMBER 04th 2020 */
-            sdatestructure.Year = 0x20;
+            sdatestructure.Year = 0x22;
             sdatestructure.Month = RTC_MONTH_NOVEMBER;
-            sdatestructure.Date = 0x04;
+            sdatestructure.Date = 0x05;
             sdatestructure.WeekDay = RTC_WEEKDAY_WEDNESDAY;
 
             if(HAL_RTC_SetDate(&hrtc,&sdatestructure,RTC_FORMAT_BCD) != HAL_OK)
