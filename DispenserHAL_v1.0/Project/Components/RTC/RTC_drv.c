@@ -1,5 +1,6 @@
 #include "RTC_drv.h"
 #include "main.h"
+#include "rtc.h"
 
 
 RTC_DateTypeDef sDate;
@@ -16,6 +17,30 @@ static uint8_t DEC_to_BCD(uint8_t val)
     return ((val / 10) << 4) + (val % 10);
 }
 */
+
+static void RTC_GetDateTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
+{   
+    HAL_RTC_GetTime(&hrtc, Time, RTC_FORMAT_BIN);
+    HAL_RTC_GetDate(&hrtc, Date, RTC_FORMAT_BIN);         
+}
+
+static int RTC_SetDateTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
+{
+
+    if(HAL_RTC_SetDate(&hrtc,Date, RTC_FORMAT_BIN) != HAL_OK)
+    {
+          return -1;
+    }
+
+    if (HAL_RTC_SetTime(&hrtc, Time, RTC_FORMAT_BIN) != HAL_OK)
+    {
+          return -1;
+    }
+
+    /* Writes a data in a RTC Backup data Register1*/
+    HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32F2);  
+}
+
 
 void RTC_Init()
 {
@@ -89,25 +114,30 @@ void RTC_GetTimeUnix(time_t *time)
     *time = mktime(&timeinfo);
 }
 
-void RTC_GetTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
-{   
-    HAL_RTC_GetTime(&hrtc, Time, RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&hrtc, Date, RTC_FORMAT_BIN);         
+int RtcSetDateTime(RtcDateTime_t * dateTime)
+{
+    RTC_DateTypeDef date;
+    date.Date = dateTime->Day;
+    date.Month = dateTime->Month;
+    date.Year = dateTime->Year;
+    RTC_TimeTypeDef time;
+    time.Seconds = dateTime->Seconds;
+    time.Minutes = dateTime->Minutes;
+    time.Hours = dateTime->Hours;
+    RTC_SetDateTimeHAL(&date, &time);
+    return 0;
 }
 
-void RTC_SetTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
+void RtcGetDateTime(RtcDateTime_t * dateTime)
 {
+    RTC_DateTypeDef date;
+    RTC_TimeTypeDef time;
+    RTC_GetDateTimeHAL(&date, &time);
+    dateTime->Day = date.Date;
+    dateTime->Month = date.Month;
+    dateTime->Year = date.Year;
+    dateTime->Seconds = time.Seconds;
+    dateTime->Minutes = time.Minutes;
+    dateTime->Hours = time.Hours;
 
-    if(HAL_RTC_SetDate(&hrtc,Date,RTC_FORMAT_BIN) != HAL_OK)
-    {
-          Error_Handler();
-    }
-
-    if (HAL_RTC_SetTime(&hrtc, Time, RTC_FORMAT_BIN) != HAL_OK)
-    {
-          Error_Handler();
-    }
-
-    /* Writes a data in a RTC Backup data Register1*/
-    HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32F2);  
 }

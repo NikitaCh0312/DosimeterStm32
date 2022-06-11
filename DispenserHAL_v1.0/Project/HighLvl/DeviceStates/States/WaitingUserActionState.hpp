@@ -6,6 +6,7 @@
 #include "DeviceStates/States/TaskSelectionState.hpp"
 
 #include "LCD/LCD.h"
+#include "RTC/RTC_drv.h"
 #include "Resources/StringResources.h"
 #include "modules/[Interfaces]/ICardsManager.h"
 #include "modules/ModulesLocator.h"
@@ -36,7 +37,7 @@ public:
             set_text_rus((char*)StringResources::Attach_RFID_Card_1str);
             set_cursor_position(1, 7);
             set_text_rus((char*)StringResources::Attach_RFID_Card_2str);
-            
+            DrawDateTime();
 
             if (action.rfidEvent.event != NEW_CARD_DETECTED_EVENT)
                 return;
@@ -122,6 +123,7 @@ public:
 private:
     typedef enum
     {
+        INITIALIZATION_STAGE,
         WAITING_STAGE,
         CARD_NOT_BINDED_STAGE,
         CARD_IS_INACTIVE_STAGE,
@@ -139,6 +141,62 @@ private:
     STAGE_t _stage;
 
     ICardsManager * _cardsManager;
+    RtcDateTime_t _currentDateTime;
+    
+    
+    const const int DATE_TIME_START_POSITION = 6;
+    void DrawDateTime()
+    {
+        RtcDateTime_t dateTime;
+        RtcGetDateTime(&dateTime);
+        if (_currentDateTime.Seconds != dateTime.Seconds)
+        {
+            _currentDateTime.Seconds = dateTime.Seconds;
+            DrawSeconds();
+        }
+        if (_currentDateTime.Minutes != dateTime.Minutes)
+        {
+            _currentDateTime.Minutes = dateTime.Minutes;
+            DrawMinutes();
+        }
+        if (_currentDateTime.Hours != dateTime.Hours)
+        {
+            _currentDateTime.Hours = dateTime.Hours;
+            DrawHours();
+        }
+        set_cursor_position(3, DATE_TIME_START_POSITION + 2);
+        set_text_eng(":");
+        set_cursor_position(3, DATE_TIME_START_POSITION + 5);
+        set_text_eng(":");
+    }
+    
+    void DrawHours()
+    {
+        char viewHoursValue[4];
+        sprintf(viewHoursValue , "%d", _currentDateTime.Hours);
+        set_cursor_position(3, DATE_TIME_START_POSITION);
+        set_text_eng(viewHoursValue);
+    }
+    
+    void DrawMinutes()
+    {
+        char viewMinutesValue[4];
+        sprintf(viewMinutesValue , "%d", _currentDateTime.Minutes);
+        set_cursor_position(3, DATE_TIME_START_POSITION + 3);
+        set_text_eng(viewMinutesValue);
+    }
+    
+    void DrawSeconds()
+    {
+        char viewSecondsValue[4];
+        sprintf(viewSecondsValue , "%d", _currentDateTime.Seconds);
+        set_cursor_position(3, DATE_TIME_START_POSITION + 6);
+        set_text_eng(viewSecondsValue);
+        
+    }
+    
+
+    
 };
 
 
