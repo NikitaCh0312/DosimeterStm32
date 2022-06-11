@@ -9,15 +9,15 @@
 
 void DebugTask::Execute()
 {
-    HAL_Delay(3000);
+    //HAL_Delay(3000);
     
-    initPumpDriver();
-    enablePump(getPumpDriver(), getA4988Conf());
-    startPump(getPumpDriver(), 1000, 200);
+    //initPumpDriver();
+    //enablePump(getPumpDriver(), getA4988Conf());
+    //startPump(getPumpDriver(), 1000, 200);
   
-    while((*getPumpDriver()).getStatus() == PROGRESS_WORK) {};
+    //while((*getPumpDriver()).getStatus() == PROGRESS_WORK) {};
       
-    disablePump(getPumpDriver());
+    //disablePump(getPumpDriver());
     
     while(1)
     {
