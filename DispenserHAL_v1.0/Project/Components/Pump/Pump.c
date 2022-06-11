@@ -59,7 +59,7 @@ void setStepResol(A4988Driver_t * drv, A4988Conf_t conf)
 void enablePump(A4988Driver_t * drv, A4988Conf_t conf)
 {
   setStepResol(drv, conf);
-  drv->setDirPin(1);
+  drv->setDirPin(conf.direction);
   drv->setEnablePin(0);
   drv->delay_msec(2);   //timing for set
   
