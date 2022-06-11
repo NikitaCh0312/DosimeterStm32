@@ -16,7 +16,7 @@ public:
     virtual ~EventLogRequestHandler(){}
   
 #warning TO REALIZE
-    WebResponse * Handle(HttpRequest * request)
+    void Handle(HttpRequest * request, WebResponse * WebResponse)
     {
       
     }

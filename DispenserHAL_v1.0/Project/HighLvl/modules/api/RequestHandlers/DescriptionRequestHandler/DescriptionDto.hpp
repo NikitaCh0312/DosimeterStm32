@@ -1,11 +1,11 @@
-#ifndef NETWORK_SETTINGS_API_H_
-#define NETWORK_SETTINGS_API_H_
+#ifndef DESCRIPTION_DTO_H_
+#define DESCRIPTION_DTO_H_
 
 #include "stddef.h"
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/DtoObjects/[Interfaces]/DtoObject.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IDtoObject.hpp"
 #include "modules/Configuration.h"
 
 class DescriptionDto: public IDtoObject

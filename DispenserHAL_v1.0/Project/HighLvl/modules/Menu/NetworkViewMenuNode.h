@@ -152,7 +152,7 @@ private:
     
     IElementView * _selectedElement;
     
-    void configureViewElements(IpAddr_t ip_addr, IpMask_t ip_mask)
+    void configureViewElements(IpAddr_t ip_addr, Mask_t ip_mask)
     {
         _addr1.SetPrevious(&_ok);
         _addr1.SetNext(&_addr2);

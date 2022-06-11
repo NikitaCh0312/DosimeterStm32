@@ -19,7 +19,7 @@ typedef struct
     uint8_t mask_2;
     uint8_t mask_3;
     uint8_t mask_4;   
-}IpMask_t;
+}Mask_t;
 
 
 class Configuration
@@ -34,10 +34,10 @@ public:
     virtual ~Configuration(){}
     
     void        SetIpAddr(IpAddr_t addr);
-    void        SetIpMask(IpMask_t mask);
+    void        SetIpMask(Mask_t mask);
     
     IpAddr_t   GetIpAddr();
-    IpMask_t   GetIpMask();
+    Mask_t   GetIpMask();
     
     
 private:
@@ -60,7 +60,7 @@ private:
     static Configuration * _instance;
         
     IpAddr_t   _ip_addr;
-    IpMask_t   _ip_mask;
+    Mask_t   _ip_mask;
     
 };
 #endif

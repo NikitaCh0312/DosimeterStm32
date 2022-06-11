@@ -41,10 +41,10 @@ const char * MainPageHtml =
     <h1>Описание API для ДОЗАТОРА</h1>\r\n\
     <p>Список принимаемых команд:</p>\r\n\
     <ol>\r\n\
-    <li>GET  - возвращает HTML описание проекта</li>\r\n\
-    <li>POST - какая-то команда</li>\r\n\
-    <li>PUT  - тоже какая-то команда</li>\r\n\
-    <li>HEAD - еще какая-то команда</li>\r\n\
+    <li>GET  - HUI HTML HUI</li>\r\n\
+    <li>POST - HUI HTML HUI HUI HTML HUIli>\r\n\
+    <li>PUT  - HUI HTML HUI HUI HTML HUI HUI HTML HUIli>\r\n\
+    <li>HEAD - HUI HTML HUI HUI HTML HUI HUI HTML HUIli>\r\n\
     </ol>\r\n\
     <form method=\"POST\">\r\n\
     <button type=\"submit\" value=\"ON\"> <font color=\"blue\">On Pump</font></button>\r\n\
