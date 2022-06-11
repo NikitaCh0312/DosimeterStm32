@@ -1445,6 +1445,15 @@
                         </file>
                     </group>
                     <group>
+                        <name>CardsListRequestHandler</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardsListRequestHandler\CardsListDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardsListRequestHandler\CardsListRequestHandler.hpp</name>
+                        </file>
+                    </group>
+                    <group>
                         <name>DescriptionRequestHandler</name>
                         <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\DescriptionRequestHandler\DescriptionDto.hpp</name>

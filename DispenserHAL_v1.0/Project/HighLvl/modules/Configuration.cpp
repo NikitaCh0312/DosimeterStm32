@@ -8,7 +8,7 @@ void Configuration::SetIpAddr(IpAddr_t addr)
     _ip_addr.addr_4 = addr.addr_4;
 }
 
-void Configuration::SetIpMask(IpMask_t mask)
+void Configuration::SetIpMask(Mask_t mask)
 {
     _ip_mask.mask_1 = mask.mask_1;
     _ip_mask.mask_2 = mask.mask_2;
@@ -21,7 +21,7 @@ IpAddr_t   Configuration::GetIpAddr()
     return _ip_addr;
 }
 
-IpMask_t   Configuration::GetIpMask()
+Mask_t   Configuration::GetIpMask()
 {
     return _ip_mask;
 }

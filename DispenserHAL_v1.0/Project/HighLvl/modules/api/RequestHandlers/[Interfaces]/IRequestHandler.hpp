@@ -14,17 +14,7 @@ public:
     }
     virtual ~IRequestHandler(){}
     
-    virtual WebResponse * Handle(HttpRequest * request) = 0;
-  
-    void SetWebResponse(WebResponse * response)
-    {
-        _response = response;
-    }
-    
-private:
-  
-    WebResponse * _response;
-  
+    virtual void Handle(HttpRequest * request, WebResponse * webResponse) = 0;
 };
 
 

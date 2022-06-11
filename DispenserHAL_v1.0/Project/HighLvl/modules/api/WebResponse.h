@@ -3,7 +3,6 @@
 
 #include "string.h"
 
-#warning TODO
 class WebResponse
 {
 public:
@@ -15,7 +14,14 @@ public:
   
     void AddContent(char * content)
     {
-        strcpy(_response, content);
+        int contentLength = strlen(content);
+        contentLength = strlen(content);
+        char contLength[10];
+        sprintf(contLength, "%d", contentLength);
+        strcat(_response, contLength);
+        strcat(_response, "\r\n\r\n");
+        strcat(_response, content);
+        strcat(_response, "\r\n\0");
     }
     
     void SetFullResponse(char * response)

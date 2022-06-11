@@ -1,9 +1,8 @@
 #ifndef NETWORK_REQUEST_HANDLER_H_
 #define NETWORK_REQUEST_HANDLER_H_
 
-#include "modules/api/WebResponse.h"
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
-#include "modules/api/HttpRequest.h"
+#include "modules/api/RequestHandlers/NetworkRequestHandler/NetworkSettingsDto.hpp"
 
 class NetworkRequestHandler: public IRequestHandler
 {
@@ -15,17 +14,35 @@ public:
     
     virtual ~NetworkRequestHandler(){}
   
-#warning TO REALIZE
-    WebResponse * Handle(HttpRequest * request)
+    void Handle(HttpRequest * request, WebResponse * webResponse)
     {
-      
+        webResponse->AddHeader(RES_JSONHEAD_OK);
+        IpAddr_t ipAddr;
+        ipAddr.addr_1 = 192;
+        ipAddr.addr_2 = 168;
+        ipAddr.addr_3 = 0;
+        ipAddr.addr_4 = 55;
+        Mask_t mask;
+        mask.mask_1 = 255;
+        mask.mask_2 = 255;
+        mask.mask_3 = 0;
+        mask.mask_4 = 0;
+        uint32_t port = 666;
+        NetworkSettingsDto networkDto (JsonSerializer::GetInstance(), ipAddr, port, mask);
+        networkDto.Serialize(_content);
+        webResponse->AddContent(_content);
+        
     }
 private:
+
+    char _content[100];
+    
+    void Flush()
+    {
+        for (int i = 0; i < sizeof(_content); i++)
+          _content[i] = '\0';
+    }
 };
-
-
-
-
 
 
 #endif

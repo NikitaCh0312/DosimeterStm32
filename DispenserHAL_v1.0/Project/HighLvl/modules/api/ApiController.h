@@ -21,7 +21,6 @@ public:
   
     bool RegisterHandler(char * resourceName, IRequestHandler * handler)
     {
-        handler->SetWebResponse(&_webResponse);
         return _resourceHandlers->TryAddValue(resourceName, handler);
     }
     
@@ -69,7 +68,8 @@ private:
                 return;
             }
             HttpRequest httpRequest = HttpRequest( (HTTP_METHOD_t)request->METHOD, uri, query, body);
-            requestHandler->Handle(&httpRequest);
+            requestHandler->Handle(&httpRequest, &_webResponse);
+            return;
         }
         
         if (!strcmp(uri, "about"))
