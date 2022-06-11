@@ -13,6 +13,7 @@
 #include "modules/Menu/ElementViews/IElementView.h"
 #include "modules/Menu/ElementViews/NumberElementView.h"
 #include "modules/Menu/ElementViews/TextElementView.h"
+#include "RTC/RTC_drv.h"
 
 
 class TimeDateViewMenuNode: public ViewMenuNode
@@ -28,7 +29,6 @@ public:
     }
     virtual ~TimeDateViewMenuNode(){}
     
-    //отрисовать меню
     void Draw()
     {
         if (!_isInited)
@@ -71,7 +71,14 @@ public:
     {
         if (isOkElement())
         {
-            //...
+            RtcDateTime_t dateTime;
+            dateTime.Day = _day.GetValue();
+            dateTime.Month = _month.GetValue();
+            dateTime.Year = _year.GetValue();
+            dateTime.Hours = _hours.GetValue();
+            dateTime.Minutes = _minutes.GetValue();
+            dateTime.Seconds = _seconds.GetValue();
+            RtcSetDateTime(&dateTime);
             Cancel();
             return;
         }
