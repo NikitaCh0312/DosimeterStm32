@@ -2,6 +2,7 @@
 #define TASK_SELECTION_STATE_H_
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
+#include "DeviceStates/States/TaskExecutionState.hpp"
 
 #include "modules/[Interfaces]/ICardsManager.h"
 #include "modules/ModulesLocator.h"
@@ -80,7 +81,9 @@ public:
                 }
                 else if (action.buttonsEvent.id == BUT_ENTER)
                 {
-                    _context->SetState(this->_statesFactory->GetState(TASK_EXECUTION_STATE));
+                    TaskExecutionState* executionState = (TaskExecutionState*)this->_statesFactory->GetState(TASK_EXECUTION_STATE);
+                    executionState->InitExecutionState(_selectedCard.tasks[_selectedTask]);
+                    _context->SetState(executionState);
                 }
                 else if (action.buttonsEvent.id == BUT_CANCEL)
                 {

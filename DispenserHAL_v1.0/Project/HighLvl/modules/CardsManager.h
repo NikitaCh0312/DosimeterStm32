@@ -27,7 +27,7 @@ public:
     {
         if (cardId == 907894)
         {
-          return debugCard;
+          return debugCard1;
         }
     }
 
@@ -36,11 +36,25 @@ private:
     static CardsManager * _instance;
     CardsManager()
     {
-      debugCard.Id = 907894;
-      debugCard.TasksQuantity = 5;
+        debugCard1.Id = 907894;
+        debugCard1.TasksQuantity = 5;
+        for (int i = 0; i < debugCard1.TasksQuantity; i++)
+        {
+            debugCard1.tasks[i].Volume = 100 + i * 2;
+            debugCard1.tasks[i].Concentration = 10 + i * 2;
+        }
+        
+        debugCard2.Id = 888888;
+        debugCard2.TasksQuantity = 5;
+        for (int i = 0; i < debugCard2.TasksQuantity; i++)
+        {
+            debugCard2.tasks[i].Volume = 200 + i * 2;
+            debugCard2.tasks[i].Concentration = 20 + i * 2;
+        }
     }
     
-    Card debugCard;
+    Card debugCard1;
+    Card debugCard2;
 };
 
 #endif

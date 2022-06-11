@@ -16,6 +16,7 @@ typedef struct
 {
     uint32_t Id;
     uint32_t TasksQuantity;
+    uint32_t SubstanceId;
     Task tasks[MAX_TASKS_QUANTITY];
 }Card;
 
