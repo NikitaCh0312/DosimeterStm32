@@ -40,9 +40,11 @@ public:
             set_text_eng("...");
             _stage = EXEUTING_TASK_STAGE;
         }
-        else if (_stage == INITIALIZATION_STAGE)
+        else if (_stage == EXEUTING_TASK_STAGE)
         {
-          
+            
+             // _task.Volume;
+              //_task.Concentration;
         }
 
 
