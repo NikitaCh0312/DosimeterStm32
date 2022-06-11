@@ -173,7 +173,7 @@ private:
     void DrawHours()
     {
         char viewHoursValue[4];
-        sprintf(viewHoursValue , "%d", _currentDateTime.Hours);
+        sprintf(viewHoursValue , "%02d", _currentDateTime.Hours);
         set_cursor_position(3, DATE_TIME_START_POSITION);
         set_text_eng(viewHoursValue);
     }
@@ -181,7 +181,7 @@ private:
     void DrawMinutes()
     {
         char viewMinutesValue[4];
-        sprintf(viewMinutesValue , "%d", _currentDateTime.Minutes);
+        sprintf(viewMinutesValue , "%02d", _currentDateTime.Minutes);
         set_cursor_position(3, DATE_TIME_START_POSITION + 3);
         set_text_eng(viewMinutesValue);
     }
@@ -189,7 +189,7 @@ private:
     void DrawSeconds()
     {
         char viewSecondsValue[4];
-        sprintf(viewSecondsValue , "%d", _currentDateTime.Seconds);
+        sprintf(viewSecondsValue , "%02d", _currentDateTime.Seconds);
         set_cursor_position(3, DATE_TIME_START_POSITION + 6);
         set_text_eng(viewSecondsValue);
         
