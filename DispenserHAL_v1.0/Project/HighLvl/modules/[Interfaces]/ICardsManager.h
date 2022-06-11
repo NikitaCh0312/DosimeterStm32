@@ -19,7 +19,7 @@ public:
     
     virtual CARD_STATUS_t GetCardStatus (uint32_t cardId) = 0;
     
-    virtual Card GetCardTasks() = 0;
+    virtual Card GetCard(uint32_t cardId) = 0;
 };
 
 

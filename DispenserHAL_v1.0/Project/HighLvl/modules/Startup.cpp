@@ -23,6 +23,7 @@
 #include "modules/api/ApiController.h"
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandlerFactory.hpp"
 #include "modules/api/RequestHandlers//RequestHandlerFactory.hpp"
+#include "modules/ModulesLocator.h"
 
 #include "ComponentsInit.h"
 
@@ -74,6 +75,11 @@ StartupState * StartupState::_instance = new StartupState();
 DeviceStatesFactory * DeviceStatesFactory::_instance = new DeviceStatesFactory();
 Configuration * Configuration::_instance = new Configuration();
 
+
+ModulesLocator * ModulesLocator::_instance = new ModulesLocator();
+CardsManager * CardsManager::_instance = new CardsManager();
+
+
 JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
 
 ElementSelector * ElementSelector::_instance = new ElementSelector();
@@ -110,6 +116,7 @@ void startup()
     TaskSelectionState * taskSelectionState = TaskSelectionState::GetInstance();
     TaskExecutionState * taskExecutionState = TaskExecutionState::GetInstance();
     MenuState * menuState = MenuState::GetInstance();
+    menuState->SetMenu(menu);
     StartupState * startupState = StartupState::GetInstance();
     
     waitingUserActionState->SetContext(dosimeter);
@@ -129,6 +136,9 @@ void startup()
     dosimeter->SetState((IDeviceState*)startupState);
     
     ConfigureApi();
+    
+    //modules init
+    ModulesLocator* locator = ModulesLocator::GetInstance();
     
     //start RTOS
     RTOS::Thread::start_scheduler();

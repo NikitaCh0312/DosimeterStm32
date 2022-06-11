@@ -1582,6 +1582,9 @@
                 <name>$PROJ_DIR$\..\HighLvl\modules\MemoryCardMap.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\ModulesLocator.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Startup.cpp</name>
             </file>
             <file>

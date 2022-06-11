@@ -34,7 +34,7 @@ public:
                 menu->InitMenuState();
                 return menu;
             case TASK_SELECTION_STATE:
-                return TaskExecutionState::GetInstance();
+                return TaskSelectionState::GetInstance();
             case TASK_EXECUTION_STATE:
                 return TaskExecutionState::GetInstance();
             default:

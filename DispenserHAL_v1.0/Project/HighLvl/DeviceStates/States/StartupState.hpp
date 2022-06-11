@@ -32,7 +32,7 @@ public:
     {
         DrawStartupState();
 
-        DelayMsec(2000);
+        DelayMsec(1000);
         
         ERROR_TYPE_t error = CheckForError();
         if (error != NONE_ERROR_TYPE_t)
@@ -41,7 +41,7 @@ public:
             while(1);
         }
 
-        DelayMsec(2000);
+        DelayMsec(1000);
 
         //set to WaitingUserActionState
         clear_display();
@@ -54,11 +54,11 @@ private:
     
     void DrawStartupState()
     {
-        set_cursor_position(0, 0);
+        set_cursor_position(0, 6);
         set_text_rus((char*)StringResources::Attention);
-        set_cursor_position(1, 0);
+        set_cursor_position(1, 5);
         set_text_rus((char*)StringResources::DevicePreparing);
-        set_cursor_position(2, 0);
+        set_cursor_position(2, 4);
         set_text_rus((char*)StringResources::PleaseWait);
     }
     
