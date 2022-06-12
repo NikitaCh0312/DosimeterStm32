@@ -31,6 +31,7 @@ typedef struct
     uint32_t (*getStepCnt)(void) = 0;
     void (*setStatus)(PUMP_STATUS_t _status) = 0;
     PUMP_STATUS_t (*getStatus)(void) = 0;
+    
 }A4988Driver_t;
 
 
@@ -48,6 +49,8 @@ typedef struct
     RESOLUTION_TYPE_t resolution;
     PUMP_DIRECTION_t direction;
 }A4988Conf_t;
+
+int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl);
 
 void setStepResol(A4988Driver_t * drv, A4988Conf_t conf);
 

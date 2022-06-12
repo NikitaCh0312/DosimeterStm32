@@ -1,10 +1,14 @@
 #include "Pump.h"
 
+#define SPEED_150_RPM 2000
+
 /* example
 
-    initPumpDriver();
+    initPumpDriver(); // call in init device func
+
+
     enablePump(getPumpDriver(), getA4988Conf());
-    startPump(getPumpDriver(), 1000, 200);
+    startPump(getPumpDriver(), 1000, 200);   or  pumpSubstance_ml(getPumpDriver(), 85);
   
     while((*getPumpDriver()).getStatus() == PROGRESS_WORK) {};
       
@@ -17,6 +21,20 @@
 *@param drv - driver
 *       conf - stepRes
 */
+
+int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl)
+{
+  if(ml_fl < 0.1)
+    return -1;
+                                             //float oneRot = 0.85 ml; // = 85.0/100.0;
+  const float oneTick_ml_fl = 0.00425;       // oneRot / 200.0
+                                             // pump ticks in one ml
+  
+  uint32_t numTick = (uint32_t)(ml_fl / oneTick_ml_fl);
+  startPump(drv, SPEED_150_RPM, numTick);
+  return 1;
+}
+
 void setStepResol(A4988Driver_t * drv, A4988Conf_t conf)
 {
     if (conf.resolution == FULL_STEP_RESOLUTION_TYPE)
