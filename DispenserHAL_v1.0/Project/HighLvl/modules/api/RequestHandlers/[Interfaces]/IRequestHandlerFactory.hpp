@@ -6,6 +6,8 @@
 #include "modules/api/RequestHandlers/DescriptionRequestHandler/DescriptionRequestHandler.hpp"
 #include "modules/api/RequestHandlers/EventLogRequestHandler/EventLogRequestHandler.hpp"
 #include "modules/api/RequestHandlers/NetworkRequestHandler/NetworkRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardsListRequestHandler/CardsListRequestHandler.hpp"
+#include "modules/api/RequestHandlers/AddCardRequestHandler/AddCardRequestHandler.hpp"
 
 
 class IRequestHandlerFactory
@@ -24,6 +26,10 @@ public:
       
     virtual IRequestHandler * CreateNetworkRequestHandler() = 0;
     
+    virtual IRequestHandler * CreateCardsListRequestHandler() = 0;
+
+    virtual IRequestHandler * CreateAddCardRequestHandler() = 0;
+
 private:
 };
 

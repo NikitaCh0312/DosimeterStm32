@@ -94,6 +94,8 @@ static void ConfigureApi()
     apiController->RegisterHandler("description", requestHandlerFactory->CreateDescriptionRequestHandler());
     apiController->RegisterHandler("event_log", requestHandlerFactory->CreateEventLogRequestHandler());
     apiController->RegisterHandler("network", requestHandlerFactory->CreateNetworkRequestHandler());
+    apiController->RegisterHandler("get_cards", requestHandlerFactory->CreateCardsListRequestHandler());
+    apiController->RegisterHandler("add_card", requestHandlerFactory->CreateAddCardRequestHandler());
 }
 
 

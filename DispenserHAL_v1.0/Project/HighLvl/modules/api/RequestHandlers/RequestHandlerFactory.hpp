@@ -28,6 +28,17 @@ public:
     {
         return new NetworkRequestHandler();
     }
+
+    IRequestHandler * CreateCardsListRequestHandler()
+    {
+        return new CardsListRequestHandler();
+    }
+
+    IRequestHandler * CreateAddCardRequestHandler()
+    {
+        return new AddCardRequestHandler();
+    }
+
 private:
 };
 

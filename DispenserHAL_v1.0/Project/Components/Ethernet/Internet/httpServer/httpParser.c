@@ -150,7 +150,7 @@ void parse_http_request(
   }
   else if (!strcmp(nexttok, "POST") || !strcmp(nexttok,"post"))
   {
-    nexttok = strtok(NULL,"\0");
+    nexttok = strtok(NULL," ");
     request->METHOD = METHOD_POST;
   }
   else

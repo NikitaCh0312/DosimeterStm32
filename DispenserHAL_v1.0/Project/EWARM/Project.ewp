@@ -1445,6 +1445,15 @@
                         </file>
                     </group>
                     <group>
+                        <name>AddCardRequestHandler</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\AddCardRequestHandler\AddCardDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\AddCardRequestHandler\AddCardRequestHandler.hpp</name>
+                        </file>
+                    </group>
+                    <group>
                         <name>CardsListRequestHandler</name>
                         <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardsListRequestHandler\CardsListDto.hpp</name>
@@ -1561,13 +1570,7 @@
                 </file>
             </group>
             <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\Card.cpp</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Card.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\CardsManager.cpp</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\CardsManager.h</name>

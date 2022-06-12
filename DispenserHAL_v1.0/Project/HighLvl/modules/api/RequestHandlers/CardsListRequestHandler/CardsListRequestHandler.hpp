@@ -14,7 +14,7 @@ public:
     virtual ~CardsListRequestHandler(){}
   
 #warning TO REALIZE
-    void Handle(HttpRequest * request, WebResponse * WebResponse)
+    bool Handle(HttpRequest * request, WebResponse * webResponse)
     {
       
     }
