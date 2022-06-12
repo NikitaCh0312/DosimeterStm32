@@ -10,7 +10,9 @@
 #include "Resources/StringResources.h"
 #include "string.h"
 #include "stdio.h"
-
+#include "Sensors/Sensors.h"
+#include "Valve/Valve.h"
+#include "Pump/PumpInit.h"
 
 class TaskExecutionState: public IDeviceState
 {
@@ -29,32 +31,45 @@ public:
    
     void Handle(UserAction_t action)
     {
-        if (_stage == INITIALIZATION_STAGE)
+        switch (_stage)
         {
-            clear_display();
-            set_cursor_position(0, 5);
-            set_text_rus((char*)StringResources::TaskExecution_1str);
-            set_cursor_position(1, 6);
-            set_text_rus((char*)StringResources::TaskExecution_2str);
-            set_cursor_position(2, 9);
-            set_text_eng("...");
-            _stage = EXEUTING_TASK_STAGE;
-        }
-        else if (_stage == EXEUTING_TASK_STAGE)
-        {
+            case INITIALIZATION_STAGE:
+            {
+                clear_display();
+                set_cursor_position(0, 5);
+                set_text_rus((char*)StringResources::TaskExecution_1str);
+                set_cursor_position(1, 6);
+                set_text_rus((char*)StringResources::TaskExecution_2str);
+                set_cursor_position(2, 9);
+                set_text_eng("...");
+                _stage = EXEUTING_TASK_STAGE;
             
-             // _task.Volume;
+                break;
+            }
+            case CHECK_WATER_PREASURE_STAGE:
+            {
+           
+                break;
+            }
+            case EXEUTING_TASK_STAGE:
+            {
+               // _task.Volume;
               //_task.Concentration;
+           
+                break;
+            }
+
+            default: break;
         }
-
-
+    
         //_context->SetState((IDeviceState*)factory->GetState(WAITING_USER_ACTION_STATE));
     }
 private:
     typedef enum
     {
         INITIALIZATION_STAGE,
-        EXEUTING_TASK_STAGE
+        CHECK_WATER_PREASURE_STAGE,
+        EXEUTING_TASK_STAGE 
     }STAGE_t;
     
     IDeviceStatesFactory * factory;
