@@ -150,7 +150,7 @@ void initPumpDriver()
     pumpDriver.setStatus = &setStatus;
     
     A4988Conf.resolution = FULL_STEP_RESOLUTION_TYPE;
-    A4988Conf.direction = CLOCKWISE_PUMP_DIRECTION;
+    A4988Conf.direction = COUNTERCLOCKWISE_PUMP_DIRECTION;
     
     if(pumpDriver.setEnablePin)
       pumpDriver.setEnablePin(1);
