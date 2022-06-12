@@ -14,7 +14,7 @@ public:
     }
     virtual ~IRequestHandler(){}
     
-    virtual void Handle(HttpRequest * request, WebResponse * webResponse) = 0;
+    virtual bool Handle(HttpRequest * request, WebResponse * webResponse) = 0;
 };
 
 

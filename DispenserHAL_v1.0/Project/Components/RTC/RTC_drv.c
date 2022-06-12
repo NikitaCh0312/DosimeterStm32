@@ -39,6 +39,7 @@ static int RTC_SetDateTimeHAL(RTC_DateTypeDef *Date, RTC_TimeTypeDef *Time)
 
     /* Writes a data in a RTC Backup data Register1*/
     HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR1, 0x32F2);  
+    return 0;
 }
 
 

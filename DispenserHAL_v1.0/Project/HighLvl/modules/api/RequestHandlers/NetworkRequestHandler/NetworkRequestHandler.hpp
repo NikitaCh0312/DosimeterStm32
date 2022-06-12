@@ -14,8 +14,12 @@ public:
     
     virtual ~NetworkRequestHandler(){}
   
-    void Handle(HttpRequest * request, WebResponse * webResponse)
+    bool Handle(HttpRequest * request, WebResponse * webResponse)
     {
+        if (request->GetMethod() != METHOD_GET)
+            return false;
+            
+        Flush();
         webResponse->AddHeader(RES_JSONHEAD_OK);
         IpAddr_t ipAddr;
         ipAddr.addr_1 = 192;
@@ -31,6 +35,8 @@ public:
         NetworkSettingsDto networkDto (JsonSerializer::GetInstance(), ipAddr, port, mask);
         networkDto.Serialize(_content);
         webResponse->AddContent(_content);
+        Flush();
+        return true;
         
     }
 private:

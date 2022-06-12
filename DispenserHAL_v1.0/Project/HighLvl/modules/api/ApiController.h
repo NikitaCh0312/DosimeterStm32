@@ -28,15 +28,10 @@ public:
     {
         st_http_request request;
         parse_http_request(&request, receivedBuffer);
-        if (request.METHOD == METHOD_GET)
-        {
-            HandleGetMethod(&request);
-        }
-        else if (request.METHOD == METHOD_POST)
-        {
-            HandlePostMethod(&request);
-        }
-        else
+
+        HandleRequest(&request);
+
+        if (false)
             HandleErrorRequest();
         return (uint8_t*)_webResponse.ToString();
     }
@@ -50,8 +45,7 @@ private:
     
     WebResponse _webResponse;
 
-#warning REALIZE AND TEST REQUIRED
-    void HandleGetMethod(st_http_request * request)
+    void HandleRequest(st_http_request * request)
     {
         char * uri = strtok((char*)request->URI, "/");
         if (!strcmp(uri, "api"))
@@ -68,41 +62,40 @@ private:
                 return;
             }
             HttpRequest httpRequest = HttpRequest( (HTTP_METHOD_t)request->METHOD, uri, query, body);
-            requestHandler->Handle(&httpRequest, &_webResponse);
+            if (!requestHandler->Handle(&httpRequest, &_webResponse))
+              _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
             return;
         }
         
-        if (!strcmp(uri, "about"))
+        if (request->METHOD == METHOD_GET)
         {
-            _webResponse.AddHeader(HTML_HEADER);
-            _webResponse.AddContent((char*)AboutPageHtml);
-            return;
-        }
-        else if (!strcmp(uri, "contacts"))
-        {
-            _webResponse.AddHeader(HTML_HEADER);
-            _webResponse.AddContent((char*)ContactsPageHtml);
-            return;
-        }
-        else
-        {
-            _webResponse.AddHeader(HTML_HEADER);
-            _webResponse.AddContent((char*)MainPageHtml);
-            return;            
+            if (!strcmp(uri, "about"))
+            {
+                _webResponse.AddHeader(HTML_HEADER);
+                _webResponse.AddContent((char*)AboutPageHtml);
+                return;
+            }
+            else if (!strcmp(uri, "contacts"))
+            {
+                _webResponse.AddHeader(HTML_HEADER);
+                _webResponse.AddContent((char*)ContactsPageHtml);
+                return;
+            }
+            else
+            {
+                _webResponse.AddHeader(HTML_HEADER);
+                _webResponse.AddContent((char*)MainPageHtml);
+                return;            
+            }
         }
     }
     
+        
     IRequestHandler * FindRequestHandler(char * resource)
     {
         IRequestHandler * handler = NULL;
         _resourceHandlers->TryGetValue(resource, &handler);
         return handler;
-    }
-    
-#warning REALIZE AND TEST REQUIRED
-    void HandlePostMethod(st_http_request * request)
-    {
-        _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
     }
     
     void HandleErrorRequest()

@@ -30,6 +30,11 @@ public:
           return debugCard1;
         }
     }
+    
+    int AddCard(Card card)
+    {
+      
+    }
 
 
 private:
