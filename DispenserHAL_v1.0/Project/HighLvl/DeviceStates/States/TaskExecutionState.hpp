@@ -2,7 +2,7 @@
 #define TASK_EXECUTION_STATE_H_
 
 #define CNT_CHECK_PULSE 5
-#define TIMEOUT_CHECK_PULSE_MS 200
+#define TIMEOUT_CHECK_PULSE_MS 1000
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
@@ -37,6 +37,7 @@ public:
     void Handle(UserAction_t action)
     {
         static uint32_t startTime = 0;
+        static uint32_t prev_flow_sensor_cnt = 0;
         switch (_stage)
         {
             case INITIALIZATION_STAGE:
@@ -62,6 +63,7 @@ public:
                   startTime = global_timer;
                   flow_sensor_start_measure(DMRV_SENSOR_TYPE);
                   valveOn();
+                  enablePump(getPumpDriver(), getA4988Conf());
               }
               else
               {
@@ -70,11 +72,14 @@ public:
                      startTime = 0;
                      flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
                      valveOff(); 
+                     disablePump(getPumpDriver());
                      
                      _stage = ERR_WATER_PREASURE_STAGE;
                   }
                   else if(flow_sensor_get_cnt(DMRV_SENSOR_TYPE) >= CNT_CHECK_PULSE)
                   {
+                       startTime = global_timer;
+                       prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
                       _stage = EXEUTING_TASK_STAGE;
                   }
                   
@@ -84,12 +89,55 @@ public:
             }
             case EXEUTING_TASK_STAGE:
             {
+               
+                  if((global_timer - startTime) > TIMEOUT_CHECK_PULSE_MS)
+                  {
+                     startTime = 0;
+                     flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
+                     valveOff(); 
+                     disablePump(getPumpDriver());
+                     
+                     _stage = ERR_WATER_PREASURE_STAGE;
+                  }
+                  else if(flow_sensor_get_cnt(DMRV_SENSOR_TYPE) - prev_flow_sensor_cnt >= CNT_CHECK_PULSE)
+                  {
+                      if(flow_sensor_get_volume_liters(DMRV_SENSOR_TYPE) <= 2) //task on the water volume 
+                      {
+                        
+                        startTime = global_timer;
+                        prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
+                        
+                        if((*getPumpDriver()).getStatus() == READY_WORK) 
+                        {
+                            pumpSubstance_ml(getPumpDriver(), 85);  //task on the substance volume
+                        };
+                        
+                      }
+                      else
+                      {
+                          startTime = 0;
+                          flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
+                          valveOff();
+                          disablePump(getPumpDriver());
+                          
+                          _stage = COMPLETED_STAGE;
+                      }
+                      
+                      
+                  }
+                  
+              
+                
                // _task.Volume;
               //_task.Concentration;
            
                 break;
             }
             case ERR_WATER_PREASURE_STAGE:
+            {           
+                break;
+            }
+            case COMPLETED_STAGE:
             {           
                 break;
             }
@@ -105,7 +153,8 @@ private:
         INITIALIZATION_STAGE,
         CHECK_WATER_PREASURE_STAGE,
         EXEUTING_TASK_STAGE,
-        ERR_WATER_PREASURE_STAGE
+        ERR_WATER_PREASURE_STAGE,
+        COMPLETED_STAGE
     }STAGE_t;
     
     IDeviceStatesFactory * factory;
