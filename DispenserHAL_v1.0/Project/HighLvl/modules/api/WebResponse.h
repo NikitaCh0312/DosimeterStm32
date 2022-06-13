@@ -26,7 +26,6 @@ public:
     
     void SetFullResponse(char * response)
     {
-        Flush();
         strcpy(_response, response);
     }
   
@@ -34,14 +33,14 @@ public:
     {
        return _response;
     }
-private:
-    char _response[1000];
     
     void Flush()
     {
         for (int i = 0; i < sizeof(_response); i++)
           _response[i] = '\0';
     }
+private:
+    char _response[1000];
 };
 
 #endif

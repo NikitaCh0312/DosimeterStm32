@@ -21,5 +21,5 @@ uint8_t StringResources::ToThisDevice[20] = {'B', 'I', 'N', 'D', 'E', 'D', '\0',
 
 uint8_t StringResources::TasksQuantity[20] = {'K','o','л','-', 'в', 'o', ' ', 'з', 'a', 'д', 'a', 'н', 'и', 'й', ':', '\0' };
 uint8_t StringResources::CurrentTask[20] = {'В', 'ы', 'б', 'р', 'а', 'н', 'о', ':', '\0'};
-uint8_t StringResources::SolutionVolume[20] = {'О', 'б', 'Ъ', 'е', 'м', '\0' };
-uint8_t StringResources::SolutionConcentration[20] = {'К', 'о', 'н', 'ц', 'е', 'н', 'т', 'р', 'а', 'ц', 'и', 'я', '\0'};
+uint8_t StringResources::SolutionVolume[20] = {'О', 'б', 'Ъ', 'е', 'м', ',', 'л', '\0' };
+uint8_t StringResources::SolutionConcentration[20] = {'К', 'о', 'н', '-', 'ц', 'и', 'я', ',', '%','\0'};

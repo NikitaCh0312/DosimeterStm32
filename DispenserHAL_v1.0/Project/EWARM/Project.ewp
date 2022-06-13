@@ -1481,6 +1481,15 @@
                         </file>
                     </group>
                     <group>
+                        <name>GetCardRequestHandler</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\GetCardRequestHandler\GetCardDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\GetCardRequestHandler\GetCardRequestHandler.hpp</name>
+                        </file>
+                    </group>
+                    <group>
                         <name>NetworkRequestHandler</name>
                         <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\NetworkRequestHandler\NetworkRequestHandler.hpp</name>

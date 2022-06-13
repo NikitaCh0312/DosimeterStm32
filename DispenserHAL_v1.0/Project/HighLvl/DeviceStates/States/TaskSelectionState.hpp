@@ -60,11 +60,11 @@ public:
             set_text_eng(viewValue);
             
             set_cursor_position(2, 16);
-            sprintf(viewValue , "%d", _selectedCard.tasks[_selectedTask].Volume);
+            sprintf(viewValue , "%.2f", _selectedCard.tasks[_selectedTask].Volume);
             set_text_eng(viewValue);
             
             set_cursor_position(3, 16);
-            sprintf(viewValue , "%d", _selectedCard.tasks[_selectedTask].Concentration);
+            sprintf(viewValue , "%.2f", _selectedCard.tasks[_selectedTask].Concentration);
             set_text_eng(viewValue);
             
             if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
@@ -112,7 +112,7 @@ private:
     
     uint32_t _cardId;
     Card _selectedCard;
-    uint32_t _selectedTask;
+    int _selectedTask;
 
     ICardsManager * _cardsManager;
 };

@@ -1,24 +1,21 @@
-#ifndef NETWORK_SETTINGS_DTO_H_
-#define NETWORK_SETTINGS_DTO_H_
+#ifndef GET_CARD_DTO_H_
+#define GET_CARD_DTO_H_
 
 #include "stddef.h"
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
 #include "modules/api/RequestHandlers/[Interfaces]/IDtoObject.hpp"
+#include "modules/Card.h"
 
-class NetworkSettingsDto: public IDtoObject
+class GetCardDto: public IDtoObject
 {
 public:
-  NetworkSettingsDto(JsonSerializer * serializer,
-                     IpAddr_t ip,
-                     uint32_t port,
-                     Mask_t mask)
+  GetCardDto(JsonSerializer * serializer,
+             Card card)
   {
       _serializer = serializer;
-      _ip = ip;
-      _port = port;
-      _mask = mask;
+      _card = card;
   }
   
   void Serialize( char * outString )
@@ -40,11 +37,7 @@ private:
 
   JsonSerializer * _serializer;
 
-  IpAddr_t _ip;
-  
-  uint32_t _port;
-  
-  Mask_t _mask;
+  Card _card;
 };
 
 #endif

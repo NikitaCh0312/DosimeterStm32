@@ -8,8 +8,8 @@
 
 typedef struct
 {
-    uint16_t Volume;
-    uint8_t Concentration;
+    float Volume;
+    float Concentration;
 }Task;
 
 typedef struct
