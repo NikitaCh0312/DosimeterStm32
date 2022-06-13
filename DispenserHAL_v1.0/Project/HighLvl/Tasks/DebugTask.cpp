@@ -18,6 +18,9 @@ void DebugTask::Execute()
     //while((*getPumpDriver()).getStatus() == PROGRESS_WORK) {};
       
     //disablePump(getPumpDriver());
+    //flow_sensor_set_default_koef();
+    //flow_sensor_start_measure(DMRV_SENSOR_TYPE);
+    //valveOn();
     
     while(1)
     {
@@ -26,6 +29,29 @@ void DebugTask::Execute()
       //startPump(getPumpDriver(), 100000, 200);
       //disablePump(getPumpDriver());
       //getSupplyVoltage();
-      HAL_Delay(10000);
+       
+      /*
+       if(flow_sensor_get_cnt(DMRV_SENSOR_TYPE) >= 1000)
+       {
+         static float volume = 0;
+         volume =  flow_sensor_get_volume_liters(DMRV_SENSOR_TYPE);
+         
+         flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
+         valveOff(); 
+
+         HAL_Delay(1);
+       }
+      */
+       HAL_Delay(2000);
+    
+       //static int en_flag = 1;
+       //if(en_flag)
+       //{
+       //    enablePump(getPumpDriver(), getA4988Conf());
+       //    pumpSubstance_ml(getPumpDriver(), 50);
+       //    en_flag = 0;
+       //}
+           
+      
     }
 }

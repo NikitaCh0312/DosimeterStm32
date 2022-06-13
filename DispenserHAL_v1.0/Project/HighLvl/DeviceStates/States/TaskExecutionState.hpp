@@ -1,8 +1,8 @@
 #ifndef TASK_EXECUTION_STATE_H_
 #define TASK_EXECUTION_STATE_H_
 
-#define CNT_CHECK_PULSE 5
-#define TIMEOUT_CHECK_PULSE_MS 10000
+#define CNT_CHECK_PULSE 4
+#define TIMEOUT_CHECK_PULSE_MS 1000
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
@@ -79,7 +79,7 @@ public:
                        startTime = global_timer;
                        prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
                        
-                       _substanceVolumeLiters =  (_task.Volume / 100) * _task.Concentration;
+                       _substanceVolumeLiters =  (_task.Volume / 100.0) * _task.Concentration;
                        _waterVolumeLiters =  _task.Volume - _substanceVolumeLiters;          
 
                       _stage = EXEUTING_TASK_STAGE;
@@ -104,9 +104,13 @@ public:
                         startTime = global_timer;
                         prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
                         
-                        if((*getPumpDriver()).getStatus() == READY_WORK) 
+                        static uint8_t en_flag = 1;
+                        
+                        if(en_flag)
                         {
-                            pumpSubstance_ml(getPumpDriver(), (1000*_substanceVolumeLiters));  //task on the substance volume
+                            pumpSubstance_ml(getPumpDriver(), (1000.0*_substanceVolumeLiters));  //task on the substance volume
+                            
+                            en_flag = 0;   
                         };
                         
                       }
@@ -132,6 +136,7 @@ public:
                 startTime = 0;
                 flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
                 valveOff();
+                while((*getPumpDriver()).getStatus() == PROGRESS_WORK) {};
                 disablePump(getPumpDriver());
                 
                 break;
