@@ -2,7 +2,7 @@
 #define TASK_EXECUTION_STATE_H_
 
 #define CNT_CHECK_PULSE 5
-#define TIMEOUT_CHECK_PULSE_MS 1000
+#define TIMEOUT_CHECK_PULSE_MS 10000
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
@@ -38,6 +38,9 @@ public:
     {
         static uint32_t startTime = 0;
         static uint32_t prev_flow_sensor_cnt = 0;
+        static float _waterVolumeLiters = 0;
+        static float _substanceVolumeLiters = 0;
+        
         switch (_stage)
         {
             case INITIALIZATION_STAGE:
@@ -68,18 +71,17 @@ public:
               else
               {
                   if((global_timer - startTime) > TIMEOUT_CHECK_PULSE_MS)
-                  {
-                     startTime = 0;
-                     flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
-                     valveOff(); 
-                     disablePump(getPumpDriver());
-                     
+                  {                    
                      _stage = ERR_WATER_PREASURE_STAGE;
                   }
                   else if(flow_sensor_get_cnt(DMRV_SENSOR_TYPE) >= CNT_CHECK_PULSE)
                   {
                        startTime = global_timer;
                        prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
+                       
+                       _substanceVolumeLiters =  (_task.Volume / 100) * _task.Concentration;
+                       _waterVolumeLiters =  _task.Volume - _substanceVolumeLiters;          
+
                       _stage = EXEUTING_TASK_STAGE;
                   }
                   
@@ -91,17 +93,12 @@ public:
             {
                
                   if((global_timer - startTime) > TIMEOUT_CHECK_PULSE_MS)
-                  {
-                     startTime = 0;
-                     flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
-                     valveOff(); 
-                     disablePump(getPumpDriver());
-                     
+                  {                    
                      _stage = ERR_WATER_PREASURE_STAGE;
                   }
                   else if(flow_sensor_get_cnt(DMRV_SENSOR_TYPE) - prev_flow_sensor_cnt >= CNT_CHECK_PULSE)
                   {
-                      if(flow_sensor_get_volume_liters(DMRV_SENSOR_TYPE) <= 2) //task on the water volume 
+                      if(flow_sensor_get_volume_liters(DMRV_SENSOR_TYPE) <= _waterVolumeLiters) //task on the water volume 
                       {
                         
                         startTime = global_timer;
@@ -109,36 +106,34 @@ public:
                         
                         if((*getPumpDriver()).getStatus() == READY_WORK) 
                         {
-                            pumpSubstance_ml(getPumpDriver(), 85);  //task on the substance volume
+                            pumpSubstance_ml(getPumpDriver(), (1000*_substanceVolumeLiters));  //task on the substance volume
                         };
                         
                       }
                       else
-                      {
-                          startTime = 0;
-                          flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
-                          valveOff();
-                          disablePump(getPumpDriver());
-                          
+                      {                         
                           _stage = COMPLETED_STAGE;
-                      }
-                      
-                      
+                      }                          
                   }
-                  
-              
-                
-               // _task.Volume;
-              //_task.Concentration;
-           
+                          
                 break;
             }
             case ERR_WATER_PREASURE_STAGE:
-            {           
+            {    
+               startTime = 0;
+               flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
+               valveOff(); 
+               disablePump(getPumpDriver());
+                     
                 break;
             }
             case COMPLETED_STAGE:
-            {           
+            {  
+                startTime = 0;
+                flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
+                valveOff();
+                disablePump(getPumpDriver());
+                
                 break;
             }
 
