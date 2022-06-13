@@ -39,5 +39,9 @@ void flow_sensor_clear_cnt(SENSOR_TYPE_t type);
 extern void flow_sensor_start_measure(SENSOR_TYPE_t type);
 extern void flow_sensor_stop_measure(SENSOR_TYPE_t type);
 extern uint32_t flow_sensor_get_cnt(SENSOR_TYPE_t type);
+extern void flow_sensor_set_koef(flow_sens_koef_A_t *koef_A, flow_sens_koef_B_t *koef_B);
+extern void flow_sensor_set_default_koef();
+extern void flow_sensor_get_koef(flow_sens_koef_A_t *koef_A, flow_sens_koef_B_t *koef_B);
+extern float flow_sensor_get_volume_liters(SENSOR_TYPE_t type);
 
 #endif
