@@ -81,7 +81,7 @@ private:
                 return false;
             
             char* VolValue = strtok(NULL, "&=");
-            int VolValueInt = atoi(VolValue);
+            int VolValueInt = atof(VolValue);
             
             char conc[4] = {'c', '\0'};
             strcat(conc, number);
@@ -90,7 +90,7 @@ private:
                 return false;
             
             char* ConValue = strtok(NULL, "&=");
-            int ConValueInt = atoi(ConValue);
+            int ConValueInt = atof(ConValue);
 
             outCard->tasks[i].Volume = VolValueInt;
             outCard->tasks[i].Concentration = ConValueInt;

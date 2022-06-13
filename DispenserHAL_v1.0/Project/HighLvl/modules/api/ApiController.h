@@ -47,6 +47,8 @@ private:
 
     void HandleRequest(st_http_request * request)
     {
+        _webResponse.Flush();
+        
         char * uri = strtok((char*)request->URI, "/");
         if (!strcmp(uri, "api"))
         {
