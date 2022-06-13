@@ -28,6 +28,12 @@ public:
     
     static uint8_t TaskExecution_1str[20];
     static uint8_t TaskExecution_2str[20];
+
+    static uint8_t TaskExecuted_1str[20];
+    static uint8_t TaskExecuted_2str[20];
+
+    static uint8_t TaskErrorExecuted_1str[20];
+    static uint8_t TaskErrorExecuted_2str[20];
     
     //Attention! Card is not binded to this device
     static uint8_t Attention[20];

@@ -31,6 +31,7 @@ public:
     {
         if (_stage == INITIALIZATION_STAGE)
         {
+            clear_display();
             set_cursor_position(0, 0);
             set_text_rus((char*)StringResources::TasksQuantity);
             set_cursor_position(1, 0);
@@ -84,10 +85,12 @@ public:
                     TaskExecutionState* executionState = (TaskExecutionState*)this->_statesFactory->GetState(TASK_EXECUTION_STATE);
                     executionState->InitExecutionState(_selectedCard.tasks[_selectedTask]);
                     _context->SetState(executionState);
+                    _stage = INITIALIZATION_STAGE;
                 }
                 else if (action.buttonsEvent.id == BUT_CANCEL)
                 {
                     _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+                    _stage = INITIALIZATION_STAGE;
                 }
             }
         }

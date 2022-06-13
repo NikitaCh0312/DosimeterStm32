@@ -128,8 +128,7 @@ public:
                flow_sensor_stop_measure(DMRV_SENSOR_TYPE);
                valveOff(); 
                disablePump(getPumpDriver());
-                     
-                break;
+               break;
             }
             case COMPLETED_STAGE:
             {  
@@ -145,7 +144,43 @@ public:
             default: break;
         }
     
-        //_context->SetState((IDeviceState*)factory->GetState(WAITING_USER_ACTION_STATE));
+        if (_stage == COMPLETED_STAGE)
+        {
+            if (!exitStateDisplayInited)
+              clear_display();
+            
+            exitStateDisplayInited = 1;
+            set_cursor_position(1, 6);
+            set_text_rus((char*)StringResources::TaskExecuted_1str);
+            set_cursor_position(2, 5);
+            set_text_rus((char*)StringResources::TaskExecuted_2str);
+
+            if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
+            {
+                if (action.buttonsEvent.id == BUT_CANCEL)
+                {
+                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                }
+            }
+        }
+        if (_stage == ERR_WATER_PREASURE_STAGE)
+        {
+            if (!exitStateDisplayInited)
+              clear_display();
+            
+            exitStateDisplayInited = 1;
+            set_cursor_position(1, 6);
+            set_text_rus((char*)StringResources::TaskErrorExecuted_1str);
+            set_cursor_position(2, 6);
+            set_text_rus((char*)StringResources::TaskErrorExecuted_2str);
+            if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
+            {
+                if (action.buttonsEvent.id == BUT_CANCEL)
+                {
+                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                }
+            }
+        }
     }
 private:
     typedef enum
@@ -163,6 +198,7 @@ private:
     TaskExecutionState()
     {
         _stage = INITIALIZATION_STAGE;
+        exitStateDisplayInited = 0;
     }
     STAGE_t _stage;
     
@@ -176,6 +212,7 @@ private:
     float       getSetsFlowSensorVolume();
     float       getSetsPumpVolume();
 
+    int exitStateDisplayInited;
 };
 
 
