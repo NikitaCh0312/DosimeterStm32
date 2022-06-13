@@ -36,11 +36,6 @@ public:
    
     void Handle(UserAction_t action)
     {
-        static uint32_t startTime = 0;
-        static uint32_t prev_flow_sensor_cnt = 0;
-        static float _waterVolumeLiters = 0;
-        static float _substanceVolumeLiters = 0;
-        
         switch (_stage)
         {
             case INITIALIZATION_STAGE:
@@ -147,18 +142,26 @@ public:
         if (_stage == COMPLETED_STAGE)
         {
             if (!exitStateDisplayInited)
-              clear_display();
-            
-            exitStateDisplayInited = 1;
-            set_cursor_position(1, 6);
-            set_text_rus((char*)StringResources::TaskExecuted_1str);
-            set_cursor_position(2, 5);
-            set_text_rus((char*)StringResources::TaskExecuted_2str);
+            {
+                clear_display();
+                exitStateDisplayInited = 1;
+                set_cursor_position(1, 6);
+                set_text_rus((char*)StringResources::TaskExecuted_1str);
+                set_cursor_position(2, 5);
+                set_text_rus((char*)StringResources::TaskExecuted_2str);
+            }
+
 
             if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
             {
                 if (action.buttonsEvent.id == BUT_CANCEL)
                 {
+                    _stage = INITIALIZATION_STAGE;
+                    exitStateDisplayInited = 0;
+                    startTime = 0;
+                    prev_flow_sensor_cnt = 0;
+                    _waterVolumeLiters = 0;
+                    _substanceVolumeLiters = 0;
                     _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
                 }
             }
@@ -166,17 +169,25 @@ public:
         if (_stage == ERR_WATER_PREASURE_STAGE)
         {
             if (!exitStateDisplayInited)
-              clear_display();
-            
-            exitStateDisplayInited = 1;
-            set_cursor_position(1, 6);
-            set_text_rus((char*)StringResources::TaskErrorExecuted_1str);
-            set_cursor_position(2, 6);
-            set_text_rus((char*)StringResources::TaskErrorExecuted_2str);
+            {
+                clear_display();
+                exitStateDisplayInited = 1;
+                set_cursor_position(1, 6);
+                set_text_rus((char*)StringResources::TaskErrorExecuted_1str);
+                set_cursor_position(2, 6);
+                set_text_rus((char*)StringResources::TaskErrorExecuted_2str);
+            }
+
             if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
             {
                 if (action.buttonsEvent.id == BUT_CANCEL)
                 {
+                    _stage = INITIALIZATION_STAGE;
+                    exitStateDisplayInited = 0;
+                    startTime = 0;
+                    prev_flow_sensor_cnt = 0;
+                    _waterVolumeLiters = 0;
+                    _substanceVolumeLiters = 0;
                     _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
                 }
             }
@@ -199,6 +210,10 @@ private:
     {
         _stage = INITIALIZATION_STAGE;
         exitStateDisplayInited = 0;
+        startTime = 0;
+        prev_flow_sensor_cnt = 0;
+        _waterVolumeLiters = 0;
+        _substanceVolumeLiters = 0;
     }
     STAGE_t _stage;
     
@@ -213,6 +228,11 @@ private:
     float       getSetsPumpVolume();
 
     int exitStateDisplayInited;
+    
+    uint32_t startTime = 0;
+    uint32_t prev_flow_sensor_cnt = 0;
+    float _waterVolumeLiters = 0;
+    float _substanceVolumeLiters = 0;
 };
 
 

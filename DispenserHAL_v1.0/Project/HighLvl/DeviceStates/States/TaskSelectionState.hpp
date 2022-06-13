@@ -50,21 +50,21 @@ public:
         
         if (_stage == SELECTING_TASK_STAGE)
         {
-            char viewValue[4];
+            char viewValue[5];
             
-            set_cursor_position(0, 16);
+            set_cursor_position(0, 15);
             sprintf(viewValue , "%d", _selectedCard.TasksQuantity);
             set_text_eng(viewValue);
             
-            set_cursor_position(1, 16);
+            set_cursor_position(1, 15);
             sprintf(viewValue , "%d", (_selectedTask + 1));
             set_text_eng(viewValue);
             
-            set_cursor_position(2, 16);
+            set_cursor_position(2, 15);
             sprintf(viewValue , "%.2f", _selectedCard.tasks[_selectedTask].Volume);
             set_text_eng(viewValue);
             
-            set_cursor_position(3, 16);
+            set_cursor_position(3, 15);
             sprintf(viewValue , "%.2f", _selectedCard.tasks[_selectedTask].Concentration);
             set_text_eng(viewValue);
             
