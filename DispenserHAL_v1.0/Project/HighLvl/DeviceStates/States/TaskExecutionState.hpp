@@ -292,7 +292,7 @@ public:
             {
                 if (action.buttonsEvent.id == BUT_CANCEL)
                 {
-                   _stage == CANCEL_TASK_STAGE;
+                   _stage = CANCEL_TASK_STAGE;
                 }
             }
         }
