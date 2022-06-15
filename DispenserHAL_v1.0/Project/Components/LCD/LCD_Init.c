@@ -66,7 +66,8 @@ static void set_db7_pin(uint8_t state)
 }
 static void delay(uint32_t msec)
 {
-    for (int i = 0; i < 20 * msec; i++);
+    for (int i = 0; i < 30 * msec; i++);
+    //HAL_Delay(1);
 }
 
 

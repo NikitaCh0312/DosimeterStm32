@@ -212,4 +212,5 @@ void set_symbols(uint8_t * symbols, uint32_t quantity)
 void clear_display()
 {
     send_byte(0x01, 0);
+    driver.delay(50);
 }

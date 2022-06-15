@@ -33,12 +33,17 @@ public:
         
         if (_stage == WAITING_STAGE)
         {
-            set_cursor_position(0, 5);
-            set_text_rus((char*)StringResources::Attach_RFID_Card_1str);
-            set_cursor_position(1, 7);
-            set_text_rus((char*)StringResources::Attach_RFID_Card_2str);
+            if (!_isWaitingUserActionDisplayInited)
+            {
+                clear_display();
+                set_cursor_position(0, 5);
+                set_text_rus((char*)StringResources::Attach_RFID_Card_1str);
+                set_cursor_position(1, 7);
+                set_text_rus((char*)StringResources::Attach_RFID_Card_2str);
+                _isWaitingUserActionDisplayInited = true;
+            }
             DrawDateTime();
-
+            
             if (action.rfidEvent.event != NEW_CARD_DETECTED_EVENT)
                 return;
             uint32_t cardId = action.rfidEvent.rfidCard.CardId;
@@ -51,6 +56,10 @@ public:
                     _stage = WAITING_STAGE;
                     _context->SetState(this->_statesFactory->GetState(MENU_STATE));
                     clear_display();
+#warning NEED REFACTORING!!!
+                    _isWaitingUserActionDisplayInited = false;
+                    _currentDateTime.Minutes = 100;
+                    _currentDateTime.Hours = 100;
                     break;
                 }
                 case CARD_IS_INACTIVE_STATUS:
@@ -58,6 +67,10 @@ public:
                     stageTimer = global_timer;
                     _stage = CARD_IS_INACTIVE_STAGE;
                     clear_display();
+#warning NEED REFACTORING!!!
+                    _isWaitingUserActionDisplayInited = false;
+                    _currentDateTime.Minutes = 100;
+                    _currentDateTime.Hours = 100;
                     break;
                 }
                 case CARD_IS_NOT_BINDED_STATUS:
@@ -65,6 +78,10 @@ public:
                     stageTimer = global_timer;
                     _stage = CARD_NOT_BINDED_STAGE;
                     clear_display();
+#warning NEED REFACTORING!!!
+                    _isWaitingUserActionDisplayInited = false;
+                    _currentDateTime.Minutes = 100;
+                    _currentDateTime.Hours = 100;
                     break;
                 }
                 case CARD_IS_ACTIVE_STATUS:
@@ -74,6 +91,10 @@ public:
                     taskSelectionState->SetCardId(cardId);
                     _context->SetState(taskSelectionState);
                     clear_display();
+#warning NEED REFACTORING!!!
+                    _isWaitingUserActionDisplayInited = false;
+                    _currentDateTime.Minutes = 100;
+                    _currentDateTime.Hours = 100;
                     break;
                 }
                 default:
@@ -87,7 +108,7 @@ public:
         if (_stage == CARD_NOT_BINDED_STAGE)
         { 
             set_cursor_position(0, 0);
-            set_symbols(StringResources::Attention, strlen((char*)StringResources::Attention)); 
+            set_text_rus((char*)StringResources::Attention); 
             set_cursor_position(1, 0);
             set_symbols(StringResources::CardIsNotBinded, strlen((char*)StringResources::CardIsNotBinded)); 
             set_cursor_position(2, 0);
@@ -97,6 +118,7 @@ public:
             {
                 _stage = WAITING_STAGE;
                 clear_display();
+                _isWaitingUserActionDisplayInited = false;
             }
             return;
         }
@@ -115,6 +137,7 @@ public:
             {
                 _stage = WAITING_STAGE;
                 clear_display();
+                _isWaitingUserActionDisplayInited = false;
             }
             return;
         }
@@ -135,6 +158,7 @@ private:
     {
         _stage = WAITING_STAGE;
         _cardsManager = ModulesLocator::GetInstance()->cardsManager;
+        _isWaitingUserActionDisplayInited = false;
     }
     
     
@@ -142,6 +166,7 @@ private:
 
     ICardsManager * _cardsManager;
     RtcDateTime_t _currentDateTime;
+    bool _isWaitingUserActionDisplayInited;
     
     
     const const int DATE_TIME_START_POSITION = 6;
