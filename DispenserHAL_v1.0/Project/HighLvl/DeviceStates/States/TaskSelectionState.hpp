@@ -50,14 +50,14 @@ public:
         
         if (_stage == SELECTING_TASK_STAGE)
         {
-            char viewValue[5];
+            char viewValue[6];
             
             set_cursor_position(0, 15);
             sprintf(viewValue , "%d", _selectedCard.TasksQuantity);
             set_text_eng(viewValue);
             
             set_cursor_position(1, 15);
-            sprintf(viewValue , "%d", (_selectedTask + 1));
+            sprintf(viewValue , "%02d", (_selectedTask + 1));
             set_text_eng(viewValue);
             
             set_cursor_position(2, 15);

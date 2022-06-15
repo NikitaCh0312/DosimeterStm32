@@ -4,7 +4,7 @@
 static flow_sens_koef_A_t _default_koef_A = 
 {
     .A_0 = 0,
-    .A_1 = 0.000525,
+    .A_1 = 0.000536,
     .A_2 = 0,
     .A_3 = 0    
 };
