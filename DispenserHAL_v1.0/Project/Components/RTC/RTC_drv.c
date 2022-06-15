@@ -117,14 +117,48 @@ void RTC_GetTimeUnix(time_t *time)
 
 int RtcSetDateTime(RtcDateTime_t * dateTime)
 {
+  // set date 
     RTC_DateTypeDef date;
-    date.Date = dateTime->Day;
-    date.Month = dateTime->Month;
-    date.Year = dateTime->Year;
+    if(dateTime->WeekDay > 0 && dateTime->WeekDay < 8)
+      date.WeekDay = dateTime->WeekDay;
+    else 
+      date.WeekDay = 1;
+    
+    if(dateTime->Day > 0 && dateTime->Day < 32)
+      date.Date = dateTime->Day;
+    else
+      date.Date = 1;
+    
+    if(dateTime->Month > 0 && dateTime->Month < 13)
+      date.Month = dateTime->Month;
+    else
+      date.Month = 1;
+    
+    if(dateTime->Year > 0 && dateTime->Year < 50)
+      date.Year = dateTime->Year;
+    else
+      date.Year = 22;
+    
+  // set time
     RTC_TimeTypeDef time;
-    time.Seconds = dateTime->Seconds;
-    time.Minutes = dateTime->Minutes;
-    time.Hours = dateTime->Hours;
+    if(dateTime->Seconds < 60)
+      time.Seconds = dateTime->Seconds;
+    else
+      time.Seconds = 0;
+    
+    if(dateTime->Minutes < 60)
+      time.Minutes = dateTime->Minutes;
+    else 
+      time.Minutes = 0;
+    
+    if(dateTime->Hours < 24)
+      time.Hours = dateTime->Hours;
+    else
+      time.Hours = 0;
+    
+    time.TimeFormat = RTC_HOURFORMAT12_AM;
+    time.DayLightSaving = RTC_DAYLIGHTSAVING_NONE ;
+    time.StoreOperation = RTC_STOREOPERATION_RESET;    
     RTC_SetDateTimeHAL(&date, &time);
     return 0;
 }
