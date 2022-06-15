@@ -36,6 +36,8 @@ public:
    
     void Handle(UserAction_t action)
     {
+        static uint8_t en_flag = 1;
+        
         switch (_stage)
         {
             case INITIALIZATION_STAGE:
@@ -75,7 +77,9 @@ public:
                        prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
                        
                        _substanceVolumeLiters =  (_task.Volume / 100.0) * _task.Concentration;
-                       _waterVolumeLiters =  _task.Volume - _substanceVolumeLiters;          
+                       _waterVolumeLiters =  _task.Volume - _substanceVolumeLiters;    
+                       
+                       en_flag = 1;
 
                       _stage = EXEUTING_TASK_STAGE;
                   }
@@ -99,7 +103,7 @@ public:
                         startTime = global_timer;
                         prev_flow_sensor_cnt = flow_sensor_get_cnt(DMRV_SENSOR_TYPE);
                         
-                        static uint8_t en_flag = 1;
+                        
                         
                         if(en_flag)
                         {
