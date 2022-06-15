@@ -31,7 +31,13 @@ public:
 
     static uint8_t TaskExecuted_1str[20];
     static uint8_t TaskExecuted_2str[20];
-
+    
+    static uint8_t StringResources::TaskCancelTask_1str[20];
+    static uint8_t StringResources::TaskErrorPreasure_1str[20];
+    static uint8_t StringResources::TaskErrorPreasure_2str[20];
+    static uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20];
+    static uint8_t StringResources::TaskErrorAvalibilitySubstance_2str[20];
+    
     static uint8_t TaskErrorExecuted_1str[20];
     static uint8_t TaskErrorExecuted_2str[20];
     
