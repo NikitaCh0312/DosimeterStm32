@@ -3,6 +3,7 @@
 
 #include "modules/[Interfaces]/ICardsManager.h"
 #include "modules/CardsManager.h"
+#include "modules/TaskCardSession.h"
 
 class ModulesLocator
 {
@@ -15,12 +16,14 @@ public:
     }
     
     ICardsManager * cardsManager;
+    TaskCardSession * taskCardsSession;
     
 private:
     static ModulesLocator * _instance;
     ModulesLocator()
     {
       cardsManager = (ICardsManager*)CardsManager::GetInstance();
+      taskCardsSession = new TaskCardSession();
     }
     virtual ~ModulesLocator(){}
 };

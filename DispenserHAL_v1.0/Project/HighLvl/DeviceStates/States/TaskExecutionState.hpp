@@ -8,6 +8,7 @@
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
 
 #include "modules/Card.h"
+#include "modules/ModulesLocator.h"
 
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
@@ -194,6 +195,8 @@ public:
             {
                 if (action.buttonsEvent.id == BUT_CANCEL)
                 {
+                    _taskCardsSession->AddExecutedTask(_task.Id);
+                  
                     _stage = INITIALIZATION_STAGE;
                     exitStateDisplayInited = 0;
                     startTime = 0;
@@ -311,6 +314,7 @@ private:
     }STAGE_t;
     
     IDeviceStatesFactory * factory;
+    TaskCardSession * _taskCardsSession;
     
     static TaskExecutionState * _instance;
     TaskExecutionState()
@@ -321,6 +325,8 @@ private:
         prev_flow_sensor_cnt = 0;
         _waterVolumeLiters = 0;
         _substanceVolumeLiters = 0;
+        
+        _taskCardsSession = ModulesLocator::GetInstance()->taskCardsSession;
     }
     STAGE_t _stage;
     

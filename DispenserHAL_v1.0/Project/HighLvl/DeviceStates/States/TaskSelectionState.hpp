@@ -68,31 +68,13 @@ public:
             sprintf(viewValue , "%.2f", _selectedCard.tasks[_selectedTask].Concentration);
             set_text_eng(viewValue);
             
-            if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
+            if (_taskCardsSession->IsTaskExecuted(_selectedCard.tasks[_selectedTask].Id))
             {
-                if (action.buttonsEvent.id == BUT_UP)
-                {
-                    if ( ++_selectedTask >= _selectedCard.TasksQuantity )
-                        _selectedTask = _selectedCard.TasksQuantity - 1;
-                }
-                else if (action.buttonsEvent.id == BUT_DOWN)
-                {
-                    if ( --_selectedTask <= 0 )
-                        _selectedTask = 0;
-                }
-                else if (action.buttonsEvent.id == BUT_ENTER)
-                {
-                    TaskExecutionState* executionState = (TaskExecutionState*)this->_statesFactory->GetState(TASK_EXECUTION_STATE);
-                    executionState->InitExecutionState(_selectedCard.tasks[_selectedTask]);
-                    _context->SetState(executionState);
-                    _stage = INITIALIZATION_STAGE;
-                }
-                else if (action.buttonsEvent.id == BUT_CANCEL)
-                {
-                    _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
-                    _stage = INITIALIZATION_STAGE;
-                }
+                set_cursor_position(1, 11);
+                set_text_rus((char*)"Г");
             }
+            
+            HandleUserAction(action);
         }
     }
 private:
@@ -118,6 +100,44 @@ private:
     int _selectedTask;
 
     ICardsManager * _cardsManager;
+    TaskCardSession * _taskCardsSession;
+    
+    void HandleUserAction(UserAction_t action)
+    {
+        if (action.buttonsEvent.event != BUTTON_SHORT_PRESSED_EVENT)
+            return;
+
+        switch(action.buttonsEvent.id)
+        {
+            case BUT_UP:
+            {
+                if ( ++_selectedTask >= _selectedCard.TasksQuantity )
+                    _selectedTask = _selectedCard.TasksQuantity - 1;
+                break;
+            }
+            case BUT_DOWN:
+            {
+                if ( --_selectedTask <= 0 )
+                    _selectedTask = 0;
+            }
+            case BUT_ENTER:
+            {
+                if (_taskCardsSession->IsTaskExecuted(_selectedCard.tasks[_selectedTask].Id))
+                  return;
+                
+                TaskExecutionState* executionState = (TaskExecutionState*)this->_statesFactory->GetState(TASK_EXECUTION_STATE);
+                executionState->InitExecutionState(_selectedCard.tasks[_selectedTask]);
+                _context->SetState(executionState);
+                _stage = INITIALIZATION_STAGE;
+            }
+            case BUT_CANCEL:
+            {
+                _taskCardsSession->EndSession();
+                _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+                _stage = INITIALIZATION_STAGE;
+            }
+        }
+    }
 };
 
 
