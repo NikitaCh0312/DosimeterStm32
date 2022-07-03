@@ -455,15 +455,15 @@
                 </option>
                 <option>
                     <name>CCEncOutput</name>
-                    <state>0</state>
+                    <state>2</state>
                 </option>
                 <option>
                     <name>CCEncOutputBom</name>
-                    <state>1</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>CCEncInput</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>IccExceptions2</name>
@@ -1597,12 +1597,6 @@
                 <name>$PROJ_DIR$\..\HighLvl\modules\Logger.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\MemoryCardMap.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\MemoryCardMap.h</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\ModulesLocator.h</name>
             </file>
             <file>
@@ -1610,6 +1604,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Startup.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\TaskCardSession.h</name>
             </file>
         </group>
         <group>
