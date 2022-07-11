@@ -1380,6 +1380,12 @@
             <group>
                 <name>States</name>
                 <file>
+                    <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\FlushingState.hpp</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\ManualDosationState.hpp</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\MenuState.hpp</name>
                 </file>
                 <file>

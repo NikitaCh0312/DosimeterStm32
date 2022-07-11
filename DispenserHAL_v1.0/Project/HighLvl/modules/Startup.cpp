@@ -67,11 +67,15 @@ DebugTask * debugTask = new DebugTask((char*)"DebugTask", configMINIMAL_STACK_SI
 Menu * menu = MenuFactory::CreateMenu();
 
 Dosimeter * Dosimeter::_instance = new Dosimeter();
+
 WaitingUserActionState * WaitingUserActionState::_instance = new WaitingUserActionState();
 TaskSelectionState * TaskSelectionState::_instance = new TaskSelectionState();
 TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
 StartupState * StartupState::_instance = new StartupState();
+ManualDosationState * ManualDosationState::_instance = new ManualDosationState();
+FlushingState * FlushingState::_instance = new FlushingState();
+
 DeviceStatesFactory * DeviceStatesFactory::_instance = new DeviceStatesFactory();
 Configuration * Configuration::_instance = new Configuration();
 
