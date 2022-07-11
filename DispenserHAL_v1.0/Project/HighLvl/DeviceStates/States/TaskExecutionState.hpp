@@ -1,6 +1,7 @@
 #ifndef TASK_EXECUTION_STATE_H_
 #define TASK_EXECUTION_STATE_H_
 
+#define MAX_CONCENTRATIONS 10.0
 #define CNT_CHECK_PULSE 4
 #define TIMEOUT_CHECK_PULSE_MS 1000
 
@@ -129,9 +130,10 @@ public:
                         
                         
                         if(en_flag)
-                        {
-                            // need solve speed of dosing
-                            pumpSubstance_ml(getPumpDriver(), (1000.0*_substanceVolumeLiters));  //task on the substance volume
+                        {                           
+                            uint32_t pump_speed = (uint32_t)(((float)getMaxSpeedRPM() / MAX_CONCENTRATIONS) * _task.Concentration);
+                            
+                            pumpSubstance_ml(getPumpDriver(), (1000.0*_substanceVolumeLiters), pump_speed);  //task on the substance volume
                             
                             en_flag = 0;   
                         };

@@ -50,7 +50,7 @@ typedef struct
     PUMP_DIRECTION_t direction;
 }A4988Conf_t;
 
-int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl);
+int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl, uint32_t speed);
 
 void setStepResol(A4988Driver_t * drv, A4988Conf_t conf);
 
