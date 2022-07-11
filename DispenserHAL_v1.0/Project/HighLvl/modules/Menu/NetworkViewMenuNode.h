@@ -5,6 +5,8 @@
 #include "string.h"
 #include "stdio.h"
 
+#include "Resources/StringResources.h"
+
 #include "LCD/LCD.h"
 
 #include "ViewMenuNode.h"

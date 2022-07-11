@@ -10,35 +10,30 @@
 #define NUMBER_ELEMENT_MAX_VALUE_LENGTH 10
 #define NUMBER_ELEMENT_DEFAULT_VALUE_LENGTH 3
 
+#include "limits.h"
+
 class NumberElementView: public IElementView
 {
 public:
     NumberElementView(uint32_t row,
                       uint32_t column,
                       uint32_t value,
-                      uint32_t viewLength)
+                      uint32_t viewLength,
+                      int minValue = 0,
+                      int maxValue = INT_MAX)
     {
         _position.row = row;
         _position.column = column;
         _value = value;
+        _minValue = minValue;
+        _maxValue = maxValue;
         if (viewLength > NUMBER_ELEMENT_MAX_VALUE_LENGTH)
             _viewLength = NUMBER_ELEMENT_DEFAULT_VALUE_LENGTH;
         else
             _viewLength = viewLength;
         CreateFormatter();
     }
-    
-//    NumberElementView(LcdPosition_t position,
-//                      uint32_t value,
-//                      uint32_t viewLength):IElementView(position)
-//    {
-//        _value = value;
-//        if (viewLength > NUMBER_ELEMENT_MAX_VALUE_LENGTH)
-//            _viewLength = NUMBER_ELEMENT_DEFAULT_VALUE_LENGTH;
-//        else
-//            _viewLength = viewLength;
-//        CreateFormatter();
-//    }
+
     virtual ~NumberElementView(){}
     
     void Draw()
@@ -59,12 +54,14 @@ public:
     
     void IncreaseValue()
     {
-        _value++;
+        if (_value < _maxValue)
+            _value++;
     }
     
     void DecreaseValue()
     {
-        _value--;
+        if (_value > _minValue)
+            _value--;
     }
     
     uint32_t GetValue()
@@ -74,12 +71,15 @@ public:
     
     void SetValue(uint32_t val)
     {
+        if (val <= _maxValue && val >= _minValue) 
         _value = val;
     }
     
 private:
 
     uint32_t _value;
+    int _minValue;
+    int _maxValue;
     
     uint32_t _viewLength;
     

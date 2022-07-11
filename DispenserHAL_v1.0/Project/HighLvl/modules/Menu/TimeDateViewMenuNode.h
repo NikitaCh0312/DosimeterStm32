@@ -6,6 +6,8 @@
 
 #include "LCD/LCD.h"
 
+#include "Resources/StringResources.h"
+
 #include "ViewMenuNode.h"
 #include "Menu.h"
 #include "modules/Configuration.h"
@@ -37,11 +39,11 @@ public:
             
             clear_display();
             set_cursor_position(0, 0);
-            set_text_eng((char*)"SYSTEM TIME");
+            set_text_rus((char*)StringResources::DateTime);
             set_cursor_position(1, 0);
-            set_text_eng((char*)"TIME:00:00:00       ");
+            set_text_rus((char*)StringResources::Time);
             set_cursor_position(2, 0);
-            set_text_eng((char*)"DATE:00.00.2000     ");
+            set_text_rus((char*)StringResources::Date);
             _seconds.Draw();
             _minutes.Draw();
             _hours.Draw();
@@ -143,23 +145,23 @@ private:
     
     NumberElementView _hours = NumberElementView(TIME_DISPLAY_ROW,
                                                  FIRST_DISPLAY_COLUMN,
-                                                 0, 2);
+                                                 0, 2, 0, 24);
     NumberElementView _minutes = NumberElementView(TIME_DISPLAY_ROW,
                                                    SECOND_DISPLAY_COLUMN,
-                                                   0, 2);
+                                                   0, 2, 0, 60);
     NumberElementView _seconds = NumberElementView(TIME_DISPLAY_ROW,
                                                    THIRD_DISPLAY_COLUMN,
-                                                   0, 2);
+                                                   0, 2, 0, 60);
 
     NumberElementView _day = NumberElementView(DATE_DISPLAY_ROW,
                                                FIRST_DISPLAY_COLUMN,
-                                               0, 2);
+                                               0, 2, 1, 31);
     NumberElementView _month = NumberElementView(DATE_DISPLAY_ROW,
                                                  SECOND_DISPLAY_COLUMN,
-                                                 0, 2);
+                                                 0, 2, 1, 12);
     NumberElementView _year = NumberElementView(DATE_DISPLAY_ROW,
                                                 THIRD_DISPLAY_COLUMN,
-                                                0, 4);
+                                                0, 4, 2000);
 
     TextElementView _ok = TextElementView(3, 9, "OK");
     
@@ -184,13 +186,16 @@ private:
         _ok.SetPrevious(&_year);
         _ok.SetNext(&_hours);
         
-        _hours.SetValue(15);
-        _minutes.SetValue(12);
-        _seconds.SetValue(25);
+        RtcDateTime_t dateTime;
+        RtcGetDateTime(&dateTime);
+        
+        _hours.SetValue(dateTime.Hours);
+        _minutes.SetValue(dateTime.Minutes);
+        _seconds.SetValue(dateTime.Seconds);
 
-        _day.SetValue(3);
-        _month.SetValue(2);
-        _year.SetValue(2021);
+        _day.SetValue(dateTime.Day);
+        _month.SetValue(dateTime.Month);
+        _year.SetValue(dateTime.Year);
     }
     
     bool isOkElement()
