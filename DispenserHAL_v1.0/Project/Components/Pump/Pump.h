@@ -55,6 +55,16 @@ int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl);
 void setStepResol(A4988Driver_t * drv, A4988Conf_t conf);
 
 /*
+*get the amount of the spent substance
+*@param drv - driver
+*/
+float getSpentSubst_ml(A4988Driver_t * drv);
+
+/*
+*get max speed 
+*/
+uint32_t getMaxSpeedRPM();
+/*
 *enable pump
 *@param drv - driver
 *       conf - stepRes
