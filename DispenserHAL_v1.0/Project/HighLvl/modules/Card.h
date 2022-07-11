@@ -8,6 +8,7 @@
 
 typedef struct
 {
+    int Id;
     float Volume;
     float Concentration;
 }Task;
