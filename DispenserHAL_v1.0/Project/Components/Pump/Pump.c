@@ -1,6 +1,26 @@
 #include "Pump.h"
 
-#define SPEED_150_RPM 2000
+#define SPEED_100_RPM 375
+#define SPEED_150_RPM 250
+#define SPEED_200_RPM 188
+#define SPEED_250_RPM 150
+#define SPEED_300_RPM 125
+
+
+                                             //float oneRot = 0.85 ml; // = 85.0/100.0;
+const float oneStep_ml_fl = 0.00425;       // oneRot / 200.0 (200 steps in one rot.)
+
+float substr_ml = 0;
+
+void setSubstr_ml(float _substr_ml)
+{
+  substr_ml = _substr_ml;
+}
+
+float getSubstr_ml()
+{
+  return substr_ml;
+}
 
 /* example
 
@@ -14,7 +34,44 @@
       
     disablePump(getPumpDriver());
 
-*/ 
+*/
+
+/*
+*set step resolution pump
+*@param drv - driver
+*/
+float getSpentSubst_ml(A4988Driver_t * drv)
+{
+  float res = getSubstr_ml() - drv->getStepCnt() * oneStep_ml_fl;
+  
+  if(res > 0)
+    return res;
+  else  
+    return 0;
+}
+
+
+uint32_t convRPMToPer(uint32_t rpm)
+{
+  // = 1 / rpm / 200 * 60 / 8  = 37500 / rpm;  // (8 is step rso;lv 1/8)
+  
+  return 37500 / rpm;
+}
+
+uint32_t convPerToRPM(uint32_t per_us)
+{
+  // = 1 / per_us / 200 * 60 / 8 = 37500 / per_us;  // (8 is step rso;lv 1/8)
+  
+  return 37500 / per_us;
+}
+
+/*
+*get max speed
+*/
+uint32_t getMaxSpeedRPM()
+{
+  return convPerToRPM(SPEED_300_RPM);
+}
 
 /*
 *set step resolution pump
@@ -22,16 +79,16 @@
 *       conf - stepRes
 */
 
-int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl)
+int pumpSubstance_ml(A4988Driver_t * drv, float ml_fl, uint32_t speed)
 {
   if(ml_fl < 0.1)
     return -1;
-                                             //float oneRot = 0.85 ml; // = 85.0/100.0;
-  const float oneTick_ml_fl = 0.00425;       // oneRot / 200.0
-                                             // pump ticks in one ml
   
-  uint32_t numTick = (uint32_t)(ml_fl / oneTick_ml_fl);
-  startPump(drv, SPEED_150_RPM, numTick);
+  setSubstr_ml(ml_fl);
+  
+  uint32_t numTick = (uint32_t)(ml_fl / oneStep_ml_fl);
+  
+  startPump(drv, convRPMToPer(speed), numTick);
   return 1;
 }
 
@@ -108,7 +165,9 @@ void disablePump(A4988Driver_t * drv)
 void startPump(A4988Driver_t * drv, uint32_t perStepUs, uint32_t steps)
 {
   //uint32_t newStepPer = perStepUs / 2;
-  
+    const int stepResol = 8;
+    steps *= stepResol;
+    
     drv->setStepCnt(steps);
     drv->setStepPeroid(perStepUs);
     drv->setStatus(PROGRESS_WORK);

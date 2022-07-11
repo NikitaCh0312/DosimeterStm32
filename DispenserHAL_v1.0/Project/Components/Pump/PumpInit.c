@@ -101,8 +101,8 @@ static uint32_t getStepCnt()
 static void setStepPeroid(uint32_t stepsUs)
 {
 
-  if(stepsUs < 2000) 
-    stepsUs = 2000;
+  if(stepsUs < 125) 
+    stepsUs = 125;
   
   stepsUs/=2;
   
@@ -149,7 +149,8 @@ void initPumpDriver()
     pumpDriver.getStatus = &getStatus;
     pumpDriver.setStatus = &setStatus;
     
-    A4988Conf.resolution = FULL_STEP_RESOLUTION_TYPE;
+    //A4988Conf.resolution = FULL_STEP_RESOLUTION_TYPE;
+    A4988Conf.resolution = EIGHTH_STEP_RESOLUTION_TYPE;
     A4988Conf.direction = COUNTERCLOCKWISE_PUMP_DIRECTION;
     
     if(pumpDriver.setEnablePin)
