@@ -59,6 +59,7 @@ public:
             }
             case CHECK_SUBSTANCE_AVAILABILITY_STAGE:
             { 
+                //need check availability substance
                 if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE) _stage = CHECK_WATER_PREASURE_STAGE;
                 else _stage = ERR_SUBSTANCE_AVAILABILITY_STAGE;
 
@@ -75,8 +76,8 @@ public:
             }
             case CHECK_WATER_PREASURE_STAGE:
             {
-              //if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE)
-              //{
+              if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE)
+              {
                   if(startTime == 0) 
                   {
                       startTime = global_timer;
@@ -104,15 +105,15 @@ public:
                       }
                       
                   }
-              //}
-              //else _stage = ERR_SUBSTANCE_AVAILABILITY_STAGE;
+              }
+              else _stage = ERR_SUBSTANCE_AVAILABILITY_STAGE;
            
               break;
             }
             case EXEUTING_TASK_STAGE:
             {
-              //if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE)
-              //{  
+              if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE)
+              {  
                   if((global_timer - startTime) > TIMEOUT_CHECK_PULSE_MS)
                   {                    
                      _stage = ERR_WATER_PREASURE_STAGE;
@@ -129,6 +130,7 @@ public:
                         
                         if(en_flag)
                         {
+                            // need solve speed of dosing
                             pumpSubstance_ml(getPumpDriver(), (1000.0*_substanceVolumeLiters));  //task on the substance volume
                             
                             en_flag = 0;   
@@ -140,8 +142,8 @@ public:
                           _stage = COMPLETED_STAGE;
                       }                          
                   }
-              //}
-              //else _stage = ERR_SUBSTANCE_AVAILABILITY_STAGE;
+              }
+              else _stage = ERR_SUBSTANCE_AVAILABILITY_STAGE;
                           
               break;
             }

@@ -32,6 +32,24 @@ struct flow_sens_koef_B_t
   float B_3;
 };
 
+struct flow_sens_speed_points_t
+{
+  float S_1;
+  float S_2;
+  float S_3;
+  float S_4;
+  float S_5;
+};
+
+struct flow_sens_speed_koef_t
+{
+  float K_1; 
+  float K_2;
+  float K_3;
+  float K_4;
+  float K_5;
+};
+
 SENSOR_STATE_t getSensorState(SENSOR_TYPE_t type);
 void flow_sensor_increment_cnt_FROM_ISR(SENSOR_TYPE_t type);
 void flow_sensor_clear_cnt(SENSOR_TYPE_t type);
