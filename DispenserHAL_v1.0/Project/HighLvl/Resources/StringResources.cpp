@@ -39,7 +39,7 @@ uint8_t StringResources::SolutionConcentration[20] = {'К', 'о', 'н', '-', 'ц
 uint8_t StringResources::Menu[20] = {'М','Е','Н','Ю','\0'};
 //DATE TIME MENU
 uint8_t StringResources::DateTime[20] = {'Д','А','Т','А',' ','В','Р','Е','М','Я','\0'};
-uint8_t StringResources::Time[20] = {'Д','А','Т','А',' ','\0'};
-uint8_t StringResources::Date[20] = {'В','Р','Е','М','Я','\0'};
+uint8_t StringResources::Time[20] = {'В','Р','Е','М','Я','\0'};
+uint8_t StringResources::Date[20] = {'Д','А','Т','А',' ','\0'};
 //NETWORK
-uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','-','К','И'};
+uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','Р','О','Й','К','И'};
