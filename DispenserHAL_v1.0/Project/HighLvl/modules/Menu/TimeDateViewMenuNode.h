@@ -39,11 +39,24 @@ public:
             
             clear_display();
             set_cursor_position(0, 0);
-            set_text_rus((char*)StringResources::DateTime);
+            set_text_rus((char*)menuNodeName);
             set_cursor_position(1, 0);
             set_text_rus((char*)StringResources::Time);
             set_cursor_position(2, 0);
             set_text_rus((char*)StringResources::Date);
+            
+            set_cursor_position(1, 5);
+            set_text_eng((char*)"-");
+            set_cursor_position(1, 8);
+            set_text_eng((char*)":");
+            set_cursor_position(1, 11);
+            set_text_eng((char*)":");
+            set_cursor_position(2, 4);
+            set_text_eng((char*)"-");
+            set_cursor_position(2, 8);
+            set_text_eng((char*)":");
+            set_cursor_position(2, 11);
+            set_text_eng((char*)":");
             _seconds.Draw();
             _minutes.Draw();
             _hours.Draw();
@@ -137,9 +150,9 @@ private:
     const uint32_t TIME_DISPLAY_ROW = 1;
     const uint32_t DATE_DISPLAY_ROW = 2;
     
-    const uint32_t FIRST_DISPLAY_COLUMN = 5;
-    const uint32_t SECOND_DISPLAY_COLUMN = 8;
-    const uint32_t THIRD_DISPLAY_COLUMN = 11;
+    const uint32_t FIRST_DISPLAY_COLUMN = 6;
+    const uint32_t SECOND_DISPLAY_COLUMN = 9;
+    const uint32_t THIRD_DISPLAY_COLUMN = 12;
     
     ELEMENT_VIEW_STATE_t _viewState;
     

@@ -48,7 +48,7 @@ public:
             
             clear_display();
             set_cursor_position(0, 0);
-            set_text_eng((char*)"NETWORK SETTINGS    ");
+            set_text_rus((char*)menuNodeName);
             set_cursor_position(1, 0);
             set_text_eng((char*)"IP:  000.000.000.000");
             set_cursor_position(2, 0);
