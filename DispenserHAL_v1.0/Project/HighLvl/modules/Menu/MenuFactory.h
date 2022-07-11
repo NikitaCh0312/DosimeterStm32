@@ -5,7 +5,7 @@
 #include "ViewMenuNode.h"
 #include "NetworkViewMenuNode.h"
 #include "TimeDateViewMenuNode.h"
-
+#include "Resources/StringResources.h"
 
 class MenuFactory
 {
@@ -30,11 +30,11 @@ public:
         
         Menu * menu = new Menu();
         
-        dateTimeNode = new ViewMenuNode(menu, "DATE TIME           ");
-        dateTimeParamsNode = new TimeDateViewMenuNode(menu, "DateTimeParams");
+        dateTimeNode = new ViewMenuNode(menu, (char*)StringResources::DateTime);
+        dateTimeParamsNode = new TimeDateViewMenuNode(menu, (char*)StringResources::DateTime);
         
-        NetworkNode = new ViewMenuNode(menu,  "NETWORK             ");
-        NetworkParamsNode = new NetworkViewMenuNode(menu, "NetworkParams");
+        NetworkNode = new ViewMenuNode(menu,  (char*)StringResources::Network);
+        NetworkParamsNode = new NetworkViewMenuNode(menu, (char*)StringResources::Network);
         
         Setting1Node = new ViewMenuNode(menu, "FORCED DISPENCING   ");
         Setting2Node = new ViewMenuNode(menu, "MAINTENANCE OF DS&DS");

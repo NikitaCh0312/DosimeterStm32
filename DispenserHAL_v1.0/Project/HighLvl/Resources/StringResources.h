@@ -55,6 +55,14 @@ public:
     //Solution Concentration
     static uint8_t SolutionConcentration[20];
     
+    //Menu
+    static uint8_t Menu[20];
+    //DateTime
+    static uint8_t DateTime[20];
+    static uint8_t Time[20];
+    static uint8_t Date[20];
+    //Network
+    static uint8_t Network[20];
 private:
     StringResources(){}
     static StringResources * _instance;

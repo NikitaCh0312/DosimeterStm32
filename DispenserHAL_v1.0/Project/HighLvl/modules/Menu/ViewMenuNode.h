@@ -9,6 +9,7 @@
 #include "IViewMenuNode.h"
 #include "Menu.h"
 
+#include "Resources/StringResources.h"
 
 class ViewMenuNode: public IViewMenuNode
 {
@@ -43,11 +44,11 @@ public:
 
         clear_display();
         set_cursor_position(0, 0);
-        set_text_eng((char*)"MENU                ");
+        set_text_rus((char*)StringResources::Menu);
         set_cursor_position(1, 0);
         set_text_eng((char*)"--------------------");
         set_cursor_position(2, 0);
-        set_text_eng((char*)menuNodeName);
+        set_text_rus((char*)menuNodeName);
         set_cursor_position(3, 0);
         set_text_eng((char*)"                    ");
         _isInited = true;
