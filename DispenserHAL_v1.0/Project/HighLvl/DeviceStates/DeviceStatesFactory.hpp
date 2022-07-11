@@ -8,7 +8,8 @@
 #include "States/MenuState.hpp"
 #include "States/TaskExecutionState.hpp"
 #include "States/TaskSelectionState.hpp"
-
+#include "States/ManualDosationState.hpp"
+#include "States/FlushingState.hpp"
 
 class DeviceStatesFactory: public IDeviceStatesFactory
 {
@@ -37,6 +38,10 @@ public:
                 return TaskSelectionState::GetInstance();
             case TASK_EXECUTION_STATE:
                 return TaskExecutionState::GetInstance();
+            case MANUAL_DOSATION_STATE:
+                return ManualDosationState::GetInstance();
+            case FLUSHING_STATE:
+                return FlushingState::GetInstance();
             default:
                 return NULL;
         }
