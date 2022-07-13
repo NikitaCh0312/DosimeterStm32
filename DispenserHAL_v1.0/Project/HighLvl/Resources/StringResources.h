@@ -63,6 +63,15 @@ public:
     static uint8_t Date[20];
     //Network
     static uint8_t Network[20];
+    
+    static uint8_t ManualDosation[20];
+    static uint8_t PressEnter[20];
+    static uint8_t ToStart[20];
+    static uint8_t ManualDosationMode[20];
+    static uint8_t Select[20];
+    static uint8_t Volume[20];
+    static uint8_t Concentration[20];
+    
 private:
     StringResources(){}
     static StringResources * _instance;

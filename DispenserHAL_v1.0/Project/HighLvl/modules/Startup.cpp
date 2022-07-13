@@ -74,7 +74,7 @@ TaskExecutionState * TaskExecutionState::_instance = new TaskExecutionState();
 MenuState * MenuState::_instance = new MenuState();
 StartupState * StartupState::_instance = new StartupState();
 ManualDosationState * ManualDosationState::_instance = new ManualDosationState();
-FlushingState * FlushingState::_instance = new FlushingState();
+SubstanceServiceState * SubstanceServiceState::_instance = new SubstanceServiceState();
 
 DeviceStatesFactory * DeviceStatesFactory::_instance = new DeviceStatesFactory();
 Configuration * Configuration::_instance = new Configuration();

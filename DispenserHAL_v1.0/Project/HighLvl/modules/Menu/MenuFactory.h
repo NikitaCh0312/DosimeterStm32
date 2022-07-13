@@ -5,6 +5,7 @@
 #include "ViewMenuNode.h"
 #include "NetworkViewMenuNode.h"
 #include "TimeDateViewMenuNode.h"
+#include "ManualDosationViewMenuNode.h"
 #include "Resources/StringResources.h"
 
 class MenuFactory
@@ -23,9 +24,12 @@ public:
     {
         ViewMenuNode * dateTimeNode;
         TimeDateViewMenuNode * dateTimeParamsNode;
+        
         ViewMenuNode * NetworkNode;
         NetworkViewMenuNode * NetworkParamsNode;
-        ViewMenuNode * Setting1Node;
+        
+        ViewMenuNode * manualDosationNode;
+        ManualDosationViewMenuNode * manualDosationMenuNode;
         ViewMenuNode * Setting2Node;
         
         Menu * menu = new Menu();
@@ -36,18 +40,22 @@ public:
         NetworkNode = new ViewMenuNode(menu,  (char*)StringResources::Network);
         NetworkParamsNode = new NetworkViewMenuNode(menu, (char*)StringResources::Network);
         
-        Setting1Node = new ViewMenuNode(menu, "FORCED DISPENCING   ");
+        manualDosationNode = new ViewMenuNode(menu, (char*)StringResources::ManualDosation);
+        manualDosationMenuNode = new ManualDosationViewMenuNode(menu, (char*)StringResources::ManualDosation);
+        
         Setting2Node = new ViewMenuNode(menu, "MAINTENANCE OF DS&DS");
         
         
         dateTimeNode->ConfigNode(NetworkNode, Setting2Node, NULL, dateTimeParamsNode);
         dateTimeParamsNode->ConfigNode(NULL, NULL, dateTimeNode, NULL);
         
-        NetworkNode->ConfigNode(Setting1Node, dateTimeNode, NULL, NetworkParamsNode);
+        NetworkNode->ConfigNode(manualDosationNode, dateTimeNode, NULL, NetworkParamsNode);
         NetworkParamsNode->ConfigNode(NULL, NULL, NetworkNode, NULL);
         
-        Setting1Node->ConfigNode(Setting2Node, NetworkNode, NULL, NULL);
-        Setting2Node->ConfigNode(dateTimeNode, Setting1Node, NULL, NULL);
+        manualDosationNode->ConfigNode(Setting2Node, NetworkNode, NULL, manualDosationMenuNode);
+        manualDosationMenuNode->ConfigNode(NULL, NULL, manualDosationNode, NULL);
+        
+        Setting2Node->ConfigNode(dateTimeNode, manualDosationNode, NULL, NULL);
         
         menu->SetRootNode((IViewMenuNode*)dateTimeNode);
         

@@ -9,7 +9,7 @@
 #include "States/TaskExecutionState.hpp"
 #include "States/TaskSelectionState.hpp"
 #include "States/ManualDosationState.hpp"
-#include "States/FlushingState.hpp"
+#include "States/SubstanceServiceState.hpp"
 
 class DeviceStatesFactory: public IDeviceStatesFactory
 {
@@ -41,7 +41,7 @@ public:
             case MANUAL_DOSATION_STATE:
                 return ManualDosationState::GetInstance();
             case FLUSHING_STATE:
-                return FlushingState::GetInstance();
+                return SubstanceServiceState::GetInstance();
             default:
                 return NULL;
         }
