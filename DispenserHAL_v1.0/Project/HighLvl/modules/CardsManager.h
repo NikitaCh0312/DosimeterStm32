@@ -14,7 +14,7 @@ public:
         return _instance;
     }
 
-    CARD_STATUS_t GetCardStatus (uint32_t cardId) 
+    CARD_STATUS_t GetCardStatus (int cardId) 
     {
         if (cardId == 1557957)//908904)
             return CARD_EXT_ACCESS_STATUS;
@@ -28,7 +28,7 @@ public:
         return CARD_IS_NOT_BINDED_STATUS;
     }
     
-    Card GetCard(uint32_t cardId)
+    Card GetCard(int cardId)
     {
         if (cardId == 907894)
         {

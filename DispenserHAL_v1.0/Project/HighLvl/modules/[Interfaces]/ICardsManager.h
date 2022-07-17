@@ -17,9 +17,9 @@ public:
     ICardsManager(){}
     virtual ~ICardsManager(){}
     
-    virtual CARD_STATUS_t GetCardStatus (uint32_t cardId) = 0;
+    virtual CARD_STATUS_t GetCardStatus (int cardId) = 0;
     
-    virtual Card GetCard(uint32_t cardId) = 0;
+    virtual Card GetCard(int cardId) = 0;
     
     virtual int AddCard(Card card) = 0;
 };

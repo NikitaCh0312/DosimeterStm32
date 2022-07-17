@@ -44,7 +44,9 @@ public:
             _selectedTask = 0;
             
             _selectedCard = _cardsManager->GetCard(_cardId);
-            
+            CARD_STATUS_t status = _cardsManager->GetCardStatus(_cardId);
+            if (status == CARD_IS_NOT_BINDED_STATUS)
+                _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
             _stage = SELECTING_TASK_STAGE;
         }
         
@@ -95,7 +97,7 @@ private:
     STAGE_t _stage;
     
     
-    uint32_t _cardId;
+    int _cardId;
     Card _selectedCard;
     int _selectedTask;
 
@@ -135,6 +137,7 @@ private:
                 _taskCardsSession->EndSession();
                 _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
                 _stage = INITIALIZATION_STAGE;
+                _cardId = -1;
             }
         }
     }
