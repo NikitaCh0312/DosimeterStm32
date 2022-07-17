@@ -32,6 +32,20 @@ public:
         {
             case INIT_STAGE:
             {
+                if(!exitStateDisplayInited)
+                {
+                  clear_display();
+                  set_cursor_position(0, 1);
+                  set_text_rus((char*)StringResources::TaskServiceMsgInit_1str);
+                  set_cursor_position(1, 1);
+                  set_text_rus((char*)StringResources::TaskServiceMsgInit_2str);
+                  set_cursor_position(2, 2);
+                  set_text_rus((char*)StringResources::TaskServiceMsgInit_3str);
+                  set_cursor_position(3, 2);
+                  set_text_rus((char*)StringResources::TaskServiceMsgInit_4str); 
+                  
+                  exitStateDisplayInited = 1;
+                }
             
                 break;
             }
@@ -98,24 +112,24 @@ public:
             }
             case CANCEL_SERVICE_MODE_STAGE:
             {
-                if(!exitStateDisplayInited)
-                {
+
                   clear_display();
                   set_cursor_position(0, 5);
                   set_text_rus((char*)StringResources::TaskServiceMsgCancel_1str);
-                  set_cursor_position(1, 0);
+                  set_cursor_position(1, 1);
                   set_text_rus((char*)StringResources::TaskServiceMsgCancel_2str);
-                  set_cursor_position(2, 7);
+                  set_cursor_position(2, 5);
                   set_text_rus((char*)StringResources::TaskServiceMsgCancel_3str);
-                  
-                  exitStateDisplayInited = 1;
-                }
                 
                 disablePump(getPumpDriver());
                 
                 RTOS::Thread::delay_thread(5000);
                 valveOff();
-                _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                _stage = INIT_STAGE;
+                _sub_stage = WAITING_EMPTY_TANK;
+                exitStateDisplayInited = 0;
+                _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+
                 
                 break;
             }
@@ -126,20 +140,6 @@ public:
         // HNMI
         if (_stage == INIT_STAGE)
         {
-            if(!exitStateDisplayInited)
-            {
-              clear_display();
-              set_cursor_position(0, 0);
-              set_text_rus((char*)StringResources::TaskServiceMsgInit_1str);
-              set_cursor_position(1, 0);
-              set_text_rus((char*)StringResources::TaskServiceMsgInit_2str);
-              set_cursor_position(2, 0);
-              set_text_rus((char*)StringResources::TaskServiceMsgInit_3str);
-              set_cursor_position(3, 0);
-              set_text_rus((char*)StringResources::TaskServiceMsgInit_4str); 
-              
-              exitStateDisplayInited = 1;
-            }
             
             if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
             {               
@@ -161,6 +161,21 @@ public:
         }
         
         if (_stage == TANK_CLEANING_STAGE)
+        {
+            
+            if (action.buttonsEvent.event == BUTTON_LONG_PRESSED_EVENT)
+            {               
+                if (action.buttonsEvent.id == BUT_CANCEL)
+                {                 
+                    _stage = CANCEL_SERVICE_MODE_STAGE;
+                    exitStateDisplayInited = 0;
+                    valveOn();
+                }
+            }
+            
+        }
+        
+        if (_stage == COMPLETED_TANK_CLEANING_STAGE)
         {
             
             if (action.buttonsEvent.event == BUTTON_LONG_PRESSED_EVENT)
@@ -198,7 +213,7 @@ private:
     
     STAGE_t _stage;
     SUB_STAGE_t _sub_stage;
-    int exitStateDisplayInited;
+    int exitStateDisplayInited = 0;
     uint32_t start_action_time = 0;
     
     static SubstanceServiceState * _instance;
