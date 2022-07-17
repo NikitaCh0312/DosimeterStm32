@@ -45,13 +45,14 @@ uint8_t StringResources::Date[20] = {'Д','А','Т','А',' ','\0'};
 uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','Р','О','Й','К','И','\0'};
 
 //ManualDosation
-uint8_t StringResources::ManualDosation[20] = {'Р','У','Ч','Н','А','Я',' ','Д','О','З','А','Ц','И','Я','\0'};
-uint8_t StringResources::PressEnter[20] = {'Н','А','Ж','М','И','Т','Е',' ','E','N','Т','E','R','\0'};
+uint8_t StringResources::ManualDosation[20] = {'П','Р','И','Н','У','Д','.',' ','Д','О','З','-','Е','\0'};
+uint8_t StringResources::PressEnter[20] = {'Н','А','Ж','М','И','Т','Е',' ','E','N','T','E','R','\0'};
 uint8_t StringResources::ToStart[20] = {'Ч','Т','О','Б','Ы',' ','Н','А','Ч','А','Т','Ь','\0'};
 uint8_t StringResources::ManualDosationMode[20] = {'Р','Е','Ж','И','М',' ','П','Р','И','Н','.',' ','Д','О','З','А','Ц','И','И','\0'};
 uint8_t StringResources::Select[20] = {'В','Ы','Б','Е','Р','И','Т','Е','\0'};
 uint8_t StringResources::Volume[20] = {'О','Б','Ъ','Е','М','\0'};
-uint8_t StringResources::Concentration[20] = {'К','О','Н','Ц','Е','Н','Т','Р','.','\0'};
+uint8_t StringResources::Concentration[20] = {'К','О','Н','Ц','-','Я','\0'};
+uint8_t StringResources::SelectedParams[20] = {'В','Ы','Б','Р','А','Н','Н','Ы','Е',' ','П','А','Р','-','Р','Ы','\0'};
 
 //SubstanceService
 uint8_t StringResources::SubstanceService[20] = {'О','Б','С','Л','У','Ж','И','В','А','Н','И','Е',' ','С','Х','П','П','\0'};
