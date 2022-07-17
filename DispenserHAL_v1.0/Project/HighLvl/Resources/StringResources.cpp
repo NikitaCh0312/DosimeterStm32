@@ -27,10 +27,10 @@ uint8_t StringResources::TaskServiceMsgInit_3str[20] = {'Н', 'а', 'ж', 'м', 
 uint8_t StringResources::TaskServiceMsgInit_4str[20] = {'д', 'л', 'я', ' ', 'п', 'р', 'о', 'д', 'о', 'л', 'ж', 'е', 'н', 'и', 'я', '!', '\0'};
 
 uint8_t StringResources::TaskServiceMsgCancel_1str[20] = {'П', 'р', 'о', 'ц', 'е', 'д', 'у', 'р', 'а','\0'};
-uint8_t StringResources::TaskServiceMsgCancel_2str[20] = {'о', 'б', 'с', 'л', 'у', 'ж', 'и', 'в', 'а', 'н', 'и', 'я', ' ', 'С', 'Х', 'П', 'П', '\0'};
+uint8_t StringResources::TaskServiceMsgCancel_2str[20] = {'о', 'б', 'c', 'л', 'у', 'ж', 'и', 'в', 'а', 'н', 'и', 'я', ' ', 'С', 'Х', 'П', 'П', '\0'};
 uint8_t StringResources::TaskServiceMsgCancel_3str[20] = {'о', 'т', 'м', 'е', 'н', 'е', 'н', 'а', '!', '\0'};
 
-uint8_t StringResources::TaskServiceMsgCleaning_1str[20] = {'В', 'ы', 'п', 'о', 'л', 'н', 'я', 'е', 'т', 'с', 'я', ' ', 'о', 'ч', 'и', 'с', 'т', 'к', 'а','\0'};
+uint8_t StringResources::TaskServiceMsgCleaning_1str[20] = {'В', 'ы', 'п', 'о', 'л', 'н', 'я', 'е', 'т', 'c', 'я', ' ', 'о', 'ч', 'и', 'c', 'т', 'к', 'а','\0'};
 uint8_t StringResources::TaskServiceMsgCleaning_2str[20] = {'б', 'а', 'к', 'а', '.', ' ', 'О', 'ж', 'и', 'д', 'а', 'й', 'т', 'е', '.', '.', '.', '\0'};
 
 uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20] = {'В', ' ', 'б', 'а', 'к', 'е', ' ', 'з', 'а', 'к', 'о', 'н', 'ч', 'и', 'л', 'c', 'я', '\0'};
@@ -57,7 +57,7 @@ uint8_t StringResources::Date[20] = {'Д','А','Т','А',' ','\0'};
 uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','Р','О','Й','К','И','\0'};
 
 //ManualDosation
-uint8_t StringResources::ManualDosation[20] = {'П','Р','И','Н','У','Д','.',' ','Д','О','З','-','Е','\0'};
+uint8_t StringResources::ManualDosation[20] = {'П','Р','И','Н','У','Д','.',' ','Д','О','З','-','Н','И','Е','Е','\0'};
 uint8_t StringResources::PressEnter[20] = {'Н','А','Ж','М','И','Т','Е',' ','E','N','T','E','R','\0'};
 uint8_t StringResources::ToStart[20] = {'Ч','Т','О','Б','Ы',' ','Н','А','Ч','А','Т','Ь','\0'};
 uint8_t StringResources::ManualDosationMode[20] = {'Р','Е','Ж','И','М',' ','П','Р','И','Н','.',' ','Д','О','З','А','Ц','И','И','\0'};
