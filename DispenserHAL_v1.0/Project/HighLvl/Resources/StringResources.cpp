@@ -21,6 +21,18 @@ uint8_t StringResources::TaskCancelTask_1str[20] = {'З', 'а', 'д', 'а', 'н'
 uint8_t StringResources::TaskErrorPreasure_1str[20] = {'Н', 'е', 'д', 'о', 'c', 'т', 'а', 'т', 'о', 'ч', 'н', 'о', 'е', '\0'};
 uint8_t StringResources::TaskErrorPreasure_2str[20] = {'д', 'а', 'в', 'л', 'е', 'н', 'и', 'е', ' ', 'в', 'о', 'д', 'ы', '!', '\0'};
 
+uint8_t StringResources::TaskServiceMsgInit_1str[20] = {'П', 'о', 'м', 'е', 'c', 'т', 'и', 'т', 'е', ' ', 'н', 'а', 'л', 'и', 'в', 'н', 'о', 'й','\0'};
+uint8_t StringResources::TaskServiceMsgInit_2str[20] = {'ш', 'л', 'а', 'н', 'г', ' ', 'в', ' ', 'р', 'а', 'к', 'о', 'в', 'и', 'н', 'у', '!', '\0'};
+uint8_t StringResources::TaskServiceMsgInit_3str[20] = {'Н', 'а', 'ж', 'м', 'и', 'т', 'е', ' ', '"', 'С', 'т', 'а', 'р', 'т', '"', '\0'};
+uint8_t StringResources::TaskServiceMsgInit_4str[20] = {'д', 'л', 'я', ' ', 'п', 'р', 'о', 'д', 'о', 'л', 'ж', 'е', 'н', 'и', 'я', '!', '\0'};
+
+uint8_t StringResources::TaskServiceMsgCancel_1str[20] = {'П', 'р', 'о', 'ц', 'е', 'д', 'у', 'р', 'а','\0'};
+uint8_t StringResources::TaskServiceMsgCancel_2str[20] = {'о', 'б', 'с', 'л', 'у', 'ж', 'и', 'в', 'а', 'н', 'и', 'я', ' ', 'С', 'Х', 'П', 'П', '\0'};
+uint8_t StringResources::TaskServiceMsgCancel_3str[20] = {'о', 'т', 'м', 'е', 'н', 'е', 'н', 'а', '!', '\0'};
+
+uint8_t StringResources::TaskServiceMsgCleaning_1str[20] = {'В', 'ы', 'п', 'о', 'л', 'н', 'я', 'е', 'т', 'с', 'я', ' ', 'о', 'ч', 'и', 'с', 'т', 'к', 'а','\0'};
+uint8_t StringResources::TaskServiceMsgCleaning_2str[20] = {'б', 'а', 'к', 'а', '.', ' ', 'О', 'ж', 'и', 'д', 'а', 'й', 'т', 'е', '.', '.', '.', '\0'};
+
 uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20] = {'В', ' ', 'б', 'а', 'к', 'е', ' ', 'з', 'а', 'к', 'о', 'н', 'ч', 'и', 'л', 'c', 'я', '\0'};
 uint8_t StringResources::TaskErrorAvalibilitySubstance_2str[20] = {'п', 'р', 'е', 'п', 'а', 'р', 'а', 'т', '!', '\0'};
 
