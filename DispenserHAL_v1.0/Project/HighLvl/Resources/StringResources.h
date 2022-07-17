@@ -71,6 +71,7 @@ public:
     static uint8_t Select[20];
     static uint8_t Volume[20];
     static uint8_t Concentration[20];
+    static uint8_t SelectedParams[20];
     
     //SubstanceService
     static uint8_t SubstanceService[20];    

@@ -124,12 +124,16 @@ void startup()
     MenuState * menuState = MenuState::GetInstance();
     menuState->SetMenu(menu);
     StartupState * startupState = StartupState::GetInstance();
-    
+    ManualDosationState * manualDosationState = ManualDosationState::GetInstance();
+    SubstanceServiceState * substanceServiceState = SubstanceServiceState::GetInstance();
+      
     waitingUserActionState->SetContext(dosimeter);
     taskSelectionState->SetContext(dosimeter);
     taskExecutionState->SetContext(dosimeter);
     menuState->SetContext(dosimeter);
     startupState->SetContext(dosimeter);
+    manualDosationState->SetContext(dosimeter);
+    substanceServiceState->SetContext(dosimeter);
     
     IDeviceStatesFactory * factory = DeviceStatesFactory::GetInstance();
     waitingUserActionState->SetDeviceStatesFactory(factory);
@@ -137,6 +141,8 @@ void startup()
     taskExecutionState->SetDeviceStatesFactory(factory);
     menuState->SetDeviceStatesFactory(factory);
     startupState->SetDeviceStatesFactory(factory);
+    manualDosationState->SetDeviceStatesFactory(factory);
+    substanceServiceState->SetDeviceStatesFactory(factory);
     
     //set first state
     dosimeter->SetState((IDeviceState*)startupState);
