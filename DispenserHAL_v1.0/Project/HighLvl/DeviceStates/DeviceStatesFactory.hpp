@@ -40,7 +40,7 @@ public:
                 return TaskExecutionState::GetInstance();
             case MANUAL_DOSATION_STATE:
                 return ManualDosationState::GetInstance();
-            case FLUSHING_STATE:
+            case SUBSTANCE_SERVICE_STATE:
                 return SubstanceServiceState::GetInstance();
             default:
                 return NULL;

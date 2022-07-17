@@ -6,6 +6,7 @@
 #include "NetworkViewMenuNode.h"
 #include "TimeDateViewMenuNode.h"
 #include "ManualDosationViewMenuNode.h"
+#include "SubstanceServiceViewMenuNode.h"
 #include "Resources/StringResources.h"
 
 class MenuFactory
@@ -30,8 +31,10 @@ public:
         
         ViewMenuNode * manualDosationNode;
         ManualDosationViewMenuNode * manualDosationMenuNode;
-        ViewMenuNode * Setting2Node;
         
+        ViewMenuNode * substanceServiceNode;
+        SubstanceServiceViewMenuNode * substanceServiceViewMenuNode;
+          
         Menu * menu = new Menu();
         
         dateTimeNode = new ViewMenuNode(menu, (char*)StringResources::DateTime);
@@ -43,19 +46,20 @@ public:
         manualDosationNode = new ViewMenuNode(menu, (char*)StringResources::ManualDosation);
         manualDosationMenuNode = new ManualDosationViewMenuNode(menu, (char*)StringResources::ManualDosation);
         
-        Setting2Node = new ViewMenuNode(menu, "MAINTENANCE OF DS&DS");
+        substanceServiceNode = new ViewMenuNode(menu, (char*)StringResources::SubstanceService);
+        substanceServiceViewMenuNode = new SubstanceServiceViewMenuNode(menu, (char*)StringResources::SubstanceService);
         
-        
-        dateTimeNode->ConfigNode(NetworkNode, Setting2Node, NULL, dateTimeParamsNode);
+        dateTimeNode->ConfigNode(NetworkNode, substanceServiceNode, NULL, dateTimeParamsNode);
         dateTimeParamsNode->ConfigNode(NULL, NULL, dateTimeNode, NULL);
         
         NetworkNode->ConfigNode(manualDosationNode, dateTimeNode, NULL, NetworkParamsNode);
         NetworkParamsNode->ConfigNode(NULL, NULL, NetworkNode, NULL);
         
-        manualDosationNode->ConfigNode(Setting2Node, NetworkNode, NULL, manualDosationMenuNode);
+        manualDosationNode->ConfigNode(substanceServiceNode, NetworkNode, NULL, manualDosationMenuNode);
         manualDosationMenuNode->ConfigNode(NULL, NULL, manualDosationNode, NULL);
         
-        Setting2Node->ConfigNode(dateTimeNode, manualDosationNode, NULL, NULL);
+        substanceServiceNode->ConfigNode(dateTimeNode, manualDosationNode, NULL, substanceServiceViewMenuNode);
+        substanceServiceViewMenuNode->ConfigNode(NULL, NULL, substanceServiceNode, NULL);
         
         menu->SetRootNode((IViewMenuNode*)dateTimeNode);
         

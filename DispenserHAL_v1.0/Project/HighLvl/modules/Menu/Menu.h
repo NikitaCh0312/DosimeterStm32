@@ -7,7 +7,8 @@ typedef enum
 {
     MENU_OK_RESULT,
     MENU_EXIT_RESULT,
-    
+    MENU_SWITCH_TO_MANUAL_DOSATION_STATE,
+    MENU_SWITCH_TO_SUBSTANCE_SERVICE_STATE
 }MENU_RESULT_t;
 
 
@@ -19,6 +20,14 @@ typedef enum
     MENU_NEXT_ACTION,
     MENU_PREV_ACTION,
 }MENU_ACTION_t;
+
+
+typedef enum
+{
+    MENU_NODE_NONE_ACTION,
+    MENU_NODE_SWITCH_TO_MANUAL_DOSATION_STATE,
+    MENU_NODE_SWITCH_TO_SUBSTANCE_SERVICE_STATE
+}MENU_NODE_ACTION_t;
 
 class Menu
 {
@@ -39,6 +48,7 @@ public:
     void InitMenu()
     {
         _currentMenuNode = _rootNode;
+        _nodeAction = MENU_NODE_NONE_ACTION;
     }
     
     void SetCurrentNode (IViewMenuNode * node)
@@ -68,7 +78,13 @@ public:
 
         if (_currentMenuNode == NULL)
         //выход из меню
-            res = MENU_EXIT_RESULT;
+            return MENU_EXIT_RESULT;
+        
+        if (_nodeAction == MENU_NODE_SWITCH_TO_MANUAL_DOSATION_STATE)
+            return MENU_SWITCH_TO_MANUAL_DOSATION_STATE;
+        if (_nodeAction == MENU_NODE_SWITCH_TO_SUBSTANCE_SERVICE_STATE)
+            return MENU_SWITCH_TO_SUBSTANCE_SERVICE_STATE;
+        
         return res;
     }
     
@@ -78,10 +94,18 @@ public:
             _currentMenuNode->Draw();        
     }
     
+    void SetNodeAction(MENU_NODE_ACTION_t action)
+    {
+        _nodeAction = action;
+    }
+    
+    
 private:
     IViewMenuNode * _currentMenuNode;
     
     IViewMenuNode * _rootNode;
+    
+    MENU_NODE_ACTION_t _nodeAction;
 };
 
 #endif

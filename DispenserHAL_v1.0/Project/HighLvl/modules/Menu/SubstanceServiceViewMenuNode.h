@@ -1,11 +1,11 @@
-#ifndef MANUAL_DOSATION_MENU_NODE_H_
-#define MANUAL_DOSATION_MENU_NODE_H_
+#ifndef SUBSTANCE_SERVICE_MENU_NODE_H_
+#define SUBSTANCE_SERVICE_MENU_NODE_H_
 
 #include "stddef.h"
 #include "string.h"
 
 #include "DeviceStates/Dosimeter.hpp"
-#include "DeviceStates/States/ManualDosationState.hpp"
+#include "DeviceStates/States/SubstanceServiceState.hpp"
 
 #include "LCD/LCD.h"
 
@@ -16,15 +16,15 @@
 #include "modules/Configuration.h"
 
 
-class ManualDosationViewMenuNode: public ViewMenuNode
+class SubstanceServiceViewMenuNode: public ViewMenuNode
 {
 public:
-    ManualDosationViewMenuNode(Menu * menuCtx,
+    SubstanceServiceViewMenuNode(Menu * menuCtx,
                          char * name) : ViewMenuNode(menuCtx, name)
     {
 
     }
-    virtual ~ManualDosationViewMenuNode(){}
+    virtual ~SubstanceServiceViewMenuNode(){}
     
     void Draw()
     {
@@ -49,11 +49,11 @@ public:
         _context->SetCurrentNode(_parent);
         _isInited = false;
         
-        _context->SetNodeAction(MENU_NODE_SWITCH_TO_MANUAL_DOSATION_STATE);
+        _context->SetNodeAction(MENU_NODE_SWITCH_TO_SUBSTANCE_SERVICE_STATE);
         //CRUTCH SWITCH STATE SHOULD NOT BE HERE
         //Dosimeter * dosimeter = Dosimeter::GetInstance();
-        //ManualDosationState * manualDosationState = ManualDosationState::GetInstance();
-        //dosimeter->SetState((IDeviceState *)manualDosationState);
+        //SubstanceServiceState * substanceServiceState = SubstanceServiceState::GetInstance();
+        //dosimeter->SetState((IDeviceState *)substanceServiceState);
     }
     
     void Enter()
