@@ -48,28 +48,37 @@ public:
                   exitStateDisplayInited = 1;
                   
                   enablePump(getPumpDriver(), getA4988Conf());
+                  
+                  _sub_stage = WAITING_EMPTY_TANK;
+                  start_action_time = global_timer;
+                  pumpSubstance_ml(getPumpDriver(),6000.0, 250); 
                 }
                
-                pumpSubstance_ml(getPumpDriver(),6000.0, 250); 
-                do
+                               
+                if(global_timer - start_action_time >= 5000 && _sub_stage == WAITING_EMPTY_TANK)
                 {
-                   RTOS::Thread::delay_thread(5000);  
+                    if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE) start_action_time = global_timer;
+                    else
+                    {
+                        _sub_stage = WAITING_FLUSHING_WITH_PUMP;
+                        start_action_time = global_timer;
+                        valveOn();
+                    }
                 }
-                while(getSensorState(LEVEL_SENSOR_TYPE) != OFF_SENSOR_STATE);
+                else if(global_timer - start_action_time >= 5000 && _sub_stage == WAITING_FLUSHING_WITH_PUMP)
+                {
+                    disablePump(getPumpDriver());
+                    start_action_time = global_timer;
+                    _sub_stage = WAITING_WATER_FLUSHING;
+                }
+                else if(global_timer - start_action_time >= 10000 && _sub_stage == WAITING_WATER_FLUSHING)
+                {
+                    valveOff();
+                   
+                    _stage = COMPLETED_TANK_CLEANING_STAGE;
+                    exitStateDisplayInited = 0;                   
+                }
                 
-                valveOn();
-                
-                RTOS::Thread::delay_thread(5000); 
-                
-                disablePump(getPumpDriver());
-                
-                RTOS::Thread::delay_thread(10000);
-                
-                valveOff();
-                
-                _stage = COMPLETED_TANK_CLEANING_STAGE;
-                exitStateDisplayInited = 0;
-                           
                 break;
             }
             case COMPLETED_TANK_CLEANING_STAGE:
@@ -169,7 +178,7 @@ public:
     }
     
 private:
-        typedef enum
+    typedef enum
     {
         INIT_STAGE,
         TANK_CLEANING_STAGE,
@@ -180,13 +189,23 @@ private:
         CANCEL_SERVICE_MODE_STAGE
     }STAGE_t;
     
+    typedef enum
+    {
+        WAITING_EMPTY_TANK,
+        WAITING_FLUSHING_WITH_PUMP,
+        WAITING_WATER_FLUSHING
+    }SUB_STAGE_t;
+    
     STAGE_t _stage;
+    SUB_STAGE_t _sub_stage;
     int exitStateDisplayInited;
+    uint32_t start_action_time = 0;
     
     static SubstanceServiceState * _instance;
     SubstanceServiceState()
     {
         _stage = INIT_STAGE;
+        _sub_stage = WAITING_EMPTY_TANK;
         exitStateDisplayInited = 0;
     }
 };
