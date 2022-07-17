@@ -72,6 +72,8 @@ public:
     static uint8_t Volume[20];
     static uint8_t Concentration[20];
     
+    //SubstanceService
+    static uint8_t SubstanceService[20];    
 private:
     StringResources(){}
     static StringResources * _instance;

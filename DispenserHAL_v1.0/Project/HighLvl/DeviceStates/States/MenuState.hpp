@@ -44,12 +44,27 @@ public:
             menuAction = MENU_NONE_ACTION;
         
         MENU_RESULT_t res = _menu->Handle(menuAction);
+        
+        if (res == MENU_OK_RESULT)
+            _menu->Draw();
+        
         if (res == MENU_EXIT_RESULT)
         {
             clear_display();
             _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
         }
-        _menu->Draw();
+        else if (res == MENU_SWITCH_TO_MANUAL_DOSATION_STATE)
+        {
+            clear_display();
+            _context->SetState(this->_statesFactory->GetState(MANUAL_DOSATION_STATE));
+        }
+        else if (res == MENU_SWITCH_TO_SUBSTANCE_SERVICE_STATE)
+        {
+            clear_display();
+            _context->SetState(this->_statesFactory->GetState(SUBSTANCE_SERVICE_STATE));
+        }
+        
+        
     }
     
 private:

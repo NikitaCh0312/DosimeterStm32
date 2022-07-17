@@ -52,3 +52,6 @@ uint8_t StringResources::ManualDosationMode[20] = {'Р','Е','Ж','И','М',' ',
 uint8_t StringResources::Select[20] = {'В','Ы','Б','Е','Р','И','Т','Е','\0'};
 uint8_t StringResources::Volume[20] = {'О','Б','Ъ','Е','М','\0'};
 uint8_t StringResources::Concentration[20] = {'К','О','Н','Ц','Е','Н','Т','Р','.','\0'};
+
+//SubstanceService
+uint8_t StringResources::SubstanceService[20] = {'О','Б','С','Л','У','Ж','И','В','А','Н','И','Е',' ','С','Х','П','П','\0'};
