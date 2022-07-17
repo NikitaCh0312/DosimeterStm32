@@ -42,4 +42,13 @@ uint8_t StringResources::DateTime[20] = {'Д','А','Т','А',' ','В','Р','Е',
 uint8_t StringResources::Time[20] = {'В','Р','Е','М','Я','\0'};
 uint8_t StringResources::Date[20] = {'Д','А','Т','А',' ','\0'};
 //NETWORK
-uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','Р','О','Й','К','И'};
+uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','Р','О','Й','К','И','\0'};
+
+//ManualDosation
+uint8_t StringResources::ManualDosation[20] = {'Р','У','Ч','Н','А','Я',' ','Д','О','З','А','Ц','И','Я','\0'};
+uint8_t StringResources::PressEnter[20] = {'Н','А','Ж','М','И','Т','Е',' ','E','N','Т','E','R','\0'};
+uint8_t StringResources::ToStart[20] = {'Ч','Т','О','Б','Ы',' ','Н','А','Ч','А','Т','Ь','\0'};
+uint8_t StringResources::ManualDosationMode[20] = {'Р','Е','Ж','И','М',' ','П','Р','И','Н','.',' ','Д','О','З','А','Ц','И','И','\0'};
+uint8_t StringResources::Select[20] = {'В','Ы','Б','Е','Р','И','Т','Е','\0'};
+uint8_t StringResources::Volume[20] = {'О','Б','Ъ','Е','М','\0'};
+uint8_t StringResources::Concentration[20] = {'К','О','Н','Ц','Е','Н','Т','Р','.','\0'};

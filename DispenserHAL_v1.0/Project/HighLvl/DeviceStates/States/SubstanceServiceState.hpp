@@ -1,5 +1,5 @@
-#ifndef FLUSHING_STATE_H_
-#define FLUSHING_STATE_H_
+#ifndef SUBSTANCE_SERVICE_STATE_H_
+#define SUBSTANCE_SERVICE_STATE_H_
 
 #include "DeviceStates/[Interfaces]/IDeviceState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
@@ -7,13 +7,13 @@
 extern uint32_t global_timer;
 
 
-class FlushingState: public IDeviceState
+class SubstanceServiceState: public IDeviceState
 {
 public:
-    static FlushingState * GetInstance()
+    static SubstanceServiceState * GetInstance()
     {
         if (_instance == NULL)
-            _instance = new FlushingState();
+            _instance = new SubstanceServiceState();
         return _instance;
     }
     
@@ -23,8 +23,8 @@ public:
     }
     
 private:
-    static FlushingState * _instance;
-    FlushingState()
+    static SubstanceServiceState * _instance;
+    SubstanceServiceState()
     {
 
     }

@@ -1380,9 +1380,6 @@
             <group>
                 <name>States</name>
                 <file>
-                    <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\FlushingState.hpp</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\ManualDosationState.hpp</name>
                 </file>
                 <file>
@@ -1390,6 +1387,9 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\StartupState.hpp</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState.hpp</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\TaskExecutionState.hpp</name>
@@ -1558,6 +1558,9 @@
                 </group>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\IViewMenuNode.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ManualDosationViewMenuNode.h</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\Menu.h</name>
