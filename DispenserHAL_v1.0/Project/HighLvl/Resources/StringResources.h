@@ -38,6 +38,18 @@ public:
     static uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20];
     static uint8_t StringResources::TaskErrorAvalibilitySubstance_2str[20];
     
+    static uint8_t StringResources::TaskServiceMsgInit_1str[20];
+    static uint8_t StringResources::TaskServiceMsgInit_2str[20];
+    static uint8_t StringResources::TaskServiceMsgInit_3str[20];
+    static uint8_t StringResources::TaskServiceMsgInit_4str[20];
+    
+    static uint8_t StringResources::TaskServiceMsgCancel_1str[20];
+    static uint8_t StringResources::TaskServiceMsgCancel_2str[20];
+    static uint8_t StringResources::TaskServiceMsgCancel_3str[20];
+    
+    static uint8_t StringResources::TaskServiceMsgCleaning_1str[20];
+    static uint8_t StringResources::TaskServiceMsgCleaning_2str[20];
+    
     static uint8_t TaskErrorExecuted_1str[20];
     static uint8_t TaskErrorExecuted_2str[20];
     
