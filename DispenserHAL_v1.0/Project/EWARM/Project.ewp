@@ -1379,6 +1379,33 @@
             </group>
             <group>
                 <name>States</name>
+                <group>
+                    <name>SubstanceServiceState</name>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\ISubstanceServiceState.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceCancelStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceFlushCompletedStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceFlushingStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceInitStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceState.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceTankCleaningStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceTankCompletedStage.hpp</name>
+                    </file>
+                </group>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\ManualDosationState.hpp</name>
                 </file>
@@ -1387,9 +1414,6 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\StartupState.hpp</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState.hpp</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\TaskExecutionState.hpp</name>

@@ -9,7 +9,7 @@
 #include "States/TaskExecutionState.hpp"
 #include "States/TaskSelectionState.hpp"
 #include "States/ManualDosationState.hpp"
-#include "States/SubstanceServiceState.hpp"
+#include "States/SubstanceServiceState/SubstanceServiceState.hpp"
 
 class DeviceStatesFactory: public IDeviceStatesFactory
 {

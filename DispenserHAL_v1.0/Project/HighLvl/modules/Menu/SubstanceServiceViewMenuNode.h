@@ -5,7 +5,7 @@
 #include "string.h"
 
 #include "DeviceStates/Dosimeter.hpp"
-#include "DeviceStates/States/SubstanceServiceState.hpp"
+#include "DeviceStates/States/SubstanceServiceState/SubstanceServiceState.hpp"
 
 #include "LCD/LCD.h"
 
