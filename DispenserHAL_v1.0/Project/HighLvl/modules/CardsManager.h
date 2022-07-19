@@ -6,48 +6,6 @@
 class CardsManager: ICardsManager
 {
 public:
-
-    static CardsManager * GetInstance()
-    {
-        if (_instance == NULL)
-            _instance = new CardsManager();
-        return _instance;
-    }
-
-    CARD_STATUS_t GetCardStatus (int cardId) 
-    {
-        if (cardId == 1557957)//908904)
-            return CARD_EXT_ACCESS_STATUS;
-
-        if (cardId == 907894)
-            return CARD_IS_ACTIVE_STATUS;
-        
-        if (cardId == 9722774)
-            return CARD_IS_ACTIVE_STATUS;
-        
-        return CARD_IS_NOT_BINDED_STATUS;
-    }
-    
-    Card GetCard(int cardId)
-    {
-        if (cardId == 907894)
-        {
-          return debugCard1;
-        }
-        if (cardId == 9722774)
-        {
-          return debugCard2;
-        }
-    }
-    
-    int AddCard(Card card)
-    {
-      
-    }
-
-
-private:
-    static CardsManager * _instance;
     CardsManager()
     {
         debugCard1.Id = 907894;
@@ -109,6 +67,42 @@ private:
         debugCard2.tasks[4].Concentration = 1.0f;
     }
     
+    virtual ~CardsManager(){}
+    
+    CARD_STATUS_t GetCardStatus (int cardId) 
+    {
+        if (cardId == 1557957)//908904)
+            return CARD_EXT_ACCESS_STATUS;
+
+        if (cardId == 907894)
+            return CARD_IS_ACTIVE_STATUS;
+        
+        if (cardId == 9722774)
+            return CARD_IS_ACTIVE_STATUS;
+        
+        return CARD_IS_NOT_BINDED_STATUS;
+    }
+    
+    Card GetCard(int cardId)
+    {
+        if (cardId == 907894)
+        {
+          return debugCard1;
+        }
+        if (cardId == 9722774)
+        {
+          return debugCard2;
+        }
+    }
+    
+    int AddCard(Card card)
+    {
+      
+    }
+
+
+private:
+
     Card debugCard1;
     Card debugCard2;
 };

@@ -1612,16 +1612,10 @@
                 <name>$PROJ_DIR$\..\HighLvl\modules\CardsManager.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\Configuration.cpp</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Configuration.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\Logger.cpp</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\..\HighLvl\modules\Logger.h</name>
+                <name>$PROJ_DIR$\..\HighLvl\modules\EventJournal.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\ModulesLocator.h</name>

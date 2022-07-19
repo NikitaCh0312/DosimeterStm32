@@ -1,5 +1,5 @@
-#ifndef CONFIG_H_
-#define CONFIG_H_
+#ifndef CONFIGURATION_H_
+#define CONFIGURATION_H_
 
 #include "stdint.h"
 #include "stddef.h"
@@ -25,22 +25,6 @@ typedef struct
 class Configuration
 {
 public:
-    static Configuration * GetInstance()
-    {
-        if (_instance == NULL)
-            _instance = new Configuration();
-        return _instance;
-    }
-    virtual ~Configuration(){}
-    
-    void        SetIpAddr(IpAddr_t addr);
-    void        SetIpMask(Mask_t mask);
-    
-    IpAddr_t   GetIpAddr();
-    Mask_t   GetIpMask();
-    
-    
-private:
     Configuration()
     {
         //defult IP ADDR
@@ -54,10 +38,36 @@ private:
         _ip_mask.mask_2 = 255;
         _ip_mask.mask_3 = 255;
         _ip_mask.mask_4 = 0;
-               
+    }
+    virtual ~Configuration(){}
+    
+    void SetIp(IpAddr_t addr)
+    {
+        _ip_addr.addr_1 = addr.addr_1;
+        _ip_addr.addr_2 = addr.addr_2;
+        _ip_addr.addr_3 = addr.addr_3;
+        _ip_addr.addr_4 = addr.addr_4;
+    }
+    void SetMask(Mask_t mask)
+    {
+        _ip_mask.mask_1 = mask.mask_1;
+        _ip_mask.mask_2 = mask.mask_2;
+        _ip_mask.mask_3 = mask.mask_3;
+        _ip_mask.mask_4 = mask.mask_4;
     }
     
-    static Configuration * _instance;
+    IpAddr_t   GetIp()
+    {
+        return _ip_addr;
+    }
+    
+    Mask_t   GetMask()
+    {
+        return _ip_mask;
+    }
+    
+    
+private:
         
     IpAddr_t   _ip_addr;
     Mask_t   _ip_mask;

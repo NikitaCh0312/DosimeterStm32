@@ -77,15 +77,10 @@ ManualDosationState * ManualDosationState::_instance = new ManualDosationState()
 SubstanceServiceState * SubstanceServiceState::_instance = new SubstanceServiceState();
 
 DeviceStatesFactory * DeviceStatesFactory::_instance = new DeviceStatesFactory();
-Configuration * Configuration::_instance = new Configuration();
-
 
 ModulesLocator * ModulesLocator::_instance = new ModulesLocator();
-CardsManager * CardsManager::_instance = new CardsManager();
-
 
 JsonSerializer * JsonSerializer::_instance = new JsonSerializer();
-
 ElementSelector * ElementSelector::_instance = new ElementSelector();
 
 

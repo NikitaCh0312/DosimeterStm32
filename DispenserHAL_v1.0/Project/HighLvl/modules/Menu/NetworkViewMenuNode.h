@@ -43,8 +43,8 @@ public:
     {
         if (!_isInited)
         {
-            configureViewElements(Configuration::GetInstance()->GetIpAddr(),
-                                  Configuration::GetInstance()->GetIpMask());
+            //configureViewElements(Configuration::GetInstance()->GetIp(),
+            //                      Configuration::GetInstance()->GetMask());
             
             clear_display();
             set_cursor_position(0, 0);
