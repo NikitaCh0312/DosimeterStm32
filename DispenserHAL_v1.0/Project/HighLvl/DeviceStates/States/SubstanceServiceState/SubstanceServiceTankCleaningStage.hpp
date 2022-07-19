@@ -16,33 +16,16 @@ public:
     SubstanceServiceTankCleaningStage(ISubstanceServiceState * substanceServiceState)
     {
         _substanceServiceState = substanceServiceState;
+        _isInited = false;
     }
     
     void Handle(UserAction_t action)
     {
-
-    }
-    
-private:
-    typedef enum
-    {
-        WAITING_EMPTY_TANK,
-        WAITING_FLUSHING_WITH_PUMP,
-        WAITING_WATER_FLUSHING
-    }SUB_STAGE_t;
-    SUB_STAGE_t _sub_stage;
-  
-    bool _isInited;
-    uint32_t start_action_time = 0;
-    
-    ISubstanceServiceState * _substanceServiceState;
-    
-    void HandleCleaningStage(UserAction_t action)
-    {
         HandleCleaningStageView();
         if(global_timer - start_action_time >= 5000 && _sub_stage == WAITING_EMPTY_TANK)
         {
-            if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE) start_action_time = global_timer;
+            if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE)
+              start_action_time = global_timer;
             else
             {
                 _sub_stage = WAITING_FLUSHING_WITH_PUMP;
@@ -67,6 +50,20 @@ private:
         HandleCleaningStateUserAction(action);
     }
     
+private:
+    typedef enum
+    {
+        WAITING_EMPTY_TANK,
+        WAITING_FLUSHING_WITH_PUMP,
+        WAITING_WATER_FLUSHING
+    }SUB_STAGE_t;
+    SUB_STAGE_t _sub_stage;
+  
+    bool _isInited;
+    uint32_t start_action_time = 0;
+    
+    ISubstanceServiceState * _substanceServiceState;
+
     void HandleCleaningStageView()
     {
         if(!_isInited)
@@ -80,10 +77,10 @@ private:
           _isInited = true;
           
           enablePump(getPumpDriver(), getA4988Conf());
+          pumpSubstance_ml(getPumpDriver(),6000.0, 250); 
           
           _sub_stage = WAITING_EMPTY_TANK;
           start_action_time = global_timer;
-          pumpSubstance_ml(getPumpDriver(),6000.0, 250); 
         }
     }
     

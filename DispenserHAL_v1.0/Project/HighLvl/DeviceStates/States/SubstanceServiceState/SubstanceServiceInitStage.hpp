@@ -14,6 +14,7 @@ public:
     SubstanceServiceInitStage(ISubstanceServiceState * substanceServiceState)
     {
         _substanceServiceState = substanceServiceState;
+        _isViewInited = false;
     }
     
     void Handle(UserAction_t action)
