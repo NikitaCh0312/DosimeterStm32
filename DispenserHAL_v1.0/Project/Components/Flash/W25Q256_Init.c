@@ -52,6 +52,7 @@ static void delay(uint32_t msec)
 }
 
 uint8_t rxMemoryBuffer[10];
+uint8_t page[400];
 static void TestMemory()
 {
     W25qxx_EraseSector(0);
@@ -60,6 +61,14 @@ static void TestMemory()
     W25qxx_WriteByte(0x03, 0x02);
     
     W25qxx_ReadBytes(rxMemoryBuffer, 0x00, 3);
+    
+    //benchmark test (about 30 seconds)
+    //uint32_t pageAddress = 0;
+    //for (int i = 0; i < 16384; i++)
+    //{
+    //    W25qxx_ReadPage(page, pageAddress, 0, 256);
+    //    pageAddress += 256;
+    //}
 }
 
 void w25q256Init()
