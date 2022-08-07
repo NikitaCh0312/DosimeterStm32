@@ -1605,6 +1605,18 @@
                     <name>$PROJ_DIR$\..\HighLvl\modules\Menu\ViewMenuNode.h</name>
                 </file>
             </group>
+            <group>
+                <name>Storage</name>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Storage\CardsStorage.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Storage\ConfigurationStorage.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Storage\EventJournalStorage.h</name>
+                </file>
+            </group>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Card.h</name>
             </file>
