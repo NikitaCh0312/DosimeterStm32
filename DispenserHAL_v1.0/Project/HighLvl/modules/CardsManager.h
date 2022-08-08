@@ -71,7 +71,7 @@ public:
     
     CARD_STATUS_t GetCardStatus (int cardId) 
     {
-        if (cardId == 1557957)//908904)
+        if (cardId == 908904)
             return CARD_EXT_ACCESS_STATUS;
 
         if (cardId == 907894)

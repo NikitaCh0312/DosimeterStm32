@@ -1614,6 +1614,9 @@
                     <name>$PROJ_DIR$\..\HighLvl\modules\Storage\ConfigurationStorage.h</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Storage\Crc16.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Storage\EventJournalStorage.h</name>
                 </file>
             </group>

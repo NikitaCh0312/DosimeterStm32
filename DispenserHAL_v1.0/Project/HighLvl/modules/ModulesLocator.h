@@ -22,6 +22,11 @@ public:
     EventJournal * eventJournal;
     Configuration * configuration;
     
+    void InitModules()
+    {
+        configuration->Init();
+    }
+    
 private:
     static ModulesLocator * _instance;
     ModulesLocator()

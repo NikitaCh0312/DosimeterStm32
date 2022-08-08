@@ -17,6 +17,8 @@
 #include "modules/Menu/ElementViews/NumberElementView.h"
 #include "modules/Menu/ElementViews/TextElementView.h"
 
+#include "modules/ModulesLocator.h"
+
 extern uint32_t global_timer;
 
 typedef enum
@@ -35,6 +37,8 @@ public:
         _elementSelector->SetBlinkPeriod(VIEW_BLINK_TIME);
         _selectedElement = NULL;
         _viewState = VIEW_ELEMENT_STATE;
+        
+        _configuration = ModulesLocator::GetInstance()->configuration;
     }
     
     virtual ~NetworkViewMenuNode(){}
@@ -43,8 +47,8 @@ public:
     {
         if (!_isInited)
         {
-            //configureViewElements(Configuration::GetInstance()->GetIp(),
-            //                      Configuration::GetInstance()->GetMask());
+            configureViewElements(_configuration->GetIp(),
+                                  _configuration->GetMask());
             
             clear_display();
             set_cursor_position(0, 0);
@@ -85,7 +89,18 @@ public:
     {
         if (isOkElement())
         {
-            //...
+            IpAddr_t addr;
+            addr.addr_1 = _addr1.GetValue();
+            addr.addr_2 = _addr2.GetValue();
+            addr.addr_3 = _addr3.GetValue();
+            addr.addr_4 = _addr4.GetValue();
+            _configuration->SetIp(addr);
+            Mask_t mask;
+            mask.mask_1 = _mask1.GetValue();
+            mask.mask_2 = _mask2.GetValue();
+            mask.mask_3 = _mask3.GetValue();
+            mask.mask_4 = _mask4.GetValue();
+            _configuration->SetMask(mask);
             Cancel();
             return;
         }
@@ -133,6 +148,8 @@ public:
     }
     
 private:
+    Configuration* _configuration;
+  
     ElementSelector * _elementSelector;
     
     const uint32_t VIEW_BLINK_TIME = 500;
