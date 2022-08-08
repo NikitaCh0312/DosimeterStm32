@@ -2,12 +2,15 @@
 #define CARDS_MANAGER_H_
 
 #include "modules/[Interfaces]/ICardsManager.h"
+#include "modules/Storage/CardsStorage.h"
 
 class CardsManager: ICardsManager
 {
 public:
     CardsManager()
     {
+        _storage = new CardsStorage();
+        
         debugCard1.Id = 907894;
         debugCard1.TasksQuantity = 10;
         debugCard1.tasks[0].Id = 1;
@@ -66,8 +69,12 @@ public:
         debugCard2.tasks[4].Volume = 7.5f;
         debugCard2.tasks[4].Concentration = 1.0f;
     }
-    
     virtual ~CardsManager(){}
+    
+    void Init()
+    {
+      
+    }
     
     CARD_STATUS_t GetCardStatus (int cardId) 
     {
@@ -102,7 +109,9 @@ public:
 
 
 private:
-
+    CardsStorage* _storage;
+    uint32_t _cardsQuantity;
+    
     Card debugCard1;
     Card debugCard2;
 };

@@ -1608,6 +1608,9 @@
             <group>
                 <name>Storage</name>
                 <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Storage\BaseStorage.h</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Storage\CardsStorage.h</name>
                 </file>
                 <file>

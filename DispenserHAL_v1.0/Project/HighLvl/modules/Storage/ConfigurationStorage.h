@@ -3,6 +3,7 @@
 
 #include "Components/Flash/W25Q256.h"
 #include "modules/Storage/Crc16.h"
+#include "modules/Storage/BaseStorage.h"
 
 #define CONFIGURATION_START_ADDRESS 0x0
 #define CONFIGURATION_END_ADDRESS 0x0
@@ -64,7 +65,7 @@ typedef struct
 
 
 
-class ConfigurationStorage
+class ConfigurationStorage : BaseStorage
 {
 public:
     ConfigurationStorage()
