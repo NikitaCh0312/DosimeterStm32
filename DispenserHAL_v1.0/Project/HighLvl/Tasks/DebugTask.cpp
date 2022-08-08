@@ -6,9 +6,12 @@
 #include "Tasks/TasksTypes.h"
 #include "Valve/Valve.h"
 #include "VoltageMonitor/VoltageMonitor.h"
+//#include "modules/Storage/ConfigurationStorage.h"
 
 void DebugTask::Execute()
 {
+    //ConfigurationStorage* storage = new ConfigurationStorage();
+    //storage->Load();
     //HAL_Delay(3000);
     
     //initPumpDriver();

@@ -1,6 +1,8 @@
 #ifndef EVENT_JOURNAL_H_
 #define EVENT_JOURNAL_H_
 
+#include "Components/RTC/RTC_drv.h"
+
 //12 bytes
 typedef struct
 {

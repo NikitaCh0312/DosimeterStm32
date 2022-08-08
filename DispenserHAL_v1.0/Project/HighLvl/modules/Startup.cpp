@@ -18,7 +18,6 @@
 #include "DeviceStates/States/StartupState.hpp"
 #include "DeviceStates/[Interfaces]/IDeviceStatesFactory.hpp"
 #include "DeviceStates/DeviceStatesFactory.hpp"
-#include "modules/Configuration.h"
 
 #include "modules/api/ApiController.h"
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandlerFactory.hpp"
@@ -64,8 +63,6 @@ MainLogicTask * mainLogicTask = new MainLogicTask((char*)"MainLogicTask", config
 RfidTask * rfidTask = new RfidTask((char*)"RfidTask", configMINIMAL_STACK_SIZE * 2, 1);
 DebugTask * debugTask = new DebugTask((char*)"DebugTask", configMINIMAL_STACK_SIZE * 2, 1);
 
-Menu * menu = MenuFactory::CreateMenu();
-
 Dosimeter * Dosimeter::_instance = new Dosimeter();
 
 WaitingUserActionState * WaitingUserActionState::_instance = new WaitingUserActionState();
@@ -109,6 +106,9 @@ void startup()
     pfn_idle_hook = &iddle_hook;
     pfn_stack_over_flow_hook = &stack_overflow_hook;
     
+    //initialize modules
+    ModulesLocator* locator = ModulesLocator::GetInstance();
+    locator->InitModules();
     
     //initializing dosimeter states
     Dosimeter * dosimeter = Dosimeter::GetInstance();
@@ -117,7 +117,7 @@ void startup()
     TaskSelectionState * taskSelectionState = TaskSelectionState::GetInstance();
     TaskExecutionState * taskExecutionState = TaskExecutionState::GetInstance();
     MenuState * menuState = MenuState::GetInstance();
-    menuState->SetMenu(menu);
+    menuState->SetMenu(MenuFactory::CreateMenu());
     StartupState * startupState = StartupState::GetInstance();
     ManualDosationState * manualDosationState = ManualDosationState::GetInstance();
     SubstanceServiceState * substanceServiceState = SubstanceServiceState::GetInstance();
@@ -142,10 +142,8 @@ void startup()
     //set first state
     dosimeter->SetState((IDeviceState*)startupState);
     
+    //api configuration
     ConfigureApi();
-    
-    //modules init
-    ModulesLocator* locator = ModulesLocator::GetInstance();
     
     //start RTOS
     RTOS::Thread::start_scheduler();
