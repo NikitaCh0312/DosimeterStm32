@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Dosimeter.UserInteraction.Views.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Dosimeter.UserInteraction.Views"
+      xmlns:mvvm="http://prismlibrary.com/"
+      mvvm:ViewModelLocator.AutoWireViewModel="True"
+      mc:Ignorable="d">
+    <Border>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 15 0">
+                <TextBlock Text="Версия платы" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="Версия ПО" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="Дата разработки" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 15 0">
+                <TextBlock Text="{Binding HardwareVersion}" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="{Binding SoftwareVersion}" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="8 августа 2022 года" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
