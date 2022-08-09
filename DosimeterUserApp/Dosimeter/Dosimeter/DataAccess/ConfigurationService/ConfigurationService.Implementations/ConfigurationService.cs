@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
-using Dosimeter.DAL.ConfigurationService.ConfigurationService.Interfaces;
+using Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Interfaces;
 
-namespace Dosimeter.DAL.ConfigurationService.ConfigurationService.Implementations;
+namespace Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Implementations;
 
 public class ConfigurationService:IConfigurationService
 {

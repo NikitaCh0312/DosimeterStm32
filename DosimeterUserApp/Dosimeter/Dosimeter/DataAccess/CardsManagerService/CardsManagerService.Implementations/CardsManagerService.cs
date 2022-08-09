@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using Dosimeter.DAL.CardsManagerService.CardsManagerService.Interfaces;
-using Dosimeter.DAL.CardsManagerService.CardsManagerService.Models;
+using Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Interfaces;
+using Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Models;
 
-namespace Dosimeter.DAL.CardsManagerService.CardsManagerService.Implementations;
+namespace Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Implementations;
 
 public class CardsManagerService: ICardsManagerService
 {

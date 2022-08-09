@@ -1,4 +1,4 @@
-﻿namespace Dosimeter.DAL.ConfigurationService.ConfigurationService.Interfaces;
+﻿namespace Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Interfaces;
 
 public interface IConfigurationService
 {

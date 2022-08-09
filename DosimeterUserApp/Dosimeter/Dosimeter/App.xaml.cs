@@ -1,10 +1,10 @@
 ﻿using Prism.DryIoc;
 using Prism.Ioc;
 using System.Windows;
-using Dosimeter.DAL.CardsManagerService.CardsManagerService.Implementations;
-using Dosimeter.DAL.CardsManagerService.CardsManagerService.Interfaces;
-using Dosimeter.DAL.ConfigurationService.ConfigurationService.Implementations;
-using Dosimeter.DAL.ConfigurationService.ConfigurationService.Interfaces;
+using Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Implementations;
+using Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Interfaces;
+using Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Implementations;
+using Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Interfaces;
 using Dosimeter.UserInteraction.Views;
 
 namespace Dosimeter

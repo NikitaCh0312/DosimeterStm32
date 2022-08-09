@@ -1,4 +1,4 @@
-﻿using Dosimeter.DAL.ConfigurationService.ConfigurationService.Interfaces;
+﻿using Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Interfaces;
 using Prism.Mvvm;
 
 namespace Dosimeter.UserInteraction.ViewModels;
