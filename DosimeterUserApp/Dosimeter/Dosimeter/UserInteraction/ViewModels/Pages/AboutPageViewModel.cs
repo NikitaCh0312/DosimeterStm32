@@ -1,4 +1,5 @@
-﻿using Dosimeter.DataAccess.ConfigurationService.ConfigurationService.Interfaces;
+﻿using Dosimeter.Services.ConfigurationService.ConfigurationService.Interfaces;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Dosimeter.UserInteraction.ViewModels;
@@ -10,8 +11,16 @@ public class AboutPageViewModel : BindableBase
     public AboutPageViewModel(IConfigurationService configurationService)
     {
         _configurationService = configurationService;
-        SoftwareVersion = _configurationService.GetSoftwareVersion();
-        HardwareVersion = _configurationService.GetHardwareVersion();
+        
+        ViewLoadCommand = new DelegateCommand(OnViewLoaded);
+    }
+    
+    public DelegateCommand ViewLoadCommand { get; set; }
+    private async void OnViewLoaded()
+    {
+        await _configurationService.LoadConfiguration();
+        SoftwareVersion = _configurationService.SoftwareVersion;
+        HardwareVersion = _configurationService.HardwareVersion;
     }
     
     private string _softwareVersion = "";

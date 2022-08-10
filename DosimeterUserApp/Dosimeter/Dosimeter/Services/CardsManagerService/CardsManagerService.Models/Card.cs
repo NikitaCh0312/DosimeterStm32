@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Models;
+namespace Dosimeter.Services.CardsManagerService.CardsManagerService.Models;
 
 public class Card
 {
