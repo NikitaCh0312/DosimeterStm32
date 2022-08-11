@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Dosimeter.UserInteraction.Views"
              xmlns:mvvm="http://prismlibrary.com/"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mvvm:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -17,5 +18,12 @@
     
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="TASK CARDS PAGE" Foreground="White" FontSize="40"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <materialDesign:Card Background="Aqua">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button x:Name="ButtonMainHouseKeeping" Width="112" Height="112" Background="Coral" Content="qwerty">
+            </Button>
+        </materialDesign:Card>
     </Grid>
 </UserControl>
