@@ -27,6 +27,8 @@ public class TaskCardsPageViewModel : BindableBase
     private async void OnViewLoaded()
     {
         await _cardsManagerService.LoadCards();
-        _cardsQuantity = _cardsManagerService.CardsInfo.CardsQuantity;
+        var cardsInfo = _cardsManagerService.CardsInfo;
+        if (cardsInfo != null)
+            _cardsQuantity = 0;
     }
 }

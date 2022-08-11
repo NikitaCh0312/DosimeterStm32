@@ -7,6 +7,8 @@
              xmlns:mvvm="http://prismlibrary.com/"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mvvm:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -16,13 +18,109 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     
+    <UserControl.Resources>
+        <Style x:Key="BlackAndWhite" TargetType="materialDesign:Card">
+            <Setter Property="Content" Value="Verdana" />
+        </Style>
+    </UserControl.Resources>
+    
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="TASK CARDS PAGE" Foreground="White" FontSize="40"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <materialDesign:Card Background="Aqua">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <mah:ProgressRing Grid.Column="1" Grid.Row="1" IsActive="True"/>
+        
+        <materialDesign:Card Background="DarkSlateBlue" Margin="5" UniformCornerRadius="5">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <iconPacks:PackIconMaterial VerticalAlignment="Center" HorizontalAlignment="Center"
+                                            Kind="Book" Foreground="White"/>
+                <TextBlock FontSize="12" FontWeight="SemiBold" TextAlignment="Center" Text="Карта 908904" Foreground="White"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Margin="5">
+                        <iconPacks:PackIconMaterial VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    Kind="CommentEdit" Foreground="White"/>
+                    </Button>
+                    <Button Margin="5">
+                        <iconPacks:PackIconMaterial VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                    Kind="Delete" Foreground="White"/>
+                    </Button> 
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="1" Grid.Row="0" Background="Aqua" Margin="5">
             <materialDesign:Card.Effect>
                 <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
             </materialDesign:Card.Effect>
-            <Button x:Name="ButtonMainHouseKeeping" Width="112" Height="112" Background="Coral" Content="qwerty">
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
+            </Button>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="2" Grid.Row="0" Background="Aqua" Margin="5">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
+            </Button>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="3" Grid.Row="0" Background="Aqua" Margin="5">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
+            </Button>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="4" Grid.Row="0" Background="Aqua" Margin="5">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
+            </Button>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="5" Grid.Row="0" Background="Aqua" Margin="5">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
+            </Button>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="6" Grid.Row="0" Background="Aqua" Margin="5">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
+            </Button>
+        </materialDesign:Card>
+        
+        <materialDesign:Card Grid.Column="7" Grid.Row="0" Background="Aqua" Margin="5">
+            <materialDesign:Card.Effect>
+                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
+            </materialDesign:Card.Effect>
+            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
             </Button>
         </materialDesign:Card>
     </Grid>

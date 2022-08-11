@@ -30,6 +30,9 @@ public class CardsManagerService: ICardsManagerService
     public async Task LoadCards()
     {
         _cardsInfo = await LoadCardsInfo();
+        if (_cardsInfo == null)
+            return;
+        
         foreach (var cardId in _cardsInfo.CardIds)
         {
             _cards.Add(await LoadCard(cardId));
@@ -40,15 +43,30 @@ public class CardsManagerService: ICardsManagerService
     
     public List<Card> Cards => _cards;
 
-    public Task AddCard(Card card)
+    public async Task AddCard(Card card)
     {
-        return Task.CompletedTask;
+        var query = CreateCardQuery(card);
+        var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_card", query));
     }
 
-    public Task RemoveCard(int cardId)
+    public async Task UpdateCard(Card card)
     {
-        return Task.CompletedTask;
+        var query = CreateCardQuery(card);
+        var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "update_card", query));    
     }
+    
+    public async Task RemoveCard(int cardId)
+    {
+        try
+        {
+            var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "remove_card", $"?card_id={cardId}"));
+        }
+        catch (Exception exc)
+        {
+            // ignored
+        }
+    }
+    
     private async Task<CardsInfo> LoadCardsInfo()
     {
         try
@@ -69,7 +87,7 @@ public class CardsManagerService: ICardsManagerService
     {
         try
         {
-            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "get_card"));
+            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "get_card", $"?card_id={cardId}"));
             using var reader = new StreamReader(stream);
             using JsonReader jsonReader = new JsonTextReader(reader);
             JsonSerializer serializer = new JsonSerializer();
@@ -85,5 +103,10 @@ public class CardsManagerService: ICardsManagerService
     {
         StringBuilder requestBuilder = new StringBuilder();
         return requestBuilder.Append(String.Format(_requestTemplate, ip, port, uri)).Append(query).ToString();
+    }
+
+    private string CreateCardQuery(Card card)
+    {
+        return null;
     }
 }

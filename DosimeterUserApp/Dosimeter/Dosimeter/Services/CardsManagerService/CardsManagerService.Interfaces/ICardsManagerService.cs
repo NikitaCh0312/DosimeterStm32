@@ -10,5 +10,6 @@ public interface ICardsManagerService
     CardsInfo CardsInfo { get; }
     List<Card> Cards { get; }
     Task AddCard(Card card);
+    Task UpdateCard(Card card);
     Task RemoveCard(int cardId);
 }
