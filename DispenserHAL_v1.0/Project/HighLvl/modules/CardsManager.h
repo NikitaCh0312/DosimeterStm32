@@ -73,38 +73,58 @@ public:
     
     void Init()
     {
-      
+        _storage->Load();
     }
     
     CARD_STATUS_t GetCardStatus (int cardId) 
     {
         if (cardId == 908904)
             return CARD_EXT_ACCESS_STATUS;
-
-        if (cardId == 907894)
-            return CARD_IS_ACTIVE_STATUS;
-        
-        if (cardId == 9722774)
-            return CARD_IS_ACTIVE_STATUS;
+      
+        Card card = _storage->GetCard(cardId);
+        if (card.Id != 0)
+          return CARD_IS_ACTIVE_STATUS;
         
         return CARD_IS_NOT_BINDED_STATUS;
+        
+//        if (cardId == 908904)
+//            return card_ext_access_status;
+//
+//        if (cardId == 907894)
+//            return card_is_active_status;
+//        
+//        if (cardId == 9722774)
+//            return card_is_active_status;
+//        
+//        return card_is_not_binded_status;
     }
     
     Card GetCard(int cardId)
     {
-        if (cardId == 907894)
-        {
-          return debugCard1;
-        }
-        if (cardId == 9722774)
-        {
-          return debugCard2;
-        }
+        return _storage->GetCard(cardId);
+        
+//        if (cardId == 907894)
+//        {
+//          return debugCard1;
+//        }
+//        if (cardId == 9722774)
+//        {
+//          return debugCard2;
+//        }
     }
     
     int AddCard(Card card)
     {
-      
+        if (card.TasksQuantity > MAX_TASKS_QUANTITY)
+            return -1;
+        
+        //fill tasks that don't exist with zero values
+        for (int i = card.TasksQuantity; i < MAX_TASKS_QUANTITY; i++)
+        {
+            card.tasks[i].Id = 0;
+        }
+        _storage->AddCard(card);
+        return 0;
     }
 
 
