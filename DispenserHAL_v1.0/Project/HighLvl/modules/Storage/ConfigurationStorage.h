@@ -77,7 +77,7 @@ public:
     
     void Load()
     {
-        W25qxx_ReadBytes((uint8_t*)&StorageValues, CONFIGURATION_START_ADDRESS, sizeof(ConfigurationStorage_t));
+        W25qxx_ReadSector((uint8_t*)&StorageValues, CONFIGURATION_START_ADDRESS, 0, sizeof(ConfigurationStorage_t));
         if (CheckCrc((uint8_t*)&StorageValues, sizeof(ConfigurationStorage_t)) == CRC_ERROR)
           SetDefaultValues();
     }

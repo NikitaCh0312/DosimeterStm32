@@ -17,6 +17,8 @@ public:
     ICardsManager(){}
     virtual ~ICardsManager(){}
     
+    virtual void Init() = 0;
+    
     virtual CARD_STATUS_t GetCardStatus (int cardId) = 0;
     
     virtual Card GetCard(int cardId) = 0;

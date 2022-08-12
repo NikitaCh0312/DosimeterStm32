@@ -2,40 +2,7 @@
 
 
 #define W25QXX_DUMMY_BYTE         0x00
-typedef enum
-{
-	W25Q10 = 1,
-	W25Q20,
-	W25Q40,
-	W25Q80,
-	W25Q16,
-	W25Q32,
-	W25Q64,
-	W25Q128,
-	W25Q256,
-	W25Q512,
-}W25QXX_ID_t;
 
-typedef struct
-{
-	W25QXX_ID_t	ID;
-	uint8_t			UniqID[8];
-
-	uint16_t PageSize;
-	uint32_t PageCount;
-	uint32_t SectorSize;
-	uint32_t SectorCount;
-	uint32_t BlockSize;
-	uint32_t BlockCount;
-
-	uint32_t CapacityInKiloByte;
-
-	uint16_t StatusRegister1;
-	uint16_t StatusRegister2;
-	uint16_t StatusRegister3;
-	
-	uint8_t	Lock;
-}w25qxx_t;
 
 w25qxx_t w25qxx;
 static W25QXX_Driver_t driver;

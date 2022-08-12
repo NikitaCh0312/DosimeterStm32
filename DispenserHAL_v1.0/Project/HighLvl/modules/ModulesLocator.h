@@ -25,6 +25,7 @@ public:
     void InitModules()
     {
         configuration->Init();
+        cardsManager->Init();
     }
     
 private:
