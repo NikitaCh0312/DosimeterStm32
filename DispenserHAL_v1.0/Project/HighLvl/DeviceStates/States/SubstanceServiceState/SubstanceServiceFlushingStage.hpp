@@ -76,7 +76,7 @@ private:
           set_cursor_position(0, 0);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_2_1str);
           set_cursor_position(1, 1);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_2_1str);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_2_2str);
           
           _isInited = true;
           

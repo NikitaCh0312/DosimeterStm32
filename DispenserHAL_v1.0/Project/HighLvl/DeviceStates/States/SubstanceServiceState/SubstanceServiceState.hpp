@@ -56,7 +56,21 @@ public:
                 _substanceServiceCancelStage->Handle(action);
                 break;
             }
-            
+            case TANK_INSTALL_STAGE:
+            {
+
+                break;
+            }
+            case TANK_FILL_STAGE:
+            {
+
+                break;
+            }
+            case SUBSTANCE_SELECTION_STAGE:
+            {
+
+                break;
+            }
             default:
               break;
         }
@@ -82,6 +96,8 @@ private:
     SubstanceServiceFlushingStage * _substanceServiceFlushingStage;
     SubstanceServiceFlushCompletedStage * _substanceServiceFlushCompletedStage;
     SubstanceServiceCancelStage * _substanceServiceCancelStage;
+    
+    
     
     
     static SubstanceServiceState * _instance;
