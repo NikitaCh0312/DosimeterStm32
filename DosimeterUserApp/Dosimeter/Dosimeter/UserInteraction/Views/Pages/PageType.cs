@@ -4,7 +4,7 @@ public enum PageType
 {
     Selector,
     TaskCards,
-    Storage,
+    Configuration,
     EventLog,
     About
 }

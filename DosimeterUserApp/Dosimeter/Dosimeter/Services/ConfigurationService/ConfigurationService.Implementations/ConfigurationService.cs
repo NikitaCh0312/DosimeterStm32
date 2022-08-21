@@ -9,39 +9,38 @@ using Newtonsoft.Json;
 
 namespace Dosimeter.Services.ConfigurationService.ConfigurationService.Implementations;
 
-public class ConfigurationService:IConfigurationService
+public class ConfigurationService: IConfigurationService
 {
-    private const string _requestTemplate = @"http://{0}:{1}/api/{2}";
     private readonly HttpClient _httpClient;
-
-    private Configuration _configuration;
+    private const string _requestTemplate = @"http://{0}:{1}/api/{2}";
     
     public ConfigurationService()
     {
         _httpClient = new HttpClient();
-        _httpClient.Timeout = TimeSpan.FromSeconds(1);
+        _httpClient.Timeout =TimeSpan.FromSeconds(2);
     }
-
-    public async Task LoadConfiguration()
+    public async Task<Configuration> Get()
     {
         try
         {
-            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "description"));
+            var request = CreateRequest("192.168.0.55", "666", "get_config");
+            await using var stream = await _httpClient.GetStreamAsync(request);
             using var reader = new StreamReader(stream);
             using JsonReader jsonReader = new JsonTextReader(reader);
             JsonSerializer serializer = new JsonSerializer();
-            _configuration = serializer.Deserialize<Configuration>(jsonReader);
+            return serializer.Deserialize<Configuration>(jsonReader);
         }
         catch (Exception e)
         {
-            // ignored
-            _configuration = null;
+            return null;
         }
+
     }
 
-    public string SerialNumber => _configuration?.SerialNumber;
-    public string Model => _configuration?.Model;
-    public string SoftwareVersion => _configuration?.SoftwareVersion;
+    public Task Set(Configuration configuration)
+    {
+        return Task.CompletedTask;
+    }
     
     private string CreateRequest(string ip, string port, string uri, string query = null)
     {

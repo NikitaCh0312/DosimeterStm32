@@ -12,7 +12,7 @@ namespace Dosimeter.UserInteraction.Views
         private SelectorPage _selectorPage;
         private AboutPage _aboutPage;
         private EventLogPage _eventLogPage;
-        private StoragePage _storagePage;
+        private ConfigurationPage _configurationPage;
         private TaskCardsPage _taskCardsPage;
         
         public MainWindow()
@@ -21,7 +21,7 @@ namespace Dosimeter.UserInteraction.Views
             _selectorPage = new SelectorPage();
             _aboutPage = new AboutPage();
             _eventLogPage = new EventLogPage();
-            _storagePage = new StoragePage();
+            _configurationPage = new ConfigurationPage();
             _taskCardsPage = new TaskCardsPage();
         }
 
@@ -53,8 +53,8 @@ namespace Dosimeter.UserInteraction.Views
                 case PageType.About:
                     container.Content = _aboutPage;
                     break;
-                case PageType.Storage:
-                    container.Content = _storagePage;
+                case PageType.Configuration:
+                    container.Content = _configurationPage;
                     break;
                 case PageType.EventLog:
                     container.Content = _eventLogPage;
