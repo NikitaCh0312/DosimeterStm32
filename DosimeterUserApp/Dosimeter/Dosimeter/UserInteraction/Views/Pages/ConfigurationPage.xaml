@@ -9,6 +9,8 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:Dosimeter.UserInteraction.Views.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <b:Interaction.Triggers>
@@ -17,6 +19,9 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <UserControl.Resources>
+        <converters:BoolToBoolInvertedConverter x:Key="BoolToBoolInvertedConverter" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        
         <Style x:Key="StyleTextBlock" TargetType="TextBlock">
             <Setter Property="Background" Value="{x:Null}" />
             <Setter Property="Foreground" Value="White" />
@@ -25,55 +30,62 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsConfigurationLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Сетевые настройки" Grid.Column="0" Grid.Row="0" Margin="10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="IP" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="PORT" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="MASK" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-        
-                <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Ip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Mask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-            </Grid>
-        </GroupBox>
-        
-        <GroupBox Header="Настройка даты-времени" Grid.Column="1" Grid.Row="0" Margin="10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Calendar Grid.Row="0" FirstDayOfWeek="Monday" SelectedDate="{Binding Date}">
-                    <Calendar.BlackoutDates>
-                        <CalendarDateRange Start="10/5/2013" End="10/8/2013"></CalendarDateRange>
-                    </Calendar.BlackoutDates>
-                </Calendar>
-                <materialDesign:TimePicker Grid.Row="1" Foreground="White" FontSize="20" SelectedTime="{Binding Time}"/>  
-            </Grid>
-        </GroupBox>
+            <GroupBox Header="Сетевые настройки" Grid.Column="0" Grid.Row="0" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="IP" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="PORT" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="MASK" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+            
+                    <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Ip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Mask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+                </Grid>
+            </GroupBox>
+            
+            <GroupBox Header="Настройка даты-времени" Grid.Column="1" Grid.Row="0" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Calendar Grid.Row="0" FirstDayOfWeek="Monday" SelectedDate="{Binding Date}">
+                        <Calendar.BlackoutDates>
+                            <CalendarDateRange Start="10/5/2013" End="10/8/2013"></CalendarDateRange>
+                        </Calendar.BlackoutDates>
+                    </Calendar>
+                    <materialDesign:TimePicker Grid.Row="1" Foreground="White" FontSize="20" SelectedTime="{Binding Time}"/>  
+                </Grid>
+            </GroupBox>
 
-        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Content="Применить конфигурацию" HorizontalAlignment="Stretch"
-                Command="{Binding SetConfigurationCommand}">
-        </Button>
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Content="Применить конфигурацию" HorizontalAlignment="Stretch"
+                    Command="{Binding SetConfigurationCommand}">
+            </Button>
+        </Grid>
+        
+        <mah:ProgressRing IsActive="{Binding IsConfigurationLoaded, Converter={StaticResource BoolToBoolInvertedConverter}}"
+                          Foreground="White" Width="100" Height="100"/>
     </Grid>
+    
+
 </UserControl>
