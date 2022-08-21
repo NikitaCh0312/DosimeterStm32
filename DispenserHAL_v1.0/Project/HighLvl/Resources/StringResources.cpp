@@ -46,6 +46,18 @@ uint8_t StringResources::TaskServiceMsgInfo_3_2str[20] = {'т', 'а', 'й', 'т'
 uint8_t StringResources::TaskServiceMsgInfo_3_3str[20] = {'у', 'п', 'л', 'о', 'т', 'н', 'и', 'т', 'е', 'л', 'ь', '.', 'Н', 'а', 'ж', 'м', 'и', 'т', 'е','\0'};
 uint8_t StringResources::TaskServiceMsgInfo_3_4str[20] = {0x13, ' ', 'д', 'л', 'я', ' ', 'п', 'р', 'о', 'д', 'о', 'л', 'ж', 'е', 'н', 'и', 'я', '!', '\0'};
 
+uint8_t StringResources::TaskServiceMsgInfo_4_1str[20] = {'У', 'c', 'т', 'а', 'н', 'о', 'в', 'и', 'т', 'е', ',', ' ', 'б', 'а', 'к', '!', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_4_2str[20] = {'З', 'а', 'л', 'е', 'й', 'т', 'е', ' ', 'c', 'в', 'е', 'ж', 'и', 'й', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_4_3str[20] = {'п', 'р', 'е', 'п', 'а', 'р', 'а', 'т', '.', ' ', 'Н', 'а', 'ж', 'м', 'и', 'т', 'е', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_4_4str[20] = {0x13, ' ', 'д', 'л', 'я', ' ', 'п', 'р', 'о', 'д', 'о', 'л', 'ж', 'е', 'н', 'и', 'я', '!', '\0'};
+
+uint8_t StringResources::TaskServiceMsgInfo_5_1str[20] = {'И', 'д', 'е', 'т', ' ', 'п', 'о', 'д', 'г', 'о', 'т', 'о', 'в', 'к', 'а', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_5_2str[20] = {'у', 'c', 'т', 'р', 'о', 'й', 'c', 'т', 'в', 'а', '!', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_5_3str[20] = {'О', 'ж', 'и', 'д', 'а', 'й', 'т', 'е', '.', '.', '.', '\0'};
+
+uint8_t StringResources::TaskServiceMsgInfo_6_1str[20] = {'З', 'а', 'п', 'р', 'а', 'в', 'к', 'а', ' ', 'п', 'р', 'е', 'п', 'а', 'р', 'а', 'т', 'а','\0'};
+uint8_t StringResources::TaskServiceMsgInfo_6_2str[20] = {'з', 'а', 'к', 'о', 'н', 'ч', 'е', 'н', 'а', ' ', 'у', 'c', 'п', 'е', 'ш', 'н', 'о', '!','\0'};
+
 uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20] = {'В', ' ', 'б', 'а', 'к', 'е', ' ', 'з', 'а', 'к', 'о', 'н', 'ч', 'и', 'л', 'c', 'я', '\0'};
 uint8_t StringResources::TaskErrorAvalibilitySubstance_2str[20] = {'п', 'р', 'е', 'п', 'а', 'р', 'а', 'т', '!', '\0'};
 

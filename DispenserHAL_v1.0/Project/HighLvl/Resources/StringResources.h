@@ -65,6 +65,18 @@ public:
     static uint8_t StringResources::TaskServiceMsgInfo_3_3str[20]; 
     static uint8_t StringResources::TaskServiceMsgInfo_3_4str[20];
     
+    static uint8_t StringResources::TaskServiceMsgInfo_4_1str[20];
+    static uint8_t StringResources::TaskServiceMsgInfo_4_2str[20];
+    static uint8_t StringResources::TaskServiceMsgInfo_4_3str[20];
+    static uint8_t StringResources::TaskServiceMsgInfo_4_4str[20];
+    
+    static uint8_t StringResources::TaskServiceMsgInfo_5_1str[20];
+    static uint8_t StringResources::TaskServiceMsgInfo_5_2str[20];
+    static uint8_t StringResources::TaskServiceMsgInfo_5_3str[20];
+    
+    static uint8_t StringResources::TaskServiceMsgInfo_6_1str[20];
+    static uint8_t StringResources::TaskServiceMsgInfo_6_2str[20];
+    
     static uint8_t TaskErrorExecuted_1str[20];
     static uint8_t TaskErrorExecuted_2str[20];
     

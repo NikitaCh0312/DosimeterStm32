@@ -28,7 +28,7 @@ public:
         {               
             if (action.buttonsEvent.id == BUT_ENTER)
             {     
-                _substanceServiceState->SwitchStage(FLUSHING_STAGE);
+                _substanceServiceState->SwitchStage(TANK_INSTALL_STAGE);
                 _isViewInited = false;
 
             }
@@ -54,13 +54,13 @@ private:
         if(!_isViewInited)
         {
           clear_display();
-          set_cursor_position(0, 0);
+          set_cursor_position(0, 1);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_3_1str);
-          set_cursor_position(1, 0);
+          set_cursor_position(1, 1);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_3_2str);
           set_cursor_position(2, 0);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_3_3str);
-          set_cursor_position(3, 0);
+          set_cursor_position(3, 1);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_3_4str); 
           
           _isViewInited = true;

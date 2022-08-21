@@ -52,13 +52,13 @@ private:
         if(!_isViewInited)
         {
           clear_display();
-          set_cursor_position(0, 0);
+          set_cursor_position(0, 2);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_1str);
-          set_cursor_position(1, 0);
+          set_cursor_position(1, 1);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_2str);
-          set_cursor_position(2, 0);
+          set_cursor_position(2, 1);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_3str);
-          set_cursor_position(3, 0);
+          set_cursor_position(3, 2);
           set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_4str); 
           
           _isViewInited = true;
