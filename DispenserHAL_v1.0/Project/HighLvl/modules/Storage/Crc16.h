@@ -57,8 +57,6 @@ uint16_t GetCrc( uint8_t * buffer, int buffer_size )
 CRC_RESULT_t CheckCrc( uint8_t * buffer, int buffer_size )
 {
     uint16_t crc = GetCrc(buffer, buffer_size - 2);
-    int a = buffer[buffer_size - 1];
-    int b = buffer[buffer_size - 2];
     if((buffer[buffer_size - 1] == (crc >> 8)) && (buffer[buffer_size - 2] == (crc & 0xFF)))
         return CRC_OK;
     return CRC_ERROR;

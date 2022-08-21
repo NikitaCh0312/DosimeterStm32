@@ -17,7 +17,7 @@ public class ConfigurationService: IConfigurationService
     public ConfigurationService()
     {
         _httpClient = new HttpClient();
-        _httpClient.Timeout =TimeSpan.FromSeconds(2);
+        _httpClient.Timeout =TimeSpan.FromSeconds(5);
     }
     public async Task<Configuration> Get()
     {
@@ -34,7 +34,6 @@ public class ConfigurationService: IConfigurationService
         {
             return null;
         }
-
     }
 
     public Task Set(Configuration configuration)

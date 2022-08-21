@@ -16,17 +16,20 @@ public class ConfigurationPageViewModel:BindableBase
         _configurationService = configurationService;
         ViewLoadCommand = new DelegateCommand(OnViewLoaded);
         SetConfigurationCommand = new DelegateCommand(SetConfiguration);
+        IsConfigurationLoaded = false;
     }
     
     public DelegateCommand ViewLoadCommand { get; set; }
     private async void OnViewLoaded()
     {
+        IsConfigurationLoaded = false;
         var config = await _configurationService.Get();
         Ip = config?.Ip ?? "not connected";
         Port = config?.Port.ToString();
         Mask = config?.Mask ?? "not connected";
         Date = DateTime.Now;
         Time = DateTime.Now;
+        IsConfigurationLoaded = true;
     }
     
     public DelegateCommand SetConfigurationCommand { get; private set; }
@@ -42,6 +45,13 @@ public class ConfigurationPageViewModel:BindableBase
             Time = Time.ToString("HH:mm")
         };
         await _configurationService.Set(config);
+    }
+    
+    private bool _isConfigurationLoaded;
+    public bool IsConfigurationLoaded
+    {
+        get => _isConfigurationLoaded;
+        set => SetProperty(ref _isConfigurationLoaded, value); 
     }
     
     private string _ip = "";
