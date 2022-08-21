@@ -1151,7 +1151,7 @@
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.c</name>
                     </file>
                     <file>
-                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\HttpServer\HttpParser.h</name>
+                        <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpParser.h</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\Components\Ethernet\Internet\httpServer\httpServer.c</name>
@@ -1493,6 +1493,21 @@
                         </file>
                     </group>
                     <group>
+                        <name>ConfigurationRequestHandlers</name>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\ConfigurationRequestHandlers\GetConfigurationDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\ConfigurationRequestHandlers\GetConfigurationRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\ConfigurationRequestHandlers\SetConfigurationDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\ConfigurationRequestHandlers\SetConfigurationRequestHandler.hpp</name>
+                        </file>
+                    </group>
+                    <group>
                         <name>DescriptionRequestHandler</name>
                         <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\DescriptionRequestHandler\DescriptionDto.hpp</name>
@@ -1560,13 +1575,7 @@
             <group>
                 <name>Json</name>
                 <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Json\JsonObject.cpp</name>
-                </file>
-                <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Json\JsonObject.h</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\HighLvl\modules\Json\JsonSerializer.cpp</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Json\JsonSerializer.h</name>

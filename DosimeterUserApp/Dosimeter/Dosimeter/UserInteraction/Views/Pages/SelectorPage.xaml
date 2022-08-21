@@ -10,7 +10,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <local:ElementSelector Title="Карты заданий" Icon="Wallpaper" ElementSelectorClick="TaskCardsPageClicked"/>
                 <local:ElementSelector Title="Журнал событий" Icon="Database" ElementSelectorClick="EventLogPageClicked"/>
-                <local:ElementSelector Title="Память" Icon="Memory" ElementSelectorClick="StoragePageClicked"/>
+                <local:ElementSelector Title="Конифигурация" Icon="Memory" ElementSelectorClick="ConfigurationPageClicked"/>
                 <local:ElementSelector Title="Об устройстве" Icon="NotificationClearAll" ElementSelectorClick="AboutPageClicked"/>
             </StackPanel>
         </ScrollViewer>

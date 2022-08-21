@@ -1,4 +1,4 @@
-﻿using Dosimeter.Services.ConfigurationService.ConfigurationService.Interfaces;
+﻿using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Interfaces;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -6,11 +6,11 @@ namespace Dosimeter.UserInteraction.ViewModels;
 
 public class AboutPageViewModel : BindableBase
 {
-    private readonly IConfigurationService _configurationService;
+    private readonly IDeviceInfoService _deviceInfoService;
     
-    public AboutPageViewModel(IConfigurationService configurationService)
+    public AboutPageViewModel(IDeviceInfoService deviceInfoService)
     {
-        _configurationService = configurationService;
+        _deviceInfoService = deviceInfoService;
         
         ViewLoadCommand = new DelegateCommand(OnViewLoaded);
     }
@@ -18,10 +18,10 @@ public class AboutPageViewModel : BindableBase
     public DelegateCommand ViewLoadCommand { get; set; }
     private async void OnViewLoaded()
     {
-        await _configurationService.LoadConfiguration();
-        SoftwareVersion = _configurationService.SoftwareVersion ?? "undefined";
-        Model = _configurationService.Model ?? "undefined";
-        SerialNumber = _configurationService.SerialNumber ?? "undefined";
+        await _deviceInfoService.LoadDeviceInfo();
+        SoftwareVersion = _deviceInfoService.SoftwareVersion ?? "undefined";
+        Model = _deviceInfoService.Model ?? "undefined";
+        SerialNumber = _deviceInfoService.SerialNumber ?? "undefined";
     }
     
     private string _softwareVersion = "";

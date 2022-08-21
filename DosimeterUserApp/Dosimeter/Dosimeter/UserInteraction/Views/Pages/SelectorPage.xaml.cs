@@ -23,10 +23,10 @@ public partial class SelectorPage : UserControl
         _window.ExecutePage(PageType.About);
     }
     
-    private void StoragePageClicked(object sender, RoutedEventArgs e)
+    private void ConfigurationPageClicked(object sender, RoutedEventArgs e)
     {
         LoadWindow();
-        _window.ExecutePage(PageType.Storage);
+        _window.ExecutePage(PageType.Configuration);
     }
     
     private void EventLogPageClicked(object sender, RoutedEventArgs e)

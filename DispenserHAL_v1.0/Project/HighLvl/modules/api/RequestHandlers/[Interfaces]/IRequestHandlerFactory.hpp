@@ -10,6 +10,8 @@
 #include "modules/api/RequestHandlers/AddCardRequestHandler/AddCardRequestHandler.hpp"
 #include "modules/api/RequestHandlers/GetCardRequestHandler/GetCardRequestHandler.hpp"
 #include "modules/api/RequestHandlers/RemoveCardRequestHandler/RemoveCardRequestHandler.hpp"
+#include "modules/api/RequestHandlers/ConfigurationRequestHandlers/GetConfigurationRequestHandler.hpp"
+#include "modules/api/RequestHandlers/ConfigurationRequestHandlers/SetConfigurationRequestHandler.hpp"
 
 class IRequestHandlerFactory
 {
@@ -34,6 +36,10 @@ public:
     virtual IRequestHandler * CreateGetCardRequestHandler() = 0;
     
     virtual IRequestHandler * CreateRemoveCardRequestHandler() = 0;
+    
+    virtual IRequestHandler * CreateGetConfigurationRequestHandler() = 0;
+
+    virtual IRequestHandler * CreateSetConfigurationRequestHandler() = 0;
 
 private:
 };

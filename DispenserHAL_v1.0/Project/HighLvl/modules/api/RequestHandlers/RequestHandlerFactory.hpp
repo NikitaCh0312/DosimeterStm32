@@ -48,6 +48,16 @@ public:
     {
         return new RemoveCardRequestHandler();
     }
+    
+    IRequestHandler * CreateGetConfigurationRequestHandler()
+    {
+        return new GetConfiguratuionRequestHandler();
+    }
+    
+    IRequestHandler * CreateSetConfigurationRequestHandler()
+    {
+        return new SetConfigurationRequestHandler();
+    }
 private:
 };
 
