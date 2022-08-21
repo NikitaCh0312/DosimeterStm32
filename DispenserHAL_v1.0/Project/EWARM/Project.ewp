@@ -1400,10 +1400,19 @@
                         <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceState.hpp</name>
                     </file>
                     <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceSubstanceSelectionStage.hpp</name>
+                    </file>
+                    <file>
                         <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceTankCleaningStage.hpp</name>
                     </file>
                     <file>
                         <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceTankCompletedStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceTankFillStage.hpp</name>
+                    </file>
+                    <file>
+                        <name>$PROJ_DIR$\..\HighLvl\DeviceStates\States\SubstanceServiceState\SubstanceServiceTankInstallStage.hpp</name>
                     </file>
                 </group>
                 <file>

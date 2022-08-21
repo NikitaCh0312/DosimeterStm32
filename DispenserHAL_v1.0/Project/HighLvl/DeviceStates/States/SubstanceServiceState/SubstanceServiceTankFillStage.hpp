@@ -1,5 +1,5 @@
-#ifndef SUBSTANCE_SERVICE_FLUSHING_STAGE_H_
-#define SUBSTANCE_SERVICE_FLUSHING_STAGE_H_
+#ifndef SUBSTANCE_SERVICE_TANK_FILL_STAGE_H_
+#define SUBSTANCE_SERVICE_TANK_FILL_STAGE_H_
 
 #include "RTOS/RTOSManager.h"
 #include "LCD/LCD.h"
@@ -11,10 +11,10 @@
 extern uint32_t global_timer;
 
 
-class SubstanceServiceFlushingStage
+class SubstanceServiceTankFillStage
 {
 public:
-    SubstanceServiceFlushingStage(ISubstanceServiceState * substanceServiceState)
+    SubstanceServiceTankFillStage(ISubstanceServiceState * substanceServiceState)
     {
         _substanceServiceState = substanceServiceState;
         _isInited = false;
@@ -22,17 +22,13 @@ public:
     
     void Handle(UserAction_t action)
     {
-        HandleFlushingStageView();
+        HandleTankFillStageView();
+        
         if(global_timer - start_action_time >= 5000 && _sub_stage == WAITING_EMPTY_TANK)
         {
-            if(getSensorState(LEVEL_SENSOR_TYPE) == ON_SENSOR_STATE)
-              start_action_time = global_timer;
-            else
-            {
-                _sub_stage = WAITING_FLUSHING_WITH_PUMP;
-                start_action_time = global_timer;
-                valveOn();
-            }
+            _sub_stage = WAITING_FLUSHING_WITH_PUMP;
+            start_action_time = global_timer;
+            valveOn();
         }
         else if(global_timer - start_action_time >= 5000 && _sub_stage == WAITING_FLUSHING_WITH_PUMP)
         {
@@ -40,15 +36,23 @@ public:
             start_action_time = global_timer;
             _sub_stage = WAITING_WATER_FLUSHING;
         }
-        else if(global_timer - start_action_time >= 10000 && _sub_stage == WAITING_WATER_FLUSHING)
+        else if(global_timer - start_action_time >= 5000 && _sub_stage == WAITING_WATER_FLUSHING)
         {
             valveOff();
+            
+            clear_display();
+            set_cursor_position(1, 1);
+            set_text_rus((char*)StringResources::TaskServiceMsgInfo_6_1str);
+            set_cursor_position(2, 1);
+            set_text_rus((char*)StringResources::TaskServiceMsgInfo_6_2str);
+            
+            RTOS::Thread::delay_thread(3500);
            
-            _substanceServiceState->SwitchStage(COMPLETED_FLUSHING_STAGE);
+            _substanceServiceState->SwitchStage(SUBSTANCE_SELECTION_STAGE);
             _isInited = false;                   
         }
         
-        HandleFlushingStateUserAction(action);
+        HandleTankFillStateUserAction(action);
 
     }
     
@@ -68,15 +72,17 @@ private:
     
     ISubstanceServiceState * _substanceServiceState;
     
-    void HandleFlushingStageView()
+    void HandleTankFillStageView()
     {
         if(!_isInited)
         {
           clear_display();
-          set_cursor_position(0, 0);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_2_1str);
-          set_cursor_position(1, 1);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_2_2str);
+          set_cursor_position(0, 3);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_5_1str);
+          set_cursor_position(1, 4);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_5_2str);
+          set_cursor_position(2, 4);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_5_3str);
           
           _isInited = true;
           
@@ -88,7 +94,7 @@ private:
         }
     }
     
-    void HandleFlushingStateUserAction(UserAction_t action)
+    void HandleTankFillStateUserAction(UserAction_t action)
     {
         if (action.buttonsEvent.event == BUTTON_LONG_PRESSED_EVENT)
         {               
@@ -103,7 +109,5 @@ private:
     
     
 };
-
-
 
 #endif

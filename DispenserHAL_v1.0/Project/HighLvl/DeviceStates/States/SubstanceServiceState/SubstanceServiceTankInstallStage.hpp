@@ -1,5 +1,5 @@
-#ifndef SUBSTANCE_SERVICE_TANK_COMPLETED_STAGE_H_
-#define SUBSTANCE_SERVICE_TANK_COMPLETED_STAGE_H_
+#ifndef SUBSTANCE_SERVICE_TANK_INSTALL_STAGE_H_
+#define SUBSTANCE_SERVICE_TANK_INSTALL_STAGE_H_
 
 #include "LCD/LCD.h"
 #include "Resources/StringResources.h"
@@ -9,10 +9,10 @@
 extern uint32_t global_timer;
 
 
-class SubstanceServiceTankCompletedStage
+class SubstanceServiceTankInstallStage
 {
 public:
-    SubstanceServiceTankCompletedStage(ISubstanceServiceState * substanceServiceState)
+    SubstanceServiceTankInstallStage(ISubstanceServiceState * substanceServiceState)
     {
         _substanceServiceState = substanceServiceState;
         _isViewInited = false;
@@ -20,13 +20,13 @@ public:
     
     void Handle(UserAction_t action)
     {
-        HandleTankCompletedStageView();
+        HandleTankInstallStageView();
         
         if (action.buttonsEvent.event == BUTTON_SHORT_PRESSED_EVENT)
         {               
             if (action.buttonsEvent.id == BUT_ENTER)
             {     
-                _substanceServiceState->SwitchStage(FLUSHING_STAGE);
+                _substanceServiceState->SwitchStage(TANK_FILL_STAGE);
                 _isViewInited = false;
 
             }
@@ -47,25 +47,23 @@ private:
     
     bool _isViewInited;
     
-    void HandleTankCompletedStageView()
+    void HandleTankInstallStageView()
     {
         if(!_isViewInited)
         {
           clear_display();
           set_cursor_position(0, 2);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_1str);
-          set_cursor_position(1, 1);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_2str);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_4_1str);
+          set_cursor_position(1, 3);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_4_2str);
           set_cursor_position(2, 1);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_3str);
-          set_cursor_position(3, 2);
-          set_text_rus((char*)StringResources::TaskServiceMsgInfo_1_4str); 
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_4_3str);
+          set_cursor_position(3, 1);
+          set_text_rus((char*)StringResources::TaskServiceMsgInfo_4_4str); 
           
           _isViewInited = true;
         }
     }
 };
-
-
 
 #endif

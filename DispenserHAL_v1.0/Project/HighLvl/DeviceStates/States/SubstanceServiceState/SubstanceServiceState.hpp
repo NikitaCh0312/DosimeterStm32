@@ -12,6 +12,10 @@
 #include "DeviceStates/States/SubstanceServiceState/SubstanceServiceFlushCompletedStage.hpp"
 #include "DeviceStates/States/SubstanceServiceState/SubstanceServiceCancelStage.hpp"
 
+#include "DeviceStates/States/SubstanceServiceState/SubstanceServiceTankInstallStage.hpp"
+#include "DeviceStates/States/SubstanceServiceState/SubstanceServiceTankFillStage.hpp"
+#include "DeviceStates/States/SubstanceServiceState/SubstanceServiceSubstanceSelectionStage.hpp"
+
 class SubstanceServiceState: public IDeviceState, ISubstanceServiceState
 {
 public:
@@ -56,7 +60,21 @@ public:
                 _substanceServiceCancelStage->Handle(action);
                 break;
             }
-            
+            case TANK_INSTALL_STAGE:
+            {
+                _substanceServiceTankInstallStage->Handle(action);
+                break;
+            }
+            case TANK_FILL_STAGE:
+            {
+                _substanceServiceTankFillStage->Handle(action);
+                break;
+            }
+            case SUBSTANCE_SELECTION_STAGE:
+            {
+
+                break;
+            }
             default:
               break;
         }
@@ -83,6 +101,10 @@ private:
     SubstanceServiceFlushCompletedStage * _substanceServiceFlushCompletedStage;
     SubstanceServiceCancelStage * _substanceServiceCancelStage;
     
+    SubstanceServiceTankInstallStage * _substanceServiceTankInstallStage;
+    SubstanceServiceTankFillStage * _substanceServiceTankFillStage;
+        
+    
     
     static SubstanceServiceState * _instance;
     SubstanceServiceState()
@@ -95,6 +117,9 @@ private:
         _substanceServiceFlushingStage = new SubstanceServiceFlushingStage(this);
         _substanceServiceFlushCompletedStage = new SubstanceServiceFlushCompletedStage(this);
         _substanceServiceCancelStage = new SubstanceServiceCancelStage(this);
+        
+        _substanceServiceTankInstallStage = new SubstanceServiceTankInstallStage(this);
+        _substanceServiceTankFillStage = new SubstanceServiceTankFillStage(this);
     }
 };
 
