@@ -19,13 +19,14 @@ public class ConfigurationService:IConfigurationService
     public ConfigurationService()
     {
         _httpClient = new HttpClient();
+        _httpClient.Timeout = TimeSpan.FromSeconds(1);
     }
 
     public async Task LoadConfiguration()
     {
         try
         {
-            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "get_configuration"));
+            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "description"));
             using var reader = new StreamReader(stream);
             using JsonReader jsonReader = new JsonTextReader(reader);
             JsonSerializer serializer = new JsonSerializer();
@@ -34,11 +35,13 @@ public class ConfigurationService:IConfigurationService
         catch (Exception e)
         {
             // ignored
+            _configuration = null;
         }
     }
-    
-    public string SoftwareVersion => "2.0.1";
-    public string HardwareVersion => "1.0.0";
+
+    public string SerialNumber => _configuration?.SerialNumber;
+    public string Model => _configuration?.Model;
+    public string SoftwareVersion => _configuration?.SoftwareVersion;
     
     private string CreateRequest(string ip, string port, string uri, string query = null)
     {

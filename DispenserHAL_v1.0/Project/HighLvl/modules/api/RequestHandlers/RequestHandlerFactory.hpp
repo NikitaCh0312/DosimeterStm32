@@ -39,6 +39,15 @@ public:
         return new AddCardRequestHandler();
     }
 
+    IRequestHandler * CreateGetCardRequestHandler()
+    {
+        return new GetCardRequestHandler();
+    }
+    
+    IRequestHandler * CreateRemoveCardRequestHandler()
+    {
+        return new RemoveCardRequestHandler();
+    }
 private:
 };
 

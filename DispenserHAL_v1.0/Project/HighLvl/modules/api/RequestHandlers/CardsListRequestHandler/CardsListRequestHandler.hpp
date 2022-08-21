@@ -3,12 +3,14 @@
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 
+#include "modules/ModulesLocator.h"
+
 class CardsListRequestHandler: public IRequestHandler
 {
 public:
     CardsListRequestHandler()
     {
-      
+      _cardsManager = ModulesLocator::GetInstance()->cardsManager;
     }
     
     virtual ~CardsListRequestHandler(){}
@@ -19,6 +21,7 @@ public:
       
     }
 private:
+    ICardsManager* _cardsManager;
 };
 
 

@@ -5,6 +5,7 @@ namespace Dosimeter.Services.ConfigurationService.ConfigurationService.Interface
 public interface IConfigurationService
 {
     Task LoadConfiguration();
-    string SoftwareVersion { get; }
-    string HardwareVersion { get; }
+    string SerialNumber { get; }
+    string Model  { get; }
+    string SoftwareVersion  { get; }
 }

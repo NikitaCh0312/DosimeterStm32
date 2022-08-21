@@ -1,7 +1,7 @@
 #ifndef CARD_H_
 #define CARD_H_
 
-
+#define MAX_CARDS_QUANTITY 20
 #define MAX_TASKS_QUANTITY 20
 
 
@@ -30,5 +30,12 @@ typedef struct
     //4 bytes
     uint32_t reserved;
 }Card;
+
+
+typedef struct
+{
+    uint32_t CardsQuantity;
+    uint32_t CardIdsList[MAX_CARDS_QUANTITY];
+}CardsListInfo_t;
 
 #endif

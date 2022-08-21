@@ -8,7 +8,8 @@
 #include "modules/api/RequestHandlers/NetworkRequestHandler/NetworkRequestHandler.hpp"
 #include "modules/api/RequestHandlers/CardsListRequestHandler/CardsListRequestHandler.hpp"
 #include "modules/api/RequestHandlers/AddCardRequestHandler/AddCardRequestHandler.hpp"
-
+#include "modules/api/RequestHandlers/GetCardRequestHandler/GetCardRequestHandler.hpp"
+#include "modules/api/RequestHandlers/RemoveCardRequestHandler/RemoveCardRequestHandler.hpp"
 
 class IRequestHandlerFactory
 {
@@ -29,6 +30,10 @@ public:
     virtual IRequestHandler * CreateCardsListRequestHandler() = 0;
 
     virtual IRequestHandler * CreateAddCardRequestHandler() = 0;
+    
+    virtual IRequestHandler * CreateGetCardRequestHandler() = 0;
+    
+    virtual IRequestHandler * CreateRemoveCardRequestHandler() = 0;
 
 private:
 };

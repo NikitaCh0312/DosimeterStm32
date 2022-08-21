@@ -127,7 +127,10 @@ public:
         return 0;
     }
 
-
+    CardsListInfo_t GetCardsInfo()
+    {
+      
+    }
 private:
     CardsStorage* _storage;
     uint32_t _cardsQuantity;

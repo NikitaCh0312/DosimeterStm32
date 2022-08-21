@@ -21,14 +21,14 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 15 0">
-                <TextBlock Text="Версия платы" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="Модель" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="Серийный номер" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
                 <TextBlock Text="Версия ПО" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
-                <TextBlock Text="Дата разработки" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 15 0">
-                <TextBlock Text="{Binding HardwareVersion}" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="{Binding Model}" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
                 <TextBlock Text="{Binding SoftwareVersion}" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
-                <TextBlock Text="8 августа 2022 года" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
+                <TextBlock Text="{Binding SoftwareVersion}" FontSize="20" Padding="10" Foreground="Azure"></TextBlock>
             </StackPanel>
         </Grid>
     </Border>

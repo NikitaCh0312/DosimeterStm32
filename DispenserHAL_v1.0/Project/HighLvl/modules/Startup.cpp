@@ -90,8 +90,12 @@ static void ConfigureApi()
     apiController->RegisterHandler("description", requestHandlerFactory->CreateDescriptionRequestHandler());
     apiController->RegisterHandler("event_log", requestHandlerFactory->CreateEventLogRequestHandler());
     apiController->RegisterHandler("network", requestHandlerFactory->CreateNetworkRequestHandler());
-    apiController->RegisterHandler("get_cards", requestHandlerFactory->CreateCardsListRequestHandler());
+    
+    //api for task cards
+    apiController->RegisterHandler("get_cards_list", requestHandlerFactory->CreateCardsListRequestHandler());
     apiController->RegisterHandler("add_card", requestHandlerFactory->CreateAddCardRequestHandler());
+    apiController->RegisterHandler("get_card", requestHandlerFactory->CreateGetCardRequestHandler());
+    apiController->RegisterHandler("remove_card", requestHandlerFactory->CreateRemoveCardRequestHandler());
 }
 
 

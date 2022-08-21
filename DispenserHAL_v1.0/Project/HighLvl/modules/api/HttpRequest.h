@@ -28,8 +28,8 @@ public:
             strcpy(_uriName, uriName);
         if (strlen(_query) < HTTP_QUERY_LENGTH)
             strcpy(_query, query);
-        if (strlen(_body) < HTTP_BODY_LENGTH)
-            strcpy(_body, body);        
+        //if (strlen(_body) < HTTP_BODY_LENGTH)
+        //    strcpy(_body, body);        
     }
     virtual ~HttpRequest(){}
     

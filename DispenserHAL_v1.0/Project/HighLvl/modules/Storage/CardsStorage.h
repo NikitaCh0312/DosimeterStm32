@@ -12,8 +12,6 @@
 #define CARDS_END_SECTOR_NUMBER 4
 #define CARD_SIZE_BYTES 255
 
-#define MAX_CARDS_QUANTITY 20
-
 extern w25qxx_t w25qxx;
 
 //total 5128 bytes (= 1282 words (1word=32bit))

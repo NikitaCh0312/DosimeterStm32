@@ -19,8 +19,9 @@ public class AboutPageViewModel : BindableBase
     private async void OnViewLoaded()
     {
         await _configurationService.LoadConfiguration();
-        SoftwareVersion = _configurationService.SoftwareVersion;
-        HardwareVersion = _configurationService.HardwareVersion;
+        SoftwareVersion = _configurationService.SoftwareVersion ?? "undefined";
+        Model = _configurationService.Model ?? "undefined";
+        SerialNumber = _configurationService.SerialNumber ?? "undefined";
     }
     
     private string _softwareVersion = "";
@@ -30,10 +31,17 @@ public class AboutPageViewModel : BindableBase
         set => SetProperty(ref _softwareVersion, value); 
     }
 
-    private string _hardwareVersion = "";
-    public string HardwareVersion
+    private string _model = "";
+    public string Model
     {
-        get => _hardwareVersion;
-        set => SetProperty(ref _hardwareVersion, value); 
+        get => _model;
+        set => SetProperty(ref _model, value); 
+    }
+    
+    private string _serialNumber = "";
+    public string SerialNumber
+    {
+        get => _serialNumber;
+        set => SetProperty(ref _serialNumber, value); 
     }
 }

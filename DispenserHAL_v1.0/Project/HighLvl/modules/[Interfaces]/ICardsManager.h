@@ -24,6 +24,8 @@ public:
     virtual Card GetCard(int cardId) = 0;
     
     virtual int AddCard(Card card) = 0;
+    
+    virtual CardsListInfo_t GetCardsInfo() = 0;
 };
 
 
