@@ -33,6 +33,19 @@ uint8_t StringResources::TaskServiceMsgCancel_3str[20] = {'о', 'т', 'м', 'е'
 uint8_t StringResources::TaskServiceMsgCleaning_1str[20] = {'В', 'ы', 'п', 'о', 'л', 'н', 'я', 'е', 'т', 'c', 'я', ' ', 'о', 'ч', 'и', 'c', 'т', 'к', 'а','\0'};
 uint8_t StringResources::TaskServiceMsgCleaning_2str[20] = {'б', 'а', 'к', 'а', '.', ' ', 'О', 'ж', 'и', 'д', 'а', 'й', 'т', 'е', '.', '.', '.', '\0'};
 
+uint8_t StringResources::TaskServiceMsgInfo_1_1str[20] = {'З', 'а', 'л', 'е', 'й', 'т', 'е', ' ', '2', '5', '0', ' ', 'м', 'л', '.', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_1_2str[20] = {'п', 'р', 'о', 'м', 'ы', 'в', '-', 'о', 'й', ' ', 'ж', 'и', 'д', 'к', 'о', 'c', 'т', 'и','\0'};
+uint8_t StringResources::TaskServiceMsgInfo_1_3str[20] = {'в', ' ', 'б', 'а', 'к', ' ', 'и', ' ', 'н', 'а', 'ж', 'м', 'и', 'т', 'е', ' ', '►', '\0'};
+uint8_t StringResources::TaskServiceMsgInfo_1_4str[20] = {'д', 'л', 'я', ' ', 'п', 'р', 'о', 'д', 'о', 'л', 'ж', 'е', 'н', 'и', 'я', '!', '\0'};
+
+uint8_t StringResources::TaskServiceMsgInfo_2_1str[20] = {'В', 'ы', 'п', 'о', 'л', 'н', 'я', 'е', 'т', 'c', 'я', ' ', 'о', 'ч', 'и', 'c', 'т', 'к', 'а','\0'};
+uint8_t StringResources::TaskServiceMsgInfo_2_2str[20] = {'С', 'Х', 'П', 'П', '.', ' ', 'О', 'ж', 'и', 'д', 'а', 'й', 'т', 'е', '.', '.', '.', '\0'};
+
+uint8_t StringResources::TaskServiceMsgInfo_3_1str[20] = {'С', 'н', 'и', 'м', 'и', 'т', 'е', ' ', 'и', ' ', 'о', 'б', 'р', 'а', 'б', 'о', '-', ' ','\0'};
+uint8_t StringResources::TaskServiceMsgInfo_3_2str[20] = {'т', 'а', 'й', 'т', 'е', ' ', 'б', 'а', 'к', '.', 'З', 'а', 'м', 'е', 'н', 'и', 'т', 'е','\0'};
+uint8_t StringResources::TaskServiceMsgInfo_3_3str[20] = {'у', 'п', 'л', 'о', 'т', 'н', 'и', 'т', 'е', 'л', 'ь', '.', 'Н', 'а', 'ж', 'м', 'и', 'т', 'е','\0'};
+uint8_t StringResources::TaskServiceMsgInfo_3_4str[20] = {'►', ' ', 'д', 'л', 'я', ' ', 'п', 'р', 'о', 'д', 'о', 'л', 'ж', 'е', 'н', 'и', 'я', '!', '\0'};
+
 uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20] = {'В', ' ', 'б', 'а', 'к', 'е', ' ', 'з', 'а', 'к', 'о', 'н', 'ч', 'и', 'л', 'c', 'я', '\0'};
 uint8_t StringResources::TaskErrorAvalibilitySubstance_2str[20] = {'п', 'р', 'е', 'п', 'а', 'р', 'а', 'т', '!', '\0'};
 
