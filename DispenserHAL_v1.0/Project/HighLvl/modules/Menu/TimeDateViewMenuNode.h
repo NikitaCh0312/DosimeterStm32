@@ -87,9 +87,9 @@ public:
         if (isOkElement())
         {
             RtcDateTime_t dateTime;
-            dateTime.Day = 255;//_day.GetValue();
-            dateTime.Month = 255;//_month.GetValue();
-            dateTime.Year = 255;//_year.GetValue();
+            dateTime.Day = _day.GetValue();
+            dateTime.Month = _month.GetValue();
+            dateTime.Year = _year.GetValue() - 2000;
             dateTime.Hours = _hours.GetValue();
             dateTime.Minutes = _minutes.GetValue();
             dateTime.Seconds = _seconds.GetValue();
@@ -208,7 +208,7 @@ private:
 
         _day.SetValue(dateTime.Day);
         _month.SetValue(dateTime.Month);
-        _year.SetValue(dateTime.Year);
+        _year.SetValue(dateTime.Year + 2000);
     }
     
     bool isOkElement()
