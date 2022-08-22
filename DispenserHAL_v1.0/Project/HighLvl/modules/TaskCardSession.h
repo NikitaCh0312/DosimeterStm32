@@ -9,18 +9,21 @@ public:
     TaskCardSession()
     {
         isSessionStarted = false;
+        executedTasksQuantity = 0;
         InitSession();
     }
 
     void InitSession()
     {
         isSessionStarted = true;
+        executedTasksQuantity = 0;
         ResetSession();
     }
 
     void EndSession()
     {
         isSessionStarted = false;
+        executedTasksQuantity = 0;
         ResetSession();
     }
 

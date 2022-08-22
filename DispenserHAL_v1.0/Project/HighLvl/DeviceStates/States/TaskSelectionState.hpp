@@ -31,6 +31,7 @@ public:
     {
         if (_stage == INITIALIZATION_STAGE)
         {
+            _taskCardsSession->InitSession();
             clear_display();
             set_cursor_position(0, 0);
             set_text_rus((char*)StringResources::TasksQuantity);
@@ -121,6 +122,7 @@ private:
             {
                 if ( --_selectedTask <= 0 )
                     _selectedTask = 0;
+                break;
             }
             case BUT_ENTER:
             {
@@ -131,6 +133,7 @@ private:
                 executionState->InitExecutionState(_selectedCard.tasks[_selectedTask]);
                 _context->SetState(executionState);
                 _stage = INITIALIZATION_STAGE;
+                break;
             }
             case BUT_CANCEL:
             {
@@ -138,6 +141,7 @@ private:
                 _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
                 _stage = INITIALIZATION_STAGE;
                 _cardId = -1;
+                break;
             }
         }
     }
