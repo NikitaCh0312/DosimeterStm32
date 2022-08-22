@@ -81,36 +81,36 @@ public:
         if (cardId == 908904)
             return CARD_EXT_ACCESS_STATUS;
       
-        Card card = _storage->GetCard(cardId);
-        if (card.Id != 0)
-          return CARD_IS_ACTIVE_STATUS;
+        //Card card = _storage->GetCard(cardId);
+        //if (card.Id != 0)
+        //  return CARD_IS_ACTIVE_STATUS;
+        
+        //return CARD_IS_NOT_BINDED_STATUS;
+        
+        if (cardId == 908904)
+            return CARD_EXT_ACCESS_STATUS;
+
+        if (cardId == 907894)
+            return CARD_IS_ACTIVE_STATUS;
+        
+        if (cardId == 9722774)
+            return CARD_IS_ACTIVE_STATUS;
         
         return CARD_IS_NOT_BINDED_STATUS;
-        
-//        if (cardId == 908904)
-//            return card_ext_access_status;
-//
-//        if (cardId == 907894)
-//            return card_is_active_status;
-//        
-//        if (cardId == 9722774)
-//            return card_is_active_status;
-//        
-//        return card_is_not_binded_status;
     }
     
     Card GetCard(int cardId)
     {
-        return _storage->GetCard(cardId);
+        //return _storage->GetCard(cardId);
         
-//        if (cardId == 907894)
-//        {
-//          return debugCard1;
-//        }
-//        if (cardId == 9722774)
-//        {
-//          return debugCard2;
-//        }
+        if (cardId == 907894)
+        {
+          return debugCard1;
+        }
+        if (cardId == 9722774)
+        {
+          return debugCard2;
+        }
     }
     
     int AddCard(Card card)
