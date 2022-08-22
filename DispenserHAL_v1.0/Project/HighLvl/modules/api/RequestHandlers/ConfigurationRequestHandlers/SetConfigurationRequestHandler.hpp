@@ -44,7 +44,9 @@ private:
       if (strcmp(confIp, "ip"))
         return false;
       char* confIpStr = strtok(NULL, "&"); // byte.byte.byte.byte
-      ip.addr_1 = atoi(strtok(NULL, "."));
+      char* sss = strtok(NULL, ".");
+      ip.addr_1 = atoi(sss);
+      //ip.addr_1 = atoi(strtok(NULL, "."));
       ip.addr_2 = atoi(strtok(NULL, "."));
       ip.addr_3 = atoi(strtok(NULL, "."));
       ip.addr_4 = atoi(strtok(NULL, "&"));
@@ -81,7 +83,7 @@ private:
         return false;      
       char* confTimeStr = strtok(NULL, "\n");    // hours:byte-minute:byte
       uint8_t hours = atoi(strtok(NULL, "-"));
-      uint8_t minute = atoi(strtok(NULL, "\n"));
+      uint8_t minute = atoi(strtok(NULL, "\0"));
       
       return false;
     }

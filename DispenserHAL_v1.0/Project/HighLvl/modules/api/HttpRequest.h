@@ -26,7 +26,7 @@ public:
         _method = method;
         if (strlen(uriName) < HTTP_URI_NAME_LENGTH)
             strcpy(_uriName, uriName);
-        if (strlen(_query) < HTTP_QUERY_LENGTH)
+        if (strlen(query) < HTTP_QUERY_LENGTH)
             strcpy(_query, query);
         //if (strlen(_body) < HTTP_BODY_LENGTH)
         //    strcpy(_body, body);        
