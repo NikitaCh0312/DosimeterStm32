@@ -3,6 +3,8 @@
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 
+//request for configuration
+//http://192.168.36.77:666/set_config?ip=value&mask=value&port=value&date=value&time=value
 class SetConfigurationRequestHandler: public IRequestHandler
 {
 public:
@@ -16,7 +18,8 @@ public:
 #warning TO REALIZE
     bool Handle(HttpRequest * request, WebResponse * webResponse)
     {
-      
+        if (request->GetMethod() != METHOD_POST)
+            return false;
     }
 private:
 };
