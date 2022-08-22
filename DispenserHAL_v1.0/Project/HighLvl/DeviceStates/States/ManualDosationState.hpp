@@ -14,6 +14,8 @@
 
 extern uint32_t global_timer;
 
+uint32_t fromManualStateCruth = 0;
+
 class ManualDosationState: public IDeviceState
 {
 public:
@@ -240,6 +242,7 @@ private:
             }
             case BUT_ENTER:
             {
+                fromManualStateCruth = 1;
                 Task task;
                 task.Volume = _availableVolumes[_selectedVolume];
                 task.Concentration = _availableConcentrations[_selectedConcentration];

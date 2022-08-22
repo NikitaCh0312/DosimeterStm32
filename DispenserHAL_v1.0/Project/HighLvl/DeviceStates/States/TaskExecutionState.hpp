@@ -21,6 +21,8 @@
 
 extern uint32_t global_timer;
 
+extern uint32_t fromManualStateCruth;
+
 class TaskExecutionState: public IDeviceState
 {
 public:
@@ -207,7 +209,11 @@ public:
                     prev_flow_sensor_cnt = 0;
                     _waterVolumeLiters = 0;
                     _substanceVolumeLiters = 0;
-                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    if (fromManualStateCruth == 1)
+                        _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+                    else
+                      _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    fromManualStateCruth = 0;
                 }
             }
         }
@@ -235,7 +241,11 @@ public:
                     prev_flow_sensor_cnt = 0;
                     _waterVolumeLiters = 0;
                     _substanceVolumeLiters = 0;
-                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    if (fromManualStateCruth == 1)
+                        _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+                    else
+                      _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    fromManualStateCruth = 0;
                 }
             }
         }
@@ -263,7 +273,11 @@ public:
                     prev_flow_sensor_cnt = 0;
                     _waterVolumeLiters = 0;
                     _substanceVolumeLiters = 0;
-                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    if (fromManualStateCruth == 1)
+                        _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+                    else
+                      _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    fromManualStateCruth = 0;
                 }
             }
         }
@@ -289,7 +303,11 @@ public:
                     prev_flow_sensor_cnt = 0;
                     _waterVolumeLiters = 0;
                     _substanceVolumeLiters = 0;
-                    _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    if (fromManualStateCruth == 1)
+                        _context->SetState(this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+                    else
+                      _context->SetState(this->_statesFactory->GetState(TASK_SELECTION_STATE));
+                    fromManualStateCruth = 0;
                 }
             }
         }
