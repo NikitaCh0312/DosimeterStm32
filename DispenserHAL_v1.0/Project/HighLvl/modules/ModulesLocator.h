@@ -6,6 +6,7 @@
 #include "modules/TaskCardSession.h"
 #include "modules/EventJournal.h"
 #include "modules/Configuration.h"
+#include "modules/SubstancesManager.h"
 
 class ModulesLocator
 {
@@ -21,11 +22,13 @@ public:
     TaskCardSession * taskCardsSession;
     EventJournal * eventJournal;
     Configuration * configuration;
+    SubstancesManager * substancesManager;
     
     void InitModules()
     {
         configuration->Init();
         cardsManager->Init();
+        substancesManager->Init();
     }
     
 private:
@@ -36,6 +39,7 @@ private:
       taskCardsSession = new TaskCardSession();
       eventJournal = new EventJournal();
       configuration = new Configuration();
+      substancesManager = new SubstancesManager();
     }
     virtual ~ModulesLocator(){}
 };

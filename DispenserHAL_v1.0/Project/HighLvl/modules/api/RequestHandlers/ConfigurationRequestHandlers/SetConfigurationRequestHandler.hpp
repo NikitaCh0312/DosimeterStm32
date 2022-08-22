@@ -20,8 +20,15 @@ public:
     {
         if (request->GetMethod() != METHOD_POST)
             return false;
+        
+        ParseQuery();
     }
 private:
+    void ParseQuery()
+    {
+      
+    }
+  
 };
 
 

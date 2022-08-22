@@ -39,7 +39,7 @@ public class ConfigurationPageViewModel:BindableBase
         var config = new Configuration()
         {
             Ip = Ip,
-            Port = Int32.Parse(Port),
+            Port = 666,//Int32.Parse(Port),
             Mask = Mask,
             Date = Date.ToString("d"),
             Time = Time.ToString("HH:mm")
