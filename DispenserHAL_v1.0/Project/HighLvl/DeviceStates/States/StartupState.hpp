@@ -89,7 +89,7 @@ private:
         uint32_t res = sum / 4000;
         if (((PSNV * (100 - SVT)) / 100 > res) || ((PSNV * (100 + SVT)) / 100 < res))  err_code = VOLTAGE_ERROR_TYPE_t;       
         //check substance 
-        else if(getSensorState(LEVEL_SENSOR_TYPE) != ON_SENSOR_STATE) err_code = SUBSTANCE_ERROR_TYPE_t;
+        //else if(getSensorState(LEVEL_SENSOR_TYPE) != ON_SENSOR_STATE) err_code = SUBSTANCE_ERROR_TYPE_t;
         
         return err_code;
     }
