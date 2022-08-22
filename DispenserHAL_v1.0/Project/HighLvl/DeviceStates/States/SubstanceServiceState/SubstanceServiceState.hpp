@@ -72,7 +72,7 @@ public:
             }
             case SUBSTANCE_SELECTION_STAGE:
             {
-
+                _substanceServiceSubstanceSelectionStage->Handle(action);
                 break;
             }
             default:
@@ -103,13 +103,15 @@ private:
     
     SubstanceServiceTankInstallStage * _substanceServiceTankInstallStage;
     SubstanceServiceTankFillStage * _substanceServiceTankFillStage;
+    
+    SubstanceServiceSubstanceSelectionStage * _substanceServiceSubstanceSelectionStage;
         
     
     
     static SubstanceServiceState * _instance;
     SubstanceServiceState()
     {
-        _stage = INIT_STAGE;
+        _stage = SUBSTANCE_SELECTION_STAGE;//INIT_STAGE;
       
         _substanceServiceInitStage = new SubstanceServiceInitStage(this);
         _substanceServiceTankCleaningStage = new SubstanceServiceTankCleaningStage(this);
@@ -120,6 +122,7 @@ private:
         
         _substanceServiceTankInstallStage = new SubstanceServiceTankInstallStage(this);
         _substanceServiceTankFillStage = new SubstanceServiceTankFillStage(this);
+        _substanceServiceSubstanceSelectionStage = new SubstanceServiceSubstanceSelectionStage(this);
     }
 };
 

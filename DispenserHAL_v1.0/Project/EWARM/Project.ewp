@@ -1649,6 +1649,9 @@
                 <file>
                     <name>$PROJ_DIR$\..\HighLvl\modules\Storage\EventJournalStorage.h</name>
                 </file>
+                <file>
+                    <name>$PROJ_DIR$\..\HighLvl\modules\Storage\SubstancesStorage.h</name>
+                </file>
             </group>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Card.h</name>
@@ -1670,6 +1673,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\Startup.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\HighLvl\modules\SubstancesManager.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\HighLvl\modules\TaskCardSession.h</name>
