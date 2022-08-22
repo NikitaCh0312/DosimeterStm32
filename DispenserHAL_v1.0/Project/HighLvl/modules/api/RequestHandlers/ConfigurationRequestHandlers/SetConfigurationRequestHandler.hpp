@@ -44,46 +44,70 @@ private:
       if (strcmp(confIp, "ip"))
         return false;
       char* confIpStr = strtok(NULL, "&"); // byte.byte.byte.byte
-      char* sss = strtok(NULL, ".");
-      ip.addr_1 = atoi(sss);
-      //ip.addr_1 = atoi(strtok(NULL, "."));
-      ip.addr_2 = atoi(strtok(NULL, "."));
-      ip.addr_3 = atoi(strtok(NULL, "."));
-      ip.addr_4 = atoi(strtok(NULL, "&"));
       
       Mask_t mask;
       char* confMask = strtok(NULL, "="); // mask
       if (strcmp(confMask, "mask"))
         return false;
       char* confMaskStr = strtok(NULL, "&"); // byte.byte.byte.byte
-      mask.mask_1 = atoi(strtok(NULL, "."));
-      mask.mask_2 = atoi(strtok(NULL, "."));
-      mask.mask_3 = atoi(strtok(NULL, "."));
-      mask.mask_4 = atoi(strtok(NULL, "&"));
       
       uint16_t port = 0;
       char* confPort = strtok(NULL, "="); // port
       if (strcmp(confPort, "port"))
-        return false;
+        return false;      
       char* confPortStr = strtok(NULL, "&"); // uint16_t
-      port = atoi(confPortStr);
-
+      
       //Mask_t mask;
       char* confDate = strtok(NULL, "=");    // date
       if (strcmp(confDate, "date"))
-        return false;      
+        return false;   
       char* confDateStr = strtok(NULL, "&");    // day:byte-mounth:byte-year:uint16_t
-      uint8_t day = atoi(strtok(NULL, "-"));
-      uint8_t mounth = atoi(strtok(NULL, "-"));
-      uint16_t year = atoi(strtok(NULL, "&"));      
-
-      //Mask_t mask;
+      
       char* confTime = strtok(NULL, "=");    // time
       if (strcmp(confTime, "time"))
-        return false;      
+        return false;     
       char* confTimeStr = strtok(NULL, "\n");    // hours:byte-minute:byte
-      uint8_t hours = atoi(strtok(NULL, "-"));
-      uint8_t minute = atoi(strtok(NULL, "\0"));
+      
+ //     char* sss = strtok(NULL, ".");
+ //     ip.addr_1 = atoi(sss);
+ //     //ip.addr_1 = atoi(strtok(NULL, "."));
+ //     ip.addr_2 = atoi(strtok(NULL, "."));
+ //     ip.addr_3 = atoi(strtok(NULL, "."));
+ //     ip.addr_4 = atoi(strtok(NULL, "&"));
+ //     
+ //     Mask_t mask;
+ //     char* confMask = strtok(NULL, "="); // mask
+ //     if (strcmp(confMask, "mask"))
+ //       return false;
+ //     char* confMaskStr = strtok(NULL, "&"); // byte.byte.byte.byte
+ //     mask.mask_1 = atoi(strtok(NULL, "."));
+ //     mask.mask_2 = atoi(strtok(NULL, "."));
+ //     mask.mask_3 = atoi(strtok(NULL, "."));
+ //     mask.mask_4 = atoi(strtok(NULL, "&"));
+      
+ //     uint16_t port = 0;
+ //     char* confPort = strtok(NULL, "="); // port
+ //     if (strcmp(confPort, "port"))
+ //       return false;
+ //     char* confPortStr = strtok(NULL, "&"); // uint16_t
+ //     port = atoi(confPortStr);
+
+//      //Mask_t mask;
+//      char* confDate = strtok(NULL, "=");    // date
+//      if (strcmp(confDate, "date"))
+//        return false;      
+//      char* confDateStr = strtok(NULL, "&");    // day:byte-mounth:byte-year:uint16_t
+//      uint8_t day = atoi(strtok(NULL, "-"));
+//      uint8_t mounth = atoi(strtok(NULL, "-"));
+//      uint16_t year = atoi(strtok(NULL, "&"));      
+
+//      //Mask_t mask;
+//      char* confTime = strtok(NULL, "=");    // time
+//      if (strcmp(confTime, "time"))
+//        return false;      
+//      char* confTimeStr = strtok(NULL, "\n");    // hours:byte-minute:byte
+//      uint8_t hours = atoi(strtok(NULL, "-"));
+//      uint8_t minute = atoi(strtok(NULL, "\0"));
       
       return false;
     }
