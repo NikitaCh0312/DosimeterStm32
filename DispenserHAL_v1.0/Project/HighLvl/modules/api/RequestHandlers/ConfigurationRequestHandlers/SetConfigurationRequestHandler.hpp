@@ -23,7 +23,7 @@ public:
             return false;
         
         //Card card;
-//        bool result = ParseQuery(request->GetQueryString(), &card);
+        bool result = ParseQuery(request->GetQueryString());
 //        if (result)
 //        {
 //            //if (!_cardsManager->AddCard(card))
@@ -37,7 +37,7 @@ public:
 private:
     Configuration * _config;
  //ip=value&mask=value&port=value&date=value&time=value   
-    bool ParseQuery(char * query, Card * outCard)
+    bool ParseQuery(char * query)
     {
       IpAddr_t ip;
       char* confIp = strtok((char*)query, "="); // ip
@@ -75,8 +75,15 @@ private:
       uint8_t mounth = atoi(strtok(NULL, "-"));
       uint16_t year = atoi(strtok(NULL, "&"));      
 
-        
-        return false;
+      //Mask_t mask;
+      char* confTime = strtok(NULL, "=");    // time
+      if (strcmp(confTime, "time"))
+        return false;      
+      char* confTimeStr = strtok(NULL, "\n");    // hours:byte-minute:byte
+      uint8_t hours = atoi(strtok(NULL, "-"));
+      uint8_t minute = atoi(strtok(NULL, "\n"));
+      
+      return false;
     }
     
     void CreateResponse(WebResponse * webResponse, bool result)
