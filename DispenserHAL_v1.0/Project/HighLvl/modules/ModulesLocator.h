@@ -16,6 +16,7 @@ public:
             _instance = new ModulesLocator();
         return _instance;
     }
+
     
     ICardsManager * cardsManager;
     TaskCardSession * taskCardsSession;
