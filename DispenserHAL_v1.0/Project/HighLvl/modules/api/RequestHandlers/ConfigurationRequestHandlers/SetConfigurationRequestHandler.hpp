@@ -3,6 +3,8 @@
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 #include "modules/Configuration.h"
+#include "RTC/RTC_drv.h"
+
 
 //request for configuration
 //http://192.168.36.77:666/set_config?ip=value&mask=value&port=value&date=value&time=value
@@ -39,6 +41,7 @@ private:
  //ip=value&mask=value&port=value&date=value&time=value   
     bool ParseQuery(char * query)
     {
+      // first part
       IpAddr_t ip;
       char* confIp = strtok((char*)query, "="); // ip
       if (strcmp(confIp, "ip"))
@@ -66,49 +69,40 @@ private:
       char* confTime = strtok(NULL, "=");    // time
       if (strcmp(confTime, "time"))
         return false;     
-      char* confTimeStr = strtok(NULL, "\n");    // hours:byte-minute:byte
+      char* confTimeStr = strtok(NULL, "\0");    // hours:byte-minute:byte
       
- //     char* sss = strtok(NULL, ".");
- //     ip.addr_1 = atoi(sss);
- //     //ip.addr_1 = atoi(strtok(NULL, "."));
- //     ip.addr_2 = atoi(strtok(NULL, "."));
- //     ip.addr_3 = atoi(strtok(NULL, "."));
- //     ip.addr_4 = atoi(strtok(NULL, "&"));
- //     
- //     Mask_t mask;
- //     char* confMask = strtok(NULL, "="); // mask
- //     if (strcmp(confMask, "mask"))
- //       return false;
- //     char* confMaskStr = strtok(NULL, "&"); // byte.byte.byte.byte
- //     mask.mask_1 = atoi(strtok(NULL, "."));
- //     mask.mask_2 = atoi(strtok(NULL, "."));
- //     mask.mask_3 = atoi(strtok(NULL, "."));
- //     mask.mask_4 = atoi(strtok(NULL, "&"));
-      
- //     uint16_t port = 0;
- //     char* confPort = strtok(NULL, "="); // port
- //     if (strcmp(confPort, "port"))
- //       return false;
- //     char* confPortStr = strtok(NULL, "&"); // uint16_t
- //     port = atoi(confPortStr);
+      // second part
+      ip.addr_1 = atoi(strtok(confIpStr, "."));
+      ip.addr_2 = atoi(strtok(NULL, "."));
+      ip.addr_3 = atoi(strtok(NULL, "."));
+      ip.addr_4 = atoi(strtok(NULL, "\0"));
 
-//      //Mask_t mask;
-//      char* confDate = strtok(NULL, "=");    // date
-//      if (strcmp(confDate, "date"))
-//        return false;      
-//      char* confDateStr = strtok(NULL, "&");    // day:byte-mounth:byte-year:uint16_t
-//      uint8_t day = atoi(strtok(NULL, "-"));
-//      uint8_t mounth = atoi(strtok(NULL, "-"));
-//      uint16_t year = atoi(strtok(NULL, "&"));      
-
-//      //Mask_t mask;
-//      char* confTime = strtok(NULL, "=");    // time
-//      if (strcmp(confTime, "time"))
-//        return false;      
-//      char* confTimeStr = strtok(NULL, "\n");    // hours:byte-minute:byte
-//      uint8_t hours = atoi(strtok(NULL, "-"));
-//      uint8_t minute = atoi(strtok(NULL, "\0"));
+      mask.mask_1 = atoi(strtok(confMaskStr, "."));
+      mask.mask_2 = atoi(strtok(NULL, "."));
+      mask.mask_3 = atoi(strtok(NULL, "."));
+      mask.mask_4 = atoi(strtok(NULL, "\0"));
       
+      port = atoi(confPortStr);
+
+      uint8_t day = atoi(strtok(confDateStr, "-"));
+      uint8_t mounth = atoi(strtok(NULL, "-"));
+      uint16_t year = atoi(strtok(NULL, "\0"));      
+
+      uint8_t hours = atoi(strtok(confTimeStr, "-"));
+      uint8_t minute = atoi(strtok(NULL, "\0"));
+      
+      
+      // hueta
+      
+      RtcDateTime_t dateTime;
+      dateTime.Day = day;
+      dateTime.Month = mounth;
+      dateTime.Year = year % 100;
+      dateTime.Hours = hours;
+      dateTime.Minutes = minute;
+      dateTime.Seconds = 0;
+      RtcSetDateTime(&dateTime);
+            
       return false;
     }
     

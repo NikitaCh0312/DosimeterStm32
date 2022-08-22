@@ -36,9 +36,19 @@ public class ConfigurationService: IConfigurationService
         }
     }
 
-    public Task Set(Configuration configuration)
+    public async Task Set(Configuration configuration)
     {
-        return Task.CompletedTask;
+        try
+        {
+            var request = CreateRequest("192.168.0.55", "666", "set_config", "?ip=192.168.36.77&mask=255.255.255.0&port=666&date=" + configuration.Date + "&time="+ configuration.Time);
+            var stream = await _httpClient.PostAsync(request, null);
+            
+        }
+        catch (Exception e)
+        {
+            
+        }
+
     }
     
     private string CreateRequest(string ip, string port, string uri, string query = null)
