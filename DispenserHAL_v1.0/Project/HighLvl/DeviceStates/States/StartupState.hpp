@@ -38,7 +38,7 @@ public:
     {
         DrawStartupState();
 
-        DelayMsec(3000);
+        DelayMsec(3500);
         
         ERROR_TYPE_t error = CheckForError();
         if (error != NONE_ERROR_TYPE_t)
@@ -54,7 +54,7 @@ public:
         {
           clear_display();
           DrawAboutDevice();
-          DelayMsec(3000);
+          DelayMsec(3500);
           clear_display();
           _context->SetState( this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
         }
@@ -97,10 +97,11 @@ private:
     void DrawError(ERROR_TYPE_t error)
     {
         clear_display();
-        set_cursor_position(0, 0);
+        set_cursor_position(0, 5);
         set_text_rus((char*)StringResources::Error);
-        if (error == VOLTAGE_ERROR_TYPE_t)
-            DrawVoltageError();
+        if (error == VOLTAGE_ERROR_TYPE_t) DrawVoltageError();
+        else if (error == SUBSTANCE_ERROR_TYPE_t) DrawSubstanceError();
+            
     }
 
     void DrawVoltageError()

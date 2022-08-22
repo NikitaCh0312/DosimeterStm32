@@ -4,16 +4,16 @@ StringResources * StringResources::_instance = new StringResources();
 
 uint8_t StringResources::DevicePreparing_1[20] = {'И', 'д', 'е', 'т', ' ', 'п', 'о', 'д', 'г', 'о', 'т', 'о', 'в', 'к', 'а', '\0'};
 uint8_t StringResources::DevicePreparing_2[20] = {'к', ' ', 'з', 'а', 'п', 'у', 'c', 'к', 'у', '.', ' ', 'П', 'о', 'ж', 'а', 'л', 'у', 'й', '-','\0'};
-uint8_t StringResources::DevicePreparing_3[20] = {'с', 'т', 'а', ' ', 'п', 'о', 'д', 'о', 'ж', 'д', 'и', 'т', 'е', '.', '.', '!', '\0'};
+uint8_t StringResources::DevicePreparing_3[20] = {'c', 'т', 'а', ' ', 'п', 'о', 'д', 'о', 'ж', 'д', 'и', 'т', 'е', '.', '.', '!', '\0'};
 uint8_t StringResources::PleaseWait[20] = {'П', 'О', 'Д', 'О', 'Ж', 'Д', 'И', 'Т', 'Е', '.','.','.', '!', '\0'};
-uint8_t StringResources::Error[20] = {' ',' ',' ', 'О', 'Ш', 'И', 'Б', 'К', 'К', 'А', '!', '\0'};
+uint8_t StringResources::Error[20] = { 'О', 'Ш', 'И', 'Б', 'К', 'А', '!', '\0'};
 uint8_t StringResources::VoltageError_1[20] = {'А', 'д', 'а', 'п','т','е', 'р', ' ', 'п', 'и', 'т', 'а', 'н', 'и', 'я','\0'};
 uint8_t StringResources::VoltageError_2[20] = {'н', 'е', 'и', 'с','п','р', 'а', 'в', 'е', 'н', '!', '\0'};
 
 uint8_t StringResources::DeviceInfo_1[20] = {'С', 'и', 'c', 'т', 'е', 'м', 'а', ' ', 'п', 'р', 'и', 'г', 'о', 'т', 'а', 'в', 'л', 'е', '-','\0'};
-uint8_t StringResources::DeviceInfo_2[20] = {'н', 'и', 'я', ' ', 'и', ' ', 'у', 'ч', 'е', 'т', 'а', ' ', 'р', 'а', 'с', 'х', 'о', 'д', 'а','\0'};
+uint8_t StringResources::DeviceInfo_2[20] = {'н', 'и', 'я', ' ', 'и', ' ', 'у', 'ч', 'е', 'т', 'а', ' ', 'р', 'а', 'c', 'х', 'о', 'д', 'а','\0'};
 uint8_t StringResources::DeviceInfo_3[20] = {'р', 'а', 'c', 'т', 'в', 'о', 'р', 'о', 'в', '.', '\0'};
-uint8_t StringResources::DeviceInfo_4[20] = {'У', 'c', 'т', 'р', 'о', 'й', 'с', 'т', 'в', 'о', ' ', ' ', ' ', '1', '.', '1', '.', '1', 'V','\0'};
+uint8_t StringResources::DeviceInfo_4[20] = {'У', 'c', 'т', 'р', 'о', 'й', 'c', 'т', 'в', 'о', ' ', ' ', ' ', '1', '.', '1', '.', '1', 'V','\0'};
 
 uint8_t StringResources::Attach_RFID_Card_1str[20] = {'П', 'Р', 'И', 'Л', 'О', 'Ж', 'И', 'Т', 'Е', '\0'};
 uint8_t StringResources::Attach_RFID_Card_2str[20] = {'К', 'А', 'Р', 'Т', 'У', '\0'};
