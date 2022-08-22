@@ -2,10 +2,18 @@
 
 StringResources * StringResources::_instance = new StringResources();
 
-uint8_t StringResources::DevicePreparing[20] = {'П', 'О', 'Д', 'Г', 'О', 'Т', 'О', 'В', 'К', 'А', '!', '\0'};
+uint8_t StringResources::DevicePreparing_1[20] = {'И', 'д', 'е', 'т', ' ', 'п', 'о', 'д', 'г', 'о', 'т', 'о', 'в', 'к', 'а', '\0'};
+uint8_t StringResources::DevicePreparing_2[20] = {'к', ' ', 'з', 'а', 'п', 'у', 'c', 'к', 'у', '.', ' ', 'П', 'о', 'ж', 'а', 'л', 'у', 'й', '-','\0'};
+uint8_t StringResources::DevicePreparing_3[20] = {'с', 'т', 'а', ' ', 'п', 'о', 'д', 'о', 'ж', 'д', 'и', 'т', 'е', '.', '.', '!', '\0'};
 uint8_t StringResources::PleaseWait[20] = {'П', 'О', 'Д', 'О', 'Ж', 'Д', 'И', 'Т', 'Е', '.','.','.', '!', '\0'};
 uint8_t StringResources::Error[20] = {' ',' ',' ', 'О', 'Ш', 'И', 'Б', 'К', 'К', 'А', '!', '\0'};
-uint8_t StringResources::VoltageError[20] = {'Н','А','П', 'Р', 'Я', 'Ж', 'Е', 'Н', 'И', 'Е', '!', '\0'};
+uint8_t StringResources::VoltageError_1[20] = {'А', 'д', 'а', 'п','т','е', 'р', ' ', 'п', 'и', 'т', 'а', 'н', 'и', 'я','\0'};
+uint8_t StringResources::VoltageError_2[20] = {'н', 'е', 'и', 'с','п','р', 'а', 'в', 'е', 'н', '!', '\0'};
+
+uint8_t StringResources::DeviceInfo_1[20] = {'С', 'и', 'c', 'т', 'е', 'м', 'а', ' ', 'п', 'р', 'и', 'г', 'о', 'т', 'а', 'в', 'л', 'е', '-','\0'};
+uint8_t StringResources::DeviceInfo_2[20] = {'н', 'и', 'я', ' ', 'и', ' ', 'у', 'ч', 'е', 'т', 'а', ' ', 'р', 'а', 'с', 'х', 'о', 'д', 'а','\0'};
+uint8_t StringResources::DeviceInfo_3[20] = {'р', 'а', 'c', 'т', 'в', 'о', 'р', 'о', 'в', '.', '\0'};
+uint8_t StringResources::DeviceInfo_4[20] = {'У', 'c', 'т', 'р', 'о', 'й', 'с', 'т', 'в', 'о', ' ', ' ', ' ', '1', '.', '1', '.', '1', 'V','\0'};
 
 uint8_t StringResources::Attach_RFID_Card_1str[20] = {'П', 'Р', 'И', 'Л', 'О', 'Ж', 'И', 'Т', 'Е', '\0'};
 uint8_t StringResources::Attach_RFID_Card_2str[20] = {'К', 'А', 'Р', 'Т', 'У', '\0'};
@@ -82,7 +90,7 @@ uint8_t StringResources::Date[20] = {'Д','А','Т','А',' ','\0'};
 uint8_t StringResources::Network[20] = {'С','Е','Т','Е','В','Ы','Е',' ','Н','А','С','Т','Р','О','Й','К','И','\0'};
 
 //ManualDosation
-uint8_t StringResources::ManualDosation[20] = {'П','Р','И','Н','У','Д','.',' ','Д','О','З','-','Н','И','Е','Е','\0'};
+uint8_t StringResources::ManualDosation[20] = {'П','Р','И','Н','У','Д','.',' ','Д','О','З','-','Н','И','Е','\0'};
 uint8_t StringResources::PressEnter[20] = {'Н','А','Ж','М','И','Т','Е',' ','E','N','T','E','R','\0'};
 uint8_t StringResources::ToStart[20] = {'Ч','Т','О','Б','Ы',' ','Н','А','Ч','А','Т','Ь','\0'};
 uint8_t StringResources::ManualDosationMode[20] = {'Р','Е','Ж','И','М',' ','П','Р','И','Н','.',' ','Д','О','З','А','Ц','И','И','\0'};
