@@ -111,7 +111,7 @@ private:
     static SubstanceServiceState * _instance;
     SubstanceServiceState()
     {
-        _stage = SUBSTANCE_SELECTION_STAGE;//INIT_STAGE;
+        _stage = INIT_STAGE;
       
         _substanceServiceInitStage = new SubstanceServiceInitStage(this);
         _substanceServiceTankCleaningStage = new SubstanceServiceTankCleaningStage(this);
