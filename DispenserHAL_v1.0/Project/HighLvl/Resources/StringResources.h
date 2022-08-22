@@ -16,10 +16,13 @@ public:
     }
     
     //Device preparing
-    static uint8_t DevicePreparing[20];
+    static uint8_t DevicePreparing_1[20];
+    static uint8_t DevicePreparing_2[20];
+    static uint8_t DevicePreparing_3[20];
     static uint8_t PleaseWait[20];
     static uint8_t Error[20];
-    static uint8_t VoltageError[20];
+    static uint8_t VoltageError_1[20];
+    static uint8_t VoltageError_2[20];
     
     //attach to reader
     static uint8_t Attach_RFID_Card_1str[20];
@@ -31,6 +34,11 @@ public:
 
     static uint8_t TaskExecuted_1str[20];
     static uint8_t TaskExecuted_2str[20];
+    
+    static uint8_t StringResources::DeviceInfo_1[20];
+    static uint8_t StringResources::DeviceInfo_2[20];
+    static uint8_t StringResources::DeviceInfo_3[20];
+    static uint8_t StringResources::DeviceInfo_4[20];
     
     static uint8_t StringResources::TaskCancelTask_1str[20];
     
