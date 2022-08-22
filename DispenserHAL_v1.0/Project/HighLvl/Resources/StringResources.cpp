@@ -101,3 +101,6 @@ uint8_t StringResources::SelectedParams[20] = {'В','Ы','Б','Р','А','Н','Н
 
 //SubstanceService
 uint8_t StringResources::SubstanceService[20] = {'О','Б','С','Л','У','Ж','И','В','А','Н','И','Е',' ','С','Х','П','П','\0'};
+
+uint8_t StringResources::SubstanceSelected[20] = {'П','Р','Е','П','А','Р','А','Т',' ','С','О','Х','Р','А','Н','Е','Н','\0'};
+uint8_t StringResources::SubstanceNotSelected[20] = {'П','Р','Е','П','А','Р','А','Т',' ','Н','E',' ','С','О','Х','Р','А','Н','\0'};

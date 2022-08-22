@@ -23,7 +23,7 @@ public:
         {
             if (_isInitedDefaultSubstance == false)
             {
-                SetNextSubstance();
+                InitSelectedSubstance();
                 _isInitedDefaultSubstance = true;
             }
             DrawSelectedSubstance();
@@ -35,22 +35,9 @@ public:
             {
                 clear_display();
                 set_cursor_position(1, 0);
-                set_text_eng((char*)"Substance selected and saved");
-                set_cursor_position(2, 0);
-                set_text_eng((char*)"Press Enter To Exit");
-                _IsExitViewInited = true;
-            }
-            HandleExitUserAction(action);
-        }
-        else if (_subStage == SUBSTANCE_NOT_SELECTED_SUBSTAGE)
-        {
-            if (_IsExitViewInited == false)
-            {
-                clear_display();
-                set_cursor_position(1, 0);
-                set_text_eng((char*)"Substance NOT selected");
-                set_cursor_position(2, 0);
-                set_text_eng((char*)"Press Enter To Exit");
+                set_text_rus((char*)StringResources::SubstanceSelected);
+                set_cursor_position(2, 2);
+                set_text_rus((char*)StringResources::PressEnter);
                 _IsExitViewInited = true;
             }
             HandleExitUserAction(action);
@@ -63,7 +50,6 @@ private:
     {
         SUBSTANCE_SELECTION_SUBSTAGE,
         SUBSTANCE_SELECTED_SUBSTAGE,
-        SUBSTANCE_NOT_SELECTED_SUBSTAGE,
     }SUBSTANCE_SELECTION_SUBSTAGE_t;
     
     SUBSTANCE_SELECTION_SUBSTAGE_t _subStage;
@@ -99,6 +85,22 @@ private:
           }
           
     }
+    
+    void InitSelectedSubstance()
+    {
+        if (_selectedSubstance == NULL)
+        {
+            for ( int i = 0; i < 20; i++)
+            {
+                if (_substancesList[i].Id != 0)
+                {
+                  _selectedSubstance = &_substancesList[i];
+                  break;
+                }
+            }
+        }
+    }
+    
     void HandleUserAction(UserAction_t action)
     {
         if (action.buttonsEvent.event != BUTTON_SHORT_PRESSED_EVENT)
@@ -126,7 +128,11 @@ private:
             }
             case BUT_CANCEL:
             {
-                _subStage = SUBSTANCE_NOT_SELECTED_SUBSTAGE;
+                _IsInintedsubstanceView = false;
+                _isInitedDefaultSubstance = false;
+                _IsExitViewInited = false;
+                _subStage = SUBSTANCE_SELECTION_SUBSTAGE;
+                _substanceServiceState->SwitchStage(CANCEL_SERVICE_MODE_STAGE);
             }
         }
     }
@@ -142,6 +148,7 @@ private:
             {
                 _IsInintedsubstanceView = false;
                 _isInitedDefaultSubstance = false;
+                _IsExitViewInited = false;
                 _subStage = SUBSTANCE_SELECTION_SUBSTAGE;
                 _substanceServiceState->ExitState();
                 break;

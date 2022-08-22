@@ -121,7 +121,10 @@ public:
     static uint8_t SelectedParams[20];
     
     //SubstanceService
-    static uint8_t SubstanceService[20];    
+    static uint8_t SubstanceService[20];   
+    static uint8_t SubstanceSelected[20]; 
+    static uint8_t SubstanceNotSelected[20]; 
+    
 private:
     StringResources(){}
     static StringResources * _instance;
