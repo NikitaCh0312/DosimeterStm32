@@ -25,6 +25,102 @@ public class CardsManagerService: ICardsManagerService
         _httpClient = new HttpClient();
         _httpClient.Timeout = TimeSpan.FromSeconds(REQUEST_TIMEOUT_SEC);
         _cards = new List<Card>();
+        _cards.Add(new Card()
+        {
+            Id = 90000,
+            SubstanceId = 30000,
+            Tasks = new List<CardTask>()
+            {
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+            }
+        });
+        _cards.Add(new Card()
+        {
+            Id = 90001,
+            SubstanceId = 30001,
+            Tasks = new List<CardTask>()
+            {
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+            }
+        });
+        _cards.Add(new Card()
+        {
+            Id = 90002,
+            SubstanceId = 30002,
+            Tasks = new List<CardTask>()
+            {
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+                new CardTask()
+                {
+                    Id = 1,
+                    Concentration = 0.05f,
+                    Volume = 5
+                },
+            }
+        });
     }
 
     public async Task LoadCards()

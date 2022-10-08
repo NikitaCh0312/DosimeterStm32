@@ -18,110 +18,98 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     
-    <UserControl.Resources>
-        <Style x:Key="BlackAndWhite" TargetType="materialDesign:Card">
-            <Setter Property="Content" Value="Verdana" />
-        </Style>
-    </UserControl.Resources>
-    
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Количество карт заданий:" Foreground="White" FontSize="15"/> 
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CardsQuantity}" Foreground="White" FontSize="15"/>
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="1" Text="Список карт заданий:" Foreground="White" FontSize="15"/>
+            
+            <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding Cards}" SelectedItem="{Binding SelectedCard}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="ID:"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Id}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
         
-        <mah:ProgressRing Grid.Column="1" Grid.Row="1" IsActive="True"/>
+        <!-- CARD INFORMATION AREA -->
+        <Grid Grid.Column="1" Grid.Row="0" Margin="40,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Идентификатор выбранной карты:" Foreground="White" FontSize="15"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedCard.Id}" Foreground="White" FontSize="15"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Идентификатор препарата:" Foreground="White" FontSize="15"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding SelectedCard.SubstanceId}" Foreground="White" FontSize="15"/>
+            
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="Список заданий карты:" Foreground="White" FontSize="15"/>
+            <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" ItemsSource="{Binding SelectedCard.Tasks}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="ID:"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Id}"/>
+                            <TextBlock Grid.Column="2" Text="Объем:" Margin="5,0,0,0"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Volume}"/>
+                            <TextBlock Grid.Column="4" Text="Концентрация:"  Margin="5,0,0,0"/>
+                            <TextBlock Grid.Column="5" Text="{Binding Concentration}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Content="Редактировать карту заданий" Command="{Binding EditCardCommand}"/>
+        </Grid>
         
-        <materialDesign:Card Background="DarkSlateBlue" Margin="5" UniformCornerRadius="5">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <iconPacks:PackIconMaterial VerticalAlignment="Center" HorizontalAlignment="Center"
-                                            Kind="Book" Foreground="White"/>
-                <TextBlock FontSize="12" FontWeight="SemiBold" TextAlignment="Center" Text="Карта 908904" Foreground="White"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button Margin="5">
-                        <iconPacks:PackIconMaterial VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                    Kind="CommentEdit" Foreground="White"/>
-                    </Button>
-                    <Button Margin="5">
-                        <iconPacks:PackIconMaterial VerticalAlignment="Center" HorizontalAlignment="Center"
-                                                    Kind="Delete" Foreground="White"/>
-                    </Button> 
-                </StackPanel>
-            </StackPanel>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="1" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="2" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="3" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="4" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="5" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="6" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
-        
-        <materialDesign:Card Grid.Column="7" Grid.Row="0" Background="Aqua" Margin="5">
-            <materialDesign:Card.Effect>
-                <DropShadowEffect Color="#FF2ECC71" Direction="266" ShadowDepth="0" BlurRadius="15" Opacity="0.0"/>
-            </materialDesign:Card.Effect>
-            <Button Width="112" Height="112" Background="DarkSlateBlue" Content="qwerty" Foreground="White">
-            </Button>
-        </materialDesign:Card>
+        <!-- BUTTONS -->
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,15, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Добавить новую карту" Command="{Binding AddNewCardCommand}" Margin="5"/>
+            <Button Grid.Column="1" Content="Удалить выбранную карту" Command="{Binding RemoveCardCommand}" Margin="5"/>
+        </Grid>
     </Grid>
 </UserControl>

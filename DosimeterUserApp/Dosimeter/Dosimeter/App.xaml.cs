@@ -7,6 +7,7 @@ using Dosimeter.Services.ConfigurationService.ConfigurationService.Implementatio
 using Dosimeter.Services.ConfigurationService.ConfigurationService.Interfaces;
 using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Implementations;
 using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Interfaces;
+using Dosimeter.UserInteraction.UIServices;
 using Dosimeter.UserInteraction.Views;
 
 namespace Dosimeter
@@ -26,7 +27,7 @@ namespace Dosimeter
             containerRegistry.Register<IDeviceInfoService, DeviceInfoService>();
             containerRegistry.Register<ICardsManagerService, CardsManagerService>();
             containerRegistry.Register<IConfigurationService, ConfigurationService>();
+            containerRegistry.Register<IWindowService, WindowService>();
         }
-
     }
 }

@@ -1,0 +1,78 @@
+﻿<Window x:Class="Dosimeter.UserInteraction.Views.Windows.EditCardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Dosimeter.UserInteraction.Views.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mvvm="http://prismlibrary.com/"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d"
+        mvvm:ViewModelLocator.AutoWireViewModel="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" Background="Transparent"
+        Title="Title" Height="450" Width="800">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
+    <Border MouseDown="UIElement_OnMouseDown">
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#2e3967"/>
+                <GradientStop Color="#2e3967" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        
+        <Grid ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/> 
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding Title}" FontSize="20" Foreground="White"
+                           HorizontalAlignment="Left" Margin="5" Background="{x:Null}"/>
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="ButtonClose_OnClick" HorizontalAlignment="Right">
+                    <iconPacks:PackIconMaterial Kind="Close" Foreground="White" />
+                </Button>
+            </StackPanel>
+            
+            <Grid Grid.Row="1" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/> 
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding SelectedCard.Id}" Foreground="White" FontSize="15" Background="{x:Null}"
+                         materialDesign:HintAssist.Hint="Идентификатор карты" materialDesign:HintAssist.Foreground="White" 
+                         Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
+                
+                <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding SelectedCard.SubstanceId}"  Foreground="White" FontSize="15" Background="{x:Null}"
+                         materialDesign:HintAssist.Hint="Идентификатор препарата:" materialDesign:HintAssist.Foreground="White" 
+                         Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Задания карты:" Foreground="White" FontSize="15" Margin="0,10,0,0"/>
+                <ListView Grid.Column="0" Grid.Row="3" ItemsSource="{Binding SelectedCard.Tasks}" HorizontalAlignment="Center">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">Идентификатор</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Volume}">Объем</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Concentration}">Концентрация</GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Margin="20" VerticalAlignment="Bottom">
+                <TextBlock Text="Dosimeter development team, Inc." Foreground="White"/>
+                <TextBlock Text="Russia, Tomsk"  Foreground="White"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
