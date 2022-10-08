@@ -11,4 +11,9 @@ public class WindowService:IWindowService
         window.Owner = Application.Current.MainWindow;
         window.Show();
     }
+
+    public void ShowMessageBox(string message)
+    {
+        MessageBox.Show(message);
+    }
 }

@@ -1,13 +1,20 @@
-﻿using Dosimeter.Services.CardsManagerService.CardsManagerService.Models;
+﻿using System.Collections.Generic;
+using Dosimeter.Services.CardsManagerService.CardsManagerService.Interfaces;
+using Dosimeter.Services.CardsManagerService.CardsManagerService.Models;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Dosimeter.UserInteraction.ViewModels;
 
 public class EditCardWindowViewModel : BindableBase
 {
-    public EditCardWindowViewModel()
+    private readonly ICardsManagerService _cardsManagerService;
+    
+    public EditCardWindowViewModel(ICardsManagerService cardsManagerService, Card card)
     {
-
+        _cardsManagerService = cardsManagerService;
+        SelectedCard = card ?? new Card(){ Tasks = new List<CardTask>()};
+        ApplyCardCommand = new DelegateCommand(OnApplyCardCommand);
     }
     
     private string _title;
@@ -24,5 +31,10 @@ public class EditCardWindowViewModel : BindableBase
         set => SetProperty(ref _selectedCard, value); 
     }
     
+    public DelegateCommand ApplyCardCommand { set; get; }
 
+    private void OnApplyCardCommand()
+    {
+        _cardsManagerService.UpdateCard(SelectedCard);
+    }
 }

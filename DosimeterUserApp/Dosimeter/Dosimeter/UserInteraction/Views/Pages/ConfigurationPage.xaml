@@ -48,18 +48,18 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="IP" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="PORT" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="MASK" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-            
-                    <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Ip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Text="{Binding Mask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"/>
+                    <TextBox Grid.Row="0" VerticalAlignment="Top" Text="{Binding Ip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"
+                             materialDesign:HintAssist.Hint="IP адрес" materialDesign:HintAssist.Foreground="White" 
+                             Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Grid.Row="1" VerticalAlignment="Top" Text="{Binding Port, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"
+                             materialDesign:HintAssist.Hint="Порт" materialDesign:HintAssist.Foreground="White" 
+                             Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Grid.Row="2" VerticalAlignment="Top" Text="{Binding Mask, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Background="{x:Null}" Foreground="White" Margin="10" FontSize="20"
+                             materialDesign:HintAssist.Hint="Маска сети" materialDesign:HintAssist.Foreground="White" 
+                             Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
                 </Grid>
             </GroupBox>
             

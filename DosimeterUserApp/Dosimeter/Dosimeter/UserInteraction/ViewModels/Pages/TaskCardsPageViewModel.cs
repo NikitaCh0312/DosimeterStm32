@@ -46,10 +46,15 @@ public class TaskCardsPageViewModel : BindableBase
 
     private void OnEditCard()
     {
-        _windowService.ShowWindow<EditCardWindow>(new EditCardWindowViewModel()
+        if (SelectedCard == null)
         {
-            Title = "Редактирование карты заданий",
-            SelectedCard = SelectedCard
+            _windowService.ShowMessageBox("Выберите карту");
+            return;
+        }
+
+        _windowService.ShowWindow<EditCardWindow>(new EditCardWindowViewModel(_cardsManagerService, SelectedCard)
+        {
+            Title = "Редактирование карты заданий"
         });
     }
     
@@ -57,10 +62,9 @@ public class TaskCardsPageViewModel : BindableBase
 
     private void OnAddNewCard()
     {
-        _windowService.ShowWindow<EditCardWindow>(new EditCardWindowViewModel()
+        _windowService.ShowWindow<EditCardWindow>(new EditCardWindowViewModel(_cardsManagerService, null)
         {
             Title = "Добавление новой карты заданий",
-            
         });
     }
     
@@ -68,7 +72,11 @@ public class TaskCardsPageViewModel : BindableBase
 
     private void OnRemoveCardCommand()
     {
-        
+        if (SelectedCard == null)
+        {
+            _windowService.ShowMessageBox("Выберите карту");
+            return;
+        }
     }
     
     private int _cardsQuantity;

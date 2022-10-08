@@ -11,7 +11,7 @@
         mvvm:ViewModelLocator.AutoWireViewModel="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent"
-        Title="Title" Height="450" Width="800">
+        Title="Title" Height="450" Width="400">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
     </WindowChrome.WindowChrome>
@@ -23,7 +23,7 @@
             </LinearGradientBrush>
         </Border.Background>
         
-        <Grid ShowGridLines="True">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> 
                 <RowDefinition Height="*"/>
@@ -38,7 +38,7 @@
                 </Button>
             </StackPanel>
             
-            <Grid Grid.Row="1" ShowGridLines="True">
+            <Grid Grid.Row="1" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -47,29 +47,34 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding SelectedCard.Id}" Foreground="White" FontSize="15" Background="{x:Null}"
+                         HorizontalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Идентификатор карты" materialDesign:HintAssist.Foreground="White" 
                          Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
                 
                 <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding SelectedCard.SubstanceId}"  Foreground="White" FontSize="15" Background="{x:Null}"
+                         HorizontalContentAlignment="Center"
                          materialDesign:HintAssist.Hint="Идентификатор препарата:" materialDesign:HintAssist.Foreground="White" 
                          Style="{DynamicResource  MaterialDesignFloatingHintTextBox}"/>
                 
-                <TextBlock Grid.Column="0" Grid.Row="2" Text="Задания карты:" Foreground="White" FontSize="15" Margin="0,10,0,0"/>
-                <ListView Grid.Column="0" Grid.Row="3" ItemsSource="{Binding SelectedCard.Tasks}" HorizontalAlignment="Center">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Id}">Идентификатор</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Volume}">Объем</GridViewColumn>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Concentration}">Концентрация</GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Задания карты:" Foreground="White" FontSize="15" Margin="0,10,0,0"
+                           HorizontalAlignment="Center"/>
+                <DataGrid Grid.Column="0" Grid.Row="3" ItemsSource="{Binding SelectedCard.Tasks}" AutoGenerateColumns="False"
+                          Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Идентификатор" Binding="{Binding Id}"/>
+                        <DataGridTextColumn Header="Объем" Binding="{Binding Volume}" />
+                        <DataGridTextColumn Header="Концентрация" Binding="{Binding Concentration}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <Button Grid.Row="4" Content="Применить" Margin="5" Command="{Binding ApplyCardCommand}"/>
             </Grid>
 
-            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Margin="20" VerticalAlignment="Bottom">
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom">
                 <TextBlock Text="Dosimeter development team, Inc." Foreground="White"/>
                 <TextBlock Text="Russia, Tomsk"  Foreground="White"/>
             </StackPanel>
