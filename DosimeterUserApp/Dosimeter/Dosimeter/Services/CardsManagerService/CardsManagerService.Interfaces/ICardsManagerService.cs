@@ -7,9 +7,10 @@ namespace Dosimeter.Services.CardsManagerService.CardsManagerService.Interfaces;
 public interface ICardsManagerService
 {
     Task LoadCards();
-    CardsInfo CardsInfo { get; }
+    
     List<Card> Cards { get; }
-    Task AddCard(Card card);
-    Task UpdateCard(Card card);
+
+    Task AddOrUpdateCard(Card card);
+    
     Task RemoveCard(int cardId);
 }

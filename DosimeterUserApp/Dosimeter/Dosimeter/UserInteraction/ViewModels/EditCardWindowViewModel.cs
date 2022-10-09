@@ -35,6 +35,6 @@ public class EditCardWindowViewModel : BindableBase
 
     private void OnApplyCardCommand()
     {
-        _cardsManagerService.UpdateCard(SelectedCard);
+        _cardsManagerService.AddOrUpdateCard(SelectedCard);
     }
 }

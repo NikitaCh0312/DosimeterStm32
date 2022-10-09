@@ -9,125 +9,136 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:converters="clr-namespace:Dosimeter.UserInteraction.Views.Converters"
              mvvm:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:BoolToBoolInvertedConverter x:Key="BoolToBoolInvertedConverter" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+    
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
             <mvvm:InvokeCommandAction Command="{Binding ViewLoadCommand}"/>
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        
-        <Grid Grid.Column="0" Grid.Row="0">
+    <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center"
+              Visibility="{Binding IsDataLoaded, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             
-            <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="5" Grid.Column="0" Fill="DarkSlateGray" RadiusX="5" RadiusY="5"/>
+            <Grid Grid.Column="0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Rectangle Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="5" Grid.Column="0" Fill="DarkSlateGray" RadiusX="5" RadiusY="5"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Общая информация по картам" Foreground="White" FontSize="25" Margin="5"/> 
+                <Separator Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="Bisque"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Количество карт заданий:" Foreground="White" FontSize="15" Margin="5"/> 
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding CardsQuantity}" Foreground="White" FontSize="15" Margin="5"/>
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="3" Text="Список карт заданий:" Foreground="White" FontSize="15" Margin="5"/>
+                
+                <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemsSource="{Binding Cards}" SelectedItem="{Binding SelectedCard}"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible" MinHeight="200">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="1" Text="{Binding Id}" FontSize="15" FontWeight="Bold"
+                                           HorizontalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
             
-            <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="Общая информация по картам" Foreground="White" FontSize="25" Margin="5"/> 
-            <Separator Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="Bisque"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Количество карт заданий:" Foreground="White" FontSize="15" Margin="5"/> 
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding CardsQuantity}" Foreground="White" FontSize="15" Margin="5"/>
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="3" Text="Список карт заданий:" Foreground="White" FontSize="15" Margin="5"/>
+            <!-- CARD INFORMATION AREA -->
+            <Grid Grid.Column="1" Grid.Row="0" Margin="40,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                
+                <Rectangle Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="6" Fill="DarkSlateBlue" RadiusX="10" RadiusY="10"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Выбранная карта:" Margin="5" Foreground="White" FontSize="25"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedCard.Id}" Foreground="White" FontSize="25" FontWeight="Bold"
+                           Margin="5" Width="100"/>
+                
+                <Separator Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="Bisque"/>
+                
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Идентификатор препарата:" Foreground="White" FontSize="15" Margin="5"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedCard.SubstanceId}" Foreground="White" FontSize="15" FontWeight="Bold"
+                           Margin="5" Width="100"/>
+                
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="Список заданий карты:" Margin="5" Foreground="White" FontSize="15"/>
+                <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemsSource="{Binding SelectedCard.Tasks}" Margin="5"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible" Height="150">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="ID:" FontSize="15"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Id}" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="2" Text="Объем:" Margin="5,0,0,0" FontSize="15"/>
+                                <TextBlock Grid.Column="3" Text="{Binding Volume}" FontSize="15" FontWeight="Bold"/>
+                                <TextBlock Grid.Column="4" Text="Концентрация:"  Margin="5,0,0,0" FontSize="15"/>
+                                <TextBlock Grid.Column="5" Text="{Binding Concentration}" FontSize="15" FontWeight="Bold"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="5" Content="Редактировать карту заданий" Command="{Binding EditCardCommand}"/>
+            </Grid>
             
-            <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemsSource="{Binding Cards}" SelectedItem="{Binding SelectedCard}"
-                     ScrollViewer.VerticalScrollBarVisibility="Visible" MinHeight="200">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="1" Text="{Binding Id}" FontSize="15" FontWeight="Bold"
-                                       HorizontalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <!-- BUTTONS -->
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,30, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Добавить новую карту" Command="{Binding AddNewCardCommand}" Margin="5"/>
+                <Button Grid.Column="1" Content="Удалить выбранную карту" Command="{Binding RemoveCardCommand}" Margin="5"/>
+            </Grid>
         </Grid>
         
-        <!-- CARD INFORMATION AREA -->
-        <Grid Grid.Column="1" Grid.Row="0" Margin="40,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            
-            <Rectangle Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="6" Fill="DarkSlateBlue" RadiusX="10" RadiusY="10"/>
-            
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Выбранная карта:" Margin="5" Foreground="White" FontSize="25"/>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding SelectedCard.Id}" Foreground="White" FontSize="25" FontWeight="Bold"
-                       Margin="5" Width="100"/>
-            
-            <Separator Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Background="Bisque"/>
-            
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Идентификатор препарата:" Foreground="White" FontSize="15" Margin="5"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding SelectedCard.SubstanceId}" Foreground="White" FontSize="15" FontWeight="Bold"
-                       Margin="5" Width="100"/>
-            
-            <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="Список заданий карты:" Margin="5" Foreground="White" FontSize="15"/>
-            <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemsSource="{Binding SelectedCard.Tasks}" Margin="5"
-                     ScrollViewer.VerticalScrollBarVisibility="Visible" Height="150">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="5">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="ID:" FontSize="15"/>
-                            <TextBlock Grid.Column="1" Text="{Binding Id}" FontSize="15" FontWeight="Bold"/>
-                            <TextBlock Grid.Column="2" Text="Объем:" Margin="5,0,0,0" FontSize="15"/>
-                            <TextBlock Grid.Column="3" Text="{Binding Volume}" FontSize="15" FontWeight="Bold"/>
-                            <TextBlock Grid.Column="4" Text="Концентрация:"  Margin="5,0,0,0" FontSize="15"/>
-                            <TextBlock Grid.Column="5" Text="{Binding Concentration}" FontSize="15" FontWeight="Bold"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Margin="5" Content="Редактировать карту заданий" Command="{Binding EditCardCommand}"/>
-        </Grid>
-        
-        <!-- BUTTONS -->
-        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Margin="0,30, 0, 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Добавить новую карту" Command="{Binding AddNewCardCommand}" Margin="5"/>
-            <Button Grid.Column="1" Content="Удалить выбранную карту" Command="{Binding RemoveCardCommand}" Margin="5"/>
-        </Grid>
+        <mah:ProgressRing IsActive="{Binding IsDataLoaded, Converter={StaticResource BoolToBoolInvertedConverter}}"
+                          Foreground="White" Width="100" Height="100"/>
     </Grid>
 </UserControl>

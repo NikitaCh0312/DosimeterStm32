@@ -19,6 +19,8 @@ public class TaskCardsPageViewModel : BindableBase
         _cardsManagerService = cardsManagerService;
         _windowService = windowService;
         Cards = new ObservableCollection<Card>();
+
+        IsDataLoaded = false;
         
         ViewLoadCommand = new DelegateCommand(OnViewLoaded);
         EditCardCommand = new DelegateCommand(OnEditCard);
@@ -30,16 +32,16 @@ public class TaskCardsPageViewModel : BindableBase
 
     private async void OnViewLoaded()
     {
-        //await _cardsManagerService.LoadCards();
-        //var cardsInfo = _cardsManagerService.CardsInfo;
-        //if (cardsInfo != null)
-        //    CardsQuantity = 0;
+        IsDataLoaded = false;
         Cards.Clear();
-        CardsQuantity = 15;
+        await _cardsManagerService.LoadCards();
+        CardsQuantity = _cardsManagerService.Cards.Count;
         foreach (var card in _cardsManagerService.Cards)
         {
             Cards.Add(card);
         }
+        
+        IsDataLoaded = true;
     }
     
     public DelegateCommand EditCardCommand { set; get; }
@@ -77,6 +79,13 @@ public class TaskCardsPageViewModel : BindableBase
             _windowService.ShowMessageBox("Выберите карту");
             return;
         }
+    }
+    
+    private bool _isDataLoaded;
+    public bool IsDataLoaded
+    {
+        get => _isDataLoaded;
+        set => SetProperty(ref _isDataLoaded, value); 
     }
     
     private int _cardsQuantity;

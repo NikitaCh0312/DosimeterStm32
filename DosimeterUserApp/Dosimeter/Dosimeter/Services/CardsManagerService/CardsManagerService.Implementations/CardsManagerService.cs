@@ -134,21 +134,18 @@ public class CardsManagerService: ICardsManagerService
             _cards.Add(await LoadCard(cardId));
         }
     }
-
-    public CardsInfo CardsInfo => _cardsInfo;
     
     public List<Card> Cards => _cards;
 
-    public async Task AddCard(Card card)
+    public async Task AddOrUpdateCard(Card card)
     {
         var query = CreateCardQuery(card);
-        var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_card", query));
-    }
-
-    public async Task UpdateCard(Card card)
-    {
-        var query = CreateCardQuery(card);
-        var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "update_card", query));    
+        if (Cards.Contains(card))
+        {
+            var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "update_card", query));
+            return;
+        }
+        await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_card", query));
     }
     
     public async Task RemoveCard(int cardId)
