@@ -58,7 +58,7 @@ void stack_over_flow_hook(void * tsk_handle, char * tsk_name)
 
 ButtonsTask * buttonsTask = new ButtonsTask((char*)"ButtonsTask", configMINIMAL_STACK_SIZE * 2, 1);
 //DisplayTask * displayTask = new DisplayTask((char*)"DisplayTask", configMINIMAL_STACK_SIZE * 2, 1);
-EthernetTask * ethernetTask = new EthernetTask((char*)"EthernetTask", configMINIMAL_STACK_SIZE * 4, 1);
+EthernetTask * ethernetTask = new EthernetTask((char*)"EthernetTask", configMINIMAL_STACK_SIZE * 10, 1);
 MainLogicTask * mainLogicTask = new MainLogicTask((char*)"MainLogicTask", configMINIMAL_STACK_SIZE * 4, 1);
 RfidTask * rfidTask = new RfidTask((char*)"RfidTask", configMINIMAL_STACK_SIZE * 2, 1);
 DebugTask * debugTask = new DebugTask((char*)"DebugTask", configMINIMAL_STACK_SIZE * 2, 1);
@@ -87,19 +87,19 @@ IRequestHandlerFactory * requestHandlerFactory = new RequestHandlerFactory();
 static void ConfigureApi()
 {
     ApiController * apiController = ApiController::GetInstance();
-    apiController->RegisterHandler("description", requestHandlerFactory->CreateDescriptionRequestHandler());
-    apiController->RegisterHandler("event_log", requestHandlerFactory->CreateEventLogRequestHandler());
-    apiController->RegisterHandler("network", requestHandlerFactory->CreateNetworkRequestHandler());
+    apiController->RegisterHandler((char*)"description", requestHandlerFactory->CreateDescriptionRequestHandler());
+    apiController->RegisterHandler((char*)"event_log", requestHandlerFactory->CreateEventLogRequestHandler());
+    apiController->RegisterHandler((char*)"network", requestHandlerFactory->CreateNetworkRequestHandler());
     
     //api for task cards
-    apiController->RegisterHandler("get_cards_list", requestHandlerFactory->CreateCardsListRequestHandler());
-    apiController->RegisterHandler("add_card", requestHandlerFactory->CreateAddCardRequestHandler());
-    apiController->RegisterHandler("get_card", requestHandlerFactory->CreateGetCardRequestHandler());
-    apiController->RegisterHandler("remove_card", requestHandlerFactory->CreateRemoveCardRequestHandler());
+    apiController->RegisterHandler((char*)"get_cards_list", requestHandlerFactory->CreateCardsListRequestHandler());
+    apiController->RegisterHandler((char*)"add_card", requestHandlerFactory->CreateAddCardRequestHandler());
+    apiController->RegisterHandler((char*)"get_card_info", requestHandlerFactory->CreateGetCardRequestHandler());
+    apiController->RegisterHandler((char*)"remove_card", requestHandlerFactory->CreateRemoveCardRequestHandler());
     
     //configuration
-    apiController->RegisterHandler("get_config", requestHandlerFactory->CreateGetConfigurationRequestHandler());
-    apiController->RegisterHandler("set_config", requestHandlerFactory->CreateSetConfigurationRequestHandler());
+    apiController->RegisterHandler((char*)"get_config", requestHandlerFactory->CreateGetConfigurationRequestHandler());
+    apiController->RegisterHandler((char*)"set_config", requestHandlerFactory->CreateSetConfigurationRequestHandler());
 }
 
 

@@ -21,19 +21,41 @@ public:
   void Serialize( char * outString )
   {
       _serializer->WriteStartObject(outString);
-      _serializer->WriteProperty(outString, IP_ADDRESS_PROPERTY_NAME, "192.168.0.55");
+      _serializer->WriteProperty(outString, ID_PROPERTY_NAME, "7878");
       _serializer->WriteEndProperty(outString);
-      _serializer->WriteProperty(outString, PORT_PROPERTY_NAME, "666");
+      _serializer->WriteProperty(outString, SUBSTANCE_ID_PROPERTY_NAME, "5656");
       _serializer->WriteEndProperty(outString);
-      _serializer->WriteProperty(outString, MASK_PROPERTY_NAME, "255.255.0.0");
-      _serializer->WriteEndProperty(outString);
+      
+      //creating list of cardsTasks
+      strcat(outString, "\"");
+      strcat(outString, TASKS_PROPERTY_NAME);
+      strcat(outString, "\"");
+      strcat(outString, ":");
+      
+      _serializer->WriteStartArray(outString);
+      for (int i = 0; i < _card.TasksQuantity; i++)
+      {
+          _serializer->WriteStartObject(outString);
+          _serializer->WriteProperty(outString, ID_PROPERTY_NAME, "111");
+          _serializer->WriteEndProperty(outString);
+          _serializer->WriteProperty(outString, VOLUME_PROPERTY_NAME, "222");
+          _serializer->WriteEndProperty(outString);
+          _serializer->WriteProperty(outString, CONCENTRATION_PROPERTY_NAME, "333");
+          _serializer->WriteEndObject(outString);
+          strcat(outString, ",");
+      }
+      _serializer->WriteEndArray(outString);
+      
+      _serializer->WriteEndObject(outString);
   }
   
 private:
   
-  char * IP_ADDRESS_PROPERTY_NAME = "IpAddress";
-  char * PORT_PROPERTY_NAME = "Port";
-  char * MASK_PROPERTY_NAME = "Mask";
+  char * ID_PROPERTY_NAME = "Id";
+  char * SUBSTANCE_ID_PROPERTY_NAME = "SubstanceId";
+  char * TASKS_PROPERTY_NAME = "Tasks";
+  char * VOLUME_PROPERTY_NAME = "V";
+  char * CONCENTRATION_PROPERTY_NAME = "C";
 
   JsonSerializer * _serializer;
 

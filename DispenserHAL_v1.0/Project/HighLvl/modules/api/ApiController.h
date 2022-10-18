@@ -60,12 +60,12 @@ private:
             IRequestHandler * requestHandler = FindRequestHandler(resourceName);
             if (requestHandler == NULL)
             {
-                _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
+                //_webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
                 return;
             }
             HttpRequest httpRequest = HttpRequest( (HTTP_METHOD_t)request->METHOD, uri, query, body);
             if (!requestHandler->Handle(&httpRequest, &_webResponse))
-              _webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
+              ;//_webResponse.SetFullResponse((char*)ERROR_REQUEST_PAGE);
             return;
         }
         

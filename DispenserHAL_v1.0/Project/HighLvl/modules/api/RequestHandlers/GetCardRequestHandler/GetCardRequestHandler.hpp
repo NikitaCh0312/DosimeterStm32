@@ -21,8 +21,10 @@ public:
             return false;
             
         Flush();
-        webResponse->AddHeader(RES_JSONHEAD_OK);
+        webResponse->AddHeader((char*)RES_JSONHEAD_OK);
+        int cardId = ParseCardId(request->GetQueryString());
         Card card;
+        card.TasksQuantity = 5;
         GetCardDto networkDto (JsonSerializer::GetInstance(), card);
         networkDto.Serialize(_content);
         webResponse->AddContent(_content);
@@ -32,12 +34,22 @@ public:
     }
 private:
 
-    char _content[100];
+    char _content[500];
     
     void Flush()
     {
         for (int i = 0; i < sizeof(_content); i++)
           _content[i] = '\0';
+    }
+    
+    int ParseCardId(char * query)
+    {
+        char* card_id = strtok((char*)query, "&=");
+        if (strcmp(card_id, "card_id"))
+          return false;
+        char* cardIdValue = strtok(NULL, "&=");
+        int cardIdInt = atoi(cardIdValue);
+        return cardIdInt;
     }
 };
 
