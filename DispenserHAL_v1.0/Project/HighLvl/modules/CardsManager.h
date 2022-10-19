@@ -113,7 +113,7 @@ public:
         }
     }
     
-    int AddCard(Card card)
+    int AddOrUpdateCard(Card card)
     {
         if (card.TasksQuantity > MAX_TASKS_QUANTITY)
             return -1;
@@ -123,14 +123,20 @@ public:
         {
             card.tasks[i].Id = 0;
         }
-        _storage->AddCard(card);
+        _storage->AddOrUpdateCard(card);
         return 0;
     }
 
     CardsListInfo_t GetCardsInfo()
     {
-      
+        return _storage->GetCardsListInfo();
     }
+    
+    void DeleteCard(int cardId)
+    {
+        _storage->DeleteCard(cardId);
+    }
+    
 private:
     CardsStorage* _storage;
     uint32_t _cardsQuantity;

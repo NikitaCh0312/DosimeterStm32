@@ -12,6 +12,8 @@
 #define CARDS_END_SECTOR_NUMBER 4
 #define CARD_SIZE_BYTES 255
 
+#define CARD_DEFAULT_ID 0
+
 extern w25qxx_t w25qxx;
 
 //total 5128 bytes (= 1282 words (1word=32bit))
@@ -57,8 +59,28 @@ public:
         //  bufferAfter[i] = storageAfter[i];
     }
     
-    void AddCard(Card card)
+    void AddOrUpdateCard(Card card)
     {
+        //if card exists - edit this card
+        for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
+        {
+            if (CardsStorageBuffer.CardsBuffer[i].Id == card.Id)
+            {
+                CardsStorageBuffer.CardsBuffer[i].Id = card.Id;
+                CardsStorageBuffer.CardsBuffer[i].TasksQuantity = card.TasksQuantity;
+                CardsStorageBuffer.CardsBuffer[i].SubstanceId = card.SubstanceId;
+                for (int j = 0; j < MAX_TASKS_QUANTITY; j++)
+                {
+                    CardsStorageBuffer.CardsBuffer[i].tasks[j].Id = card.tasks[j].Id;
+                    CardsStorageBuffer.CardsBuffer[i].tasks[j].Volume = card.tasks[j].Volume;
+                    CardsStorageBuffer.CardsBuffer[i].tasks[j].Concentration = card.tasks[j].Concentration;
+                }
+                UpdateStorage();
+                return;
+            }
+        }
+        
+        //add new card
         for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
         {
             if (CardsStorageBuffer.CardsBuffer[i].Id == 0)
@@ -72,6 +94,7 @@ public:
                     CardsStorageBuffer.CardsBuffer[i].tasks[j].Volume = card.tasks[j].Volume;
                     CardsStorageBuffer.CardsBuffer[i].tasks[j].Concentration = card.tasks[j].Concentration;
                 }
+                break;
             }
         }
         UpdateStorage();
@@ -104,10 +127,47 @@ public:
         int counter = 0;
         for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
         {
-            if (CardsStorageBuffer.CardsBuffer[i].Id != 0)
+            if (CardsStorageBuffer.CardsBuffer[i].Id != CARD_DEFAULT_ID)
               counter++;
         }
         return counter;
+    }
+    
+    CardsListInfo_t GetCardsListInfo()
+    {
+        CardsListInfo_t cardsInfo;
+        cardsInfo.CardsQuantity = GetCardsQuantity();
+        
+        int counter = 0;
+        for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
+        {
+            if (CardsStorageBuffer.CardsBuffer[i].Id != CARD_DEFAULT_ID)
+            {
+                cardsInfo.CardIdsList[counter++] = CardsStorageBuffer.CardsBuffer[i].Id;
+            }
+        }
+        return cardsInfo;
+    }
+    
+    void DeleteCard(int cardId)
+    {
+        for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
+        {
+            if (CardsStorageBuffer.CardsBuffer[i].Id == cardId)
+            {
+                CardsStorageBuffer.CardsBuffer[i].Id = CARD_DEFAULT_ID;
+                CardsStorageBuffer.CardsBuffer[i].TasksQuantity = 0;
+                CardsStorageBuffer.CardsBuffer[i].SubstanceId = 0;
+                for (int j = 0; j < MAX_TASKS_QUANTITY; j++)
+                {
+                    CardsStorageBuffer.CardsBuffer[i].tasks[j].Id = 0;
+                    CardsStorageBuffer.CardsBuffer[i].tasks[j].Volume = 0;
+                    CardsStorageBuffer.CardsBuffer[i].tasks[j].Concentration = 0;
+                }
+                break;
+            }
+        }
+        UpdateStorage();
     }
 private:
   

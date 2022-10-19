@@ -4,13 +4,14 @@
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 #include "modules/api/RequestHandlers/GetCardRequestHandler/GetCardDto.hpp"
 #include "Ethernet/Internet/httpServer/httpParser.h"
+#include "modules/ModulesLocator.h"
 
 class GetCardRequestHandler: public IRequestHandler
 {
 public:
     GetCardRequestHandler()
     {
-      
+      _cardsManager = ModulesLocator::GetInstance()->cardsManager;
     }
     
     virtual ~GetCardRequestHandler(){}
@@ -22,9 +23,10 @@ public:
             
         Flush();
         webResponse->AddHeader((char*)RES_JSONHEAD_OK);
+        
         int cardId = ParseCardId(request->GetQueryString());
-        Card card;
-        card.TasksQuantity = 5;
+        Card card = _cardsManager->GetCard(cardId);
+        
         GetCardDto networkDto (JsonSerializer::GetInstance(), card);
         networkDto.Serialize(_content);
         webResponse->AddContent(_content);
@@ -33,7 +35,7 @@ public:
         
     }
 private:
-
+    ICardsManager* _cardsManager;
     char _content[500];
     
     void Flush()

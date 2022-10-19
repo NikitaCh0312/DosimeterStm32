@@ -25,7 +25,7 @@ public:
       else
         _serializer->WriteProperty(outString, COMMAND_RESULT_PROPERTY_NAME, "ERROR");
       _serializer->WriteEndProperty(outString);
-       _serializer->WriteEndObject(outString);
+      _serializer->WriteEndObject(outString);
   }
   
 private:

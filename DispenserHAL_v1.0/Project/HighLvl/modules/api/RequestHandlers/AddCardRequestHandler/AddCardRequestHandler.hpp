@@ -26,7 +26,7 @@ public:
         bool result = ParseQuery(request->GetQueryString(), &card);
         if (result)
         {
-            if (!_cardsManager->AddCard(card))
+            if (!_cardsManager->AddOrUpdateCard(card))
                 return false;
             
         }

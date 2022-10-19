@@ -24,6 +24,7 @@ public class EditCardWindowViewModel : BindableBase
         set => SetProperty(ref _title, value); 
     }
     
+    
     private Card _selectedCard;
     public Card SelectedCard
     {

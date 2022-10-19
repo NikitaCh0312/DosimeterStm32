@@ -22,13 +22,15 @@ public:
             
         Flush();
         webResponse->AddHeader((char*)RES_JSONHEAD_OK);
-        int cards[5];
-        cards[0] = 908904;
-        cards[1] = 908905;
-        cards[2] = 908906;
-        cards[3] = 908907;
-        cards[4] = 908908;
-        CardsListDto cardsListDto (JsonSerializer::GetInstance(), cards, 5);
+        
+        CardsListInfo_t cardsInfo = _cardsManager->GetCardsInfo();
+        int cards[MAX_CARDS_QUANTITY];
+        for (int i = 0; i < cardsInfo.CardsQuantity; i++)
+        {
+            cards[i] = cardsInfo.CardIdsList[i];
+        }
+        
+        CardsListDto cardsListDto (JsonSerializer::GetInstance(), cards, cardsInfo.CardsQuantity);
         cardsListDto.Serialize(_content);
         webResponse->AddContent(_content);
         Flush();

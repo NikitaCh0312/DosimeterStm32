@@ -10,19 +10,31 @@
 class RemoveCardDto: public IDtoObject
 {
 public:
-  RemoveCardDto(JsonSerializer * serializer)
+  RemoveCardDto(JsonSerializer * serializer, bool result )
   {
       _serializer = serializer;
+      _result = result;
   }
   
-  void Serialize( char * outString )
+  void Serialize( char * outString)
   {
+      _serializer->WriteStartObject(outString);
       
+      if (_result)
+        _serializer->WriteProperty(outString, RESULT_PROPERTY_NAME, "true");
+      else
+        _serializer->WriteProperty(outString, RESULT_PROPERTY_NAME, "false");
+      
+      _serializer->WriteEndObject(outString);
   }
   
 private:
   
   JsonSerializer * _serializer;
+  
+  char * RESULT_PROPERTY_NAME = "Result";
+  
+  bool _result;
 };
 
 #endif

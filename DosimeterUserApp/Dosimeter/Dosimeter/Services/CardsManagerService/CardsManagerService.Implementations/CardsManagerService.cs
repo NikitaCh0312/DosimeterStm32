@@ -51,12 +51,7 @@ public class CardsManagerService: ICardsManagerService
     public async Task AddOrUpdateCard(Card card)
     {
         var query = CreateCardQuery(card);
-        if (Cards.Contains(card))
-        {
-            var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "update_card", query));
-            return;
-        }
-        await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_card", query));
+        await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_or_update_card", query));
     }
     
     public async Task RemoveCard(int cardId)
@@ -111,6 +106,12 @@ public class CardsManagerService: ICardsManagerService
 
     private string CreateCardQuery(Card card)
     {
+        StringBuilder builder = new StringBuilder();
+        builder.Append($"?card_id={card.Id}&quantity={card.Tasks.Count}&substanceId={card.SubstanceId}");
+        for (int i = 0; i < card.Tasks.Count; i++)
+        {
+            builder.Append($"&v{i + 1}={card.Tasks[i].Volume}&c{i + 1}={card.Tasks[i].Concentration}");
+        }
         return null;
     }
 }
