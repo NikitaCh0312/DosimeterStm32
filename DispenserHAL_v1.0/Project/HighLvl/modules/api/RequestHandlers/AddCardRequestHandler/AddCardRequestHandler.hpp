@@ -19,7 +19,7 @@ public:
   
     bool Handle(HttpRequest * request, WebResponse * webResponse)
     {
-        if (request->GetMethod() != METHOD_POST)
+        if (request->GetMethod() != METHOD_GET)
             return false;
 
         Card card;
@@ -81,7 +81,7 @@ private:
                 return false;
             
             char* VolValue = strtok(NULL, "&=");
-            int VolValueInt = atof(VolValue);
+            float VolValueInt = atof(VolValue);
             
             char conc[4] = {'c', '\0'};
             strcat(conc, number);
@@ -90,8 +90,9 @@ private:
                 return false;
             
             char* ConValue = strtok(NULL, "&=");
-            int ConValueInt = atof(ConValue);
+            float ConValueInt = atof(ConValue);
 
+            outCard->tasks[i].Id = i + 1;
             outCard->tasks[i].Volume = VolValueInt;
             outCard->tasks[i].Concentration = ConValueInt;
         }
@@ -101,7 +102,7 @@ private:
     void CreateResponse(WebResponse * webResponse, bool result)
     {
         Flush();
-        webResponse->AddHeader(RES_JSONHEAD_OK);
+        webResponse->AddHeader((char*)RES_JSONHEAD_OK);
         AddCardDto dto (JsonSerializer::GetInstance(), result);
         dto.Serialize(_content);
         webResponse->AddContent(_content);

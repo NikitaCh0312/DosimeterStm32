@@ -20,10 +20,13 @@ public:
   
   void Serialize( char * outString )
   {
+      char value[30];
       _serializer->WriteStartObject(outString);
-      _serializer->WriteProperty(outString, ID_PROPERTY_NAME, "7878");
+      sprintf(value, "%d", _card.Id);
+      _serializer->WriteProperty(outString, ID_PROPERTY_NAME, value);
       _serializer->WriteEndProperty(outString);
-      _serializer->WriteProperty(outString, SUBSTANCE_ID_PROPERTY_NAME, "5656");
+      sprintf(value, "%d", _card.SubstanceId);
+      _serializer->WriteProperty(outString, SUBSTANCE_ID_PROPERTY_NAME, value);
       _serializer->WriteEndProperty(outString);
       
       //creating list of cardsTasks
@@ -36,12 +39,19 @@ public:
       for (int i = 0; i < _card.TasksQuantity; i++)
       {
           _serializer->WriteStartObject(outString);
-          _serializer->WriteProperty(outString, ID_PROPERTY_NAME, "111");
+          
+          sprintf(value, "%d", _card.tasks[i].Id);
+          _serializer->WriteProperty(outString, ID_PROPERTY_NAME, value);
           _serializer->WriteEndProperty(outString);
-          _serializer->WriteProperty(outString, VOLUME_PROPERTY_NAME, "222");
+          
+          sprintf(value, "%.3f", _card.tasks[i].Volume);
+          _serializer->WriteProperty(outString, VOLUME_PROPERTY_NAME, value);
           _serializer->WriteEndProperty(outString);
-          _serializer->WriteProperty(outString, CONCENTRATION_PROPERTY_NAME, "333");
+          
+          sprintf(value, "%.3f", _card.tasks[i].Concentration);
+          _serializer->WriteProperty(outString, CONCENTRATION_PROPERTY_NAME, value);
           _serializer->WriteEndObject(outString);
+          
           strcat(outString, ",");
       }
       _serializer->WriteEndArray(outString);

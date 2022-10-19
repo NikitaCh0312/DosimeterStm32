@@ -112,6 +112,6 @@ public class CardsManagerService: ICardsManagerService
         {
             builder.Append($"&v{i + 1}={card.Tasks[i].Volume}&c{i + 1}={card.Tasks[i].Concentration}");
         }
-        return null;
+        return builder.ToString();
     }
 }

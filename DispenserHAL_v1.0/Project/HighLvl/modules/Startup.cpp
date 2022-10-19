@@ -93,7 +93,7 @@ static void ConfigureApi()
     
     //api for task cards
     apiController->RegisterHandler((char*)"get_cards_list", requestHandlerFactory->CreateCardsListRequestHandler());
-    apiController->RegisterHandler((char*)"add_card", requestHandlerFactory->CreateAddCardRequestHandler());
+    apiController->RegisterHandler((char*)"add_or_update_card", requestHandlerFactory->CreateAddCardRequestHandler());
     apiController->RegisterHandler((char*)"get_card_info", requestHandlerFactory->CreateGetCardRequestHandler());
     apiController->RegisterHandler((char*)"remove_card", requestHandlerFactory->CreateRemoveCardRequestHandler());
     
