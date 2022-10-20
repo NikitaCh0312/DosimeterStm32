@@ -34,8 +34,8 @@ public class EditCardWindowViewModel : BindableBase
     
     public DelegateCommand ApplyCardCommand { set; get; }
 
-    private void OnApplyCardCommand()
+    private async void OnApplyCardCommand()
     {
-        _cardsManagerService.AddOrUpdateCard(SelectedCard);
+        await _cardsManagerService.AddOrUpdateCard(SelectedCard);
     }
 }
