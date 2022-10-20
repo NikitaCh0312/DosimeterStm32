@@ -72,13 +72,17 @@ public class TaskCardsPageViewModel : BindableBase
     
     public DelegateCommand RemoveCardCommand { set; get; }
 
-    private void OnRemoveCardCommand()
+    private async void OnRemoveCardCommand()
     {
         if (SelectedCard == null)
         {
             _windowService.ShowMessageBox("Выберите карту");
             return;
         }
+
+        IsDataLoaded = false;
+        await _cardsManagerService.RemoveCard(SelectedCard.Id);
+        OnViewLoaded();
     }
     
     private bool _isDataLoaded;

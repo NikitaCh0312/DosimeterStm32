@@ -17,7 +17,7 @@ public:
   
     bool Handle(HttpRequest * request, WebResponse * webResponse)
     {
-        if (request->GetMethod() != METHOD_POST)
+        if (request->GetMethod() != METHOD_GET)
             return false;
             
         Flush();

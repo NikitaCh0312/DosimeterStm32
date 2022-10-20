@@ -12,7 +12,7 @@ namespace Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Implement
 
 public class CardsManagerService: ICardsManagerService
 {
-    private const int REQUEST_TIMEOUT_SEC = 2;
+    private const int REQUEST_TIMEOUT_SEC = 4;
     private readonly HttpClient _httpClient;
 
     private const string _requestTemplate = @"http://{0}:{1}/api/{2}";
