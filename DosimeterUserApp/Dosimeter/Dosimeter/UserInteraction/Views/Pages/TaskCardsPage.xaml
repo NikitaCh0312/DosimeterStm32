@@ -114,11 +114,11 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="ID:" FontSize="15"/>
+                                <TextBlock Grid.Column="0" Text="ID: " FontSize="15"/>
                                 <TextBlock Grid.Column="1" Text="{Binding Id}" FontSize="15" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="2" Text="Объем:" Margin="5,0,0,0" FontSize="15"/>
+                                <TextBlock Grid.Column="2" Text="Объем: " Margin="5,0,0,0" FontSize="15"/>
                                 <TextBlock Grid.Column="3" Text="{Binding Volume}" FontSize="15" FontWeight="Bold"/>
-                                <TextBlock Grid.Column="4" Text="Концентрация:"  Margin="5,0,0,0" FontSize="15"/>
+                                <TextBlock Grid.Column="4" Text="Концентрация: "  Margin="5,0,0,0" FontSize="15"/>
                                 <TextBlock Grid.Column="5" Text="{Binding Concentration}" FontSize="15" FontWeight="Bold"/>
                             </Grid>
                         </DataTemplate>

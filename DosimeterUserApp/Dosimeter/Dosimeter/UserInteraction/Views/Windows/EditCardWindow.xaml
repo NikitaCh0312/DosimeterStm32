@@ -7,11 +7,18 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mvvm="http://prismlibrary.com/"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:converters="clr-namespace:Dosimeter.UserInteraction.Views.Converters"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         mvvm:ViewModelLocator.AutoWireViewModel="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" Background="Transparent"
-        Title="Title" Height="450" Width="400">
+        Title="Title" Height="450" Width="400"
+        Name="AddOrEditCardWindow">
+    <Window.Resources>
+        <converters:BoolToBoolInvertedConverter x:Key="BoolToBoolInvertedConverter" />
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="5"/>
     </WindowChrome.WindowChrome>
@@ -22,8 +29,8 @@
                 <GradientStop Color="#2e3967" Offset="1.0"/>
             </LinearGradientBrush>
         </Border.Background>
-        
         <Grid>
+            <Grid Visibility="{Binding IsEdittingActive, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/> 
                 <RowDefinition Height="*"/>
@@ -65,19 +72,23 @@
                 <DataGrid Grid.Column="0" Grid.Row="3" ItemsSource="{Binding SelectedCard.Tasks}" AutoGenerateColumns="False"
                           Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Идентификатор" Binding="{Binding Id}"/>
+                        <!--<DataGridTextColumn Header="Идентификатор" Binding="{Binding Id}"/>-->
                         <DataGridTextColumn Header="Объем" Binding="{Binding Volume}" />
                         <DataGridTextColumn Header="Концентрация" Binding="{Binding Concentration}" />
                     </DataGrid.Columns>
                 </DataGrid>
                 
-                <Button Grid.Row="4" Content="Применить" Margin="5" Command="{Binding ApplyCardCommand}"/>
+                <Button Grid.Row="4" Content="Применить" Margin="5" Command="{Binding ApplyCardCommand}" CommandParameter="{Binding ElementName=AddOrEditCardWindow}"/>
             </Grid>
 
             <StackPanel Grid.Row="2" HorizontalAlignment="Right" Margin="10" VerticalAlignment="Bottom">
                 <TextBlock Text="Dosimeter development team, Inc." Foreground="White"/>
                 <TextBlock Text="Russia, Tomsk"  Foreground="White"/>
             </StackPanel>
+        </Grid>
+        
+            <mah:ProgressRing IsActive="{Binding IsEdittingActive, Converter={StaticResource BoolToBoolInvertedConverter}}"
+                              Foreground="White" Width="100" Height="100"/>
         </Grid>
     </Border>
 </Window>

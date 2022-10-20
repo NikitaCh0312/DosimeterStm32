@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Dosimeter.Services.CardsManagerService.CardsManagerService.Interfaces;
 using Dosimeter.Services.CardsManagerService.CardsManagerService.Models;
 using Dosimeter.UserInteraction.UIServices;
@@ -54,20 +55,24 @@ public class TaskCardsPageViewModel : BindableBase
             return;
         }
 
-        _windowService.ShowWindow<EditCardWindow>(new EditCardWindowViewModel(_cardsManagerService, SelectedCard)
+        var viewModel = new EditCardWindowViewModel(_cardsManagerService, SelectedCard)
         {
             Title = "Редактирование карты заданий"
-        });
+        };
+        viewModel.DataUpdatedEvent += OnDataUpdatedEvent;
+        _windowService.ShowWindow<EditCardWindow>(viewModel);
     }
     
     public DelegateCommand AddNewCardCommand { set; get; }
 
     private void OnAddNewCard()
     {
-        _windowService.ShowWindow<EditCardWindow>(new EditCardWindowViewModel(_cardsManagerService, null)
+        var viewModel = new EditCardWindowViewModel(_cardsManagerService, null)
         {
             Title = "Добавление новой карты заданий",
-        });
+        };
+        viewModel.DataUpdatedEvent += OnDataUpdatedEvent;
+        _windowService.ShowWindow<EditCardWindow>(viewModel);
     }
     
     public DelegateCommand RemoveCardCommand { set; get; }
@@ -106,5 +111,10 @@ public class TaskCardsPageViewModel : BindableBase
     {
         get => _selectedCard;
         set => SetProperty(ref _selectedCard, value); 
+    }
+    
+    private void OnDataUpdatedEvent(object sender, EventArgs args)
+    {
+        OnViewLoaded();
     }
 }

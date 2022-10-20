@@ -50,8 +50,15 @@ public class CardsManagerService: ICardsManagerService
 
     public async Task AddOrUpdateCard(Card card)
     {
-        var query = CreateCardQuery(card);
-        await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_or_update_card", query));
+        try
+        {
+            var query = CreateCardQuery(card);
+            await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_or_update_card", query));
+        }
+        catch (Exception e)
+        {
+            // ignored
+        }
     }
     
     public async Task RemoveCard(int cardId)
