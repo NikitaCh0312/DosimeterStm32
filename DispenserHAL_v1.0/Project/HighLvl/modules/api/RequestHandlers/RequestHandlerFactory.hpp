@@ -18,11 +18,20 @@ public:
         return new DescriptionRequestHandler();
     }
       
-    IRequestHandler * CreateEventLogRequestHandler()
+    IRequestHandler * CreateGetEventLogRequestHandler()
     {
-        return new EventLogRequestHandler();
+        return new GetEventLogRequestHandler();
     }
     
+    IRequestHandler * CreateClearEventLogRequestHandler()
+    {
+        return new ClearEventLogRequestHandler();
+    }
+    
+    IRequestHandler * CreateEventLogInfoRequestHandler()
+    {
+        return new EventLogInfoRequestHandler();
+    }
       
     IRequestHandler * CreateNetworkRequestHandler()
     {

@@ -1,19 +1,19 @@
-#ifndef EVENT_LOG_API_HANDLER_H_
-#define EVENT_LOG_API_HANDLER_H_
+#ifndef GET_EVENT_LOG_API_HANDLER_H_
+#define GET_EVENT_LOG_API_HANDLER_H_
 
 #include "modules/api/WebResponse.h"
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 #include "modules/api/HttpRequest.h"
 
-class EventLogRequestHandler: public IRequestHandler
+class GetEventLogRequestHandler: public IRequestHandler
 {
 public:
-    EventLogRequestHandler()
+    GetEventLogRequestHandler()
     {
       
     }
     
-    virtual ~EventLogRequestHandler(){}
+    virtual ~GetEventLogRequestHandler(){}
   
 #warning TO REALIZE
     bool Handle(HttpRequest * request, WebResponse * webResponse)

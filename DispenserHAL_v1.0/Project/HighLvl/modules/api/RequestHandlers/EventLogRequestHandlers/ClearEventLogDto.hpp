@@ -1,17 +1,16 @@
-#ifndef EVENT_LOG_API_H_
-#define EVENT_LOG_API_H_
+#ifndef CLEAT_EVENT_LOG_DTO_H_
+#define CLEAT_EVENT_LOG_DTO_H_
 
 #include "stddef.h"
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
 #include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
-#include "modules/Configuration.h"
 
-class EventLogDto: public IDtoObject
+class ClearEventLogDto: public IDtoObject
 {
 public:
-  EventLogDto(JsonSerializer * serializer,
+  ClearEventLogDto(JsonSerializer * serializer,
               char * date,
               int code)
   {

@@ -2,7 +2,7 @@
 #define CARDS_LIST_REQUEST_HANDLER_H_
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
-#include "modules/api/RequestHandlers/CardsListRequestHandler/CardsListDto.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/CardsListDto.hpp"
 #include "modules/ModulesLocator.h"
 
 class CardsListRequestHandler: public IRequestHandler

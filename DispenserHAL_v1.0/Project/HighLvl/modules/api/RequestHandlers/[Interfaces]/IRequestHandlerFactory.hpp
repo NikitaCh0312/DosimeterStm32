@@ -4,12 +4,14 @@
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 #include "modules/api/RequestHandlers/DescriptionRequestHandler/DescriptionRequestHandler.hpp"
-#include "modules/api/RequestHandlers/EventLogRequestHandler/EventLogRequestHandler.hpp"
+#include "modules/api/RequestHandlers/EventLogRequestHandlers/GetEventLogRequestHandler.hpp"
+#include "modules/api/RequestHandlers/EventLogRequestHandlers/ClearEventLogRequestHandler.hpp"
+#include "modules/api/RequestHandlers/EventLogRequestHandlers/EventLogInfoRequestHandler.hpp"
 #include "modules/api/RequestHandlers/NetworkRequestHandler/NetworkRequestHandler.hpp"
-#include "modules/api/RequestHandlers/CardsListRequestHandler/CardsListRequestHandler.hpp"
-#include "modules/api/RequestHandlers/AddCardRequestHandler/AddCardRequestHandler.hpp"
-#include "modules/api/RequestHandlers/GetCardRequestHandler/GetCardRequestHandler.hpp"
-#include "modules/api/RequestHandlers/RemoveCardRequestHandler/RemoveCardRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/CardsListRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/AddCardRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/GetCardRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/RemoveCardRequestHandler.hpp"
 #include "modules/api/RequestHandlers/ConfigurationRequestHandlers/GetConfigurationRequestHandler.hpp"
 #include "modules/api/RequestHandlers/ConfigurationRequestHandlers/SetConfigurationRequestHandler.hpp"
 
@@ -25,8 +27,12 @@ public:
   
     virtual IRequestHandler * CreateDescriptionRequestHandler() = 0;
       
-    virtual IRequestHandler * CreateEventLogRequestHandler() = 0;
-      
+    virtual IRequestHandler * CreateGetEventLogRequestHandler() = 0;
+    
+    virtual IRequestHandler * CreateClearEventLogRequestHandler() = 0;
+     
+    virtual IRequestHandler * CreateEventLogInfoRequestHandler() = 0;
+    
     virtual IRequestHandler * CreateNetworkRequestHandler() = 0;
     
     virtual IRequestHandler * CreateCardsListRequestHandler() = 0;

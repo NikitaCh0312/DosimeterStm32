@@ -1484,21 +1484,30 @@
                         </file>
                     </group>
                     <group>
-                        <name>AddCardRequestHandler</name>
+                        <name>CardRequestHandlers</name>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\AddCardRequestHandler\AddCardDto.hpp</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\AddCardDto.hpp</name>
                         </file>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\AddCardRequestHandler\AddCardRequestHandler.hpp</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>CardsListRequestHandler</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardsListRequestHandler\CardsListDto.hpp</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\AddCardRequestHandler.hpp</name>
                         </file>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardsListRequestHandler\CardsListRequestHandler.hpp</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\CardsListDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\CardsListRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\GetCardDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\GetCardRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\RemoveCardDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\RemoveCardRequestHandler.hpp</name>
                         </file>
                     </group>
                     <group>
@@ -1526,21 +1535,24 @@
                         </file>
                     </group>
                     <group>
-                        <name>EventLogRequestHandler</name>
+                        <name>EventLogRequestHandlers</name>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandler\EventLogDto.hpp</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandlers\ClearEventLogDto.hpp</name>
                         </file>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandler\EventLogRequestHandler.hpp</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>GetCardRequestHandler</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\GetCardRequestHandler\GetCardDto.hpp</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandlers\ClearEventLogRequestHandler.hpp</name>
                         </file>
                         <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\GetCardRequestHandler\GetCardRequestHandler.hpp</name>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandlers\EventLogInfoDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandlers\EventLogInfoRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandlers\GetEventLogDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\EventLogRequestHandlers\GetEventLogRequestHandler.hpp</name>
                         </file>
                     </group>
                     <group>
@@ -1550,15 +1562,6 @@
                         </file>
                         <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\NetworkRequestHandler\NetworkSettingsDto.hpp</name>
-                        </file>
-                    </group>
-                    <group>
-                        <name>RemoveCardRequestHandler</name>
-                        <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\RemoveCardRequestHandler\RemoveCardDto.hpp</name>
-                        </file>
-                        <file>
-                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\RemoveCardRequestHandler\RemoveCardRequestHandler.hpp</name>
                         </file>
                     </group>
                     <file>

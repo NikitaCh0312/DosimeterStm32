@@ -88,8 +88,12 @@ static void ConfigureApi()
 {
     ApiController * apiController = ApiController::GetInstance();
     apiController->RegisterHandler((char*)"description", requestHandlerFactory->CreateDescriptionRequestHandler());
-    apiController->RegisterHandler((char*)"event_log", requestHandlerFactory->CreateEventLogRequestHandler());
     apiController->RegisterHandler((char*)"network", requestHandlerFactory->CreateNetworkRequestHandler());
+    
+    //api for event log
+    apiController->RegisterHandler((char*)"get_event_log", requestHandlerFactory->CreateGetEventLogRequestHandler());
+    apiController->RegisterHandler((char*)"clear_event_log", requestHandlerFactory->CreateClearEventLogRequestHandler());
+    apiController->RegisterHandler((char*)"event_log_info", requestHandlerFactory->CreateEventLogInfoRequestHandler());
     
     //api for task cards
     apiController->RegisterHandler((char*)"get_cards_list", requestHandlerFactory->CreateCardsListRequestHandler());

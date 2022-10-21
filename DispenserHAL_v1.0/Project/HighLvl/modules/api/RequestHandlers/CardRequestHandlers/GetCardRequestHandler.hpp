@@ -2,7 +2,7 @@
 #define GET_CARD_REQUEST_HANDLER_H_
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
-#include "modules/api/RequestHandlers/GetCardRequestHandler/GetCardDto.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/GetCardDto.hpp"
 #include "Ethernet/Internet/httpServer/httpParser.h"
 #include "modules/ModulesLocator.h"
 

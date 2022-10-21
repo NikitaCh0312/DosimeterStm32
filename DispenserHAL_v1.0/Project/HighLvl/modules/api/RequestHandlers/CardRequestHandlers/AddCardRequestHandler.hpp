@@ -2,7 +2,7 @@
 #define ADD_CARD_REQUEST_HANDLER_H_
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
-#include "modules/api/RequestHandlers/AddCardRequestHandler/AddCardDto.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/AddCardDto.hpp"
 #include "modules/ModulesLocator.h"
 #include "stddef.h"
 #include "stdlib.h"
