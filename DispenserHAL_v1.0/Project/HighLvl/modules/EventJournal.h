@@ -2,8 +2,8 @@
 #define EVENT_JOURNAL_H_
 
 #include "Components/RTC/RTC_drv.h"
+#include "modules/Storage/EventJournalStorage.h"
 
-//12 bytes
 typedef struct
 {
     uint32_t Id;
@@ -19,9 +19,7 @@ typedef struct
 
 typedef struct
 {
-    uint32_t StartEventId;
-    uint32_t LastEventId;
-    uint32_t MemoryUsage;
+    uint32_t MaxEventQuantity;
     uint32_t EventsQuantity;
 }EventJournalInfo_t;
 
@@ -30,58 +28,73 @@ class EventJournal
 public:
     EventJournal()
     {
-
+        _storage = new EventJournalStorage();
     }
     virtual ~EventJournal(){}
     
+    void Init()
+    {
+        _storage->Init();
+    }
+    
     void WrteEvent(uint8_t eventId, uint32_t extraInfo)
     {
-        EventJournalItem_t item;
+        EventJournalRecord_t record;
         RtcDateTime_t dateTime;
         
         RtcGetDateTime(&dateTime);
         
-        item.Year = dateTime.Year;
-        item.Month = dateTime.Month;
-        item.Day = dateTime.Day;
-        item.Hours = dateTime.Hours;
-        item.Minutes = dateTime.Minutes;
-        item.Seconds = dateTime.Seconds;
-        item.EventId = eventId;
-        item.ExtraInfo = extraInfo;
-        WriteEventItem(item);
+        record.Year = dateTime.Year;
+        record.Month = dateTime.Month;
+        record.Day = dateTime.Day;
+        record.Hours = dateTime.Hours;
+        record.Minutes = dateTime.Minutes;
+        record.Seconds = dateTime.Seconds;
+        record.EventId = eventId;
+        record.ExtraInfo = extraInfo;
+        
+        _storage->TryAddRecord(&record);
     }
 
-    int GetAllEventsQuaintity()
+    uint32_t GetEventsNumber()
     {
-      
+        return _storage->GetRecordsCount();
     }
     
     EventJournalInfo_t GetEventJournalInfo()
     {
         EventJournalInfo_t info;
+        info.EventsQuantity = _storage->GetRecordsCount();
+        info.MaxEventQuantity = _storage->GetMaxRecordsCount();
         return info;
     }
     
-    EventJournalItem_t GetEvent(int eventId)
+    EventJournalItem_t GetEvent(int number)
     {
         EventJournalItem_t item;
-        item.Year = 2022;
-        item.Month = 7;
-        item.Day = 31;
-        item.Hours = 19;
-        item.Minutes = 18;
-        item.Seconds = 25;
-        item.EventId = 10;
-        item.ExtraInfo = 12;
+        
+        EventJournalRecord_t record = _storage->TryGetRecord(number);
+        
+        item.Id = number;
+        item.Year = record.Year;
+        item.Month = record.Month;
+        item.Day = record.Day;
+        item.Hours = record.Hours;
+        item.Minutes = record.Minutes;
+        item.Seconds = record.Seconds;
+        item.EventId = record.EventId;
+        item.ExtraInfo = record.ExtraInfo;
+        
         return item;
     }
     
-private:
-    void WriteEventItem(EventJournalItem_t event)
+    void ClearJournal()
     {
-      
+        _storage->CleanJournal();
     }
+private:
+    
+    EventJournalStorage* _storage;
 };
 
 #endif

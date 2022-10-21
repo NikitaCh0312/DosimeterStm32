@@ -30,6 +30,7 @@ public:
         configuration->Init();
         cardsManager->Init();
         substancesManager->Init();
+        eventJournal->Init();
     }
     
 private:
