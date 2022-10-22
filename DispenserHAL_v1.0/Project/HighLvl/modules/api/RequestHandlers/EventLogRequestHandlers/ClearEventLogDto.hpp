@@ -5,40 +5,35 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IDtoObject.hpp"
 
 class ClearEventLogDto: public IDtoObject
 {
 public:
   ClearEventLogDto(JsonSerializer * serializer,
-              char * date,
-              int code)
+                    bool result)
   {
-      _code = code;
-      strcpy(_date, date);
+      _serializer = serializer;
+      _result = result;
   }
   
   void Serialize( char * outString )
   {
-      char code[5];
-      sprinf(code, "%d", _code);
-      
       _serializer->WriteStartObject(outString);
-      _serializer->WriteProperty(outString, EVENT_CODE_PROPERTY_NAME, _date);
+      if (_result)
+        _serializer->WriteProperty(outString, COMMAND_RESULT_PROPERTY_NAME, (char*)"OK");
+      else
+        _serializer->WriteProperty(outString, COMMAND_RESULT_PROPERTY_NAME, (char*)"ERROR");
       _serializer->WriteEndProperty(outString);
-      _serializer->WriteProperty(outString, DATE_PROPERTY_NAME, code);
       _serializer->WriteEndObject(outString);
   }
 private:
   
+  char * COMMAND_RESULT_PROPERTY_NAME = (char*)"result";
+  
   JsonSerializer * _serializer;
   
-  char * EVENT_CODE_PROPERTY_NAME = "event_code";
-  char * DATE_PROPERTY_NAME = "date";
-  
-  char _date[20];
-  
-  int _code;
+  bool _result;
 };
 
 #endif

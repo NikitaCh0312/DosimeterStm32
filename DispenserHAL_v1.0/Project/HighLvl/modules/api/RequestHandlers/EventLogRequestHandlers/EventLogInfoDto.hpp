@@ -5,40 +5,39 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IDtoObject.hpp"
 
 class EventLogInfoDto: public IDtoObject
 {
 public:
-  EventLogInfoDto(JsonSerializer * serializer,
-              char * date,
-              int code)
-  {
-      _code = code;
-      strcpy(_date, date);
-  }
+    EventLogInfoDto(JsonSerializer * serializer,
+                  EventJournalInfo_t info)
+    {
+        _serializer = serializer;
+        _info = info;
+    }
   
-  void Serialize( char * outString )
-  {
-      char code[5];
-      sprinf(code, "%d", _code);
-      
-      _serializer->WriteStartObject(outString);
-      _serializer->WriteProperty(outString, EVENT_CODE_PROPERTY_NAME, _date);
-      _serializer->WriteEndProperty(outString);
-      _serializer->WriteProperty(outString, DATE_PROPERTY_NAME, code);
-      _serializer->WriteEndObject(outString);
-  }
+    void Serialize( char * outString )
+    {
+        _serializer->WriteStartObject(outString);
+        
+        char value[10];
+        sprintf(value, "%d", _info.EventsQuantity);
+        _serializer->WriteProperty(outString, EVENTS_NUMBER_PROPERTY_NAME, (char*)value);
+        _serializer->WriteEndProperty(outString);
+        sprintf(value, "%d", _info.MaxEventQuantity);
+        _serializer->WriteProperty(outString, MAX_EVENTS_NUMBER_PROPERTY_NAME, (char*)value);
+        
+        _serializer->WriteEndObject(outString);
+    }
 private:
   
-  JsonSerializer * _serializer;
+    JsonSerializer * _serializer;
   
-  char * EVENT_CODE_PROPERTY_NAME = "event_code";
-  char * DATE_PROPERTY_NAME = "date";
+    EventJournalInfo_t _info;
   
-  char _date[20];
-  
-  int _code;
+    char * EVENTS_NUMBER_PROPERTY_NAME = (char*)"events_number";
+    char * MAX_EVENTS_NUMBER_PROPERTY_NAME = (char*)"max_events_number";
 };
 
 #endif

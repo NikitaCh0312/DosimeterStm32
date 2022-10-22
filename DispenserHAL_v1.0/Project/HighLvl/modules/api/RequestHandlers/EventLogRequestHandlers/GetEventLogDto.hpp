@@ -5,41 +5,85 @@
 #include "stdint.h"
 
 #include "modules/Json/JsonSerializer.h"
-#include "modules/api/apiObjects/[Interfaces]/DtoObject.h"
-#include "modules/Configuration.h"
+#include "modules/api/RequestHandlers/[Interfaces]/IDtoObject.hpp"
 
 class GetEventLogDto: public IDtoObject
 {
 public:
-  GetEventLogDto(JsonSerializer * serializer,
-              char * date,
-              int code)
-  {
-      _code = code;
-      strcpy(_date, date);
-  }
+    GetEventLogDto(JsonSerializer * serializer,
+                    EventJournalItem_t item)
+    {
+        _serializer = serializer;
+        _item = item;
+    }
   
-  void Serialize( char * outString )
-  {
-      char code[5];
-      sprinf(code, "%d", _code);
+    void Serialize( char * outString )
+    {
+        char value[10];
       
-      _serializer->WriteStartObject(outString);
-      _serializer->WriteProperty(outString, EVENT_CODE_PROPERTY_NAME, _date);
-      _serializer->WriteEndProperty(outString);
-      _serializer->WriteProperty(outString, DATE_PROPERTY_NAME, code);
-      _serializer->WriteEndObject(outString);
-  }
+        _serializer->WriteStartObject(outString);
+        
+        sprintf(value, "%d", _item.Id);
+        _serializer->WriteProperty(outString, NUMBER_PROPERTY_NAME, (char*)value);
+        _serializer->WriteEndProperty(outString);
+        
+        sprintf(value, "%d", _item.EventId);
+        _serializer->WriteProperty(outString, EVENT_ID_PROPERTY_NAME, (char*)value);
+        _serializer->WriteEndProperty(outString);
+        
+        //format YYYY-MM-DDThh:mm:ss
+        char datetime[20];
+        //add year
+        sprintf(datetime, "%d", _item.Year);
+        
+        strcat(datetime, "-");
+        
+        //add month
+        sprintf(value, "%d", _item.Month);
+        strcat(datetime, value);
+        
+        strcat(datetime, "-");
+        
+        //add day
+        sprintf(value, "%d", _item.Day);
+        strcat(datetime, value);
+        
+        strcat(datetime, "T");
+        
+        //add Hours
+        sprintf(value, "%d", _item.Hours);
+        strcat(datetime, value);
+        
+        strcat(datetime, ":");
+        
+        //add Minutes
+        sprintf(value, "%d", _item.Minutes);
+        strcat(datetime, value);
+        
+        strcat(datetime, ":");
+        
+        //add Seconds
+        sprintf(value, "%d", _item.Seconds);
+        strcat(datetime, value);
+        
+        _serializer->WriteProperty(outString, DATETIME_PROPERTY_NAME, (char*)datetime);
+        _serializer->WriteEndProperty(outString);
+        
+        sprintf(value, "%d", _item.ExtraInfo);
+        _serializer->WriteProperty(outString, EXTRAINFO_PROPERTY_NAME, (char*)value);
+        
+        _serializer->WriteEndObject(outString);
+    }
 private:
   
-  JsonSerializer * _serializer;
+    JsonSerializer * _serializer;
   
-  char * EVENT_CODE_PROPERTY_NAME = "event_code";
-  char * DATE_PROPERTY_NAME = "date";
-  
-  char _date[20];
-  
-  int _code;
+    char * NUMBER_PROPERTY_NAME = (char*)"num";
+    char * EVENT_ID_PROPERTY_NAME = (char*)"id";
+    char * DATETIME_PROPERTY_NAME = (char*)"dt";
+    char * EXTRAINFO_PROPERTY_NAME = (char*)"ex";
+
+    EventJournalItem_t _item;
 };
 
 #endif
