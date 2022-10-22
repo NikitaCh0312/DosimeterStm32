@@ -55,11 +55,6 @@ public:
         
         _storage->TryAddRecord(&record);
     }
-
-    uint32_t GetEventsNumber()
-    {
-        return _storage->GetRecordsCount();
-    }
     
     EventJournalInfo_t GetEventJournalInfo()
     {
