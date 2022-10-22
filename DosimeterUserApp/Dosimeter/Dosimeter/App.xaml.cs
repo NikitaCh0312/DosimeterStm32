@@ -7,6 +7,8 @@ using Dosimeter.Services.ConfigurationService.ConfigurationService.Implementatio
 using Dosimeter.Services.ConfigurationService.ConfigurationService.Interfaces;
 using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Implementations;
 using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Interfaces;
+using Dosimeter.Services.EventLog.EventLog.Implementations;
+using Dosimeter.Services.EventLog.EventLog.Interfaces;
 using Dosimeter.UserInteraction.UIServices;
 using Dosimeter.UserInteraction.Views;
 
@@ -27,6 +29,7 @@ namespace Dosimeter
             containerRegistry.Register<IDeviceInfoService, DeviceInfoService>();
             containerRegistry.Register<ICardsManagerService, CardsManagerService>();
             containerRegistry.Register<IConfigurationService, ConfigurationService>();
+            containerRegistry.Register<IEventLogService, EventLogService>();
             containerRegistry.Register<IWindowService, WindowService>();
         }
     }
