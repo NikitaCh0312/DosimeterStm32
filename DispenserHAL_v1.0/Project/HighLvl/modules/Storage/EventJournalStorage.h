@@ -33,8 +33,9 @@ public:
     {
         _recordSizeBytes = sizeof(EventJournalRecord_t);
         _maxRecordsNumber = ((EVENT_JOURNAL_END_SECTOR - EVENT_JOURNAL_START_SECTOR) * w25qxx.SectorSize)/_recordSizeBytes;
-        InitStorage();
+        _activeRecordNumber = SearchActiveRecNumb(0, _maxRecordsNumber);
         
+//        
 //        EventJournalRecord_t record;
 //        int changer = 3;
 //        record.ExtraInfo = 1 + changer;
@@ -46,8 +47,12 @@ public:
 //        record.Seconds = 7 + changer;
 //        record.EventId = 8 + changer;
 //        record.Crc = 9 + changer;
-//        TryAddRecord(&record);
+//        //TryAddRecord(&record);
 //        
+//        for(int i = 0; i < 3000; i++)
+//          TryAddRecord(&record);
+//        
+//        SearchActiveRecNumb();
 //        uint32_t count = GetRecordsCount();
 //        
 //        EventJournalRecord_t rec1 = TryGetRecord(0);
@@ -117,24 +122,6 @@ private:
     uint32_t _recordSizeBytes;
     uint32_t _maxRecordsNumber;
     
-    void InitStorage()
-    {
-        uint32_t startAddress = EVENT_JOURNAL_START_SECTOR * w25qxx.SectorSize;
-        uint32_t offset = 0;
-
-        while(true)
-        {
-            uint32_t addrValue = 0;
-            W25qxx_ReadBytes((uint8_t*)&addrValue, startAddress + offset, 4);
-            if (addrValue == 0xFFFFFFFF)
-            {
-                _activeRecordNumber = offset/_recordSizeBytes;
-                break;
-            }
-            offset += _recordSizeBytes;
-        }
-    }
-    
     uint32_t RecordNumberToAddress(uint32_t number)
     {
         uint32_t startAddress = EVENT_JOURNAL_START_SECTOR * w25qxx.SectorSize;
@@ -152,6 +139,52 @@ private:
     uint32_t OffsetFromPageStartAddress(uint32_t address)
     {
         return address%w25qxx.PageSize;
+    }
+    
+    
+    bool IsEraseEventJournal(const EventJournalRecord_t *rec)
+    {
+      if(rec->ExtraInfo == UINT32_MAX &&
+         rec->Year == UINT32_MAX &&
+         rec->Month == UINT8_MAX &&
+         rec->Day == UINT8_MAX &&
+         rec->Hours == UINT8_MAX &&
+         rec->Minutes == UINT8_MAX &&
+         rec->Seconds == UINT8_MAX &&
+         rec->EventId == UINT8_MAX &&
+         rec->Crc == UINT16_MAX )
+      {
+        return true;
+      }
+      else
+        return false;
+    }
+    
+    // binary search to _activeRecordNumber in W25Q
+    uint32_t SearchActiveRecNumb(int l, int h)
+    {
+      if(l > h)
+        return UINT32_MAX;
+
+      int mid = 0;
+      bool isErase = 0;
+      
+      EventJournalRecord_t recRead;
+      
+      while(l <= h)
+      {
+        mid = l + (h - l) / 2;
+        recRead = TryGetRecord(mid);
+        
+        isErase = IsEraseEventJournal(&recRead);
+        
+        if(isErase)
+          h = mid - 1;
+        else
+          l = mid + 1;
+      }
+      
+      return mid;
     }
 };
 
