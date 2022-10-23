@@ -16,11 +16,31 @@ public class EventLogService:IEventLogService
     private readonly HttpClient _httpClient;
     private const string _requestTemplate = @"http://{0}:{1}/api/{2}";
     private readonly IConnectionSettings _connectionSettings;
+    private readonly Dictionary<int, string> _eventIdDescription;
 
     public EventLogService(IConnectionSettings connectionSettings)
     {
         _httpClient = new HttpClient();
         _httpClient.Timeout = TimeSpan.FromSeconds(3);
+        _eventIdDescription = new Dictionary<int, string>()
+        {
+            { 1, "Устройство сконфигурировано" },
+            { 21, "Питающее напряжение вне установленного предела" },
+            { 22, "Недостаточный уровень препарата в баке" },
+            { 23, "Недостаточное давление воды в магистрали" },
+            { 31, "Идентифицирована карта не закрепленная за данным устройством" },
+            { 32, "Идентифицирована неактивная карта" },
+            { 33, "Идентифицирована карта расширенного доступа" },
+            { 34, "Идентифицирована актуальная карта заданий" },
+            { 35, "Работа с картой прекращена из-за сбоя" },
+            { 36, "Работа с картой завершена успешно: выполнены все задания" },
+            { 37, "Работа с картой завершена успешно: отменены задания" },
+            { 38, "Задание отменено во время выполнения" },
+            { 39, "Карта заданий отменена" },
+            { 41, "Карта заданий отменена" },
+            { 42, "Карта заданий отменена" },
+            { 43, "Карта заданий отменена" },
+        };
         _connectionSettings = connectionSettings;
     }
 
@@ -85,12 +105,13 @@ public class EventLogService:IEventLogService
 
     private EventLogRecord Convert(EventLogItem item)
     {
+        _eventIdDescription.TryGetValue(item.EventId, out string description);
         return new EventLogRecord()
         {
             Id = item.Id,
             EventId = item.EventId,
             DateTime = item.DateTime,
-            Description = "add event description here",
+            Description = description ?? "",
             ExtraInfo = item.ExtraInfo
         };
     }
