@@ -5,6 +5,7 @@ using Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Implementatio
 using Dosimeter.Services.CardsManagerService.CardsManagerService.Interfaces;
 using Dosimeter.Services.ConfigurationService.ConfigurationService.Implementations;
 using Dosimeter.Services.ConfigurationService.ConfigurationService.Interfaces;
+using Dosimeter.Services.Connection;
 using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Implementations;
 using Dosimeter.Services.DeviceInfoService.DeviceInfoService.Interfaces;
 using Dosimeter.Services.EventLog.EventLog.Implementations;
@@ -26,6 +27,7 @@ namespace Dosimeter
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IConnectionSettings, ConnectionSettings>();
             containerRegistry.Register<IDeviceInfoService, DeviceInfoService>();
             containerRegistry.Register<ICardsManagerService, CardsManagerService>();
             containerRegistry.Register<IConfigurationService, ConfigurationService>();

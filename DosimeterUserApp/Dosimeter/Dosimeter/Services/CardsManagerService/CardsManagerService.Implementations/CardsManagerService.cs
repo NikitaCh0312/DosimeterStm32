@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dosimeter.Services.CardsManagerService.CardsManagerService.Interfaces;
 using Dosimeter.Services.CardsManagerService.CardsManagerService.Models;
+using Dosimeter.Services.Connection;
 using Newtonsoft.Json;
 
 namespace Dosimeter.DataAccess.CardsManagerService.CardsManagerService.Implementations;
@@ -14,16 +15,18 @@ public class CardsManagerService: ICardsManagerService
 {
     private const int REQUEST_TIMEOUT_SEC = 4;
     private readonly HttpClient _httpClient;
+    private readonly IConnectionSettings _connectionSettings;
 
     private const string _requestTemplate = @"http://{0}:{1}/api/{2}";
     
     private List<Card> _cards;
     private CardsInfo _cardsInfo;
     
-    public CardsManagerService()
+    public CardsManagerService(IConnectionSettings connectionSettings)
     {
         _httpClient = new HttpClient();
         _httpClient.Timeout = TimeSpan.FromSeconds(REQUEST_TIMEOUT_SEC);
+        _connectionSettings = connectionSettings;
         _cards = new List<Card>();
     }
 
@@ -53,7 +56,7 @@ public class CardsManagerService: ICardsManagerService
         try
         {
             var query = CreateCardQuery(card);
-            await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "add_or_update_card", query));
+            await _httpClient.GetAsync( CreateRequest(_connectionSettings.Ip, _connectionSettings.Port, "add_or_update_card", query));
         }
         catch (Exception e)
         {
@@ -65,7 +68,7 @@ public class CardsManagerService: ICardsManagerService
     {
         try
         {
-            var response = await _httpClient.GetAsync( CreateRequest("192.168.0.55", "666", "remove_card", $"?card_id={cardId}"));
+            var response = await _httpClient.GetAsync( CreateRequest(_connectionSettings.Ip, _connectionSettings.Port, "remove_card", $"?card_id={cardId}"));
         }
         catch (Exception exc)
         {
@@ -77,7 +80,7 @@ public class CardsManagerService: ICardsManagerService
     {
         try
         {
-            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "get_cards_list"));
+            await using var stream = await _httpClient.GetStreamAsync( CreateRequest(_connectionSettings.Ip, _connectionSettings.Port, "get_cards_list"));
             using var reader = new StreamReader(stream);
             using JsonReader jsonReader = new JsonTextReader(reader);
             JsonSerializer serializer = new JsonSerializer();
@@ -93,7 +96,7 @@ public class CardsManagerService: ICardsManagerService
     {
         try
         {
-            await using var stream = await _httpClient.GetStreamAsync( CreateRequest("192.168.0.55", "666", "get_card_info", $"?card_id={cardId}"));
+            await using var stream = await _httpClient.GetStreamAsync( CreateRequest(_connectionSettings.Ip, _connectionSettings.Port, "get_card_info", $"?card_id={cardId}"));
             using var reader = new StreamReader(stream);
             using JsonReader jsonReader = new JsonTextReader(reader);
             JsonSerializer serializer = new JsonSerializer();
