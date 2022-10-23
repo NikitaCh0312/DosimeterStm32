@@ -19,7 +19,7 @@ public class ConfigurationService: IConfigurationService
     public ConfigurationService(IConnectionSettings connectionSettings)
     {
         _httpClient = new HttpClient();
-        _httpClient.Timeout =TimeSpan.FromSeconds(5);
+        _httpClient.Timeout = TimeSpan.FromSeconds(5);
         _connectionSettings = connectionSettings;
     }
     public async Task<Configuration> Get()

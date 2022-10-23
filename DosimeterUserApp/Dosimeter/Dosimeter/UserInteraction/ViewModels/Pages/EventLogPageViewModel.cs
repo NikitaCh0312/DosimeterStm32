@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Dosimeter.Services.EventLog.EventLog.Interfaces;
 using Dosimeter.Services.EventLog.EventLog.Models;
+using LiveCharts;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -18,6 +19,7 @@ public class EventLogPageViewModel:BindableBase
         NextRecordsListCommand = new DelegateCommand(OnNextRecordCommandHandler);
         PreviousRecordsListCommand = new DelegateCommand(OnPreviousRecordCommandHandler);
         Records = new ObservableCollection<EventLogRecord>();
+
         for (int i = 0; i < 100; i++)
         {
             Records.Add(new EventLogRecord()
@@ -33,8 +35,20 @@ public class EventLogPageViewModel:BindableBase
     
     public DelegateCommand ViewLoadCommand { get; set; }
 
-    private void OnViewLoaded()
+    private async void OnViewLoaded()
     {
+        IsDataLoaded = false;
+        
+        var logInfo = await _eventLogService.GetInfo();
+        if (logInfo != null)
+        {
+            WrittenRecordsNumber = logInfo.EventsNumber;
+            MaxRecordsNumber = logInfo.MaxEventsNumber;
+        }
+
+        WrittenRecordsNumber = 5469;
+        MaxRecordsNumber = 10000;
+        
         IsDataLoaded = true;
     }
     
@@ -58,7 +72,30 @@ public class EventLogPageViewModel:BindableBase
         set => SetProperty(ref _isDataLoaded, value); 
     }
     
+    public IChartValues ChartValues1 { set; get; }
+    public IChartValues ChartValues2 { set; get; }
+    
     public ObservableCollection<EventLogRecord> Records { set; get; }
+    
+    private int _writtenRecordsNumber;
+    public int WrittenRecordsNumber
+    {
+        get => _writtenRecordsNumber;
+        set
+        {
+            SetProperty(ref _writtenRecordsNumber, value);   
+        } 
+    }
+    
+    private int _maxRecordsNumber;
+    public int MaxRecordsNumber
+    {
+        get => _maxRecordsNumber;
+        set
+        {
+            SetProperty(ref _maxRecordsNumber, value);   
+        } 
+    }
     
     private int _displayRecordsNumber;
     public int DisplayRecordsNumber
