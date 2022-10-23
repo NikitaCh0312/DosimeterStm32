@@ -18,6 +18,7 @@ public class EventLogPageViewModel:BindableBase
         ViewLoadCommand = new DelegateCommand(OnViewLoaded);
         NextRecordsListCommand = new DelegateCommand(OnNextRecordCommandHandler);
         PreviousRecordsListCommand = new DelegateCommand(OnPreviousRecordCommandHandler);
+        ClearJournalCommand = new DelegateCommand(OnClearJournalCommand);
         Records = new ObservableCollection<EventLogRecord>();
 
         for (int i = 0; i < 100; i++)
@@ -63,6 +64,15 @@ public class EventLogPageViewModel:BindableBase
     private void OnPreviousRecordCommandHandler()
     {
         
+    }
+    
+    public DelegateCommand ClearJournalCommand { get; set; }
+
+    private async void OnClearJournalCommand()
+    {
+        IsDataLoaded = false;
+        await _eventLogService.Clear();
+        IsDataLoaded = true;
     }
     
     private bool _isDataLoaded;
