@@ -69,6 +69,7 @@ public class EventLogService:IEventLogService
             for (int i = startRecordNum; i <= endRecordNum; i++)
             {
                 var record = Convert(await GetEventLogRecord(i));
+                await Task.Delay(50);
                 records.Add(record);
             }
             return records;
@@ -95,7 +96,7 @@ public class EventLogService:IEventLogService
 
     private async Task<EventLogItem> GetEventLogRecord(int recordNum)
     {
-        var request = CreateRequest(_connectionSettings.Ip, _connectionSettings.Port, "get_event_log", $"?event_number={recordNum}");
+        var request = CreateRequest(_connectionSettings.Ip, _connectionSettings.Port, "get_event_record", $"?event_number={recordNum}");
         await using var stream = await _httpClient.GetStreamAsync(request);
         using var reader = new StreamReader(stream);
         using JsonReader jsonReader = new JsonTextReader(reader);
@@ -110,7 +111,7 @@ public class EventLogService:IEventLogService
         {
             Id = item.Id,
             EventId = item.EventId,
-            DateTime = item.DateTime,
+            DateTime = DateTime.Parse(item.DateTime),
             Description = description ?? "",
             ExtraInfo = item.ExtraInfo
         };

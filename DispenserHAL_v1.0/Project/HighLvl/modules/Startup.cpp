@@ -58,7 +58,7 @@ void stack_over_flow_hook(void * tsk_handle, char * tsk_name)
 
 ButtonsTask * buttonsTask = new ButtonsTask((char*)"ButtonsTask", configMINIMAL_STACK_SIZE * 2, 1);
 //DisplayTask * displayTask = new DisplayTask((char*)"DisplayTask", configMINIMAL_STACK_SIZE * 2, 1);
-EthernetTask * ethernetTask = new EthernetTask((char*)"EthernetTask", configMINIMAL_STACK_SIZE * 10, 1);
+EthernetTask * ethernetTask = new EthernetTask((char*)"EthernetTask", configMINIMAL_STACK_SIZE * 14, 1);
 MainLogicTask * mainLogicTask = new MainLogicTask((char*)"MainLogicTask", configMINIMAL_STACK_SIZE * 4, 1);
 RfidTask * rfidTask = new RfidTask((char*)"RfidTask", configMINIMAL_STACK_SIZE * 2, 1);
 DebugTask * debugTask = new DebugTask((char*)"DebugTask", configMINIMAL_STACK_SIZE * 2, 1);
@@ -91,7 +91,7 @@ static void ConfigureApi()
     apiController->RegisterHandler((char*)"network", requestHandlerFactory->CreateNetworkRequestHandler());
     
     //api for event log
-    apiController->RegisterHandler((char*)"get_event_log", requestHandlerFactory->CreateGetEventLogRequestHandler());
+    apiController->RegisterHandler((char*)"get_event_record", requestHandlerFactory->CreateGetEventLogRequestHandler());
     apiController->RegisterHandler((char*)"clear_event_log", requestHandlerFactory->CreateClearEventLogRequestHandler());
     apiController->RegisterHandler((char*)"event_log_info", requestHandlerFactory->CreateEventLogInfoRequestHandler());
     

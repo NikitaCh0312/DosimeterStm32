@@ -20,7 +20,7 @@ public class EventLogPageViewModel:BindableBase
         PreviousRecordsListCommand = new DelegateCommand(OnPreviousRecordCommandHandler);
         ClearJournalCommand = new DelegateCommand(OnClearJournalCommand);
         Records = new ObservableCollection<EventLogRecord>();
-
+/*
         for (int i = 0; i < 100; i++)
         {
             Records.Add(new EventLogRecord()
@@ -32,6 +32,7 @@ public class EventLogPageViewModel:BindableBase
                 ExtraInfo = i * 10,
             });
         }
+*/
     }
     
     public DelegateCommand ViewLoadCommand { get; set; }
@@ -39,16 +40,23 @@ public class EventLogPageViewModel:BindableBase
     private async void OnViewLoaded()
     {
         IsDataLoaded = false;
+
+        Records.Clear();
         
         var logInfo = await _eventLogService.GetInfo();
         if (logInfo != null)
         {
             WrittenRecordsNumber = logInfo.EventsNumber;
             MaxRecordsNumber = logInfo.MaxEventsNumber;
+            var records = await _eventLogService.GetRecords(0, WrittenRecordsNumber - 1);
+            if (records != null)
+                Records.AddRange(records);
         }
-
-        WrittenRecordsNumber = 5469;
-        MaxRecordsNumber = 10000;
+        else
+        {
+            WrittenRecordsNumber = 0;
+            MaxRecordsNumber = 0;
+        }
         
         IsDataLoaded = true;
     }

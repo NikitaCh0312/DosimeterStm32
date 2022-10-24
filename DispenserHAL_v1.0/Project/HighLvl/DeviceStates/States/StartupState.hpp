@@ -57,6 +57,9 @@ public:
           DelayMsec(3500);
           clear_display();
           _context->SetState( this->_statesFactory->GetState(WAITING_USER_ACTION_STATE));
+          
+          EventJournal* eventJournal = ModulesLocator::GetInstance()->eventJournal;
+          eventJournal->WrteEvent(0x01, 0x00);
         }
         else {while(1);}
     }

@@ -44,7 +44,7 @@ public:
         
         RtcGetDateTime(&dateTime);
         
-        record.Year = dateTime.Year;
+        record.Year = dateTime.Year + 2000;
         record.Month = dateTime.Month;
         record.Day = dateTime.Day;
         record.Hours = dateTime.Hours;

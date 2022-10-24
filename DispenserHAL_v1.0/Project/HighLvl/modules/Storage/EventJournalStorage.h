@@ -35,21 +35,21 @@ public:
         _maxRecordsNumber = ((EVENT_JOURNAL_END_SECTOR - EVENT_JOURNAL_START_SECTOR) * w25qxx.SectorSize)/_recordSizeBytes;
         _activeRecordNumber = SearchActiveRecNumb(0, _maxRecordsNumber);
         
-//        
-//        EventJournalRecord_t record;
-//        int changer = 3;
-//        record.ExtraInfo = 1 + changer;
-//        record.Year = 2 + changer;
-//        record.Month = 3 + changer;
-//        record.Day = 4 + changer;
-//        record.Hours = 5 + changer;
-//        record.Minutes = 6 + changer;
-//        record.Seconds = 7 + changer;
-//        record.EventId = 8 + changer;
-//        record.Crc = 9 + changer;
-//        //TryAddRecord(&record);
-//        
-//        for(int i = 0; i < 3000; i++)
+        
+        EventJournalRecord_t record;
+        int changer = 3;
+        record.ExtraInfo = 1 + changer;
+        record.Year = 2022;
+        record.Month = 12;
+        record.Day = 14;
+        record.Hours = 15;
+        record.Minutes = 20;
+        record.Seconds = 45;
+        record.EventId = 22;
+        record.Crc = 9 + changer;
+//        TryAddRecord(&record);
+        
+//        for(int i = 0; i < 10; i++)
 //          TryAddRecord(&record);
 //        
 //        SearchActiveRecNumb();

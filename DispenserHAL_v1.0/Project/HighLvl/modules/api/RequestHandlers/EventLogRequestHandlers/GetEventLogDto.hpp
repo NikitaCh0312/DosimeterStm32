@@ -36,19 +36,19 @@ public:
         //add year
         sprintf(datetime, "%d", _item.Year);
         
-        strcat(datetime, "-");
+        strcat(datetime, "/");
         
         //add month
         sprintf(value, "%d", _item.Month);
         strcat(datetime, value);
         
-        strcat(datetime, "-");
+        strcat(datetime, "/");
         
         //add day
         sprintf(value, "%d", _item.Day);
         strcat(datetime, value);
         
-        strcat(datetime, "T");
+        strcat(datetime, " ");
         
         //add Hours
         sprintf(value, "%d", _item.Hours);

@@ -12,7 +12,7 @@ public class EventLogItem
     public int EventId { set; get; }
     
     [JsonProperty("dt")]
-    public DateTime DateTime { set; get; }
+    public string DateTime { set; get; }
     
     [JsonProperty("ex")]
     public int ExtraInfo { set; get; }
