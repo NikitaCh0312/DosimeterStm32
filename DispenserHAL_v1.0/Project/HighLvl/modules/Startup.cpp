@@ -1,5 +1,7 @@
 #include "main.h"
 
+#include "Ethernet/EthernetInit.h"
+
 #include "Tasks/ButtonsTask.h"
 #include "Tasks/DisplayTask.h"
 #include "Tasks/EthernetTask.h"
@@ -106,7 +108,26 @@ static void ConfigureApi()
     apiController->RegisterHandler((char*)"set_config", requestHandlerFactory->CreateSetConfigurationRequestHandler());
 }
 
-
+void InitNetwork()
+{
+    ModulesLocator* locator = ModulesLocator::GetInstance();
+    IpAddr_t ip = locator->configuration->GetIp();
+    Mask_t msk = locator->configuration->GetMask();
+    
+    //ethernet intialization
+    IPV4_t ipv4;
+    ipv4.ipv4_1 = ip.addr_1;
+    ipv4.ipv4_2 = ip.addr_2;
+    ipv4.ipv4_3 = ip.addr_3;
+    ipv4.ipv4_4 = ip.addr_4;
+    MASK_t mask;
+    mask.mask1 = msk.mask_1;
+    mask.mask2 = msk.mask_2;
+    mask.mask3 = msk.mask_3;
+    mask.mask4 = msk.mask_4;
+    
+    EthernetInit(ipv4, mask);
+}
 void startup()
 {
     //low level initialization
@@ -121,6 +142,9 @@ void startup()
     //initialize modules
     ModulesLocator* locator = ModulesLocator::GetInstance();
     locator->InitModules();
+    
+    //initializing network
+    InitNetwork();
     
     //initializing dosimeter states
     Dosimeter * dosimeter = Dosimeter::GetInstance();

@@ -58,15 +58,15 @@ void EthernetInit(IPV4_t ip_addr, MASK_t mask)
     net_info.mac[4] = 0x44;
     net_info.mac[5] = 0xEA;
     //net mask
-    net_info.sn[0] = 255;
-    net_info.sn[1] = 255;
-    net_info.sn[2] = 255;
-    net_info.sn[3] = 0;
+    net_info.sn[0] = mask.mask1;
+    net_info.sn[1] = mask.mask2;
+    net_info.sn[2] = mask.mask3;
+    net_info.sn[3] = mask.mask4;
     // Init IP-address
-    net_info.ip[0] = 192;
-    net_info.ip[1] = 168;
-    net_info.ip[2] = 0;
-    net_info.ip[3] = 55;
+    net_info.ip[0] = ip_addr.ipv4_1;
+    net_info.ip[1] = ip_addr.ipv4_2;
+    net_info.ip[2] = ip_addr.ipv4_3;
+    net_info.ip[3] = ip_addr.ipv4_4;
     //net_info.dhcp = NETINFO_DHCP;
     net_info.dhcp = NETINFO_STATIC;
 
