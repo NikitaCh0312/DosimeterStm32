@@ -18,9 +18,10 @@
 
 extern w25qxx_t w25qxx;
 
-//total 5128 bytes (= 1282 words (1word=32bit))
+//total 5168 bytes (= 1292 words (1word=32bit))
 typedef struct
 {
+    //40 bytes
     uint32_t extendedAccessCards[EXTENDED_ACCESS_CARDS_NUMBER];
     //4 bytes
     uint32_t CardsQuantity;
