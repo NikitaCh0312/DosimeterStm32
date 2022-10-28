@@ -3,6 +3,7 @@
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
 #include "GetConfigurationDto.hpp"
+
 class GetConfiguratuionRequestHandler: public IRequestHandler
 {
 public:
@@ -20,7 +21,7 @@ public:
             return false;
             
         Flush();
-        webResponse->AddHeader(RES_JSONHEAD_OK);
+        webResponse->AddHeader((char*)RES_JSONHEAD_OK);
         
         IpAddr_t ipAddr;
         ipAddr.addr_1 = 192;
@@ -34,11 +35,11 @@ public:
         mask.mask_4 = 0;
         uint32_t port = 666;
         GetConfigurationDto dto = GetConfigurationDto(JsonSerializer::GetInstance(),
-                                                      "192.168.36.77",
-                                                      "666",
-                                                      "255.255.255.0",
-                                                      "08/22/2022",
-                                                      "12:45");
+                                                      (char*)"192.168.36.77",
+                                                      (char*)"666",
+                                                      (char*)"255.255.255.0",
+                                                      (char*)"08/22/2022",
+                                                      (char*)"12:45");
         dto.Serialize(_content);
       
         webResponse->AddContent(_content);
@@ -46,14 +47,6 @@ public:
         return true;
     }
 private:
-  
-    char _content[100];
-    
-    void Flush()
-    {
-        for (int i = 0; i < sizeof(_content); i++)
-          _content[i] = '\0';
-    }
 };
 
 

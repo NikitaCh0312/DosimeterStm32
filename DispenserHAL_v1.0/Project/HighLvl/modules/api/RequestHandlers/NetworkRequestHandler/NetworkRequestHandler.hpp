@@ -20,7 +20,7 @@ public:
             return false;
             
         Flush();
-        webResponse->AddHeader(RES_JSONHEAD_OK);
+        webResponse->AddHeader((char*)RES_JSONHEAD_OK);
         IpAddr_t ipAddr;
         ipAddr.addr_1 = 192;
         ipAddr.addr_2 = 168;
@@ -40,14 +40,6 @@ public:
         
     }
 private:
-
-    char _content[100];
-    
-    void Flush()
-    {
-        for (int i = 0; i < sizeof(_content); i++)
-          _content[i] = '\0';
-    }
 };
 
 

@@ -38,14 +38,6 @@ public:
         return true;
     }
 private:
-    char _content[100];
-    
-    void Flush()
-    {
-        for (int i = 0; i < sizeof(_content); i++)
-          _content[i] = '\0';
-    }
-    
     EventJournal* _eventJournal;
     
     int ParseEventNumber(char * query)

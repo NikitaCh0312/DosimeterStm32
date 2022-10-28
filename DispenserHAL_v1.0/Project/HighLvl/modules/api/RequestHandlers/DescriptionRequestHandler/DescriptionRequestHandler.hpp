@@ -31,13 +31,6 @@ public:
     }
   
 private:
-    char _content[100];
-    
-    void Flush()
-    {
-        for (int i = 0; i < sizeof(_content); i++)
-          _content[i] = '\0';
-    }
 };
 
 
