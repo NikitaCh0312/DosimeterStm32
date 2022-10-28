@@ -14,11 +14,14 @@
 
 #define CARD_DEFAULT_ID 0
 
+#define EXTENDED_ACCESS_CARDS_NUMBER 10
+
 extern w25qxx_t w25qxx;
 
 //total 5128 bytes (= 1282 words (1word=32bit))
 typedef struct
 {
+    uint32_t extendedAccessCards[EXTENDED_ACCESS_CARDS_NUMBER];
     //4 bytes
     uint32_t CardsQuantity;
     //256 * 20= 5120 bytes 
@@ -178,7 +181,12 @@ private:
         //{
         //  ptr[i] = i;
         //}
-        
+            
+        for (int i = 0; i < EXTENDED_ACCESS_CARDS_NUMBER; i++)
+        {
+            CardsStorageBuffer.extendedAccessCards[i] = CARD_DEFAULT_ID;
+        }
+      
         CardsStorageBuffer.CardsQuantity = 0;
         for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
         {
@@ -197,7 +205,15 @@ private:
     
     void SetCardSlotDefaultValues(Card* card)
     {
-      
+        card->Id = 0;
+        card->TasksQuantity = 0;
+        card->SubstanceId = 0;
+        for (int j = 0; j < MAX_TASKS_QUANTITY; j++)
+        {
+            card->tasks[j].Id = 0;
+            card->tasks[j].Volume = 0.0f;
+            card->tasks[j].Concentration = 0.0f;
+        }
     }
     
     void UpdateStorage()
