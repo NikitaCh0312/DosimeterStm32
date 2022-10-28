@@ -104,16 +104,6 @@ public:
         UpdateStorage();
     }
     
-    void RemoveCard(int cardId)
-    {
-        for (int i = 0; i < MAX_CARDS_QUANTITY; i++)
-        {
-            if (CardsStorageBuffer.CardsBuffer[i].Id == cardId)
-              SetCardSlotDefaultValues((Card*)&(CardsStorageBuffer.CardsBuffer[i]));
-        }
-        UpdateStorage();
-    }
-    
     Card GetCard(int cardId)
     {
         Card card;
@@ -202,19 +192,6 @@ private:
             }
         }
         UpdateStorage();
-    }
-    
-    void SetCardSlotDefaultValues(Card* card)
-    {
-        card->Id = 0;
-        card->TasksQuantity = 0;
-        card->SubstanceId = 0;
-        for (int j = 0; j < MAX_TASKS_QUANTITY; j++)
-        {
-            card->tasks[j].Id = 0;
-            card->tasks[j].Volume = 0.0f;
-            card->tasks[j].Concentration = 0.0f;
-        }
     }
     
     void UpdateStorage()
