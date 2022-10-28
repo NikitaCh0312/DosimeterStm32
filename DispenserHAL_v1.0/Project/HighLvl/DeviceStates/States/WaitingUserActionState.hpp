@@ -107,12 +107,12 @@ public:
         
         if (_stage == CARD_NOT_BINDED_STAGE)
         { 
-            set_cursor_position(0, 0);
+            set_cursor_position(0, 6);
             set_text_rus((char*)StringResources::Attention); 
-            set_cursor_position(1, 0);
-            set_symbols(StringResources::CardIsNotBinded, strlen((char*)StringResources::CardIsNotBinded)); 
-            set_cursor_position(2, 0);
-            set_symbols(StringResources::ToThisDevice, strlen((char*)StringResources::ToThisDevice)); 
+            set_cursor_position(1, 1);
+            set_text_rus((char*)StringResources::CardIsNotBinded); 
+            set_cursor_position(2, 4);
+            set_text_rus((char*)StringResources::ToThisDevice); 
             
             if (global_timer - stageTimer > 5000)
             {
@@ -126,12 +126,12 @@ public:
         
         if (_stage == CARD_IS_INACTIVE_STAGE)
         {
-            set_cursor_position(0, 0);
-            set_symbols(StringResources::Attention, strlen((char*)StringResources::Attention)); 
-            set_cursor_position(1, 0);
-            set_symbols(StringResources::CardIsNotBinded, strlen((char*)StringResources::CardIsNotBinded)); 
-            set_cursor_position(2, 0);
-            set_symbols(StringResources::ToThisDevice, strlen((char*)StringResources::ToThisDevice)); 
+            set_cursor_position(0, 6);
+            set_text_rus((char*)StringResources::Attention); 
+            set_cursor_position(1, 1);
+            set_text_rus((char*)StringResources::CardIsNotBinded); 
+            set_cursor_position(2, 4);
+            set_text_rus((char*)StringResources::ToThisDevice); 
             
             if (global_timer - stageTimer > 5000)
             {

@@ -78,7 +78,7 @@ public:
     
     CARD_STATUS_t GetCardStatus (int cardId) 
     {
-        if (cardId == 908904)
+        if (cardId == 1557957)
             return CARD_EXT_ACCESS_STATUS;
       
         Card card = _storage->GetCard(cardId);

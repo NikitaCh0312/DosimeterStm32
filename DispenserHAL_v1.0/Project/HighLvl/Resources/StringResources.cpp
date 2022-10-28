@@ -70,8 +70,8 @@ uint8_t StringResources::TaskErrorAvalibilitySubstance_1str[20] = {'В', ' ', '�
 uint8_t StringResources::TaskErrorAvalibilitySubstance_2str[20] = {'п', 'р', 'е', 'п', 'а', 'р', 'а', 'т', '!', '\0'};
 
 uint8_t StringResources::Attention[20] = {'В', 'Н', 'И', 'М', 'А', 'Н', 'И', 'Е', '!', '\0'};
-uint8_t StringResources::CardIsNotBinded[20] = {'C', 'A', 'R', 'D', ' ', 'I', 'S', ' ', 'N', 'O', 'T', '\0'};
-uint8_t StringResources::ToThisDevice[20] = {'B', 'I', 'N', 'D', 'E', 'D', '\0',};
+uint8_t StringResources::CardIsNotBinded[20] = {'К', 'A', 'Р', 'Т', 'А', ' ', 'Н', 'Е', ' ','П', 'Р', 'И', 'В', 'Я', 'З', 'А', 'Н', 'А', '\0'};
+uint8_t StringResources::ToThisDevice[20] = {'К', ' ', 'У', 'С', 'Т', 'Р', 'О', 'Й', 'С', 'Т', 'В', 'У', '\0',};
 
 
 uint8_t StringResources::TasksQuantity[20] = {'K','o','л','-', 'в', 'o', ' ', 'з', 'a', 'д', 'a', 'н', 'и', 'й', ':', '\0' };
