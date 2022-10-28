@@ -35,9 +35,6 @@ typedef struct
 
 CardsStorageBuffer_t CardsStorageBuffer;
 
-//uint8_t bufferBefore[5500];
-//uint8_t bufferAfter[5500];
-
 class CardsStorage : BaseStorage
 {
 public:
@@ -49,18 +46,9 @@ public:
     void Load()
     {
         ReadBufferBySectors((uint8_t*)&CardsStorageBuffer, CARDS_START_SECTOR_NUMBER, sizeof(CardsStorageBuffer_t));
-        
-        //uint8_t* storage = (uint8_t*)&CardsStorageBuffer;
-        //for (int i = 0; i < sizeof(CardsStorageBuffer_t); i++)
-        //  bufferBefore[i] = storage[i];
-        
-        //uint16_t crc = GetCrc((uint8_t*)&CardsStorageBuffer, sizeof(CardsStorageBuffer_t) - 2);
+
         if (CheckCrc((uint8_t*)&CardsStorageBuffer, sizeof(CardsStorageBuffer_t)) == CRC_ERROR)
           SetDefaultValues();
-        
-        //uint8_t* storageAfter = (uint8_t*)&CardsStorageBuffer;
-        //for (int i = 0; i < sizeof(CardsStorageBuffer_t); i++)
-        //  bufferAfter[i] = storageAfter[i];
     }
     
     void AddOrUpdateCard(Card card)
@@ -181,12 +169,6 @@ private:
   
     void SetDefaultValues()
     {
-        //uint8_t *ptr = (uint8_t*)&CardsStorageBuffer;
-        //for (int i = 0; i < sizeof(CardsStorageBuffer_t); i++)
-        //{
-        //  ptr[i] = i;
-        //}
-            
         for (int i = 0; i < EXTENDED_ACCESS_CARDS_NUMBER; i++)
         {
             CardsStorageBuffer.extendedAccessCards[i] = CARD_DEFAULT_ID;
