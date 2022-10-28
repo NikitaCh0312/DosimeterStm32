@@ -163,6 +163,20 @@ public:
         }
         UpdateStorage();
     }
+    
+    bool IsExtendedAccessCard(int cardId)
+    {
+        if (cardId == CARD_DEFAULT_ID)
+            return false;
+        
+        for (int i = 0; i < EXTENDED_ACCESS_CARDS_NUMBER; i++)
+        {
+            if (CardsStorageBuffer.extendedAccessCards[i] == cardId)
+              return true;
+        }
+        return false;
+    }
+    
 private:
   
     void SetDefaultValues()
