@@ -165,6 +165,26 @@ public:
         return false;
     }
     
+    void SetExtendedAccessCards(uint32_t* cardsBuffer, uint32_t cardsQuantity)
+    {
+        if (cardsQuantity > EXTENDED_ACCESS_CARDS_NUMBER)
+          return;
+        
+        DeleteExtendedCardsList();
+        
+        for (int i = 0; i < cardsQuantity; i++)
+        {
+            if (cardsBuffer[i] != CARD_DEFAULT_ID)
+                CardsStorageBuffer.extendedAccessCards[i] = cardsBuffer[i];
+        }
+        UpdateStorage();
+    }
+    
+    uint32_t * GetExtendedAccessCards()
+    {
+        return CardsStorageBuffer.extendedAccessCards;
+    }
+    
 private:
   
     void SetDefaultValues()
@@ -188,6 +208,14 @@ private:
             }
         }
         UpdateStorage();
+    }
+    
+    void DeleteExtendedCardsList()
+    {
+        for (int i = 0; i < EXTENDED_ACCESS_CARDS_NUMBER; i++)
+        {
+            CardsStorageBuffer.extendedAccessCards[i] = CARD_DEFAULT_ID;
+        }
     }
     
     void UpdateStorage()

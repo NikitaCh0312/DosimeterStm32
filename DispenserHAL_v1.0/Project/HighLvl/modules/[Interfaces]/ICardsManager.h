@@ -28,6 +28,10 @@ public:
     virtual CardsListInfo_t GetCardsInfo() = 0;
     
     virtual void DeleteCard(int cardId) = 0;
+    
+    virtual void SetExtendedAccessCards(uint32_t* cardsBuffer, uint32_t cardsQuantity) = 0;
+    
+    virtual uint32_t * GetExtendedAccessCards() = 0;
 };
 
 

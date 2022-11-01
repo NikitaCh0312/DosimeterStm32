@@ -67,6 +67,17 @@ public:
     {
         return new SetConfigurationRequestHandler();
     }
+    
+    IRequestHandler * CreateGetExtendedCardsRequestHandler()
+    {
+        return new GetExtendedCardsRequestHandler();
+    }
+    
+    IRequestHandler * CreateSetExtendedCardsRequestHandler()
+    {
+        return new SetExtendedCardsRequestHandler();
+    }
+    
 private:
 };
 

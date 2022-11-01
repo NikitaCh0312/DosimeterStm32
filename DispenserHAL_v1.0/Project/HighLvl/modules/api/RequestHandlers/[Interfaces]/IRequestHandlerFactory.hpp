@@ -3,15 +3,22 @@
 
 
 #include "modules/api/RequestHandlers/[Interfaces]/IRequestHandler.hpp"
+
 #include "modules/api/RequestHandlers/DescriptionRequestHandler/DescriptionRequestHandler.hpp"
+
 #include "modules/api/RequestHandlers/EventLogRequestHandlers/GetEventLogRequestHandler.hpp"
 #include "modules/api/RequestHandlers/EventLogRequestHandlers/ClearEventLogRequestHandler.hpp"
 #include "modules/api/RequestHandlers/EventLogRequestHandlers/EventLogInfoRequestHandler.hpp"
+
 #include "modules/api/RequestHandlers/NetworkRequestHandler/NetworkRequestHandler.hpp"
+
 #include "modules/api/RequestHandlers/CardRequestHandlers/CardsListRequestHandler.hpp"
 #include "modules/api/RequestHandlers/CardRequestHandlers/AddCardRequestHandler.hpp"
 #include "modules/api/RequestHandlers/CardRequestHandlers/GetCardRequestHandler.hpp"
 #include "modules/api/RequestHandlers/CardRequestHandlers/RemoveCardRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/GetExtendedCardsRequestHandler.hpp"
+#include "modules/api/RequestHandlers/CardRequestHandlers/SetExtendedCardsRequestHandler.hpp"
+
 #include "modules/api/RequestHandlers/ConfigurationRequestHandlers/GetConfigurationRequestHandler.hpp"
 #include "modules/api/RequestHandlers/ConfigurationRequestHandlers/SetConfigurationRequestHandler.hpp"
 
@@ -46,7 +53,11 @@ public:
     virtual IRequestHandler * CreateGetConfigurationRequestHandler() = 0;
 
     virtual IRequestHandler * CreateSetConfigurationRequestHandler() = 0;
+    
+    virtual IRequestHandler * CreateGetExtendedCardsRequestHandler() = 0;
 
+    virtual IRequestHandler * CreateSetExtendedCardsRequestHandler() = 0;
+    
 private:
 };
 

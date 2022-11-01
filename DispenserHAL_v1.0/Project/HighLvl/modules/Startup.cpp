@@ -102,6 +102,8 @@ static void ConfigureApi()
     apiController->RegisterHandler((char*)"add_or_update_card", requestHandlerFactory->CreateAddCardRequestHandler());
     apiController->RegisterHandler((char*)"get_card_info", requestHandlerFactory->CreateGetCardRequestHandler());
     apiController->RegisterHandler((char*)"remove_card", requestHandlerFactory->CreateRemoveCardRequestHandler());
+    apiController->RegisterHandler((char*)"get_extended_cards", requestHandlerFactory->CreateGetExtendedCardsRequestHandler());
+    apiController->RegisterHandler((char*)"set_extended_cards", requestHandlerFactory->CreateSetExtendedCardsRequestHandler());
     
     //configuration
     apiController->RegisterHandler((char*)"get_config", requestHandlerFactory->CreateGetConfigurationRequestHandler());

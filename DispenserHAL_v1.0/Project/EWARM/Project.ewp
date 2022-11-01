@@ -1504,10 +1504,22 @@
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\GetCardRequestHandler.hpp</name>
                         </file>
                         <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\GetExtendedCardsDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\GetExtendedCardsRequestHandler.hpp</name>
+                        </file>
+                        <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\RemoveCardDto.hpp</name>
                         </file>
                         <file>
                             <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\RemoveCardRequestHandler.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\SetExtendedCardsDto.hpp</name>
+                        </file>
+                        <file>
+                            <name>$PROJ_DIR$\..\HighLvl\modules\api\RequestHandlers\CardRequestHandlers\SetExtendedCardsRequestHandler.hpp</name>
                         </file>
                     </group>
                     <group>
