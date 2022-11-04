@@ -49,6 +49,15 @@ public:
             uint32_t cardId = action.rfidEvent.rfidCard.CardId;
 
             CARD_STATUS_t status = _cardsManager->GetCardStatus(cardId);
+            if (status == CARD_IS_ACTIVE_STATUS)
+            {
+                //validate card substanceId with selected substance
+                Card card = _cardsManager->GetCard(cardId);
+                bool res = _substancesManager->IsIdEqualToSelectedSubstance(card.SubstanceId);
+                if (!res)
+                  _stage = ERROR_CARD_SUBSTACE_STAGE;
+            }
+
             switch (status)
             {
                 case CARD_EXT_ACCESS_STATUS:
@@ -141,6 +150,24 @@ public:
             }
             return;
         }
+        
+        if (_stage == ERROR_CARD_SUBSTACE_STAGE)
+        {
+            set_cursor_position(0, 6);
+            set_text_rus((char*)StringResources::Attention); 
+            set_cursor_position(1, 1);
+            set_text_rus((char*)StringResources::CardIsNotBinded); 
+            set_cursor_position(2, 4);
+            set_text_rus((char*)StringResources::ToThisDevice); 
+            
+            if (global_timer - stageTimer > 5000)
+            {
+                _stage = WAITING_STAGE;
+                clear_display();
+                _isWaitingUserActionDisplayInited = false;
+            }
+            return;
+        }
     }
     
 private:
@@ -150,6 +177,7 @@ private:
         WAITING_STAGE,
         CARD_NOT_BINDED_STAGE,
         CARD_IS_INACTIVE_STAGE,
+        ERROR_CARD_SUBSTACE_STAGE,
     }STAGE_t;
     
    
@@ -158,6 +186,7 @@ private:
     {
         _stage = WAITING_STAGE;
         _cardsManager = ModulesLocator::GetInstance()->cardsManager;
+        _substancesManager = ModulesLocator::GetInstance()->substancesManager;
         _isWaitingUserActionDisplayInited = false;
     }
     
@@ -165,6 +194,7 @@ private:
     STAGE_t _stage;
 
     ICardsManager * _cardsManager;
+    SubstancesManager* _substancesManager;
     RtcDateTime_t _currentDateTime;
     bool _isWaitingUserActionDisplayInited;
     

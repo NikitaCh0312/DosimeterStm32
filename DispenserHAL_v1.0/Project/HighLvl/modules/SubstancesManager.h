@@ -18,7 +18,7 @@ public:
         _storage->Load();
     }
 
-    bool IsIdEqualToSelectedSubstance()
+    bool IsIdEqualToSelectedSubstance(uint32_t substanceId)
     {
         return true;
     }
@@ -26,6 +26,16 @@ public:
     int GetSubstancesQuantity()
     {
         return 0;
+    }
+    
+    void AddSubstance(Substance_t* substance)
+    {
+      
+    }
+    
+    void DeleteSubstance(uint32_t id)
+    {
+      
     }
     
     void SetSelectedSubstance(uint32_t id)
